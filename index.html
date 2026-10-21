@@ -106,8 +106,8 @@
         <img class="qr" src="assets/qr-iptv.png" alt="IPTV 订阅二维码" loading="lazy" width="96" height="96">
       </div>
       <div class="meta">
-        <span>最近更新：<b data-updated="IPTV">查询中…</b></span>
-        <span>每天 06:00</span>
+        <span>每小时自动剔除失效线路</span>
+        <span>全量更新：每天 06:00</span>
       </div>
     </section>
 
@@ -144,8 +144,8 @@
         <img class="qr" src="assets/qr-iptvzb.png" alt="IPTVZB 订阅二维码" loading="lazy" width="96" height="96">
       </div>
       <div class="meta">
-        <span>最近更新：<b data-updated="IPTVZB">查询中…</b></span>
-        <span>每天 3 次</span>
+        <span>每小时自动剔除失效线路</span>
+        <span>全量更新：每天 3 次</span>
       </div>
     </section>
   </div>
@@ -180,28 +180,6 @@
       btn.classList.add('done');
       setTimeout(function () { btn.textContent = old; btn.classList.remove('done'); }, 1500);
     });
-  });
-
-  function fmt(iso) {
-    try {
-      return new Date(iso).toLocaleString('zh-CN', {
-        timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit',
-        hour: '2-digit', minute: '2-digit', hour12: false
-      });
-    } catch (e) { return iso; }
-  }
-
-  document.querySelectorAll('[data-updated]').forEach(async function (el) {
-    var repo = el.getAttribute('data-updated');
-    try {
-      var r = await fetch('https://api.github.com/repos/zengzifeng520/' + repo + '/commits?path=live.m3u&per_page=1');
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      var list = await r.json();
-      if (!list.length) throw new Error('empty');
-      el.textContent = fmt(list[0].commit.committer.date);
-    } catch (e) {
-      el.textContent = '查询失败';
-    }
   });
 </script>
 </body>
