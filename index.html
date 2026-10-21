@@ -34,9 +34,10 @@
   .links{flex:1 1 200px;min-width:0;display:flex;flex-direction:column;gap:10px}
   .row{display:flex;align-items:center;gap:8px;background:#0d1117;border:1px solid var(--line);border-radius:8px;padding:8px 10px}
   .row .kind{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:1px 6px;flex:none}
+  .row .kind.hot{color:var(--ok);border-color:#238636;background:rgba(63,185,80,.12)}
   .row code{
     flex:1 1 auto;min-width:0;
-    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+    display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
     word-break:normal;overflow-wrap:anywhere;white-space:normal;
     font:11px/1.5 ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;color:#79c0ff;
   }
@@ -82,6 +83,11 @@
       <div class="body">
         <div class="links">
           <div class="row">
+            <span class="kind hot">✓ 巡检</span>
+            <code>https://cdn.jsdelivr.net/gh/zengzifeng520/IPTV@main/checked/live.m3u</code>
+            <button data-copy="https://cdn.jsdelivr.net/gh/zengzifeng520/IPTV@main/checked/live.m3u">复制</button>
+          </div>
+          <div class="row">
             <span class="kind">M3U</span>
             <code>https://cdn.jsdelivr.net/gh/zengzifeng520/IPTV@main/live.m3u</code>
             <button data-copy="https://cdn.jsdelivr.net/gh/zengzifeng520/IPTV@main/live.m3u">复制</button>
@@ -111,6 +117,11 @@
       <div class="body">
         <div class="links">
           <div class="row">
+            <span class="kind hot">✓ 巡检</span>
+            <code>https://cdn.jsdelivr.net/gh/zengzifeng520/IPTVZB@main/checked/live.m3u</code>
+            <button data-copy="https://cdn.jsdelivr.net/gh/zengzifeng520/IPTVZB@main/checked/live.m3u">复制</button>
+          </div>
+          <div class="row">
             <span class="kind">M3U</span>
             <code>https://cdn.jsdelivr.net/gh/zengzifeng520/IPTVZB@main/live.m3u</code>
             <button data-copy="https://cdn.jsdelivr.net/gh/zengzifeng520/IPTVZB@main/live.m3u">复制</button>
@@ -132,6 +143,7 @@
   </div>
 
   <footer>
+    <p>标着 <b style="color:#3fb950">✓ 巡检</b> 的是每小时自动复检过的版本：连续两次探测失败的线路会被剔除，恢复正常的线路下一轮自动回来；其余 M3U 是每天全量生成的原始列表。</p>
     <p>用法：把上面的 M3U 链接粘到播放器的「订阅 / 网络列表」里即可，支持 TiviMate、影视仓、PotPlayer、Kodi 等；TXT 格式供只接受「分类,频道,地址」列表的软件使用。</p>
     <p>链接走 jsDelivr CDN，有缓存，更新后可能要等几分钟才生效；也可以直接打开 <code>live.m3u</code> 查看内容。</p>
   </footer>
