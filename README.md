@@ -36,6 +36,7 @@
 Actions 运行成功后，生成的 live.m3u 和 live.txt 会出现在仓库的根目录（或指定输出目录），可直接通过 Raw 链接导入播放器。
 
 订阅链接（以 `zengzifeng520/IPTVZB` 为例）：
+- 自定义域：`https://zzf.new.tg/live.m3u` 与 `https://zzf.new.tg/live.txt`（GitHub Pages）
 - M3U：`https://raw.githubusercontent.com/zengzifeng520/IPTVZB/main/live.m3u`
 - TXT：`https://raw.githubusercontent.com/zengzifeng520/IPTVZB/main/live.txt`
 - 加速（jsDelivr）：`https://cdn.jsdelivr.net/gh/zengzifeng520/IPTVZB@main/live.m3u` 与 `.../live.txt`
