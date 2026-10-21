@@ -12,9 +12,19 @@ on:
     branches:
       - main
 
+# GITHUB_TOKEN 需要写权限才能 push 回仓库
+permissions:
+  contents: write
+
+# 同一时间只跑一个更新任务：定时触发和手动触发不互相抢 main
+concurrency:
+  group: multicast-update
+  cancel-in-progress: false
+
 jobs:
   multicast_job:
     runs-on: ubuntu-latest
+    timeout-minutes: 300
 
     steps:
     - name: Checkout repository
@@ -40,10 +50,33 @@ jobs:
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git add -f live.m3u live.txt function.log
-        if ! git diff --staged --quiet; then
-          git commit -m "Auto-update multicast playlists"
-          git push
+        if git diff --staged --quiet; then
+          echo "live 文件无变化，跳过提交"
+          exit 0
         fi
+
+        # 输出骤降时只发告警（不拦截），便于发现源站大面积失效或检测参数过严
+        before=$(git show HEAD:live.txt 2>/dev/null | wc -l)
+        after=$(wc -l < live.txt 2>/dev/null || echo 0)
+        if [ "$before" -gt 100 ] && [ "$after" -lt $((before / 2)) ]; then
+          echo "::warning::live.txt 行数由 $before 降至 $after，请检查源站与检测参数"
+        fi
+
+        git commit -m "Auto-update multicast playlists"
+
+        # 抓取+检测动辄两小时，期间远端很容易被网页提交或上一轮任务推进；
+        # push 前先 rebase 到远端最新提交，被拒则自动重试，不再直接失败。
+        for attempt in 1 2 3 4 5; do
+          if git pull --rebase --autostash -X theirs origin main && git push origin HEAD:main; then
+            echo "推送成功（第 $attempt 次尝试）"
+            exit 0
+          fi
+          git rebase --abort 2>/dev/null || true
+          echo "第 $attempt 次推送失败，5 秒后重试"
+          sleep 5
+        done
+        echo "::error::连续 5 次推送失败，请手动检查远端 main 状态"
+        exit 1
 
     - name: Show subscription links
       run: |
