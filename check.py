@@ -44,7 +44,7 @@ def _get_base_url(url: str) -> str:
 
 
 async def _http_fast_check(session, url, timeout):
-    """HTTP 快筛：拉 playlist 验证可达性"""
+    """HTTP 快筛：拉 playlist / 组播流验证可达性"""
     result = {"url": url, "status": "unknown", "detail": "", "layer": "fast"}
     try:
         async with session.get(url, timeout=aiohttp.ClientTimeout(total=timeout)) as resp:
@@ -52,12 +52,12 @@ async def _http_fast_check(session, url, timeout):
                 result["status"] = "failed"
                 result["detail"] = f"http_status={resp.status}"
                 return result
-            text = await resp.text()
-            if not text or len(text) < 10:
-                result["status"] = "empty"
-                result["detail"] = "playlist is empty"
-                return result
             if ".m3u8" in url or "index.m3u8" in url:
+                text = await resp.text()
+                if not text or len(text) < 10:
+                    result["status"] = "empty"
+                    result["detail"] = "playlist is empty"
+                    return result
                 ts_lines = [l.strip() for l in text.splitlines()
                             if l.strip() and not l.strip().startswith("#") and l.strip()]
                 result["ts_count"] = len(ts_lines)
@@ -68,8 +68,14 @@ async def _http_fast_check(session, url, timeout):
                     result["status"] = "ok"
                     result["detail"] = f"playlist_ok ts_entries={len(ts_lines)}"
             else:
-                result["status"] = "ok"
-                result["detail"] = "http_ok"
+                # 非 m3u8（组播/rtp 隧道等持续流）：读取少量字节验证可播后即断开
+                try:
+                    chunk = await resp.content.readexactly(1)
+                    result["status"] = "ok"
+                    result["detail"] = "http_ok stream"
+                except asyncio.IncompleteReadError:
+                    result["status"] = "empty"
+                    result["detail"] = "stream closed early"
     except asyncio.TimeoutError:
         result["status"] = "timeout"
         result["detail"] = f"timeout >{timeout}s"
@@ -522,8 +528,12 @@ async def check_all(channels):
 def filter_dead_urls(channels, check_results):
     """
     根据检测结果过滤失效源，返回去重后的 channels。
-    保留条件: status 为 "ok" 或 "ok_no_ts"，且 layer 为 "ffprobe" 或 "deep"（排除仅快筛无元数据的源）
+    保留条件: status 为 "ok" 或 "ok_no_ts"；默认 layer 需为 "ffprobe" 或 "deep"（排除仅快筛无元数据的源）。
+    当 config.keep_http_passed = True 时，HTTP 快筛通过的源（layer="fast"）也会被保留，
+    适用于组播/rtp 流等 ffprobe 难以读到元数据的场景。
     """
+    keep_http = getattr(config, "keep_http_passed", False)
+    keep_timeout = getattr(config, "keep_timeout_sources", False)
     filtered = {}
     for cat, ch_dict in channels.items():
         filtered[cat] = {}
@@ -532,8 +542,11 @@ def filter_dead_urls(channels, check_results):
             for url in url_list:
                 cl = _strip_suffix(url)
                 r = check_results.get(cat, {}).get(ch_name, {}).get(cl, {})
-                # 接受 ffprobe 或 deep 层检测通过的源
-                if r.get("status") in ("ok", "ok_no_ts") and r.get("layer") in ("ffprobe", "deep"):
+                ok_status = r.get("status") in ("ok", "ok_no_ts")
+                is_timeout = r.get("status") == "timeout"
+                if ok_status and (keep_http or r.get("layer") in ("ffprobe", "deep")):
+                    valid.append(url)
+                elif is_timeout and keep_timeout:
                     valid.append(url)
             if valid:
                 filtered[cat][ch_name] = valid

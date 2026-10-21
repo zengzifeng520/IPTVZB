@@ -1,0 +1,55 @@
+name: Multicast Update
+
+# 组播源每日抓取 + 有效性检测 + 按模板分组 + 生成订阅链接
+# 产物: live.m3u / live.txt（提交后即为订阅链接）
+
+on:
+  schedule:
+    - cron: '0 22 * * *'   # 每天 06:00 北京时间（UTC 22:00）
+  workflow_dispatch:
+    branches:
+      - main
+
+jobs:
+  multicast_job:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get install -y ffmpeg
+        pip install requests aiohttp
+
+    - name: Fetch multicast sources, check validity, group by template
+      # main.py 流程：组播源 API 抓取 → 双引擎质量检测（HTTP 快筛 + ffprobe）
+      # → 按 template.txt 模板分组 → 生成 live.m3u / live.txt
+      run: python main.py
+
+    - name: Commit and push if changed
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add -f live.m3u live.txt function.log
+        if ! git diff --staged --quiet; then
+          git commit -m "Auto-update multicast playlists"
+          git push
+        fi
+
+    - name: Show subscription links
+      run: |
+        echo "## 订阅链接" >> $GITHUB_STEP_SUMMARY
+        echo "- M3U: https://raw.githubusercontent.com/zengzifeng520/IPTVZB/main/live.m3u" >> $GITHUB_STEP_SUMMARY
+        echo "- TXT: https://raw.githubusercontent.com/zengzifeng520/IPTVZB/main/live.txt" >> $GITHUB_STEP_SUMMARY
+        echo "- M3U (jsDelivr): https://cdn.jsdelivr.net/gh/zengzifeng520/IPTVZB@main/live.m3u" >> $GITHUB_STEP_SUMMARY
+        echo "- TXT (jsDelivr): https://cdn.jsdelivr.net/gh/zengzifeng520/IPTVZB@main/live.txt" >> $GITHUB_STEP_SUMMARY
+
+    env:
+      TZ: Asia/Shanghai

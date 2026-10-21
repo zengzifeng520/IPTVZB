@@ -8,10 +8,11 @@
 
 ## 功能特性
 
+- **组播源 API 抓取**：调用列表提取 API（`api.809899.xyz/extract_multicast`）自动抓取全网组播源，按区域/运营商自动分组
 - **自动聚合**：从多个数据源抓取频道，按频道名精确匹配和模糊匹配汇总
 - **IPv4 / IPv6 双栈**：优先使用 IPv6/IPv4 地址（可配置）
 - **双引擎质量检测**：HTTP 快筛 + FFprobe 中度探测，双重过滤失效和低质量源
-  - 第一层：aiohttp 并发拉取 playlist，验证可达性
+  - 第一层：aiohttp 并发拉取 playlist / 组播流，验证可达性
   - 第二层：ffprobe 探流，提取分辨率、码率、编解码器信息
 - **智能排序**：FFprobe 通过的源排前面，同层内按码率、分辨率降序排列
 - **信息标注**：输出 URL 末尾自动附加分辨率和码率，如 `【1920x1080@256kbps】`
@@ -33,6 +34,11 @@
 - 进入你 fork 的仓库，点击 Actions 标签页，如果提示需要启用 Workflow，点击 I understand my workflows, go ahead and enable them。之后 Actions 会根据 .github/workflows 中的配置自动运行（通常为每日定时执行）。你也可以手动触发一次，验证能否正常生成 live.m3u。
 获取结果​
 Actions 运行成功后，生成的 live.m3u 和 live.txt 会出现在仓库的根目录（或指定输出目录），可直接通过 Raw 链接导入播放器。
+
+订阅链接（以 `zengzifeng520/IPTVZB` 为例）：
+- M3U：`https://raw.githubusercontent.com/zengzifeng520/IPTVZB/main/live.m3u`
+- TXT：`https://raw.githubusercontent.com/zengzifeng520/IPTVZB/main/live.txt`
+- 加速（jsDelivr）：`https://cdn.jsdelivr.net/gh/zengzifeng520/IPTVZB@main/live.m3u` 与 `.../live.txt`
 
 ---
 
@@ -80,6 +86,14 @@ python main.py
 # IP 优先级：ipv6 或 ipv4
 ip_version_priority = "ipv6"
 
+# 组播源提取 API 配置
+mcast_config = {
+    "mcast_api": "https://api.809899.xyz",        # 列表提取 API 地址
+    "mcast_api_auth": "iptv-tools-official-v1",   # API 签名头 X-App-Auth
+    "mcast_keyword": "",                          # 关键字过滤（空=全部）
+    "enabled": True,                              # True=启用组播源抓取
+}
+
 # 数据源列表（支持 m3u / txt 格式）
 source_urls = [ ... ]
 
@@ -91,6 +105,10 @@ announcements = [ ... ]
 
 # EPG 地址列表
 epg_urls = [ ... ]
+
+# 过滤策略
+keep_http_passed = True        # True=HTTP 快筛通过的源即保留（组播/rtp 流 ffprobe 常读不到元数据）
+keep_timeout_sources = True    # True=探测超时的源保留（云端探测连不上运营商组播网不代表本地不可用）
 
 # 质量检测
 enable_quality_check = True    # True=启用质量检测（测活后过滤失效源），False=直接输出不过滤

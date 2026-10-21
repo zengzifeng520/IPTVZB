@@ -8,8 +8,8 @@
 ip_version_priority = "ipv6"
 
 # ── 源优先级 ────────────────────────────────────────────────────────
-# "hotel" = 酒店源优先排在前面；"subscription" = 订阅源优先
-source_priority = "hotel"
+# "mcast" = 组播源优先排在前面；"subscription" = 订阅源优先
+source_priority = "mcast"
 
 # 每频道最大线路数，0 = 不限制
 max_lines_per_channel = 8
@@ -21,16 +21,15 @@ max_lines_per_channel = 8
 source_urls = [
 ]
 
-# ── 酒店源 ────────────────────────────────────────────
-# hotel_api   : 酒店源 API 地址
-# enabled   : True=启用酒店源抓取，False=跳过
-# allowed_orgs : 只保留指定运营商的节点，空列表=不过滤
-#              可选值: "China Telecom", "China Unicom", "China Mobile",
-#                      "Alibaba Cloud", "Tencent" 等
-hotel_config = {
-    "hotel_api": "https://api.809899.xyz",
-    "hotel_api_auth": "iptv-tools-official-v1",
-    "hotel_keyword": "",
+# ── 组播源 ────────────────────────────────────────────
+# mcast_api    : 组播源提取 API 地址
+# mcast_api_auth: 列表 API 签名头 X-App-Auth
+# mcast_keyword: 关键字过滤（空=全部）
+# enabled      : True=启用组播源抓取，False=跳过
+mcast_config = {
+    "mcast_api": "https://api.809899.xyz",
+    "mcast_api_auth": "iptv-tools-official-v1",
+    "mcast_keyword": "",
     "enabled": True,
 }
 
@@ -68,6 +67,14 @@ announcements = [
 #   2. 频道 ID 映射（{频道名: tvg-id}），让播放器正确显示节目单
 # 建议将最全面的源放在最后，作为保底
 epg_urls = ["https://zengzifeng.ccwu.cc/output/epg.xml"]
+
+# ── 过滤策略 ───────────────────────────────────────────────────────────
+# keep_http_passed : True=HTTP 快筛通过的源即保留（适合组播/rtp 流，ffprobe 常读不到元数据）
+#                    False=仅保留 ffprobe 或深度探测通过的源（更严格，适合标准 m3u8 源）
+keep_http_passed = True
+# keep_timeout_sources : True=探测超时的源保留（云端/异地探测常无法连通运营商组播网，不代表用户本地不可用）
+#                        False=超时源也过滤（更严格）
+keep_timeout_sources = True
 
 # ── 质量检测 — HTTP 快筛 ─────────────────────────────────────────────
 # enable_quality_check : True=启用质量检测（测活后过滤失效源），False=直接输出不过滤

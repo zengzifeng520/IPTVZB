@@ -6,7 +6,7 @@ from collections import OrderedDict
 from datetime import datetime
 import config
 import check as quality_checker
-import fetch_hotel
+import fetch_mcast
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s", handlers=[logging.FileHandler("function.log", "w", encoding="utf-8"), logging.StreamHandler()])
 
@@ -234,11 +234,10 @@ def is_ipv6(url):
 
 
 def _get_source_type(url: str, category: str = "") -> str:
-    """识别 URL 来源类型：hotel（酒店源）或 subscription（订阅源）
-    酒店源的 category 为 matchType（txiptv/zhgxtv/jsmpeg），与订阅源分类名不冲突。"""
-    hotel_cats = {"txiptv", "zhgxtv", "jsmpeg"}
-    if category in hotel_cats:
-        return "hotel"
+    """识别 URL 来源类型：mcast（组播源）或 subscription（订阅源）
+    组播源的 category 以「组播源」开头，与订阅源分类名不冲突。"""
+    if category.startswith("组播源"):
+        return "mcast"
     return "subscription"
 
 
@@ -248,7 +247,7 @@ def _url_sort_key(url: str, check_results: dict, category: str = ""):
     """
     排序 key：IP版本优先 > 来源（根据 source_priority） > 质量
     ip_version_priority="ipv6" 时 IPv6 优先，否则 IPv4 优先
-    source_priority="hotel" 时酒店源优先，否则订阅源优先
+    source_priority="mcast" 时组播源优先，否则订阅源优先
     返回 (ipv6_rank, source_rank, layer_rank, -bitrate, -width)，sorted 升序排列
     """
     clean = url.split(chr(36), 1)[0] if chr(36) in url else url
@@ -346,18 +345,19 @@ async def async_main():
     template_map = parse_alias_template(template_file)
     channels, _ = filter_source_urls(template_file)
 
-    # 酒店源抓取
-    if config.hotel_config.get("enabled", False):
-        logging.info("[酒店源] 开始抓取...")
-        hotel_channels = await fetch_hotel.fetch_all_from_hotel()
-        # 酒店源数据是 {cat: {name: [urls]}}，直接合并到 channels
+    # 组播源抓取
+    if config.mcast_config.get("enabled", False):
+        logging.info("[组播源] 开始抓取...")
+        mcast_channels = await fetch_mcast.fetch_multicast()
+        # 组播源数据是 {cat: {name: [urls]}}，直接合并到 channels
         merged = 0
-        for cat, ch_dict in hotel_channels.items():
+        for cat, ch_dict in mcast_channels.items():
             for name, urls in ch_dict.items():
                 channels.setdefault(cat, {}).setdefault(name, []).extend(urls)
                 merged += len(urls)
-        logging.info(f"[酒店源] 合并完成，共添加 {merged} 个 URL")
+        logging.info(f"[组播源] 合并完成，共添加 {merged} 个 URL")
 
+    check_results = {}
     if config.enable_quality_check:
         logging.info("[质量检测] 开始...")
         check_results, fail_domains = await quality_checker.check_all(channels)
