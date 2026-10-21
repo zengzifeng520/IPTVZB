@@ -5,6 +5,7 @@ IPTV 质量检测模块
 import re
 import asyncio
 import json
+import time
 import logging
 import subprocess
 import aiohttp
@@ -68,11 +69,38 @@ async def _http_fast_check(session, url, timeout):
                     result["status"] = "ok"
                     result["detail"] = f"playlist_ok ts_entries={len(ts_lines)}"
             else:
-                # 非 m3u8（组播/rtp 隧道等持续流）：读取少量字节验证可播后即断开
+                # 非 m3u8（组播/rtp 隧道等持续流）：读取少量字节验证可播后测速
                 try:
                     chunk = await resp.content.readexactly(1)
                     result["status"] = "ok"
-                    result["detail"] = "http_ok stream"
+                    # 组播源测速：读满 min_bytes 或达到窗口时间即停止
+                    total = len(chunk)
+                    start = time.monotonic()
+                    try:
+                        while True:
+                            elapsed = time.monotonic() - start
+                            if elapsed >= config.speed_probe_seconds or total >= config.speed_probe_min_bytes:
+                                break
+                            chunk = await asyncio.wait_for(
+                                resp.content.read(65536),
+                                timeout=config.speed_probe_seconds - elapsed,
+                            )
+                            if not chunk:
+                                break
+                            total += len(chunk)
+                    except asyncio.TimeoutError:
+                        pass
+                    elapsed = time.monotonic() - start
+                    if elapsed > 0.05:
+                        speed_kbps = int((total * 8) / elapsed / 1000)
+                    else:
+                        speed_kbps = 0
+                    result["deep"] = {
+                        "status": "ok",
+                        "speed_kbps": speed_kbps,
+                        "detail": f"speed_probe {speed_kbps}kbps",
+                    }
+                    result["detail"] = f"http_ok stream {speed_kbps}kbps"
                 except asyncio.IncompleteReadError:
                     result["status"] = "empty"
                     result["detail"] = "stream closed early"
@@ -436,8 +464,8 @@ async def _check_single(session, url, http_timeout, ffprobe_timeout, ffprobe_sem
             fast["ffprobe"] = probe
             return fast
         fast["ffprobe"] = probe
-        # 第三层：深度探测（对所有通过中度探测的源）
-        if config.enable_deep_probe:
+        # 第三层：深度探测（仅对 m3u8 流；组播/rtp 流已在快筛阶段完成测速）
+        if config.enable_deep_probe and _is_m3u8_url(clean_url):
             deep = await _deep_probe_async(clean_url, config.deep_probe_timeout)
             if deep["status"] == "ok":
                 fast["deep"] = deep

@@ -84,6 +84,14 @@ enable_quality_check = True
 check_timeout    = 5
 check_max_conn   = 30
 
+# ── 组播源测速 ───────────────────────────────────────────────
+# 组播/rtp 持续流无 m3u8 分片，无法用 deep probe 测速，
+# 改为在 HTTP 快筛通过后直接读流测速（读满 min_bytes 或到窗口时间即停）
+# speed_probe_seconds  : 测速窗口（秒），越大越准但越耗时
+# speed_probe_min_bytes: 读到该字节数即停止测速（速度快的源秒测完，不拖慢整体）
+speed_probe_seconds    = 3.0
+speed_probe_min_bytes  = 512 * 1024   # 512 KB
+
 # ── 质量检测 — FFprobe 中度探测 ───────────────────────────────────────
 # enable_ffprobe     : True=启用第二层 FFprobe 探测，False=仅 HTTP 快筛
 #                      建议先在少量频道上测试稳定性，再全量开启

@@ -318,6 +318,11 @@ def _get_meta_suffix(url: str, check_results: dict) -> str:
                         return f" 【{res_br} {speed}】"
                     else:
                         return " 【" + " ".join(parts) + "】"
+            elif speed_kbps > 0:
+                # 组播/rtp 流：ffprobe 读不到元数据，仅附加测速信息
+                if speed_kbps >= 1000:
+                    return f" 【{speed_kbps//1000}Mbps】"
+                return f" 【{speed_kbps}kbps】"
     return ""
 
 def _print_domain_suggestions(fail_domains: dict):
