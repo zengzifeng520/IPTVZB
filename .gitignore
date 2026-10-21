@@ -6,3 +6,6 @@ __pycache__/
 
 *.m3u
 *.txt
+
+# 巡检失败计数（放在 Actions 缓存里，不入库）
+checked/state.json
