@@ -12,7 +12,7 @@ ip_version_priority = "ipv6"
 source_priority = "mcast"
 
 # 每频道最大线路数，0 = 不限制
-max_lines_per_channel = 8
+max_lines_per_channel = 30
 
 # ── 订阅源 ───────────────────────────────────────────────────────
 # 每个 URL 都是一个 IPTV 直播源文件（支持 m3u 或 txt 格式）
@@ -81,8 +81,8 @@ keep_timeout_sources = True
 # check_timeout        : 单个 URL HTTP 请求超时时间（秒），超时视为失效
 # check_max_conn       : 最大并发检测数，调高可加速但更占带宽
 enable_quality_check = True
-check_timeout    = 3.5
-check_max_conn   = 80
+check_timeout    = 5
+check_max_conn   = 30
 
 # ── 质量检测 — FFprobe 中度探测 ───────────────────────────────────────
 # enable_ffprobe     : True=启用第二层 FFprobe 探测，False=仅 HTTP 快筛
@@ -99,7 +99,7 @@ check_max_conn   = 80
 # ffprobe_max_streams: ffprobe 最多读取的流数量，避免大文件探流耗时过长
 ffmpeg_path        = ""        # 空 = 使用系统 PATH 里的 ffprobe
 enable_ffprobe     = True
-ffprobe_timeout    = 3.5
+ffprobe_timeout    = 5
 min_bitrate        = 0         # min_bitrate = 200000 → 码率>0 且 <200kbps 的源会被淘汰；码率=0 的源不受影响
 min_resolution     = "720"     # 宽度最低 720px
 ffprobe_max_streams = 3
