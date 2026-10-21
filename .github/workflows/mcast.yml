@@ -6,6 +6,8 @@ name: Multicast Update
 on:
   schedule:
     - cron: '0 22 * * *'   # 每天 06:00 北京时间（UTC 22:00）
+    - cron: '0 4 * * *'    # 每天 12:00 北京时间（UTC 04:00）
+    - cron: '0 10 * * *'   # 每天 18:00 北京时间（UTC 10:00）
   workflow_dispatch:
     branches:
       - main
