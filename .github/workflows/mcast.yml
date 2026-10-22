@@ -45,6 +45,16 @@ jobs:
       # → 按 template.txt 模板分组 → 生成 live.m3u / live.txt
       run: python main.py
 
+    - name: Check output is not empty
+      run: |
+        before=$(git show HEAD:live.txt 2>/dev/null | wc -l)
+        after=$(wc -l < live.txt 2>/dev/null || echo 0)
+        echo "live.txt: $before -> $after 行"
+        if [ "$after" -lt 50 ] || { [ "$before" -ge 100 ] && [ "$after" -lt $((before / 10)) ]; }; then
+          echo "::error::生成结果异常（$after 行，原本 $before 行），本轮不发布，保留上一版列表"
+          exit 1
+        fi
+
     - name: Commit and push if changed
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
