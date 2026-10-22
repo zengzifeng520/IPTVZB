@@ -18,7 +18,7 @@ import re
 import sys
 import time
 from collections import OrderedDict
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 import aiohttp
 
@@ -38,6 +38,8 @@ BODY_WAIT = float(os.environ.get("CHECK_BODY_WAIT", "4"))
 # 组播转单播（udpxy）代理：能否出数据取决于探测点所在运营商，
 # 云端 runner 天然判不准，因此允许「200 + udpxy 响应」算存活。
 LENIENT_UDPXY = os.environ.get("LENIENT_UDPXY", "0") == "1"
+
+CST = timezone(timedelta(hours=8))
 
 SUFFIX_RE = re.compile(r"\$LR.*$")
 
@@ -143,7 +145,7 @@ def load_state():
 
 def main():
     started = time.time()
-    now = datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds")
+    now = datetime.now(CST).isoformat(timespec="seconds")
 
     header, m3u_entries = (parse_m3u(SRC_M3U) if os.path.exists(SRC_M3U) else ("#EXTM3U", []))
     txt_groups = parse_txt(SRC_TXT) if os.path.exists(SRC_TXT) else OrderedDict()
@@ -214,7 +216,7 @@ def main():
 
     os.makedirs(OUT_DIR, exist_ok=True)
 
-    stamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    stamp = datetime.now(CST).strftime("%Y-%m-%d %H:%M:%S")
     m3u_lines = [header, f"# 更新时间：{stamp}（北京时间）"]
     for e in kept_m3u:
         if e["extinf"]:
