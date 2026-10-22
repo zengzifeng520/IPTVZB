@@ -1,5 +1,5 @@
 #EXTM3U x-tvg-url="https://zengzifeng.ccwu.cc/output/epg.xml"
-# 更新时间：2026-10-22 20:19:34（北京时间）
+# 更新时间：2026-10-22 21:19:36（北京时间）
 #EXTINF:-1 tvg-id="更新" tvg-name="更新" group-title="更新时间 2026-10-22 15:39:26",2026-10-22 15:39:26 更新
 http://118.77.107.10:8085/rtp/226.0.2.11:8000
 #EXTINF:-1 tvg-id="山西卫视" tvg-name="山西卫视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/山西卫视.png" group-title="卫视频道",山西卫视
@@ -2010,8 +2010,6 @@ http://114.97.219.249:8888/rtp/238.1.78.27:6144
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.27:6144
 #EXTINF:-1 tvg-id="三沙卫视" tvg-name="三沙卫视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/三沙卫视.png" group-title="卫视频道",三沙卫视
 http://115.58.216.33:5800/rtp/225.1.4.234:1280
-#EXTINF:-1 tvg-id="三沙卫视" tvg-name="三沙卫视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/三沙卫视.png" group-title="卫视频道",三沙卫视
-http://111.193.224.236:8888/rtp/239.3.1.155:4120
 #EXTINF:-1 tvg-id="三沙卫视" tvg-name="三沙卫视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/三沙卫视.png" group-title="卫视频道",三沙卫视
 http://124.77.237.107:4022/rtp/233.18.204.172:5140
 #EXTINF:-1 tvg-id="三沙卫视" tvg-name="三沙卫视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/三沙卫视.png" group-title="卫视频道",三沙卫视
@@ -7076,8 +7074,6 @@ http://n2.192372.xyz:8888/rtp/239.3.1.102:8001
 http://123.117.47.136:4022/rtp/239.3.1.102:8001
 #EXTINF:-1 tvg-id="萌宠TV" tvg-name="萌宠TV" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/萌宠TV.png" group-title="北京节目",萌宠TV
 http://111.197.231.173:4022/rtp/239.3.1.102:8001
-#EXTINF:-1 tvg-id="萌宠TV" tvg-name="萌宠TV" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/萌宠TV.png" group-title="北京节目",萌宠TV
-http://111.193.224.236:8888/rtp/239.3.1.102:8001
 #EXTINF:-1 tvg-id="萌宠TV" tvg-name="萌宠TV" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/萌宠TV.png" group-title="北京节目",萌宠TV
 http://naslmd2.myqnapcloud.com:4022/rtp/239.3.1.102:8001
 #EXTINF:-1 tvg-id="萌宠TV" tvg-name="萌宠TV" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/萌宠TV.png" group-title="北京节目",萌宠TV
