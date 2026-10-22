@@ -4,8 +4,10 @@ name: Multicast Update
 # 产物: live.m3u / live.txt（提交后即为订阅链接）
 
 on:
-  # 定时由 NAS 触发（每天 05:05 / 15:05 调 workflow_dispatch），
-  # 不用 GitHub 的 schedule：这台仓库的 cron 基本不触发，偶尔触发还会多跑一轮。
+  # 主触发在 NAS（每天 05:05 / 15:05 调 workflow_dispatch）。
+  # 这里保留一条低频 GitHub cron 当兜底：NAS 挂了/断网时至少还能跑一次。
+  schedule:
+    - cron: '30 7 * * *'   # 每天 15:30 北京时间（UTC 07:30），比 NAS 的 15:05 晚 25 分钟
   workflow_dispatch:
     branches:
       - main
