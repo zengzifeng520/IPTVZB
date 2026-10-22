@@ -397,7 +397,7 @@ async def _get_ffprobe_executor():
     global _ffprobe_executor
     if _ffprobe_executor is None:
         import concurrent.futures
-        _ffprobe_executor = concurrent.futures.ProcessPoolExecutor(max_workers=8)
+        _ffprobe_executor = concurrent.futures.ProcessPoolExecutor(max_workers=int(getattr(config, "ffprobe_max_workers", 8)))
     return _ffprobe_executor
 
 
@@ -481,74 +481,146 @@ async def _check_single(session, url, http_timeout, ffprobe_timeout, ffprobe_sem
 
 async def check_all(channels):
     """
-    双引擎并发检测所有频道的所有 URL。
+    三层质量检测（HTTP 快筛 → ffprobe → 深度探测）。
+
+    优化点：
+    - 按唯一 URL 去重，同一个地址只测一次（源站里同一 URL 常挂在多个频道下）；
+    - 三层各自独立限流，慢的 ffprobe 不会占住 HTTP 的并发位；
+    - ffprobe 失败但 HTTP 已拿到合法播放列表时标记为 fast_ok（B 级），
+      由 filter_dead_urls 决定是否保留，避免起播慢的好源被误杀。
 
     参数:
         channels: {category: {channel_name: [url1, url2, ...]}}
 
     返回:
-        (check_results, fail_domains)
+        (check_results, fail_domains)，results 仍按 {cat: {name: {url: r}}} 组织。
     """
-    semaphore = asyncio.Semaphore(config.check_max_conn)
-    results = {}
-
-    # FFprobe 并发限制（避免同时启动过多进程导致系统资源耗尽）
-    async def _worker(cat, ch_name, url):
-        async with semaphore:
-            r = await _check_single(session, url, config.check_timeout, config.ffprobe_timeout)
-            return (cat, ch_name, url, r)
-
-    connector = aiohttp.TCPConnector(limit=config.check_max_conn, ssl=False)
-    timeout = aiohttp.ClientTimeout(total=config.check_timeout)
-    all_tasks = []
+    unique = {}
+    combos = 0
     for cat, ch_dict in channels.items():
         for ch_name, url_list in ch_dict.items():
             for url in url_list:
-                all_tasks.append(_worker(cat, ch_name, url))
+                combos += 1
+                unique.setdefault(url, True)
+    urls = list(unique.keys())
 
-    fail_domains = {}
+    max_http = max(1, int(getattr(config, "check_max_conn", 30)))
+    max_ff = max(1, int(getattr(config, "ffprobe_max_workers", 8)))
+    max_deep = max(1, int(getattr(config, "deep_probe_max_conn", 16)))
+    sem_http = asyncio.Semaphore(max_http)
+    sem_ff = asyncio.Semaphore(max_ff)
+    sem_deep = asyncio.Semaphore(max_deep)
 
     logger.info(
-        f"开始质量检测，共 {len(all_tasks)} 个 URL，并发数 {config.check_max_conn}，"
-        f"HTTP 超时 {config.check_timeout}s"
-        + (f"，FFprobe 启用，超时 {config.ffprobe_timeout}s" if config.enable_ffprobe else "")
-        + (f"，深度探测启用，超时 {config.deep_probe_timeout}s" if config.enable_deep_probe else "")
-        + (f"，最小速度 {config.min_speed_kbps}kbps" if getattr(config, "min_speed_kbps", 0) > 0 else "")
+        f"开始质量检测：{combos} 个频道-URL 组合，去重后 {len(urls)} 个唯一 URL；"
+        f"HTTP 并发 {max_http} / 超时 {config.check_timeout}s"
+        + (f"，ffprobe 并发 {max_ff} / 超时 {config.ffprobe_timeout}s" if config.enable_ffprobe else "")
+        + (f"，深度探测并发 {max_deep} / 超时 {config.deep_probe_timeout}s" if config.enable_deep_probe else "")
     )
 
-    async with aiohttp.ClientSession(connector=connector, timeout=timeout) as session:
-        tasks = [asyncio.create_task(t) for t in all_tasks]
-        raw_results = await asyncio.gather(*tasks, return_exceptions=True)
+    async def _worker(session, url):
+        clean = _strip_suffix(url)
+        async with sem_http:
+            fast = await _http_fast_check(session, clean, config.check_timeout)
+        if fast["status"] not in ("ok", "ok_no_ts"):
+            fast["layer"] = "fast_fail"
+            return url, fast
+        if not config.enable_ffprobe:
+            fast["layer"] = "fast_ok"
+            return url, fast
 
-    for item in raw_results:
-        if isinstance(item, Exception):
-            continue
-        cat, ch_name, url, r = item
-        results.setdefault(cat, {}).setdefault(ch_name, {})[url] = r
-        if r["status"] in ("ok", "ok_no_ts"):
-            logger.debug(f"  [{ch_name}] OK  {url}  ({r.get('detail', '')})")
+        try:
+            async with sem_ff:
+                probe = await _ffprobe_async(clean, config.ffprobe_timeout, config.ffprobe_max_streams)
+        except Exception as e:
+            # 进程池异常不能把整条源弄丢：退回 HTTP 级判定
+            fast["ffprobe"] = {"status": "error", "detail": "ffprobe executor: %s" % e}
+            fast["layer"] = "fast_ok"
+            return url, fast
+        if probe["status"] != "ok":
+            # HTTP 已经验证可达、播放列表合法；ffprobe 失败只降级不丢弃
+            fast["ffprobe"] = probe
+            fast["layer"] = "fast_ok"
+            return url, fast
+
+        min_br = config.min_bitrate if getattr(config, "min_bitrate", 0) > 0 else 0
+        if min_br > 0 and probe.get("bitrate", 0) > 0 and probe.get("bitrate", 0) < min_br:
+            probe["status"] = "failed"
+            probe["detail"] += f" low_bitrate={probe['bitrate']//1000}kbps < {min_br//1000}kbps"
+            fast["ffprobe"] = probe
+            fast["layer"] = "fast_fail"
+            return url, fast
+
+        min_res = int(getattr(config, "min_resolution", 0) or 0)
+        if min_res > 0 and probe.get("width", 0) < min_res:
+            probe["status"] = "failed"
+            probe["detail"] += f" low_resolution={probe['width']}px < {min_res}px"
+            fast["ffprobe"] = probe
+            fast["layer"] = "fast_fail"
+            return url, fast
+
+        fast["ffprobe"] = probe
+        if config.enable_deep_probe:
+            try:
+                async with sem_deep:
+                    deep = await _deep_probe_async(clean, config.deep_probe_timeout)
+            except Exception as e:
+                deep = {"status": "error", "detail": "deep probe: %s" % e}
+            fast["deep"] = deep
+            fast["layer"] = "deep" if deep["status"] == "ok" else "ffprobe"
         else:
-            logger.debug(f"  [{ch_name}] FAIL {url}  ({r.get('detail', '')})")
-            domain = _get_domain(url)
-            if domain:
-                fail_domains.setdefault(domain, []).append(
-                    {"url": url, "status": r["status"], "detail": r.get("detail", "")}
-                )
+            fast["layer"] = "ffprobe"
+        return url, fast
 
-    total = failed = timeout_cnt = error_cnt = 0
-    for cat_ch in results.values():
-        for ch_urls in cat_ch.values():
-            for r in ch_urls.values():
-                total += 1
-                if r["status"] == "failed":
-                    failed += 1
-                elif r["status"] == "timeout":
-                    timeout_cnt += 1
-                elif r["status"] in ("error", "empty"):
-                    error_cnt += 1
-    ok_count = total - failed - timeout_cnt - error_cnt
+    connector = aiohttp.TCPConnector(limit=max_http, ssl=False)
+    timeout = aiohttp.ClientTimeout(total=max(config.check_timeout, config.ffprobe_timeout) + 5)
+    async with aiohttp.ClientSession(connector=connector, timeout=timeout) as session:
+        pairs = await asyncio.gather(*(_worker(session, u) for u in urls), return_exceptions=True)
+
+    url_result = {}
+    errors = 0
+    for item in pairs:
+        if isinstance(item, Exception):
+            errors += 1
+            continue
+        u, r = item
+        url_result[u] = r
+    if errors:
+        logger.warning(f"检测过程中有 {errors} 个 URL 抛出未捕获异常（已跳过）")
+
+    results = {}
+    fail_domains = {}
+    for cat, ch_dict in channels.items():
+        for ch_name, url_list in ch_dict.items():
+            for url in url_list:
+                r = url_result.get(url)
+                if r is None:
+                    continue
+                results.setdefault(cat, {}).setdefault(ch_name, {})[url] = r
+                if r.get("status") in ("ok", "ok_no_ts") and r.get("layer") in ("ffprobe", "deep", "fast_ok"):
+                    continue
+                domain = _get_domain(url)
+                if domain:
+                    fail_domains.setdefault(domain, []).append(
+                        {"url": url, "status": r["status"], "detail": r.get("detail", "")}
+                    )
+
+    layer_stats = {}
+    for r in url_result.values():
+        layer = r.get("layer", "unknown")
+        layer_stats[layer] = layer_stats.get(layer, 0) + 1
+    if config.enable_ffprobe and url_result:
+        fast_ok = layer_stats.get("fast_ok", 0)
+        ratio = fast_ok / len(url_result)
+        if ratio > 0.9:
+            logger.warning(
+                f"[告警] {ratio:.0%} 的源只通过 HTTP 层，ffprobe 可能未生效"
+                "（检查 ffmpeg/ffprobe 是否可用、ffmpeg_path 是否为系统 PATH）"
+            )
     logger.info(
-        f"质量检测完成: 总计={total} 通过={ok_count} 失败={failed} 超时={timeout_cnt} 错误={error_cnt}"
+        "质量检测完成（唯一 URL）："
+        + "，".join(f"{k}={v}" for k, v in sorted(layer_stats.items()))
+        + f"；频道-URL 组合={combos}"
     )
     return results, fail_domains
 
@@ -569,7 +641,8 @@ def filter_dead_urls(channels, check_results):
             valid = []
             for url in url_list:
                 cl = _strip_suffix(url)
-                r = check_results.get(cat, {}).get(ch_name, {}).get(cl, {})
+                bucket = check_results.get(cat, {}).get(ch_name, {})
+                r = bucket.get(url) or bucket.get(cl) or {}
                 ok_status = r.get("status") in ("ok", "ok_no_ts")
                 is_timeout = r.get("status") == "timeout"
                 if ok_status and (keep_http or r.get("layer") in ("ffprobe", "deep")):
