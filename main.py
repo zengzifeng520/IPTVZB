@@ -439,12 +439,22 @@ def updateChannelUrlsM3U(matched, leftover, epg_id_map=None, check_results=None)
             f_txt.write(f"# 更新时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}（北京时间）\n")
             # 更新时间分组：播放器里会显示成一个分组，点开能看到本次生成时间
             stamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            f_txt.write("更新时间,#genre#\n")
-            f_txt.write(f"{stamp} 更新,{config.self_url}\n")
+            # 取一条真实线路作为"更新时间"条目的地址，避免播放器把死链连分组一起隐藏
+            sample_url = ""
+            for _ch_dict in matched.values():
+                for _urls in _ch_dict.values():
+                    if _urls:
+                        sample_url = _urls[0]
+                        break
+                if sample_url:
+                    break
+            sample_url = sample_url or getattr(config, "self_url", "")
+            f_txt.write(f"更新时间 {stamp},#genre#\n")
+            f_txt.write(f"{stamp} 更新,{sample_url}\n")
             f_m3u.write(
-                f'#EXTINF:-1 tvg-id="更新" tvg-name="更新" group-title="更新时间",{stamp} 更新\n'
+                f'#EXTINF:-1 tvg-id="更新" tvg-name="更新" group-title="更新时间 {stamp}",{stamp} 更新\n'
             )
-            f_m3u.write(f"{config.self_url}\n")
+            f_m3u.write(f"{sample_url}\n")
 
             for group in config.announcements:
                 f_txt.write(f"{group['channel']},#genre#\n")
