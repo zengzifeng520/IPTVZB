@@ -433,8 +433,10 @@ def updateChannelUrlsM3U(matched, leftover, epg_id_map=None, check_results=None)
     with open("live.m3u", "w", encoding="utf-8") as f_m3u:
         epg_attr = ",".join(chr(34)+epg_url+chr(34) for epg_url in config.epg_urls)
         f_m3u.write(f"#EXTM3U x-tvg-url={epg_attr}\n")
+        f_m3u.write(f"# 更新时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}（北京时间）\n")
 
         with open("live.txt", "w", encoding="utf-8") as f_txt:
+            f_txt.write(f"# 更新时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}（北京时间）\n")
             for group in config.announcements:
                 f_txt.write(f"{group['channel']},#genre#\n")
                 for announcement in group["entries"]:

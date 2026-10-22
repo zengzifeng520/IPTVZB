@@ -214,18 +214,37 @@ def main():
 
     os.makedirs(OUT_DIR, exist_ok=True)
 
-    with open(os.path.join(OUT_DIR, "live.m3u"), "w", encoding="utf-8") as f:
-        f.write(header + "\n")
-        for e in kept_m3u:
-            if e["extinf"]:
-                f.write(e["extinf"] + "\n")
-            f.write(e["url_line"] + "\n")
+    stamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    m3u_lines = [header, f"# 更新时间：{stamp}（北京时间）"]
+    for e in kept_m3u:
+        if e["extinf"]:
+            m3u_lines.append(e["extinf"])
+        m3u_lines.append(e["url_line"])
+    m3u_content = "\n".join(m3u_lines) + "\n"
 
-    with open(os.path.join(OUT_DIR, "live.txt"), "w", encoding="utf-8") as f:
-        for group, entries in kept_txt.items():
-            f.write(f"{group},#genre#\n")
-            for name, url in entries:
-                f.write(f"{name},{url}\n")
+    txt_lines = [f"# 更新时间：{stamp}（北京时间）"]
+    for group, entries in kept_txt.items():
+        txt_lines.append(f"{group},#genre#")
+        for name, url in entries:
+            txt_lines.append(f"{name},{url}")
+    txt_content = "\n".join(txt_lines) + "\n"
+
+    def _strip_time(text):
+        return "\n".join(l for l in text.splitlines() if not l.startswith("# 更新时间"))
+
+    for path, content in (
+        (os.path.join(OUT_DIR, "live.m3u"), m3u_content),
+        (os.path.join(OUT_DIR, "live.txt"), txt_content),
+    ):
+        try:
+            with open(path, encoding="utf-8") as f:
+                old = f.read()
+        except Exception:
+            old = None
+        if old is not None and _strip_time(old) == _strip_time(content):
+            continue
+        with open(path, "w", encoding="utf-8", newline="\n") as f:
+            f.write(content)
 
     with open(STATE_FILE, "w", encoding="utf-8") as f:
         json.dump(new_state, f, ensure_ascii=False, indent=1, sort_keys=True)
