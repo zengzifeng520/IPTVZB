@@ -408,18 +408,22 @@ def updateChannelUrlsM3U(matched, leftover, epg_id_map=None, check_results=None)
                 logging.info("[频道] %s 线路从 %d 截断至 %d", channel_name, old_count, config.max_lines_per_channel)
             total_urls = len(filtered_urls)
             for index, url in enumerate(filtered_urls, start=1):
-                if is_ipv6(url):
-                    extra = _get_meta_suffix(url, check_results)
-                    url_suffix = f"$LR—IPV6{extra}" if total_urls == 1 else f"$LR—IPV6【线路{index}】{extra}"
-                else:
-                    extra = _get_meta_suffix(url, check_results)
-                    url_suffix = f"$LR—IPV4{extra}" if total_urls == 1 else f"$LR—IPV4【线路{index}】{extra}"
                 if "$" in url:
                     base_url = url.split("$", 1)[0]
                 else:
                     base_url = url
 
-                new_url = f"{base_url}{url_suffix}"
+                # 默认输出纯地址：$LR—IPV4【线路N】【分辨率@码率】 这类后缀部分播放器不认，
+                # 还会让订阅地址看起来很长。需要标注时把 config.url_suffix_enabled 设为 True。
+                if getattr(config, "url_suffix_enabled", False):
+                    extra = _get_meta_suffix(url, check_results)
+                    if is_ipv6(url):
+                        url_suffix = f"$LR—IPV6{extra}" if total_urls == 1 else f"$LR—IPV6【线路{index}】{extra}"
+                    else:
+                        url_suffix = f"$LR—IPV4{extra}" if total_urls == 1 else f"$LR—IPV4【线路{index}】{extra}"
+                    new_url = f"{base_url}{url_suffix}"
+                else:
+                    new_url = base_url
 
                 tvg_id = epg_id_map.get(channel_name, channel_name)
                 f_m3u.write(f"#EXTINF:-1 tvg-id=\"{tvg_id}\" tvg-name=\"{channel_name}\" tvg-logo=\"https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/{channel_name}.png\" group-title=\"{category}\",{channel_name}\n")

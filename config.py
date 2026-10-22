@@ -129,3 +129,7 @@ deep_probe_max_conn = 24
 enable_deep_probe  = True
 deep_probe_timeout = 5.0
 min_speed_kbps     = 2500  # 2.5 Mbps
+
+# url_suffix_enabled : True=在地址后追加 $LR—IPV4【线路N】【分辨率@码率】 标注
+#                      False=输出纯地址（默认，兼容性更好）
+url_suffix_enabled = False
