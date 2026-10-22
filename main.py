@@ -437,6 +437,15 @@ def updateChannelUrlsM3U(matched, leftover, epg_id_map=None, check_results=None)
 
         with open("live.txt", "w", encoding="utf-8") as f_txt:
             f_txt.write(f"# 更新时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}（北京时间）\n")
+            # 更新时间分组：播放器里会显示成一个分组，点开能看到本次生成时间
+            stamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            f_txt.write("更新时间,#genre#\n")
+            f_txt.write(f"{stamp} 更新,{config.self_url}\n")
+            f_m3u.write(
+                f'#EXTINF:-1 tvg-id="更新" tvg-name="更新" group-title="更新时间",{stamp} 更新\n'
+            )
+            f_m3u.write(f"{config.self_url}\n")
+
             for group in config.announcements:
                 f_txt.write(f"{group['channel']},#genre#\n")
                 for announcement in group["entries"]:

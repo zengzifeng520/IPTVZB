@@ -133,3 +133,6 @@ min_speed_kbps     = 2500  # 2.5 Mbps
 # url_suffix_enabled : True=在地址后追加 $LR—IPV4【线路N】【分辨率@码率】 标注
 #                      False=输出纯地址（默认，兼容性更好）
 url_suffix_enabled = False
+
+# self_url : 订阅自身的地址，用于"更新时间"分组里的占位链接
+self_url = "https://zzf.new.tg/live.m3u"
