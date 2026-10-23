@@ -1,5 +1,5 @@
 #EXTM3U x-tvg-url="https://zengzifeng.ccwu.cc/output/epg.xml"
-# 更新时间：2026-10-23 23:22:08（北京时间）
+# 更新时间：2026-10-24 00:22:52（北京时间）
 #EXTINF:-1 tvg-id="更新" tvg-name="更新" group-title="更新时间 2026-10-23 21:05:30",2026-10-23 21:05:30 更新
 http://171.213.171.190:8899/udp/239.94.0.60:5140
 #EXTINF:-1 tvg-id="四川卫视" tvg-name="四川卫视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/四川卫视.png" group-title="卫视频道",四川卫视
@@ -11575,6 +11575,8 @@ http://14.127.213.91:4022/udp/239.77.0.116:5146
 #EXTINF:-1 tvg-id="韶关新闻综合" tvg-name="韶关新闻综合" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/韶关新闻综合.png" group-title="其他频道",韶关新闻综合
 http://ddns.cyruslee.top:8888/udp/239.77.0.116:5146
 #EXTINF:-1 tvg-id="韶关新闻综合高清" tvg-name="韶关新闻综合高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/韶关新闻综合高清.png" group-title="其他频道",韶关新闻综合高清
+http://116.28.214.198:4022/udp/239.77.0.117:5146
+#EXTINF:-1 tvg-id="韶关新闻综合高清" tvg-name="韶关新闻综合高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/韶关新闻综合高清.png" group-title="其他频道",韶关新闻综合高清
 http://ddns.cyruslee.top:8888/udp/239.77.0.117:5146
 #EXTINF:-1 tvg-id="韶关新闻综合高清" tvg-name="韶关新闻综合高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/韶关新闻综合高清.png" group-title="其他频道",韶关新闻综合高清
 http://home.szjim.top:4000/udp/239.77.0.117:5146
@@ -11623,8 +11625,6 @@ http://ddns.cyruslee.top:8888/udp/239.77.0.247:5146
 #EXTINF:-1 tvg-id="HZTV-1" tvg-name="HZTV-1" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/HZTV-1.png" group-title="其他频道",HZTV-1
 http://ddns.cyruslee.top:8888/udp/239.77.1.154:5146
 #EXTINF:-1 tvg-id="HZTV-1高清" tvg-name="HZTV-1高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/HZTV-1高清.png" group-title="其他频道",HZTV-1高清
-http://116.28.214.198:4022/udp/239.77.1.232:5146
-#EXTINF:-1 tvg-id="HZTV-1高清" tvg-name="HZTV-1高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/HZTV-1高清.png" group-title="其他频道",HZTV-1高清
 http://home.szjim.top:4000/udp/239.77.1.232:5146
 #EXTINF:-1 tvg-id="HZTV-1高清" tvg-name="HZTV-1高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/HZTV-1高清.png" group-title="其他频道",HZTV-1高清
 http://vpn.jk960.cn:8686/udp/239.77.1.232:5146
@@ -11636,8 +11636,6 @@ http://ddns.cyruslee.top:8888/udp/239.77.0.248:5146
 http://ddns.cyruslee.top:8888/udp/239.77.1.173:5146
 #EXTINF:-1 tvg-id="HZTV-2高清" tvg-name="HZTV-2高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/HZTV-2高清.png" group-title="其他频道",HZTV-2高清
 http://home.szjim.top:4000/udp/239.77.1.233:5146
-#EXTINF:-1 tvg-id="HZTV-2高清" tvg-name="HZTV-2高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/HZTV-2高清.png" group-title="其他频道",HZTV-2高清
-http://116.28.214.198:4022/udp/239.77.1.233:5146
 #EXTINF:-1 tvg-id="HZTV-2高清" tvg-name="HZTV-2高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/HZTV-2高清.png" group-title="其他频道",HZTV-2高清
 http://ddns.cyruslee.top:8888/udp/239.77.1.233:5146
 #EXTINF:-1 tvg-id="珠海-2高清" tvg-name="珠海-2高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/珠海-2高清.png" group-title="其他频道",珠海-2高清
@@ -11670,6 +11668,8 @@ http://ddns.cyruslee.top:8888/udp/239.253.43.32:5146
 http://ddns.cyruslee.top:8888/udp/239.77.0.241:5146
 #EXTINF:-1 tvg-id="清远文旅生活高清" tvg-name="清远文旅生活高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/清远文旅生活高清.png" group-title="其他频道",清远文旅生活高清
 http://vpn.jk960.cn:8686/udp/239.253.43.34:5146
+#EXTINF:-1 tvg-id="清远文旅生活高清" tvg-name="清远文旅生活高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/清远文旅生活高清.png" group-title="其他频道",清远文旅生活高清
+http://116.28.214.198:4022/udp/239.253.43.34:5146
 #EXTINF:-1 tvg-id="清远文旅生活高清" tvg-name="清远文旅生活高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/清远文旅生活高清.png" group-title="其他频道",清远文旅生活高清
 http://14.127.213.91:4022/udp/239.253.43.34:5146
 #EXTINF:-1 tvg-id="清远文旅生活高清" tvg-name="清远文旅生活高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/清远文旅生活高清.png" group-title="其他频道",清远文旅生活高清
@@ -11712,8 +11712,6 @@ http://vpn.jk960.cn:8686/udp/239.253.43.102:5146
 http://14.127.213.91:4022/udp/239.253.43.102:5146
 #EXTINF:-1 tvg-id="东莞新闻综合" tvg-name="东莞新闻综合" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/东莞新闻综合.png" group-title="其他频道",东莞新闻综合
 http://ddns.cyruslee.top:8888/udp/239.253.43.102:5146
-#EXTINF:-1 tvg-id="东莞新闻综合高清" tvg-name="东莞新闻综合高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/东莞新闻综合高清.png" group-title="其他频道",东莞新闻综合高清
-http://116.28.214.198:4022/udp/239.253.43.104:5146
 #EXTINF:-1 tvg-id="东莞新闻综合高清" tvg-name="东莞新闻综合高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/东莞新闻综合高清.png" group-title="其他频道",东莞新闻综合高清
 http://14.127.213.91:4022/udp/239.253.43.104:5146
 #EXTINF:-1 tvg-id="东莞新闻综合高清" tvg-name="东莞新闻综合高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/东莞新闻综合高清.png" group-title="其他频道",东莞新闻综合高清
