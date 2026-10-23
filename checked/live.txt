@@ -1,4 +1,4 @@
-# 更新时间：2026-10-23 11:21:18（北京时间）
+# 更新时间：2026-10-23 12:22:03（北京时间）
 更新时间 2026-10-23 05:33:55,#genre#
 2026-10-23 05:33:55 更新,http://60.223.72.117:8004/rtp/226.0.2.11:8000
 卫视频道,#genre#
@@ -41,6 +41,7 @@
 湖南卫视,http://zjhuct.icu:8889/udp/233.50.200.190:5140
 湖南卫视,http://zjhuct.icu:8889/udp/233.50.201.103:5140
 湖南卫视,http://dous.cc:4023/udp/233.50.200.190:5140
+湖南卫视,http://www.liangcl.top:8686/udp/233.50.200.190:5140
 湖南卫视,http://115.197.179.185:9999/udp/233.50.201.52:5140
 湖南卫视,http://zjhuct.icu:8889/udp/233.50.201.52:5140
 湖南卫视,http://dous.cc:4023/udp/233.50.201.52:5140
@@ -254,6 +255,7 @@
 湖北卫视,http://115.197.179.185:9999/udp/233.50.201.114:5140
 湖北卫视,http://dous.cc:4023/udp/233.50.201.114:5140
 湖北卫视,http://home.szjim.top:4000/udp/239.77.0.128:5146
+湖北卫视,http://www.liangcl.top:8686/udp/233.50.200.147:5140
 湖北卫视,http://dous.cc:4023/udp/233.50.200.147:5140
 湖北卫视,http://106.80.125.59:7788/rtp/235.254.199.72:7980
 湖北卫视,http://114.97.219.249:8888/rtp/238.1.78.168:7216
@@ -392,7 +394,6 @@
 东方卫视,http://122.246.144.233:7777/udp/233.50.201.125:5140
 东方卫视,http://guany.myds.me:25852/udp/233.50.200.146:5140
 东方卫视,http://dous.cc:4023/udp/233.50.200.146:5140
-东方卫视,http://www.liangcl.top:8686/udp/233.50.200.146:5140
 东方卫视,http://115.197.179.185:9999/udp/233.50.200.248:5140
 东方卫视,http://zjhuct.icu:8889/udp/233.50.200.248:5140
 东方卫视,http://dous.cc:4023/udp/233.50.200.248:5140
@@ -1368,7 +1369,6 @@ CCTV10,http://115.197.179.185:9999/udp/233.50.201.10:5140
 CCTV10,http://zjhuct.icu:8889/udp/233.50.201.10:5140
 CCTV10,http://dous.cc:4023/udp/233.50.201.10:5140
 CCTV10,http://123.5.174.166:7001/rtp/225.1.4.78:1107
-CCTV10,http://www.liangcl.top:8686/udp/233.50.201.122:5140
 CCTV10,http://www.sccckj.cn:8899/udp/239.11.0.112:5140
 CCTV10,http://home.pinkfloyd.cn:5000/rtp/238.1.78.241:7800
 CCTV10,http://dous.cc:4023/udp/233.50.201.122:5140
@@ -1487,7 +1487,6 @@ CCTV5+,http://www.sccckj.cn:8899/udp/239.11.0.241:5140
 CCTV5+,http://120.198.86.186:9901/tsfile/live/1025_1.m3u8?key=txiptv&amp;playlive=1&amp;authid=0
 CCTV5+,http://zjhuct.icu:8889/udp/233.50.201.220:5140
 CCTV5+,http://guany.myds.me:25852/udp/233.50.201.220:5140
-CCTV5+,http://www.liangcl.top:8686/udp/233.50.201.220:5140
 CCTV5+,http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.220:5140
 CCTV5+,http://z2m.eversouthhangzhou.com.cn:8188/rtp/233.50.201.220:5140
 CCTV5+,http://naslmd2.myqnapcloud.com:4022/rtp/239.3.1.130:8004
@@ -1516,9 +1515,7 @@ CCTV16,http://114.250.20.79:4022/rtp/239.3.1.184:8001
 CCTV16,http://123.120.6.99:4022/rtp/239.3.1.184:8001
 CCTV16,http://bit.famcloud.top:9878/rtp/239.3.1.184:8001
 CCTV16,http://naslmd2.myqnapcloud.com:4022/rtp/239.3.1.184:8001
-CCTV16,http://www.liangcl.top:8686/udp/233.50.200.112:5140
 CCTV16,http://124.77.237.107:4022/rtp/233.18.204.82:5140
-CCTV16,http://www.liangcl.top:8686/udp/233.50.201.192:5140
 CCTV16,http://dous.cc:4023/udp/233.50.200.112:5140
 CCTV16,http://dous.cc:4023/udp/233.50.201.192:5140
 CCTV16,http://www.3872327.top:1225/rtp/239.69.1.247:11124
@@ -6862,6 +6859,7 @@ CGTN阿拉伯语,http://www.tk1986.top:8889/udp/239.76.246.97:1234
 台州新闻,http://guany.myds.me:25852/udp/233.50.201.157:5140
 台州新闻,http://dous.cc:4023/udp/233.50.201.157:5140
 CGTN西班牙,http://115.197.179.185:9999/udp/233.50.201.36:5140
+CGTN西班牙,http://122.246.144.233:7777/udp/233.50.201.36:5140
 CGTN西班牙,http://zjhuct.icu:8889/udp/233.50.201.36:5140
 CGTN西班牙,http://dous.cc:4023/udp/233.50.201.36:5140
 CGTN西班牙,http://guany.myds.me:25852/udp/233.50.201.36:5140
