@@ -1,5 +1,5 @@
 #EXTM3U x-tvg-url="https://zengzifeng.ccwu.cc/output/epg.xml"
-# 更新时间：2026-10-23 12:37:36（北京时间）
+# 更新时间：2026-10-23 13:21:50（北京时间）
 #EXTINF:-1 tvg-id="更新" tvg-name="更新" group-title="更新时间 2026-10-23 05:33:55",2026-10-23 05:33:55 更新
 http://60.223.72.117:8004/rtp/226.0.2.11:8000
 #EXTINF:-1 tvg-id="山西卫视" tvg-name="山西卫视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/山西卫视.png" group-title="卫视频道",山西卫视
@@ -11054,6 +11054,8 @@ http://naslmd2.myqnapcloud.com:4022/rtp/239.3.1.243:8000
 http://123.117.47.136:4022/rtp/239.3.1.243:8000
 #EXTINF:-1 tvg-id="BRTV体育休闲" tvg-name="BRTV体育休闲" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/BRTV体育休闲.png" group-title="其他频道",BRTV体育休闲
 http://123.120.6.99:4022/rtp/239.3.1.243:8000
+#EXTINF:-1 tvg-id="BRTV体育休闲" tvg-name="BRTV体育休闲" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/BRTV体育休闲.png" group-title="其他频道",BRTV体育休闲
+http://triq.cc:8012/rtp/239.3.1.243:8000
 #EXTINF:-1 tvg-id="BTV国际频道" tvg-name="BTV国际频道" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/BTV国际频道.png" group-title="其他频道",BTV国际频道
 http://bit.famcloud.top:9878/rtp/239.3.1.235:8000
 #EXTINF:-1 tvg-id="BTV国际频道" tvg-name="BTV国际频道" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/BTV国际频道.png" group-title="其他频道",BTV国际频道
