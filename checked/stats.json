@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-25T07:17:16+08:00",
+ "updated": "2026-10-25T08:17:17+08:00",
  "checked": 8720,
  "alive": 5527,
  "alive_ratio": 0.6338,
@@ -9,5 +9,5 @@
  "removed_txt_lines": 3185,
  "kept_m3u_entries": 5536,
  "kept_txt_entries": 5536,
- "duration_s": 511.2
+ "duration_s": 510.5
 }
