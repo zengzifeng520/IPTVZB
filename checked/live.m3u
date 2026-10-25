@@ -1,5 +1,5 @@
 #EXTM3U x-tvg-url="https://zengzifeng.ccwu.cc/output/epg.xml"
-# 更新时间：2026-10-25 18:25:50（北京时间）
+# 更新时间：2026-10-25 19:21:30（北京时间）
 #EXTINF:-1 tvg-id="更新" tvg-name="更新" group-title="更新时间 2026-10-25 15:22:09",2026-10-25 15:22:09 更新
 http://117.64.100.107:4022/rtp/238.1.79.27:4328
 #EXTINF:-1 tvg-id="安徽卫视" tvg-name="安徽卫视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/安徽卫视.png" group-title="卫视频道",安徽卫视
@@ -5842,8 +5842,6 @@ http://117.172.235.50:60000/udp/239.10.0.129:5140
 http://117.172.235.44:60000/udp/239.10.0.129:5140
 #EXTINF:-1 tvg-id="欢笑剧场" tvg-name="欢笑剧场" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/欢笑剧场.png" group-title="上海节目",欢笑剧场
 http://www.sccckj.cn:8899/udp/239.10.0.129:5140
-#EXTINF:-1 tvg-id="第一财经" tvg-name="第一财经" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/第一财经.png" group-title="上海节目",第一财经
-http://122.246.144.233:7777/udp/233.50.200.125:5140
 #EXTINF:-1 tvg-id="第一财经" tvg-name="第一财经" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/第一财经.png" group-title="上海节目",第一财经
 http://116.230.212.78:8222/rtp/233.18.204.59:5140
 #EXTINF:-1 tvg-id="第一财经" tvg-name="第一财经" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/第一财经.png" group-title="上海节目",第一财经
