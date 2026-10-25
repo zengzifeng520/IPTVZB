@@ -1,5 +1,5 @@
 #EXTM3U x-tvg-url="https://zengzifeng.ccwu.cc/output/epg.xml"
-# 更新时间：2026-10-25 22:26:19（北京时间）
+# 更新时间：2026-10-26 03:03:06（北京时间）
 #EXTINF:-1 tvg-id="更新" tvg-name="更新" group-title="更新时间 2026-10-25 20:54:48",2026-10-25 20:54:48 更新
 http://110.177.180.47:5555/udp/239.1.1.7:8007
 #EXTINF:-1 tvg-id="CCTV1" tvg-name="CCTV1" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/CCTV1.png" group-title="央视频道",CCTV1
@@ -10115,13 +10115,9 @@ http://36.22.80.199:4022/udp/233.50.201.244:5140
 #EXTINF:-1 tvg-id="新视觉台高清" tvg-name="新视觉台高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/新视觉台高清.png" group-title="其他频道",新视觉台高清
 http://122.246.144.233:7777/udp/233.50.201.244:5140
 #EXTINF:-1 tvg-id="晴彩篮球高清" tvg-name="晴彩篮球高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/晴彩篮球高清.png" group-title="其他频道",晴彩篮球高清
-http://122.246.144.233:7777/udp/233.50.202.27:5140
-#EXTINF:-1 tvg-id="晴彩篮球高清" tvg-name="晴彩篮球高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/晴彩篮球高清.png" group-title="其他频道",晴彩篮球高清
 http://36.22.80.199:4022/udp/233.50.201.194:5140
 #EXTINF:-1 tvg-id="晴彩篮球高清" tvg-name="晴彩篮球高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/晴彩篮球高清.png" group-title="其他频道",晴彩篮球高清
 http://36.22.80.199:4022/udp/233.50.202.27:5140
-#EXTINF:-1 tvg-id="晴彩羽毛球高清" tvg-name="晴彩羽毛球高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/晴彩羽毛球高清.png" group-title="其他频道",晴彩羽毛球高清
-http://122.246.144.233:7777/udp/233.50.201.195:5140
 #EXTINF:-1 tvg-id="晴彩羽毛球高清" tvg-name="晴彩羽毛球高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/晴彩羽毛球高清.png" group-title="其他频道",晴彩羽毛球高清
 http://36.22.80.199:4022/udp/233.50.202.28:5140
 #EXTINF:-1 tvg-id="晴彩羽毛球高清" tvg-name="晴彩羽毛球高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/晴彩羽毛球高清.png" group-title="其他频道",晴彩羽毛球高清
