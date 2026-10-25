@@ -1,5 +1,5 @@
 #EXTM3U x-tvg-url="https://zengzifeng.ccwu.cc/output/epg.xml"
-# 更新时间：2026-10-25 14:28:05（北京时间）
+# 更新时间：2026-10-25 15:25:59（北京时间）
 #EXTINF:-1 tvg-id="更新" tvg-name="更新" group-title="更新时间 2026-10-25 05:22:55",2026-10-25 05:22:55 更新
 http://175.0.78.23:4000/udp/239.76.253.214:9000
 #EXTINF:-1 tvg-id="湖南卫视4K" tvg-name="湖南卫视4K" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/湖南卫视4K.png" group-title="4K节目",湖南卫视4K
@@ -9457,8 +9457,6 @@ http://zjhuct.icu:8889/udp/233.50.201.80:5140
 #EXTINF:-1 tvg-id="浙江新闻广播" tvg-name="浙江新闻广播" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/浙江新闻广播.png" group-title="其他频道",浙江新闻广播
 http://36.22.80.199:4022/udp/233.50.201.80:5140
 #EXTINF:-1 tvg-id="浙江新闻广播" tvg-name="浙江新闻广播" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/浙江新闻广播.png" group-title="其他频道",浙江新闻广播
-http://122.246.144.233:7777/udp/233.50.201.80:5140
-#EXTINF:-1 tvg-id="浙江新闻广播" tvg-name="浙江新闻广播" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/浙江新闻广播.png" group-title="其他频道",浙江新闻广播
 http://guany.myds.me:25852/udp/233.50.201.80:5140
 #EXTINF:-1 tvg-id="经济频道广播" tvg-name="经济频道广播" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/经济频道广播.png" group-title="其他频道",经济频道广播
 http://36.22.80.199:4022/udp/233.50.201.81:5140
@@ -9538,8 +9536,6 @@ http://36.22.80.199:4022/udp/233.50.201.226:5140
 http://36.22.80.199:4022/udp/233.50.201.116:5140
 #EXTINF:-1 tvg-id="轮播频道高清" tvg-name="轮播频道高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/轮播频道高清.png" group-title="其他频道",轮播频道高清
 http://36.22.80.199:4022/udp/233.50.201.117:5140
-#EXTINF:-1 tvg-id="轮播频道高清" tvg-name="轮播频道高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/轮播频道高清.png" group-title="其他频道",轮播频道高清
-http://122.246.144.233:7777/udp/233.50.201.117:5140
 #EXTINF:-1 tvg-id="轮播频道高清" tvg-name="轮播频道高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/轮播频道高清.png" group-title="其他频道",轮播频道高清
 http://zjhuct.icu:8889/udp/233.50.201.116:5140
 #EXTINF:-1 tvg-id="轮播频道高清" tvg-name="轮播频道高清" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/轮播频道高清.png" group-title="其他频道",轮播频道高清
