@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07080c">
+<title>我的账号 · 光影直播</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%238b5cf6'/><path d='M38 30l30 20-30 20z' fill='white'/></svg>">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 6h16v12H4z"/><path d="m10 9 5 3-5 3z" fill="currentColor" stroke="none"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-name">光影直播</span>
+        <span class="brand-sub">Live TV Index</span>
+      </span>
+    </a>
+    <div class="top-actions">
+      <a class="btn" href="index.html">频道首页</a>
+      <button class="btn" id="logoutBtn">退出</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap narrow">
+
+  <!-- 账号概览 -->
+  <section class="acct-head">
+    <div class="acct-avatar" id="acctAvatar">光</div>
+    <div class="acct-id">
+      <h1 id="acctPhone">—</h1>
+      <div class="acct-badges" id="acctBadges"></div>
+    </div>
+  </section>
+
+  <section class="acct-grid">
+    <div class="acct-stat">
+      <span class="acct-stat-k">当前套餐</span>
+      <b id="statPlan">体验版</b>
+    </div>
+    <div class="acct-stat">
+      <span class="acct-stat-k">可用地区</span>
+      <b id="statRegion">—</b>
+    </div>
+    <div class="acct-stat">
+      <span class="acct-stat-k">有效期至</span>
+      <b id="statExp">—</b>
+    </div>
+  </section>
+
+  <!-- 体验版：升级引导 -->
+  <section class="panel upgrade-panel" id="upgradePanel" hidden>
+    <div class="panel-head">
+      <h2>解锁全部地区</h2>
+      <span class="pill pill-warn">体验版</span>
+    </div>
+    <p class="upgrade-desc">
+      你目前只能查看 <b id="lockRegionName">—</b> 这一个地区的频道与地址。
+      开通会员后，<b>11 个地区 / 566 个频道 / 4450 条地址</b> 全部解锁，
+      并拿到可直接导入播放器的订阅链接。
+    </p>
+
+    <div class="price-row">
+      <div class="price">
+        <span class="price-cur">¥</span><span class="price-num">15</span>
+        <span class="price-unit">/ 年</span>
+      </div>
+      <ul class="price-list">
+        <li>全部 11 个地区频道地址</li>
+        <li>全量 M3U 订阅 + 分地区订阅</li>
+        <li>每日自动更新，失效线路自动剔除</li>
+      </ul>
+    </div>
+
+    <button class="btn btn-primary btn-block btn-lg" id="openPay">扫码付款 ￥15 立即开通</button>
+    <p class="upgrade-tip">支持微信扫码支付，付款后点击页面按钮即时开通。</p>
+  </section>
+
+  <!-- 会员：订阅交付 -->
+  <section class="panel" id="memberPanel" hidden>
+    <div class="panel-head">
+      <h2>我的订阅地址</h2>
+      <span class="pill pill-ok">已开通</span>
+    </div>
+    <p class="upgrade-desc">粘贴到 PotPlayer / VLC / TiviMate / APTV 的「订阅 / 远程列表」，即可加载全部频道。</p>
+    <div class="sub-list" id="subList"></div>
+    <p class="auth-note">建议优先用「你所在地区」的那份 —— 跨省中转地址大多无法播放。</p>
+  </section>
+
+  <!-- 付款弹层 -->
+  <div class="pay-modal" id="payModal" hidden>
+    <div class="pay-backdrop" data-close></div>
+    <div class="pay-sheet" role="dialog" aria-modal="true" aria-labelledby="payTitle">
+      <button class="pay-close" data-close aria-label="关闭">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+
+      <h2 id="payTitle">微信扫码付款</h2>
+      <p class="pay-sub">金额 <b>￥15.00</b> · 请使用微信扫一扫</p>
+
+      <div class="pay-qr">
+        <img src="assets/img/wxpay.jpg" alt="微信收款二维码" loading="eager">
+      </div>
+
+      <div class="pay-order">
+        <span class="pay-order-k">订单号</span>
+        <code id="orderNo">—</code>
+        <button class="btn btn-sm" id="copyOrder">复制</button>
+      </div>
+      <p class="pay-order-tip">付款时可在「添加备注」里填写订单号，便于日后查询。</p>
+
+      <ol class="pay-steps">
+        <li>打开微信 → 扫一扫 → 扫描上方二维码</li>
+        <li>支付 <b>￥15.00</b>，建议备注订单号</li>
+        <li>付款完成后，点下面这个按钮</li>
+      </ol>
+
+      <button class="btn btn-primary btn-block btn-lg" id="confirmPay">我已完成付款，立即开通</button>
+      <p class="pay-warn">请确认已实际付款后再点击，未付款将无法正常使用订阅地址。</p>
+    </div>
+  </div>
+
+  <p class="auth-foot">
+    <a href="index.html">频道首页</a> ·
+    <a href="login.html?stay=1&amp;tab=register">切换账号</a>
+  </p>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/account.js"></script>
+</body>
+</html>

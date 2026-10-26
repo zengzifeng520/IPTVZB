@@ -1,210 +1,249 @@
-/* ============================================================
-   光影直播 — 首页（Token 换取中转播放地址）
-   ============================================================ */
+/* 首页：账号状态 + 地区卡片 */
 (function () {
   "use strict";
 
-  const REPO_URL = "https://github.com/zengzifeng520/ZZF";
-
-  const state = {
+  var state = {
     proxy: null,
-    tokens: null,
     regions: [],
-    token: "",
+    subs: null,
+    user: null,
   };
 
-  const el = {
-    form: document.getElementById("tokenForm"),
-    input: document.getElementById("tokenInput"),
-    err: document.getElementById("tokenErr"),
+  var el = {
+    cta: document.getElementById("acctCtaInner"),
     stats: document.getElementById("stats"),
     grid: document.getElementById("regionGrid"),
     previewSub: document.getElementById("previewSub"),
-    toast: document.getElementById("toast"),
+    navAcct: document.getElementById("navAcct"),
     updAt: document.getElementById("updAt"),
+    toast: document.getElementById("toast"),
   };
 
   /* ---------------------------------------------------------- 工具 */
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  var toastTimer = 0;
   function toast(msg) {
     el.toast.textContent = msg;
     el.toast.classList.add("show");
-    clearTimeout(toast._t);
-    toast._t = setTimeout(() => el.toast.classList.remove("show"), 2200);
-  }
-  function esc(s) {
-    return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-  }
-  function hashHue(str) {
-    let h = 0;
-    for (let i = 0; i < str.length; i++) h = (h * 131 + str.charCodeAt(i)) >>> 0;
-    return h % 360;
-  }
-  function logoHTML(ch) {
-    const key = ch.key || ch.display || "";
-    let m = key.match(/^CCTV(\d+)(\+?)$/);
-    if (m) return `<span class="ch-logo-text is-cctv"><i>CCTV</i><b>${m[1]}${m[2]}</b></span>`;
-    m = key.match(/^CCTV(4|8)K$/);
-    if (m) return `<span class="ch-logo-text is-cctv"><i>CCTV</i><b>${m[1]}K</b></span>`;
-    if (/^CCTV/.test(key)) return `<span class="ch-logo-text is-long">${esc(key)}</span>`;
-    if (/^CGTN/.test(key)) {
-      const tail = key.slice(4);
-      if (!tail) return `<span class="ch-logo-text">CGTN</span>`;
-      return `<span class="ch-logo-text is-cctv"><i>CGTN</i><b>${esc(tail)}</b></span>`;
-    }
-    let t = key.replace(/(卫视|频道|电视台|台)$/g, "");
-    if (t.length > 6) t = t.slice(0, 6);
-    return `<span class="ch-logo-text">${esc(t || key)}</span>`;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      el.toast.classList.remove("show");
+    }, 2400);
   }
 
-  /* ---------------------------------------------------------- 渲染 */
+  function regionName(key) {
+    for (var i = 0; i < state.regions.length; i++) {
+      if (state.regions[i].key === key) return state.regions[i].name;
+    }
+    return key || "—";
+  }
+
+  /* ---------------------------------------------------------- 账号状态条 */
+
+  function renderAccount() {
+    var u = state.user;
+
+    if (!u) {
+      el.navAcct.textContent = "登录 / 注册";
+      el.navAcct.href = "login.html";
+      el.cta.innerHTML =
+        '<div class="cta-row">' +
+        '<div class="cta-text">' +
+        "<h2>用手机号登录，立即查看本省频道</h2>" +
+        "<p>注册即得体验版，可查看 <b>1 个地区</b> 的全部频道地址。想解锁其余 10 个地区，扫码 ¥15 即可。</p>" +
+        "</div>" +
+        '<div class="cta-acts">' +
+        '<a class="btn btn-primary btn-lg" href="login.html?tab=register">免费注册</a>' +
+        '<a class="btn btn-lg" href="login.html">已有账号，登录</a>' +
+        "</div>" +
+        "</div>";
+      return;
+    }
+
+    el.navAcct.textContent = u.member ? "会员中心" : "我的账号";
+    el.navAcct.href = "account.html";
+
+    if (u.member) {
+      el.cta.innerHTML =
+        '<div class="cta-row">' +
+        '<div class="cta-text">' +
+        '<h2><span class="pill pill-ok">会员</span> ' +
+        esc(u.phoneMask) +
+        "</h2>" +
+        "<p>全部 " +
+        state.regions.length +
+        " 个地区已解锁，有效期至 <b>" +
+        esc(u.expText) +
+        "</b>。进任意地区即可复制订阅地址。</p>" +
+        "</div>" +
+        '<div class="cta-acts">' +
+        '<a class="btn btn-primary btn-lg" href="account.html">我的订阅</a>' +
+        "</div>" +
+        "</div>";
+    } else {
+      el.cta.innerHTML =
+        '<div class="cta-row">' +
+        '<div class="cta-text">' +
+        '<h2><span class="pill pill-warn">体验版</span> ' +
+        esc(u.phoneMask) +
+        "</h2>" +
+        "<p>你现在可以查看 <b>" +
+        esc(regionName(u.region)) +
+        "</b> 的全部频道地址。扫码 ¥15 解锁全部 " +
+        state.regions.length +
+        " 个地区与 M3U 订阅。</p>" +
+        "</div>" +
+        '<div class="cta-acts">' +
+        '<a class="btn btn-primary btn-lg" href="account.html">扫码解锁全部地区</a>' +
+        '<a class="btn btn-lg" href="region.html?r=' +
+        esc(u.region) +
+        '">查看我的地区</a>' +
+        "</div>" +
+        "</div>";
+    }
+  }
+
+  /* ---------------------------------------------------------- 统计 */
+
   function renderStats() {
-    const s = state.proxy.stats;
-    const items = [
-      { n: s.hosts_alive, t: "台中转服务器", accent: true },
-      { n: s.channels, t: "个频道", accent: false },
-      { n: s.streams, t: "条播放地址", accent: false },
-      { n: Object.keys(state.tokens?.tokens || {}).length, t: "个可用 Token", accent: false },
+    var s = (state.proxy && state.proxy.stats) || {};
+    var items = [
+      { n: s.hosts_alive || 0, t: "台中转服务器", accent: true },
+      { n: s.channels || 0, t: "个频道", accent: false },
+      { n: s.streams || 0, t: "条播放地址", accent: false },
+      { n: state.regions.length || 0, t: "个地区", accent: false },
     ];
     el.stats.innerHTML = items
-      .map((i) => `<div class="stat${i.accent ? " accent" : ""}"><b>${i.n}</b><span>${i.t}</span></div>`)
+      .map(function (i) {
+        return '<div class="stat' + (i.accent ? " accent" : "") + '"><b>' + i.n + "</b><span>" + i.t + "</span></div>";
+      })
       .join("");
   }
 
   /* ---------------------------------------------------------- 地区卡片 */
-  /** 找一个覆盖该地区、且地址最多的 Token，用于卡片直达 */
-  function tokenForRegion(code) {
-    const map = state.tokens?.tokens || {};
-    let best = "";
-    let bestN = -1;
-    for (const [tk, info] of Object.entries(map)) {
-      for (const r of info.regions || []) {
-        if (r.k === code && r.streams > bestN) {
-          bestN = r.streams;
-          best = tk;
-        }
-      }
-    }
-    return best;
+
+  function canOpen(key) {
+    var u = state.user;
+    if (!u) return false;
+    return !!(u.member || u.region === key);
   }
 
   function regionCard(r) {
-    const tk = tokenForRegion(r.key);
-    const isp = r.isp ? `<span class="rc-isp">${esc(r.isp)}</span>` : "";
-    return `<a class="region-card${tk ? "" : " is-off"}" href="#" data-r="${esc(r.key)}" data-t="${esc(tk)}">
-      <div class="rc-head"><span class="rc-name">${esc(r.name)}</span>${isp}</div>
-      <div class="rc-nums"><b>${r.channels}</b> 频道<span class="rc-dot">·</span><b>${r.streams}</b> 条地址</div>
-      <div class="rc-foot">
-        <span>${r.hosts.length} 台服务器</span>
-        <span class="rc-go">${tk ? "查看订阅 →" : "暂无订阅"}</span>
-      </div>
-    </a>`;
+    var u = state.user;
+    var open = canOpen(r.key);
+    var isMine = u && u.region === r.key;
+    var locked = !!u && !open;
+
+    var goText = !u ? "登录后查看" : locked ? "开通后查看" : "查看频道 →";
+
+    return (
+      '<a class="region-card' +
+      (locked ? " is-locked" : "") +
+      (isMine ? " is-mine" : "") +
+      '" href="#" data-r="' +
+      esc(r.key) +
+      '">' +
+      '<div class="rc-head"><span class="rc-name">' +
+      esc(r.name) +
+      "</span>" +
+      (r.isp ? '<span class="rc-isp">' + esc(r.isp) + "</span>" : "") +
+      "</div>" +
+      '<div class="rc-nums"><b>' +
+      r.channels +
+      "</b> 频道<span class=\"rc-dot\">·</span><b>" +
+      r.streams +
+      "</b> 条地址</div>" +
+      '<div class="rc-foot"><span>' +
+      (r.hosts || []).length +
+      " 台服务器</span>" +
+      '<span class="rc-go">' +
+      (locked
+        ? '<svg class="rc-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'
+        : "") +
+      goText +
+      "</span></div>" +
+      (isMine ? '<span class="rc-badge">我的地区</span>' : "") +
+      "</a>"
+    );
   }
 
   function renderRegions() {
-    const list = state.regions;
-    if (!list.length) {
-      el.grid.innerHTML = `<div class="empty" style="grid-column:1/-1">
-        <h3>暂无地区数据</h3><p>数据正在更新，稍后再试</p></div>`;
+    if (!state.regions.length) {
+      el.grid.innerHTML =
+        '<div class="empty" style="grid-column:1/-1"><h3>暂无地区数据</h3><p>数据正在更新，稍后再试</p></div>';
       return;
     }
-    el.grid.innerHTML = list.map(regionCard).join("");
-    el.previewSub.textContent = `${list.length} 个地区 · 每个地区一套独立订阅`;
+    el.grid.innerHTML = state.regions.map(regionCard).join("");
+    el.previewSub.textContent =
+      state.regions.length + " 个地区 · 每个地区一套独立的频道与订阅";
   }
 
-  /* ---------------------------------------------------------- Token */
-  function normalizeToken(v) {
-    return (v || "").trim().toUpperCase();
-  }
+  /* ---------------------------------------------------------- 交互 */
 
-  function findToken(raw) {
-    const t = normalizeToken(raw);
-    const map = state.tokens?.tokens || {};
-    if (map[t]) return t;
-    return Object.keys(map).find((k) => k.toUpperCase() === t) || "";
-  }
-
-  function gotoToken(raw, chKey, region) {
-    const t = findToken(raw);
-    if (!t) {
-      el.err.textContent = raw ? "Token 无效或已过期，请检查后重试" : "请输入 Token";
-      el.input.focus();
-      return;
-    }
-    el.err.textContent = "";
-    try {
-      localStorage.setItem("iptv_token", t);
-    } catch (e) {}
-    const url = new URL("token.html", location.href);
-    url.searchParams.set("t", t);
-    if (chKey) url.searchParams.set("c", chKey);
-    if (region && region !== "all") url.searchParams.set("r", region);
-    location.href = url.toString();
-  }
-
-  el.form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    gotoToken(el.input.value);
-  });
-
-  document.querySelectorAll("[data-demo]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      el.input.value = btn.dataset.demo;
-      gotoToken(btn.dataset.demo);
-    });
-  });
-
-  el.input.addEventListener("input", () => {
-    el.err.textContent = "";
-  });
-
-  el.grid.addEventListener("click", (e) => {
-    const card = e.target.closest("[data-r]");
+  el.grid.addEventListener("click", function (e) {
+    var card = e.target.closest("[data-r]");
     if (!card) return;
     e.preventDefault();
-    const token = card.dataset.t || state.token || el.input.value;
-    if (!token) {
-      el.input.focus();
-      toast("请先输入 Token 查看该地区订阅");
-      document.querySelector(".token-card").scrollIntoView({ behavior: "smooth", block: "center" });
+    var key = card.dataset.r;
+    var u = state.user;
+
+    if (!u) {
+      location.href = "login.html?next=" + encodeURIComponent("region.html?r=" + key);
       return;
     }
-    gotoToken(token, null, card.dataset.r);
+    if (u.member || u.region === key) {
+      location.href = "region.html?r=" + encodeURIComponent(key);
+      return;
+    }
+    toast("该地区需开通会员后查看");
+    setTimeout(function () {
+      location.href = "account.html";
+    }, 900);
   });
 
   /* ---------------------------------------------------------- 启动 */
-  async function boot() {
-    if (REPO_URL) {
-      document.getElementById("repoLink").href = REPO_URL;
-      document.getElementById("repoFoot").href = REPO_URL;
-    } else {
-      document.getElementById("repoLink").style.display = "none";
-      document.getElementById("repoFoot").closest("p").style.display = "none";
-    }
 
-    try {
-      const [pRes, tRes, rRes] = await Promise.all([
-        fetch("data/proxy.json", { cache: "no-cache" }),
-        fetch("data/tokens.json", { cache: "no-cache" }),
-        fetch("data/regions.json", { cache: "no-cache" }),
-      ]);
-      if (!pRes.ok) throw new Error("proxy.json HTTP " + pRes.status);
-      state.proxy = await pRes.json();
-      state.tokens = tRes.ok ? await tRes.json() : { tokens: {} };
-      state.regions = rRes.ok ? (await rRes.json()).regions || [] : [];
-    } catch (err) {
-      el.grid.innerHTML = `<div class="empty" style="grid-column:1/-1">
-        <h3>数据加载失败</h3><p>${esc(err.message)}</p></div>`;
-      return;
-    }
+  function boot() {
+    state.user = window.IVAUTH.user();
+    renderAccount();
 
-    el.updAt.textContent = state.proxy.generated_at || "—";
-    try {
-      state.token = localStorage.getItem("iptv_token") || "";
-      if (state.token) el.input.value = state.token;
-    } catch (e) {}
+    var jobs = [
+      fetch("data/proxy.json", { cache: "no-cache" }).then(function (r) {
+        if (!r.ok) throw new Error("proxy.json HTTP " + r.status);
+        return r.json();
+      }),
+      fetch("data/regions.json", { cache: "no-cache" }).then(function (r) {
+        if (!r.ok) throw new Error("regions.json HTTP " + r.status);
+        return r.json();
+      }),
+    ];
 
-    renderStats();
-    renderRegions();
+    Promise.all(jobs)
+      .then(function (res) {
+        state.proxy = res[0];
+        state.regions = (res[1].regions || []).slice().sort(function (a, b) {
+          return b.streams - a.streams;
+        });
+        if (el.updAt) el.updAt.textContent = state.proxy.generated_at || "—";
+
+        renderStats();
+        renderRegions();
+        // 账号状态条依赖 regions 长度，重新渲染一次
+        renderAccount();
+      })
+      .catch(function (err) {
+        el.grid.innerHTML =
+          '<div class="empty" style="grid-column:1/-1"><h3>数据加载失败</h3><p>' +
+          esc(err.message) +
+          "</p></div>";
+        el.stats.innerHTML = "";
+      });
   }
 
   boot();

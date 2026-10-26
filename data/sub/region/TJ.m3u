@@ -1,4 +1,4 @@
-#EXTM3U x-tvg-url=""
+#EXTM3U
 #EXTINF:-1 tvg-name="CCTV-1" group-title="央视频道",CCTV-1
 http://221.198.100.179:4022/udp/225.1.1.120:5002
 #EXTINF:-1 tvg-name="CCTV-1" group-title="央视频道",CCTV-1

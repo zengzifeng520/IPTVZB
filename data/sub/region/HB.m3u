@@ -1,4 +1,4 @@
-#EXTM3U x-tvg-url=""
+#EXTM3U
 #EXTINF:-1 tvg-name="CCTV-1" group-title="央视频道",CCTV-1
 http://219.140.4.5:8888/rtp/239.254.96.3:7992
 #EXTINF:-1 tvg-name="CCTV-1" group-title="央视频道",CCTV-1
