@@ -1,44 +1,48 @@
 /* ============================================================
-   光影直播 — 首页逻辑
+   光影直播 — 首页（Token 换取中转播放地址）
    ============================================================ */
 (function () {
   "use strict";
 
-  // 部署后改成你的仓库地址，首页右上角会显示入口
   const REPO_URL = "https://github.com/zengzifeng520/ZZF";
 
   const state = {
-    data: null,
-    cat: "featured",
-    q: "",
+    proxy: null,
+    tokens: null,
     list: [],
     shown: 0,
-    pageSize: 180,
+    pageSize: 120,
+    token: "",
   };
 
   const el = {
-    grid: document.getElementById("grid"),
-    cats: document.getElementById("cats"),
+    form: document.getElementById("tokenForm"),
+    input: document.getElementById("tokenInput"),
+    err: document.getElementById("tokenErr"),
     stats: document.getElementById("stats"),
-    q: document.getElementById("q"),
-    secTitle: document.getElementById("secTitle"),
-    secSub: document.getElementById("secSub"),
+    grid: document.getElementById("grid"),
+    previewSub: document.getElementById("previewSub"),
     toast: document.getElementById("toast"),
-    sentinel: document.getElementById("sentinel"),
+    updAt: document.getElementById("updAt"),
   };
 
-  const $ = (s) => document.querySelector(s);
-
   /* ---------------------------------------------------------- 工具 */
+  function toast(msg) {
+    el.toast.textContent = msg;
+    el.toast.classList.add("show");
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => el.toast.classList.remove("show"), 2200);
+  }
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  }
   function hashHue(str) {
     let h = 0;
     for (let i = 0; i < str.length; i++) h = (h * 131 + str.charCodeAt(i)) >>> 0;
     return h % 360;
   }
-
-  // CCTV 系列拆成「CCTV / 数字」两行更像台标，其余取核心字
   function logoHTML(ch) {
-    const key = ch.key || "";
+    const key = ch.key || ch.display || "";
     let m = key.match(/^CCTV(\d+)(\+?)$/);
     if (m) return `<span class="ch-logo-text is-cctv"><i>CCTV</i><b>${m[1]}${m[2]}</b></span>`;
     m = key.match(/^CCTV(4|8)K$/);
@@ -54,267 +58,157 @@
     return `<span class="ch-logo-text">${esc(t || key)}</span>`;
   }
 
-  function qualityClass(q) {
-    if (q === "8K") return "is8k";
-    if (q === "4K") return "is4k";
-    if (q === "1080P") return "is1080";
-    if (q === "720P") return "is720";
-    return "";
-  }
-
-  function toast(msg) {
-    el.toast.textContent = msg;
-    el.toast.classList.add("show");
-    clearTimeout(toast._t);
-    toast._t = setTimeout(() => el.toast.classList.remove("show"), 2200);
-  }
-
-  function copyText(text, okMsg) {
-    const done = () => toast(okMsg || "已复制");
-    const fallback = () => {
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      ta.style.position = "fixed";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select();
-      try { document.execCommand("copy"); done(); } catch (e) { toast("复制失败，请手动选择"); }
-      document.body.removeChild(ta);
-    };
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(text).then(done).catch(fallback);
-    } else { fallback(); }
-  }
-
-  // 订阅地址按当前部署位置生成绝对路径，复制到播放器可直接用
-  function initSubscribe() {
-    const base = location.origin + location.pathname.replace(/[^/]*$/, "");
-    document.querySelectorAll("[data-sub]").forEach((node) => {
-      node.textContent = base + "data/" + node.dataset.sub;
-    });
-    document.querySelectorAll("[data-copy]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        copyText(base + "data/" + btn.dataset.copy, "订阅地址已复制");
-      });
-    });
-  }
-
-  function esc(s) {
-    return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-  }
-
   /* ---------------------------------------------------------- 渲染 */
   function renderStats() {
-    const s = state.data.stats;
+    const s = state.proxy.stats;
     const items = [
+      { n: s.hosts_alive, t: "台中转服务器", accent: true },
       { n: s.channels, t: "个频道", accent: false },
-      { n: s.streams, t: "条可用源", accent: false },
-      { n: s.fhd, t: "个 1080P+", accent: false },
-      { n: s.uhd, t: "个 4K/8K", accent: true },
+      { n: s.streams, t: "条播放地址", accent: false },
+      { n: Object.keys(state.tokens?.tokens || {}).length, t: "个可用 Token", accent: false },
     ];
     el.stats.innerHTML = items
-      .map(
-        (i) =>
-          `<div class="stat${i.accent ? " accent" : ""}"><b>${i.n}</b><span>${i.t}</span></div>`
-      )
+      .map((i) => `<div class="stat${i.accent ? " accent" : ""}"><b>${i.n}</b><span>${i.t}</span></div>`)
       .join("");
   }
 
-  function renderCats() {
-    const cats = state.data.categories;
-    const total = state.data.stats.channels;
-    const featured = cats.filter((c) => c.key !== "地方频道");
-    const featuredCount = featured.reduce((s, c) => s + c.count, 0);
-
-    let html = `<button class="chip${state.cat === "featured" ? " active" : ""}" data-cat="featured">推荐<span class="n">${featuredCount}</span></button>`;
-    for (const c of cats) {
-      if (!c.count) continue;
-      html += `<button class="chip${state.cat === c.key ? " active" : ""}" data-cat="${esc(
-        c.key
-      )}">${esc(c.name)}<span class="n">${c.count}</span></button>`;
-    }
-    html += `<button class="chip${state.cat === "all" ? " active" : ""}" data-cat="all">全部<span class="n">${total}</span></button>`;
-    el.cats.innerHTML = html;
-  }
-
-  function filtered() {
-    let list = state.data.channels;
-    if (state.cat === "all") {
-      list = list.slice();
-    } else if (state.cat === "featured") {
-      list = list.filter((c) => c.type !== "地方频道");
-    } else {
-      const cat = state.data.categories.find((c) => c.key === state.cat);
-      if (cat) {
-        const set = new Set(cat.channels);
-        list = list.filter((c) => set.has(c.key));
-      } else {
-        list = [];
-      }
-    }
-    const q = state.q.trim().toLowerCase();
-    if (q) {
-      list = list.filter(
-        (c) =>
-          c.key.toLowerCase().includes(q) ||
-          c.display.toLowerCase().includes(q) ||
-          (c.type || "").toLowerCase().includes(q)
-      );
-    }
-    return list;
-  }
-
   function cardHTML(ch) {
-    const q = ch.best.q;
-    const n = ch.streams.length;
-    return `<a class="ch" href="channel.html?c=${encodeURIComponent(ch.key)}" data-key="${esc(ch.key)}">
+    const n = ch.hosts.length;
+    return `<a class="ch" href="#" data-ch="${esc(ch.key)}">
       <div class="ch-logo" style="--h:${hashHue(ch.key)}">
         ${logoHTML(ch)}
         <div class="ch-play"><span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 6h11M3 12h11M3 18h7"/><path d="m16 9.5 5 2.5-5 2.5z" fill="currentColor" stroke="none"/>
+            <rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
           </svg>
         </span></div>
       </div>
       <div class="ch-info">
         <div class="ch-name">${esc(ch.display)}</div>
         <div class="ch-tags">
-          <span class="tag tag-q ${qualityClass(q)}">${q}</span>
-          <span class="tag-n">${n} 源</span>
+          <span class="tag-n">${n} 台上线</span>
+          <span class="tag-n">${ch.streams.length} 条</span>
         </div>
       </div>
     </a>`;
   }
 
-  function renderList(reset) {
+  function renderPreview(reset) {
     if (reset) {
-      state.list = filtered();
       state.shown = 0;
       el.grid.innerHTML = "";
-      const cat = state.data.categories.find((c) => c.key === state.cat);
-      el.secTitle.textContent =
-        state.cat === "all" ? "全部频道" : state.cat === "featured" ? "推荐频道" : cat ? cat.name : "频道";
-      el.secSub.textContent = state.q
-        ? `搜索 “${state.q}” · ${state.list.length} 个结果`
-        : `${state.list.length} 个频道`;
-    }
-    if (!state.list.length) {
-      el.grid.innerHTML = `<div class="empty" style="grid-column:1/-1">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-          <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
-        </svg>
-        <h3>没有找到匹配的频道</h3>
-        <p>换个关键词试试，比如 CCTV、卫视、凤凰</p>
-      </div>`;
-      return;
+      el.previewSub.textContent = `${state.proxy.stats.channels} 个频道，输入 Token 后可查看具体地址`;
     }
     const next = state.list.slice(state.shown, state.shown + state.pageSize);
     el.grid.insertAdjacentHTML("beforeend", next.map(cardHTML).join(""));
     state.shown += next.length;
   }
 
-  /* ---------------------------------------------------------- 事件 */
-  el.cats.addEventListener("click", (e) => {
-    const btn = e.target.closest(".chip");
-    if (!btn) return;
-    state.cat = btn.dataset.cat;
-    renderCats();
-    renderList(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    const url = new URL(location.href);
-    if (state.cat === "featured") url.searchParams.delete("cat");
-    else url.searchParams.set("cat", state.cat);
-    history.replaceState(null, "", url);
-  });
+  /* ---------------------------------------------------------- Token */
+  function normalizeToken(v) {
+    return (v || "").trim().toUpperCase();
+  }
 
-  let qTimer;
-  el.q.addEventListener("input", () => {
-    clearTimeout(qTimer);
-    qTimer = setTimeout(() => {
-      state.q = el.q.value;
-      renderList(true);
-    }, 160);
-  });
+  function findToken(raw) {
+    const t = normalizeToken(raw);
+    const map = state.tokens?.tokens || {};
+    if (map[t]) return t;
+    return Object.keys(map).find((k) => k.toUpperCase() === t) || "";
+  }
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "/" && document.activeElement !== el.q) {
-      e.preventDefault();
-      el.q.focus();
+  function gotoToken(raw, chKey) {
+    const t = findToken(raw);
+    if (!t) {
+      el.err.textContent = raw ? "Token 无效或已过期，请检查后重试" : "请输入 Token";
+      el.input.focus();
+      return;
     }
-    if (e.key === "Escape" && document.activeElement === el.q) {
-      el.q.value = "";
-      state.q = "";
-      el.q.blur();
-      renderList(true);
+    el.err.textContent = "";
+    try {
+      localStorage.setItem("iptv_token", t);
+    } catch (e) {}
+    const url = new URL("token.html", location.href);
+    url.searchParams.set("t", t);
+    if (chKey) url.searchParams.set("c", chKey);
+    location.href = url.toString();
+  }
+
+  el.form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    gotoToken(el.input.value);
+  });
+
+  document.querySelectorAll("[data-demo]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      el.input.value = btn.dataset.demo;
+      gotoToken(btn.dataset.demo);
+    });
+  });
+
+  el.input.addEventListener("input", () => {
+    el.err.textContent = "";
+  });
+
+  el.grid.addEventListener("click", (e) => {
+    const card = e.target.closest("[data-ch]");
+    if (!card) return;
+    e.preventDefault();
+    const key = card.dataset.ch;
+    if (state.token) {
+      gotoToken(state.token, key);
+    } else {
+      el.input.focus();
+      toast("请先输入 Token 查看地址");
+      document.querySelector(".token-card").scrollIntoView({ behavior: "smooth", block: "center" });
     }
   });
 
-  // 滚动加载
   const io = new IntersectionObserver(
     (entries) => {
-      if (entries[0].isIntersecting && state.shown < state.list.length) renderList(false);
+      if (entries[0].isIntersecting && state.shown < state.list.length) renderPreview(false);
     },
-    { rootMargin: "600px" }
+    { rootMargin: "500px" }
   );
 
   /* ---------------------------------------------------------- 启动 */
-  function skeleton() {
-    el.grid.innerHTML = Array.from({ length: 12 })
-      .map(() => '<div class="skeleton"></div>')
-      .join("");
-  }
-
   async function boot() {
-    skeleton();
+    if (REPO_URL) {
+      document.getElementById("repoLink").href = REPO_URL;
+      document.getElementById("repoFoot").href = REPO_URL;
+    } else {
+      document.getElementById("repoLink").style.display = "none";
+      document.getElementById("repoFoot").closest("p").style.display = "none";
+    }
+
     try {
-      const res = await fetch("data/channels.json", { cache: "no-cache" });
-      if (!res.ok) throw new Error("HTTP " + res.status);
-      state.data = await res.json();
+      const [pRes, tRes] = await Promise.all([
+        fetch("data/proxy.json", { cache: "no-cache" }),
+        fetch("data/tokens.json", { cache: "no-cache" }),
+      ]);
+      if (!pRes.ok) throw new Error("proxy.json HTTP " + pRes.status);
+      state.proxy = await pRes.json();
+      state.tokens = tRes.ok ? await tRes.json() : { tokens: {} };
     } catch (err) {
       el.grid.innerHTML = `<div class="empty" style="grid-column:1/-1">
-        <h3>数据加载失败</h3>
-        <p>请先运行采集脚本生成 data/channels.json（${esc(err.message)}）</p>
-      </div>`;
+        <h3>数据加载失败</h3><p>${esc(err.message)}</p></div>`;
       return;
     }
 
-    const d = state.data;
-    if (d.site && d.site.name) {
-      document.title = `${d.site.name} · 全网直播源聚合`;
-      $("#brandName").textContent = d.site.name;
-      if (d.site.desc) $("#heroDesc").textContent = d.site.desc;
-    }
-    if (d.generated_at) $("#updAt").textContent = d.generated_at;
+    el.updAt.textContent = state.proxy.generated_at || "—";
+    try {
+      state.token = localStorage.getItem("iptv_token") || "";
+      if (state.token) el.input.value = state.token;
+    } catch (e) {}
 
-    if (REPO_URL) {
-      const a = $("#repoLink");
-      a.href = REPO_URL;
-      $("#repoFoot").href = REPO_URL;
-    } else {
-      $("#repoLink").style.display = "none";
-      $("#repoFoot").closest("p").style.display = "none";
-    }
-
-    const catParam = new URLSearchParams(location.href).get("cat");
-    if (catParam && d.categories.some((c) => c.key === catParam)) state.cat = catParam;
-
-    const qParam = new URLSearchParams(location.href).get("q");
-    if (qParam) {
-      el.q.value = qParam;
-      state.q = qParam;
-    }
-
-    initSubscribe();
+    state.list = state.proxy.channels;
     renderStats();
-    renderCats();
-    renderList(true);
-    io.observe(el.sentinel);
-    // 加载完再交一次，避免首屏不满一屏
+    renderPreview(true);
+    io.observe(document.querySelector(".preview"));
     setTimeout(() => {
-      if (state.shown < state.list.length && el.grid.scrollHeight < window.innerHeight * 1.5) {
-        renderList(false);
+      if (state.shown < state.list.length && el.grid.scrollHeight < window.innerHeight * 1.2) {
+        renderPreview(false);
       }
-    }, 60);
+    }, 80);
   }
 
   boot();

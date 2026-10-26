@@ -1,36 +1,73 @@
-# 光影直播 · IPTV 直播源聚合站
+# 光影直播 · Token 中转播放地址站
 
 > 在线访问：**https://zzf.new.tg**
 
-自动抓取全网公开 IPTV 直播源 → 逐条探测可用性 / 分辨率 / 码率 → 生成可视化站点与订阅文件，每天由 GitHub Actions 自动更新。
+输入 Token → 分配可用的 udpxy 中转服务器 → 生成专属播放地址与 M3U 订阅。每天由 GitHub Actions 自动探测中转服务器存活性并更新地址池。
 
-## 特性
+## 工作方式
 
-- **真的在测**：每条源都会实际拉流，解析分辨率、帧率、下载速度和是否允许跨域，不是简单罗列地址
-- **纯静态**：没有后端、没有数据库服务，全部是静态文件 + 一个每天跑一次的 Python 脚本，托管成本为零
-- **不依赖 FFmpeg**：用纯 Python 解析 H.264 SPS 拿分辨率，任何环境都能跑
-- **订阅优先**：首页直达 M3U / TXT 订阅地址，一键复制或下载，粘贴到播放器即可全量导入
-- **线路明细**：每个频道单独成页，列出全部可用线路（清晰度 / 分辨率 / 帧率 / 实测速度），逐条复制
+```
+Quake 测绘采集 ──► proxy_source.m3u（63 台中转服务器 / 7584 条地址）
+                        │
+                        ▼
+                 udpxy.py 探测 /status
+                        │  存活 35 台
+                        ▼
+                  data/proxy.json（516 频道 / 3197 条地址）
+                        │
+                        ▼
+        tokens.py 按 Token 分配服务器 ──► data/sub/<token>.m3u
+                        │
+                        ▼
+              前端：输入 Token → 查表 → 展示地址
+```
+
+## 页面
+
+| 页面 | 内容 |
+|---|---|
+| `index.html` | Token 输入框、运行统计、频道预览（516 个） |
+| `token.html?t=XXX` | 验证 Token → 套餐信息、专属订阅地址、已分配服务器、频道地址列表（可折叠、可筛选、逐条复制） |
 
 ## 目录结构
 
 ```
-├── index.html              频道墙（首页）+ 订阅地址
-├── channel.html            频道详情（线路列表，可复制）
+├── index.html              Token 首页
+├── token.html              播放地址页
 ├── assets/                 CSS / JS
 ├── data/
-│   ├── channels.json       站点数据（构建产物）
-│   ├── playlist.m3u        订阅文件（M3U）
-│   └── playlist.txt        订阅文件（TXT）
-├── spider/                 采集检测引擎
-│   ├── config.py           源列表与检测参数
-│   ├── sources.py          抓取与解析 m3u/txt
-│   ├── normalize.py        频道名归一化（别名匹配 + 地方台兜底）
-│   ├── probe.py            可用性/分辨率/测速探测（含 SPS 解析）
-│   ├── store.py            SQLite 存储
-│   ├── build.py            编译站点数据与订阅文件
-│   └── run.py              主流程 CLI
-└── .github/workflows/site-data.yml   每日自动更新
+│   ├── proxy.json          中转地址池（构建产物）
+│   ├── tokens.json         Token → 服务器 / 订阅文件映射
+│   └── sub/<token>.m3u     各 Token 的专属订阅
+└── spider/
+    ├── udpxy.py            解析 + 探测 + 汇聚中转地址
+    ├── tokens.py           Token 分配与订阅生成
+    ├── normalize.py        频道名归一化
+    ├── config.py           路径与参数
+    ├── data/
+    │   ├── proxy_source.m3u  中转源数据（Quake 采集）
+    │   └── tokens.json       Token 配置（要增删 Token 改这里）
+    └── scripts/extract_categories.py  频道字典生成
+```
+
+## 添加 Token
+
+编辑 `spider/data/tokens.json`：
+
+```json
+{
+  "tokens": [
+    { "token": "MY-2027-001", "name": "标准版", "servers": 3,
+      "expire": "2027-06-30", "note": "3 台服务器轮换" }
+  ]
+}
+```
+
+`servers` 表示分配几台中转服务器（越多覆盖频道越广），`channels` 留空表示全部频道。改完重新生成：
+
+```bash
+cd spider
+python tokens.py
 ```
 
 ## 本地运行
@@ -39,44 +76,28 @@
 pip install requests urllib3
 
 cd spider
-python run.py                # 全量：抓源 → 探测 → 生成站点数据
-python run.py --limit 200    # 快速试跑
-python run.py --build-only   # 只用已有数据库重新生成
-python run.py --recheck      # 忽略历史结果全量重测
-```
+python udpxy.py          # 探测中转服务器 + 生成 data/proxy.json
+python tokens.py         # 生成各 Token 的订阅文件
 
-生成完后用任意静态服务器预览：
-
-```bash
+cd ..
 python -m http.server 8000
-# 打开 http://127.0.0.1:8000
 ```
 
-## 数据更新
+## 自动更新
 
-GitHub Actions 每天北京时间 03:20 自动执行 `.github/workflows/site-data.yml`，重新抓取探测后提交 `data/`，Pages 自动发布。
+`.github/workflows/site-data.yml` 每天北京时间 03:20 执行：探测 63 台中转服务器 → 重建地址池 → 重新生成全部 Token 订阅 → 提交 `data/`。也可在 Actions 页面手动触发。
 
-也可以到 **Actions → Update site data → Run workflow** 手动触发，支持填写 `limit` 与 `recheck` 参数。
+## 重要说明
 
-## 常见问题
+**Token 不是安全凭证。** 本站是纯静态托管，`data/tokens.json` 和 `data/sub/*.m3u` 都是公开文件，知道地址的人就能直接下载。Token 只起「分发凭证」作用 —— 区分不同用户拿到哪组中转服务器，无法阻止技术用户绕过。
 
-**怎么观看？**
-本站不提供网页播放。在首页复制 M3U / TXT 订阅地址，粘贴到 PotPlayer、VLC、TiviMate、APTV 等播放器的「订阅 / 远程列表」里；或者进入单个频道，复制某条线路地址到播放器的「打开网络串流」。
+**中转服务器是第三方的。** 地址池来自 Quake 测绘到的公网 udpxy 服务，属于他人设备。这些服务器随时可能下线、改端口或加 IP 白名单，所以每天探测一次；也正因如此，不要在上面跑大流量业务。
 
-**为什么有的线路打不开？**
-直播源由第三方提供，随时可能失效或限速。每条线路标注的清晰度与速度来自最近一次检测，实际可用性会随时间变化，换下一条即可。
-
-**为什么分辨率显示 HLS？**
-表示探测时没能拿到视频流的分辨率信息（源响应太慢或流被加密），但确认是可用的 HLS 直播流。
-
-**覆盖多少频道？**
-当前收录 450+ 个频道、数百条可用线路，覆盖央视、卫视、影视、体育、少儿、港澳、地方台等分类。
+**要真正可控，需要自建中转。** 如果你有自己的服务器，可以在上面跑 udpxy 或 nginx + rtmp/hls 代理，把 `proxy_source.m3u` 换成自己的地址，再给 Token 绑定 IP 白名单 —— 那样才是真正的鉴权分发。
 
 ## 免责声明
 
-本项目不存储、不制作、不转播任何音视频内容，所有播放地址均来自互联网公开资源，版权归原权利人所有。项目仅提供技术层面的地址聚合与可用性检测，供学习与研究使用。
-
-如权利人认为内容侵权，请提交 Issue，核实后将移除相关索引。
+本项目不存储、不制作、不转播任何音视频内容，所有播放地址由第三方提供，版权归原权利人所有。项目仅提供技术层面的地址汇聚与可用性检测，供学习研究使用。如权利人认为侵权，请提交 Issue，核实后移除。
 
 ## License
 

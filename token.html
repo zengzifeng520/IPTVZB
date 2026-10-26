@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07080c">
+<title>播放地址 · 光影直播</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%238b5cf6'/><path d='M38 30l30 20-30 20z' fill='white'/></svg>">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 6h16v12H4z"/><path d="m10 9 5 3-5 3z" fill="currentColor" stroke="none"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-name" id="brandName">光影直播</span>
+        <span class="brand-sub">Live TV Index</span>
+      </span>
+    </a>
+    <div class="top-actions">
+      <a class="btn" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m15 18-6-6 6-6"/>
+        </svg>
+        <span>换个 Token</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" style="padding-top:26px">
+  <section class="token-summary">
+    <div class="ts-main">
+      <span class="ts-badge" id="tsBadge">—</span>
+      <h1 id="tsToken">—</h1>
+      <div class="ts-meta" id="tsMeta"></div>
+    </div>
+  </section>
+
+  <section class="subscribe">
+    <div class="sub-intro">
+      <h2>你的专属订阅地址</h2>
+      <p>把这条地址粘贴到 PotPlayer、VLC、TiviMate、APTV 等播放器的「订阅 / 远程列表」，即可自动加载下列全部频道与线路。</p>
+    </div>
+    <div class="sub-grid">
+      <div class="sub-card">
+        <div class="sub-top"><span class="sub-type">M3U</span><span class="sub-tag">订阅链接</span></div>
+        <code class="sub-url" id="subUrl">—</code>
+        <div class="sub-acts">
+          <button class="btn btn-primary" id="copySub">复制地址</button>
+          <a class="btn" id="dlSub" href="#" download>下载文件</a>
+        </div>
+      </div>
+      <div class="sub-card">
+        <div class="sub-top"><span class="sub-type">中转</span><span class="sub-tag">已分配服务器</span></div>
+        <div class="host-chips" id="hostChips"></div>
+        <div class="sub-note">所有地址都经这些中转服务器转发，服务器不可用时换其他线路即可。</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>频道地址</h2>
+      <span class="sub" id="addrSub">—</span>
+      <input class="mini-search" id="filter" type="search" placeholder="筛选频道" autocomplete="off">
+    </div>
+    <div class="addr-list" id="list"></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div>
+      <p><b>免责声明</b>：本站不存储、不制作、不转播任何视频内容。播放地址由第三方中转服务器提供，本站仅做地址汇聚与可用性检测，版权归原权利人所有。</p>
+    </div>
+    <div style="text-align:right">
+      <p>数据更新：<span id="updAt">—</span></p>
+      <p>开源地址：<a id="repoFoot" href="#">GitHub</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/js/token.js"></script>
+</body>
+</html>

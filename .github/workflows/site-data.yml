@@ -1,7 +1,7 @@
-name: Update site data
+name: Update proxy data
 
-# 每天抓取公开直播源 → 逐条探测 → 重新生成 data/channels.json 与订阅文件。
-# 提交后 GitHub Pages 会自动重新发布（无需额外部署步骤）。
+# 每天探测公网 udpxy 中转服务器 → 汇聚频道地址池 → 生成各 Token 的专属订阅文件。
+# 提交后 GitHub Pages 自动重新发布。
 
 on:
   schedule:
@@ -9,12 +9,8 @@ on:
     - cron: "20 19 * * *"
   workflow_dispatch:
     inputs:
-      limit:
-        description: "只探测前 N 条（留空为全量）"
-        required: false
-        default: ""
-      recheck:
-        description: "忽略历史结果，全量重测（true/false）"
+      skip_probe:
+        description: "跳过服务器探测（true 则全部视为存活，仅重新生成）"
         required: false
         default: "false"
 
@@ -22,13 +18,13 @@ permissions:
   contents: write
 
 concurrency:
-  group: site-data
+  group: proxy-data
   cancel-in-progress: false
 
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
 
@@ -39,30 +35,32 @@ jobs:
       - name: Install deps
         run: pip install requests urllib3
 
-      - name: Crawl & probe
+      - name: Probe udpxy servers & build address pool
         env:
           PYTHONIOENCODING: utf-8
         run: |
           cd spider
-          ARGS="--workers 24"
-          if [ -n "${{ github.event.inputs.limit }}" ]; then
-            ARGS="$ARGS --limit ${{ github.event.inputs.limit }}"
+          if [ "${{ github.event.inputs.skip_probe }}" = "true" ]; then
+            python -c "import udpxy; udpxy.main(probe=False)"
+          else
+            python udpxy.py
           fi
-          if [ "${{ github.event.inputs.recheck }}" = "true" ]; then
-            ARGS="$ARGS --recheck"
-          fi
-          python run.py $ARGS
+
+      - name: Generate token subscriptions
+        env:
+          PYTHONIOENCODING: utf-8
+        run: cd spider && python tokens.py
 
       - name: Commit data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f data/channels.json data/playlist.m3u data/playlist.txt
+          git add -f data/proxy.json data/tokens.json data/sub
           if git diff --staged --quiet; then
             echo "数据无变化，跳过提交"
             exit 0
           fi
-          git commit -m "chore(data): 自动更新直播源 $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git commit -m "chore(data): 更新中转地址池 $(date -u '+%Y-%m-%d %H:%M UTC')"
           for i in 1 2 3 4 5; do
             if git pull --rebase --autostash -X ours origin main && git push origin HEAD:main; then
               echo "推送成功（第 $i 次尝试）"
