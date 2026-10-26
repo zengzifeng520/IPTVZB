@@ -22,9 +22,10 @@ fi
 mkdir -p /tmp/state-worktree/data
 cp data/proxy.json /tmp/state-worktree/data/proxy.json 2>/dev/null || true
 cp data/regions.json /tmp/state-worktree/data/regions.json 2>/dev/null || true
+cp data/proxy_hotel.json /tmp/state-worktree/data/proxy_hotel.json 2>/dev/null || true
 
 cd /tmp/state-worktree
-git add -f data/proxy.json data/regions.json
+git add -f data/proxy.json data/regions.json data/proxy_hotel.json
 if git diff --cached --quiet; then
   echo "state 分支无变化，跳过提交"
 else
