@@ -15,7 +15,6 @@
     grid: document.getElementById("regionGrid"),
     previewSub: document.getElementById("previewSub"),
     navAcct: document.getElementById("navAcct"),
-    navLogout: document.getElementById("navLogout"),
     updAt: document.getElementById("updAt"),
     toast: document.getElementById("toast"),
   };
@@ -45,77 +44,58 @@
     return key || "—";
   }
 
-  /* ---------------------------------------------------------- 账号状态条 */
+  /* ---------------------------------------------------------- 赞助状态条 */
 
   function renderAccount() {
     var u = state.user;
+    if (!u) return;
 
-    if (!u) {
-      el.navAcct.textContent = "登录 / 注册";
-      el.navAcct.href = "login.html";
-      if (el.navLogout) el.navLogout.hidden = true;
-      el.cta.innerHTML =
-        '<div class="cta-row">' +
-        '<div class="cta-text">' +
-        "<h2>用手机号登录，立即查看本省频道</h2>" +
-        "<p>注册即可查看 <b>1 个地区</b> 的全部频道地址。想解锁其余 10 个地区，最低 ￥2 / 天起。</p>" +
-        "</div>" +
-        '<div class="cta-acts">' +
-        '<a class="btn btn-primary btn-lg" href="login.html?tab=register">免费注册</a>' +
-        '<a class="btn btn-lg" href="login.html">已有账号，登录</a>' +
-        "</div>" +
-        "</div>";
-      return;
-    }
-
-    el.navAcct.textContent = u.member ? "会员中心" : "我的账号";
+    el.navAcct.textContent = u.member ? "我的订阅" : "赞助解锁";
     el.navAcct.href = "account.html";
-    if (el.navLogout) el.navLogout.hidden = false;
 
     if (u.member) {
       el.cta.innerHTML =
         '<div class="cta-row">' +
         '<div class="cta-text">' +
-        '<h2><span class="pill pill-ok">会员</span> ' +
-        esc(u.phoneMask) +
-        "</h2>" +
-        "<p>全部 " +
+        '<h2><span class="pill pill-ok">已赞助</span> 全部 ' +
         state.regions.length +
-        " 个地区已解锁，有效期至 <b>" +
+        " 个地区已解锁</h2>" +
+        "<p>有效期至 <b>" +
         esc(u.expText) +
-        "</b>。进任意地区即可复制订阅地址。</p>" +
+        "</b>（剩 " +
+        u.daysLeft +
+        " 天）。到期后订阅会自动停止更新，再次赞助即可恢复。</p>" +
         "</div>" +
         '<div class="cta-acts">' +
         '<a class="btn btn-primary btn-lg" href="account.html">我的订阅</a>' +
         "</div>" +
         "</div>";
-    } else {
-      el.cta.innerHTML =
-        '<div class="cta-row">' +
-        '<div class="cta-text">' +
-        '<h2><span class="pill ' +
-        (u.expired ? "pill-err" : "pill-warn") +
-        '">' +
-        (u.expired ? "已过期" : "免费版") +
-        "</span> " +
-        esc(u.phoneMask) +
-        "</h2>" +
-        "<p>" +
-        (u.expired
-          ? "会员已于 <b>" + esc(u.lastExpText) + "</b> 到期，订阅已暂停。你现在只能查看 <b>" + esc(regionName(u.region)) + "</b>，续费即可恢复全部 " + state.regions.length + " 个地区。"
-          : "你现在可以查看 <b>" + esc(regionName(u.region)) + "</b> 的全部频道地址。开通会员 ￥2 起解锁全部 " + state.regions.length + " 个地区与 M3U 订阅。") +
-        "</p>" +
-        "</div>" +
-        '<div class="cta-acts">' +
-        '<a class="btn btn-primary btn-lg" href="account.html">' +
-        (u.expired ? "续费恢复订阅" : "开通全部地区") +
-        "</a>" +
-        '<a class="btn btn-lg" href="region.html?r=' +
-        esc(u.region) +
-        '">查看我的地区</a>' +
-        "</div>" +
-        "</div>";
+      return;
     }
+
+    el.cta.innerHTML =
+      '<div class="cta-row">' +
+      '<div class="cta-text">' +
+      "<h2>" +
+      (u.expired ? "赞助已到期" : "免费可任选 1 个地区") +
+      "</h2>" +
+      "<p>" +
+      (u.expired
+        ? "你的赞助已于 <b>" +
+          esc(u.lastExpText) +
+          "</b> 到期，订阅地址已停止更新。再次赞助即可恢复。"
+        : "频道地址可以随便看。不赞助也能拿 <b>1 个地区</b> 的订阅链接，选定后不可更改；赞助后可随时切换全部 " +
+          state.regions.length +
+          " 个地区，最低 <b>￥2</b> 起。") +
+      "</p>" +
+      "</div>" +
+      '<div class="cta-acts">' +
+      '<a class="btn btn-primary btn-lg" href="account.html">' +
+      (u.expired ? "重新赞助" : "去赞助解锁全部") +
+      "</a>" +
+      '<a class="btn btn-lg" href="region.html">先看看频道</a>' +
+      "</div>" +
+      "</div>";
   }
 
   /* ---------------------------------------------------------- 统计 */
@@ -137,25 +117,10 @@
 
   /* ---------------------------------------------------------- 地区卡片 */
 
-  function canOpen(key) {
-    var u = state.user;
-    if (!u) return false;
-    return !!(u.member || u.region === key);
-  }
-
+  // 频道地址全部免费浏览，赞助只影响「订阅链接」
   function regionCard(r) {
-    var u = state.user;
-    var open = canOpen(r.key);
-    var isMine = u && u.region === r.key;
-    var locked = !!u && !open;
-
-    var goText = !u ? "登录后查看" : locked ? "开通后查看" : "查看频道 →";
-
     return (
-      '<a class="region-card' +
-      (locked ? " is-locked" : "") +
-      (isMine ? " is-mine" : "") +
-      '" href="#" data-r="' +
+      '<a class="region-card" href="#" data-r="' +
       esc(r.key) +
       '">' +
       '<div class="rc-head"><span class="rc-name">' +
@@ -171,13 +136,7 @@
       '<div class="rc-foot"><span>' +
       (r.hosts || []).length +
       " 台服务器</span>" +
-      '<span class="rc-go">' +
-      (locked
-        ? '<svg class="rc-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'
-        : "") +
-      goText +
-      "</span></div>" +
-      (isMine ? '<span class="rc-badge">我的地区</span>' : "") +
+      '<span class="rc-go">查看频道 →</span></div>' +
       "</a>"
     );
   }
@@ -199,38 +158,21 @@
     var card = e.target.closest("[data-r]");
     if (!card) return;
     e.preventDefault();
-    var key = card.dataset.r;
-    var u = state.user;
-
-    if (!u) {
-      location.href = "login.html?next=" + encodeURIComponent("region.html?r=" + key);
-      return;
-    }
-    if (u.member || u.region === key) {
-      location.href = "region.html?r=" + encodeURIComponent(key);
-      return;
-    }
-    toast("该地区需开通会员后查看");
-    setTimeout(function () {
-      location.href = "account.html";
-    }, 900);
+    location.href = "region.html?r=" + encodeURIComponent(card.dataset.r);
   });
-
-  if (el.navLogout) {
-    el.navLogout.addEventListener("click", function () {
-      window.IVAUTH.logout();
-      toast("已退出登录");
-      setTimeout(function () {
-        location.href = "index.html";
-      }, 420);
-    });
-  }
 
   /* ---------------------------------------------------------- 启动 */
 
   function boot() {
     state.user = window.IVAUTH.user();
     renderAccount();
+
+    // 先从服务端同步赞助状态（换设备 / 站长补录后自动恢复）
+    window.IVAUTH.syncSponsor().then(function (changed) {
+      if (!changed) return;
+      state.user = window.IVAUTH.user();
+      renderAccount();
+    });
 
     var jobs = [
       fetch("data/proxy.json", { cache: "no-cache" }).then(function (r) {

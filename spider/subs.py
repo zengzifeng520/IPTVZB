@@ -46,9 +46,9 @@ TOKEN_SALT = "zzf-sub-2026"
 EMPTY_SUB = "#EXTM3U\n# 会员已到期，订阅已停止更新，续费后立即恢复\n"
 
 
-def token_of(phone: str) -> str:
-    """手机号 -> 16 位订阅 token（与前端算法一致）。"""
-    raw = f"{TOKEN_SALT}|{str(phone).strip()}".encode("utf-8")
+def token_of(sid: str) -> str:
+    """赞助码 -> 16 位订阅 token（与前端 assets/js/auth.js 的 tokenOf 一致）。"""
+    raw = f"{TOKEN_SALT}|{str(sid).strip().upper()}".encode("utf-8")
     return hashlib.sha256(raw).hexdigest()[:16]
 
 
@@ -82,8 +82,8 @@ def build_users(channels: list[dict], regions: list[dict]) -> dict:
     """为 users.json 里每个用户生成专属订阅；到期用户写成空列表。
 
     users.json 结构：
-        {"13800138000": {"expire": "2026-11-25", "ts": "1795622399", "created": "2026-10-26"}}
-    token 由手机号推导，无需手填；env 里也可写 token 覆盖。
+        {"A1B2C3D4E5F6": {"expire": "2026-11-25", "ts": "1795622399", "created": "2026-10-26"}}
+    键是本机赞助码，token 由它推导，无需手填；info 里也可写 token 覆盖。
     """
     if not USERS_JSON.exists():
         print("  [subs] 无 data/users.json，跳过用户专属订阅")
@@ -103,10 +103,10 @@ def build_users(channels: list[dict], regions: list[dict]) -> dict:
     keep: set[str] = set()
     n_ok = n_exp = 0
 
-    for phone, info in users.items():
+    for sid, info in users.items():
         if not isinstance(info, dict):
             info = {}
-        token = str(info.get("token") or token_of(phone))
+        token = str(info.get("token") or token_of(sid))
         keep.add(token)
         d = USERS_DIR / token
         d.mkdir(parents=True, exist_ok=True)
@@ -130,7 +130,7 @@ def build_users(channels: list[dict], regions: list[dict]) -> dict:
                 ts = 0
         expired = bool(ts) and ts < now
 
-        # 用户状态快照：前端换设备 / 清缓存后靠它恢复会员状态（不含手机号明文）
+        # 用户状态快照：前端换设备 / 清缓存后靠它恢复赞助状态（不含赞助码明文）
         meta = {
             "ts": ts,
             "expire": info.get("expire") or "",

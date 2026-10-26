@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#07080c">
-<title>我的账号 · 光影直播</title>
+<title>赞助解锁 · 光影直播</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%238b5cf6'/><path d='M38 30l30 20-30 20z' fill='white'/></svg>">
-<link rel="stylesheet" href="assets/css/app.css?v=20261026i">
+<link rel="stylesheet" href="assets/css/app.css?v=20261026j">
 </head>
 <body>
 
@@ -25,30 +25,28 @@
     </a>
     <div class="top-actions">
       <a class="btn" href="index.html">频道首页</a>
-      <a class="btn" href="login.html?stay=1">切换账号</a>
-      <button class="btn btn-danger" id="logoutBtn">退出</button>
     </div>
   </div>
 </header>
 
 <main class="wrap narrow">
 
-  <!-- 账号概览 -->
+  <!-- 赞助状态概览 -->
   <section class="acct-head">
     <div class="acct-avatar" id="acctAvatar">光</div>
     <div class="acct-id">
-      <h1 id="acctPhone">—</h1>
+      <h1 id="acctPhone">未赞助</h1>
       <div class="acct-badges" id="acctBadges"></div>
     </div>
   </section>
 
   <section class="acct-grid">
     <div class="acct-stat">
-      <span class="acct-stat-k">当前套餐</span>
-      <b id="statPlan">免费版</b>
+      <span class="acct-stat-k">当前状态</span>
+      <b id="statPlan">未赞助</b>
     </div>
     <div class="acct-stat">
-      <span class="acct-stat-k">可用地区</span>
+      <span class="acct-stat-k">可用内容</span>
       <b id="statRegion">—</b>
     </div>
     <div class="acct-stat">
@@ -57,35 +55,53 @@
     </div>
   </section>
 
-  <!-- 免费版：套餐选择 -->
+  <!-- 未赞助 / 已到期：选择档位 -->
   <section class="panel upgrade-panel" id="upgradePanel" hidden>
     <div class="panel-head">
-      <h2 id="upgradeTitle">开通全部地区</h2>
-      <span class="pill pill-warn" id="upgradePill">免费版</span>
+      <h2 id="upgradeTitle">赞助解锁订阅链接</h2>
+      <span class="pill pill-warn" id="upgradePill">未赞助</span>
     </div>
-    <p class="upgrade-desc" id="upgradeDesc">
-      你目前只能查看 <b id="lockRegionName">—</b> 这一个地区的频道与地址。
-      开通后 <b>11 个地区 / 566 个频道 / 4450 条地址</b> 全部解锁，并拿到可直接导入播放器的订阅链接。
+    <p class="upgrade-desc">
+      频道地址全部免费查看。赞助后你会拿到一条专属 M3U 订阅链接 ——
+      粘进播放器就自动更新，覆盖 <b>11 个地区 / 566 个频道 / 4450 条地址</b>，到期自动停止。
     </p>
 
     <div class="plan-grid" id="planGrid"></div>
 
-    <button class="btn btn-primary btn-block btn-lg" id="openPay">扫码付款 ￥8 立即开通</button>
-    <p class="upgrade-tip">微信扫码支付，付款后点页面按钮即时开通。有效期从开通当天起算。</p>
+    <button class="btn btn-primary btn-block btn-lg" id="openPay">扫码赞助 ￥8 解锁订阅</button>
+    <p class="upgrade-tip">微信扫码支付，付款后点页面按钮即时生效。有效期从赞助当天起算。</p>
   </section>
 
-  <!-- 会员：订阅交付 -->
+  <!-- 已赞助：订阅交付 -->
   <section class="panel" id="memberPanel" hidden>
     <div class="panel-head">
       <h2>我的订阅地址</h2>
       <div class="head-acts">
-        <span class="pill pill-ok" id="memberPill">已开通</span>
-        <button class="btn btn-sm" id="renewBtn">续费 / 换套餐</button>
+        <span class="pill pill-ok" id="memberPill">已赞助</span>
+        <button class="btn btn-sm" id="renewBtn">续费 / 换档位</button>
       </div>
     </div>
     <p class="upgrade-desc">粘贴到 PotPlayer / VLC / TiviMate / APTV 的「订阅 / 远程列表」，即可加载全部频道。</p>
     <div class="sub-list" id="subList"></div>
-    <p class="auth-note">建议优先用「你所在地区」的那份 —— 跨省中转地址大多无法播放。</p>
+    <p class="auth-note">建议优先用你所在地区的那份 —— 跨省中转地址大多无法播放。</p>
+  </section>
+
+  <!-- 赞助码：换设备恢复 -->
+  <section class="panel" id="sidPanel">
+    <div class="panel-head">
+      <h2>本机赞助码</h2>
+      <button class="btn btn-sm" id="copySid" type="button">复制</button>
+    </div>
+    <p class="upgrade-desc">
+      这串码代表当前这台设备，已经自动生成，不需要注册。换手机或清了浏览器缓存时，
+      用它在下面恢复，就能继续用同一个订阅地址。
+    </p>
+    <code class="sub-item-url" id="sidText">—</code>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <input class="mini-search" id="sidInput" type="text" placeholder="粘贴赞助码，如 A1B2 C3D4 E5F6" autocomplete="off" style="flex:1;max-width:none">
+      <button class="btn" id="restoreBtn" type="button">恢复</button>
+    </div>
+    <p class="auth-note" id="sidMsg"></p>
   </section>
 
   <!-- 付款弹层 -->
@@ -96,7 +112,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg>
       </button>
 
-      <h2 id="payTitle">微信扫码付款</h2>
+      <h2 id="payTitle">微信扫码赞助</h2>
 
       <div class="pay-plans" id="payPlans"></div>
 
@@ -111,7 +127,7 @@
         <code id="orderNo">—</code>
         <button class="btn btn-sm" id="copyOrder">复制</button>
       </div>
-      <p class="pay-order-tip">付款时可在「添加备注」里填写订单号，便于日后查询。</p>
+      <p class="pay-order-tip">付款时可在「添加备注」里填写订单号，便于日后核对。</p>
 
       <ol class="pay-steps">
         <li>微信扫一扫 → 扫描上方二维码</li>
@@ -119,20 +135,20 @@
         <li>付款完成后，点下面这个按钮</li>
       </ol>
 
-      <button class="btn btn-primary btn-block btn-lg" id="confirmPay">我已完成付款，立即开通</button>
-      <p class="pay-warn">请确认已实际付款后再点击，未付款将无法正常使用订阅地址。</p>
+      <button class="btn btn-primary btn-block btn-lg" id="confirmPay">我已完成付款，立即解锁</button>
+      <p class="pay-warn">请确认已实际付款后再点击。你的赞助码会同时显示在下方，建议截图保存。</p>
     </div>
   </div>
 
   <p class="auth-foot">
     <a href="index.html">频道首页</a> ·
-    <a href="login.html?stay=1&amp;tab=register">切换账号</a>
+    <a href="region.html">浏览频道地址</a>
   </p>
 </main>
 
 <div class="toast" id="toast"></div>
 
-<script src="assets/js/auth.js?v=20261026i"></script>
-<script src="assets/js/account.js?v=20261026i"></script>
+<script src="assets/js/auth.js?v=20261026j"></script>
+<script src="assets/js/account.js?v=20261026j"></script>
 </body>
 </html>

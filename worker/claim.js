@@ -1,7 +1,7 @@
 /**
  * 开通登记接口（Cloudflare Worker）
  * ------------------------------------------------------------
- * 作用：用户在前端点「我已完成付款」时调用一次，把手机号和到期时间
+ * 作用：用户在前端点「我已完成付款」时调用一次，把本机赞助码和到期时间
  *      写进 ZZF 仓库的 data/users.json；随后 GitHub Actions 会自动
  *      重建该用户的专属订阅文件（约 1 分钟）。
  *
@@ -14,7 +14,7 @@
  *   ALLOW_ORIGIN 选填 默认 https://zzf.new.tg
  *
  * 接口：
- *   POST /claim   {"phone":"13800138000","plan":"month"}
+ *   POST /claim   {"sid":"A1B2C3D4E5F6","plan":"month"}
  *   → {"ok":true,"expire":"2026-11-25","ts":1795622399,"token":"3e3b5edd0955acf4"}
  */
 
@@ -37,9 +37,10 @@ function b64decode(b64) {
   return new TextDecoder().decode(bytes);
 }
 
-async function tokenOf(phone) {
-  // 与 frontend auth.js、spider/subs.py 完全一致：sha256("zzf-sub-2026|手机号") 前 16 位
-  const buf = await crypto.subtle.digest("SHA-256", enc.encode(TOKEN_SALT + "|" + phone));
+async function tokenOf(sid) {
+  // 与前端 auth.js、spider/subs.py 完全一致：sha256("zzf-sub-2026|赞助码") 前 16 位
+  const key = TOKEN_SALT + "|" + String(sid || "").trim().toUpperCase();
+  const buf = await crypto.subtle.digest("SHA-256", enc.encode(key));
   return [...new Uint8Array(buf)]
     .map((b) => b.toString(16).padStart(2, "0"))
     .join("")
@@ -88,10 +89,12 @@ async function gh(env, method, path, body) {
 
 async function claim(request, env) {
   const body = await request.json().catch(() => null);
-  const phone = String((body && body.phone) || "").replace(/[\s-]/g, "");
+  const sid = String((body && body.sid) || "")
+    .toUpperCase()
+    .replace(/[^A-Z0-9]/g, "");
   const plan = String((body && body.plan) || "month");
 
-  if (!/^1[3-9]\d{9}$/.test(phone)) return json({ ok: false, msg: "手机号格式不正确" }, 400, env);
+  if (!/^[A-Z0-9]{8,32}$/.test(sid)) return json({ ok: false, msg: "赞助码格式不正确" }, 400, env);
   if (!PLANS[plan]) return json({ ok: false, msg: "套餐不存在" }, 400, env);
   if (!env.GH_TOKEN) return json({ ok: false, msg: "服务端未配置 GH_TOKEN" }, 500, env);
 
@@ -110,19 +113,19 @@ async function claim(request, env) {
 
   // 未到期就在原有效期上顺延，已过期则从此刻起算
   const nowMs = Date.now();
-  const prevMs = users[phone] && users[phone].ts ? Number(users[phone].ts) * 1000 : 0;
+  const prevMs = users[sid] && users[sid].ts ? Number(users[sid].ts) * 1000 : 0;
   const baseMs = prevMs > nowMs ? prevMs : nowMs;
   const expMs = baseMs + PLANS[plan] * 86400000;
 
-  users[phone] = {
+  users[sid] = {
     expire: ymdCST(expMs),
     ts: String(Math.floor(expMs / 1000)),
-    created: (users[phone] && users[phone].created) || ymdCST(nowMs),
+    created: (users[sid] && users[sid].created) || ymdCST(nowMs),
   };
 
   const content = b64encode(JSON.stringify(users, null, 2) + "\n");
   const put = await gh(env, "PUT", `/contents/${FILE}`, {
-    message: `user: 开通 ${phone.slice(0, 3)}****${phone.slice(-4)} (${plan})`,
+    message: `user: 赞助 ${sid.slice(0, 4)}**** (${plan})`,
     content,
     sha: sha || undefined,
     branch: "main",
@@ -136,9 +139,9 @@ async function claim(request, env) {
   return json(
     {
       ok: true,
-      expire: users[phone].expire,
-      ts: Number(users[phone].ts),
-      token: await tokenOf(phone),
+      expire: users[sid].expire,
+      ts: Number(users[sid].ts),
+      token: await tokenOf(sid),
     },
     200,
     env

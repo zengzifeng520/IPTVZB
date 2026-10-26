@@ -11,7 +11,7 @@
     regionSub: document.getElementById("regionSub"),
     subSec: document.getElementById("subSec"),
     lockSec: document.getElementById("lockSec"),
-    lockRegion: document.getElementById("lockRegion"),
+    lockBody: document.getElementById("lockBody"),
     subTitle: document.getElementById("subTitle"),
     subDesc: document.getElementById("subDesc"),
     subTag: document.getElementById("subTag"),
@@ -25,7 +25,6 @@
     toast: document.getElementById("toast"),
     updAt: document.getElementById("updAt"),
     acctLink: document.getElementById("acctLink"),
-    navLogout: document.getElementById("navLogout"),
   };
 
   var state = {
@@ -126,10 +125,10 @@
     var nHost = r ? (r.hosts || []).length : 0;
 
     el.badge.textContent = isMember()
-      ? (state.user.planName || "会员") + " · 全部地区"
+      ? (state.user.planName || "已赞助") + " · 订阅已解锁"
       : state.user.expired
-      ? "已过期 · 单地区"
-      : "免费版 · 单地区";
+        ? "赞助已到期"
+        : "免费浏览";
     el.badge.className = "ts-badge" + (isMember() ? " is-ok" : state.user.expired ? " is-expired" : "");
     el.region.textContent = name;
     el.meta.innerHTML =
@@ -144,32 +143,26 @@
     if (isMember()) {
       el.side.innerHTML =
         '<span class="ts-side-tip">有效期至 ' + esc(state.user.expText) + "</span>" +
-        '<a class="btn" href="account.html">管理订阅</a>';
+        '<a class="btn" href="account.html">我的订阅</a>';
     } else {
       el.side.innerHTML =
-        '<span class="ts-side-tip">仅可查看 ' + esc(name) + "</span>" +
-        '<a class="btn btn-primary" href="account.html">开通会员解锁全部</a>';
+        '<span class="ts-side-tip">地址可免费查看</span>' +
+        '<a class="btn btn-primary" href="account.html">' +
+        (state.user.expired ? "重新赞助" : "赞助解锁订阅") +
+        "</a>";
     }
   }
 
   function renderChips() {
-    var member = isMember();
-    var locked = state.user.region;
-
     var html = state.regions
       .map(function (r) {
         var active = r.key === state.regionKey;
-        var isLocked = !member && r.key !== locked;
         return (
           '<button class="chip' +
           (active ? " active" : "") +
-          (isLocked ? " is-locked" : "") +
           '" data-r="' +
           esc(r.key) +
           '">' +
-          (isLocked
-            ? '<svg class="chip-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'
-            : "") +
           esc(r.name) +
           '<span class="n">' +
           (r.channels || 0) +
@@ -179,47 +172,60 @@
       .join("");
 
     el.chips.innerHTML = html;
-    el.regionSub.textContent = member
+    el.regionSub.textContent = isMember()
       ? "全部 " + state.regions.length + " 个地区已解锁"
-      : (state.user.expired ? "会员已到期，订阅地址已停止发放；续费后立即恢复" : "免费版仅可查看")
-        + "「" + (regionByKey(locked) || { name: locked }).name + "」"
-        + (state.user.expired ? "" : "，其余需开通");
+      : state.user.expired
+        ? "赞助已到期，订阅已停止更新；再次赞助即可恢复"
+        : "免费版可任选 1 个地区订阅，赞助后解锁全部";
   }
 
   function renderSubscribe() {
     var member = isMember();
-    el.subSec.hidden = !member;
-    el.lockSec.hidden = member;
+    var key = state.regionKey;
+    var freeKey = window.IVAUTH.freeRegion();
+    // 赞助用户可用全部地区；免费用户只能用已选定的那一个
+    var canUse = member || freeKey === key;
 
-    if (!member) {
-      el.lockRegion.textContent = (regionByKey(state.regionKey) || {}).name || "—";
+    el.subSec.hidden = !canUse;
+    el.lockSec.hidden = canUse;
+
+    if (!canUse) {
+      renderLock(key, freeKey);
       return;
     }
 
-    var r = regionByKey(state.regionKey);
-    var mine = subByKey(state.regionKey);
+    var r = regionByKey(key);
+    var mine = subByKey(key);
     var all = (state.subs && state.subs.all) || null;
 
-    // 专属订阅：每个账号一份，路径里带 token；会员到期后服务端会把文件写成空列表
-    var token = window.IVAUTH && state.user && state.user.phone
-      ? window.IVAUTH.tokenOf(state.user.phone)
-      : "";
+    // 专属订阅：每个赞助账号一份，路径里带 token；到期后服务端把文件写成空列表
+    var token = state.user && state.user.sid ? window.IVAUTH.tokenOf(state.user.sid) : "";
 
-    if (mine && token) {
-      state.subPath = "data/users/" + token + "/" + state.regionKey + ".m3u";
+    if (mine) {
+      if (member && token) {
+        state.subPath = "data/users/" + token + "/" + key + ".m3u";
+        el.subTitle.textContent = (r ? r.name : "") + " 专属订阅地址";
+        el.subDesc.textContent =
+          "这是你专属的订阅地址，请勿分享。赞助到期后该地址会自动停止更新，播放器刷新后频道将为空。";
+      } else {
+        // 免费额度：一个地区，用公共文件
+        state.subPath = mine.sub;
+        el.subTitle.textContent = (r ? r.name : "") + " 订阅地址";
+        el.subDesc.textContent =
+          "免费版每个设备可选 1 个地区，现在就这一个。赞助后可随时切换全部 " +
+          state.regions.length +
+          " 个地区，并拿到专属订阅。";
+      }
       el.subTag.textContent = (r ? r.name : "") + " · " + mine.channels + " 频道 / " + mine.streams + " 条";
       el.subUrl.textContent = baseUrl() + state.subPath;
       el.dlSub.href = state.subPath;
-      el.subTitle.textContent = (r ? r.name : "") + " 专属订阅地址";
-      el.subDesc.textContent =
-        "这是你账号专属的订阅地址，请勿分享。会员到期后该地址会自动停止更新，播放器刷新后频道将为空。";
-    } else if (all && token) {
+    } else if (all && member && token) {
       state.subPath = "data/users/" + token + "/all.m3u";
       el.subTag.textContent = "全量";
       el.subUrl.textContent = baseUrl() + state.subPath;
       el.dlSub.href = state.subPath;
       el.subTitle.textContent = "全量专属订阅地址";
-      el.subDesc.textContent = "包含全部地区服务器，适合手动挑选线路。会员到期后该地址会自动停止更新。";
+      el.subDesc.textContent = "包含全部地区服务器，适合手动挑选线路。赞助到期后该地址会自动停止更新。";
     } else {
       state.subPath = "";
       el.subTag.textContent = "—";
@@ -233,6 +239,42 @@
         return '<span class="host-chip" title="' + esc(h) + '">' + esc(hostLabel(h)) + "</span>";
       })
       .join("");
+  }
+
+  /** 未赞助时：没选过地区就让他选，选过了就引导回去或去赞助 */
+  function renderLock(key, freeKey) {
+    var r = regionByKey(key);
+    var name = r ? r.name : key;
+
+    if (!freeKey) {
+      el.lockBody.innerHTML =
+        "<h2>免费版可以先选 1 个地区</h2>" +
+        "<p>不赞助也能拿到 <b>1 个地区</b> 的订阅地址，选定后不可更改。<br>" +
+        "赞助后可随时切换全部 " +
+        state.regions.length +
+        " 个地区，并拿到专属订阅。</p>" +
+        '<button class="btn btn-primary btn-lg" type="button" data-act="pick" style="margin-top:6px">就选「' +
+        esc(name) +
+        "」</button>" +
+        '<a class="btn btn-lg" href="account.html" style="margin-top:8px">直接赞助解锁全部</a>';
+      return;
+    }
+
+    var fr = regionByKey(freeKey);
+    var fname = fr ? fr.name : freeKey;
+    el.lockBody.innerHTML =
+      "<h2>你的免费地区是「" +
+      esc(fname) +
+      "」</h2>" +
+      "<p>免费版每个设备只能选 1 个地区，选定后不可更改。<br>赞助后可随时切换全部 " +
+      state.regions.length +
+      " 个地区。</p>" +
+      '<a class="btn btn-primary btn-lg" href="region.html?r=' +
+      encodeURIComponent(freeKey) +
+      '" style="margin-top:6px">去看「' +
+      esc(fname) +
+      "」</a>" +
+      '<a class="btn btn-lg" href="account.html" style="margin-top:8px">赞助解锁全部</a>';
   }
 
   function renderList() {
@@ -304,13 +346,6 @@
   /* ---------------------------------------------------------- 地区切换 */
 
   function applyRegion(key) {
-    var member = isMember();
-    var locked = state.user.region;
-
-    if (!member && key !== locked) {
-      toast("该地区需开通会员后查看");
-      return false;
-    }
     var r = regionByKey(key);
     if (!r) {
       toast("地区不存在");
@@ -375,15 +410,18 @@
     }, 150);
   });
 
-  if (el.navLogout) {
-    el.navLogout.addEventListener("click", function () {
-      window.IVAUTH.logout();
-      toast("已退出登录");
-      setTimeout(function () {
-        location.href = "index.html";
-      }, 420);
-    });
-  }
+  // 免费版选地区（只此一次）
+  el.lockSec.addEventListener("click", function (e) {
+    var btn = e.target.closest('[data-act="pick"]');
+    if (!btn) return;
+    var key = state.regionKey;
+    var name = (regionByKey(key) || {}).name || key;
+    if (!window.confirm("免费版只能选 1 个地区，选定后不可更改。\n确定选「" + name + "」吗？")) return;
+    var r = window.IVAUTH.setFreeRegion(key);
+    if (!r.ok) return toast(r.msg);
+    toast("已选「" + name + "」，订阅地址已解锁");
+    renderSubscribe();
+  });
 
   /* ---------------------------------------------------------- 启动 */
 
@@ -398,18 +436,13 @@
 
   function boot() {
     state.user = window.IVAUTH.user();
-    if (!state.user) {
-      location.replace("login.html?next=" + encodeURIComponent(location.pathname + location.search));
-      return;
-    }
     var params = new URLSearchParams(location.search);
 
-    // 先同步服务端会员快照（换设备 / 后台续期后自动恢复），再渲染页面
-    window.IVAUTH.syncMember()
+    // 先同步服务端赞助状态（换设备 / 站长补录后自动恢复），再渲染页面
+    window.IVAUTH.syncSponsor()
       .then(function (changed) {
         if (changed) state.user = window.IVAUTH.user();
-        el.acctLink.textContent = state.user.phoneMask;
-        if (el.navLogout) el.navLogout.hidden = false;
+        el.acctLink.textContent = state.user.member ? "我的订阅" : "赞助解锁";
       })
       .then(function () {
         return Promise.all([
@@ -441,16 +474,9 @@
 
         if (!state.regions.length) return fail("地区数据为空", "请稍后刷新重试");
 
-        // 会员：优先 URL 指定地区；免费版：强制锁定地区
+        // 地区全部可浏览，优先用 URL 指定的地区
         var want = params.get("r");
-        var target;
-        if (isMember()) {
-          target = want && regionByKey(want) ? want : state.user.region;
-          if (!regionByKey(target)) target = state.regions[0].key;
-        } else {
-          target = state.user.region;
-          if (!regionByKey(target)) target = state.regions[0].key;
-        }
+        var target = want && regionByKey(want) ? want : state.regions[0].key;
 
         applyRegion(target);
 

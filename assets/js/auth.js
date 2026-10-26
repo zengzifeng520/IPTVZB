@@ -1,21 +1,20 @@
 /* ============================================================
-   账号与套餐状态（纯本地，无后端）
+   赞助解锁（无注册、无登录）
    ------------------------------------------------------------
-   - 注册：手机号 + 密码，注册时锁定 1 个地区
-   - 免费版：只能查看锁定的那个地区
-   - 会员：扫码付款后自行解锁，查看全部地区
-   说明：纯静态站没有服务端，账号数据存在本机浏览器，
-        换设备需要重新注册并用同一手机号重新解锁。
+   - 首次访问自动生成本机赞助码（sid），存在 localStorage
+   - 频道地址全部免费浏览；订阅地址赞助后解锁
+   - 赞助记录在本机，到期后订阅地址自动停止更新
+   - 换设备 / 清缓存：用页面上显示的赞助码恢复即可
    ============================================================ */
 (function () {
   "use strict";
 
-  var K_USERS = "iv_users_v1";
-  var K_SESSION = "iv_session_v1";
-  var K_MEMBER = "iv_member_v1";
-  var K_REMEMBER = "iv_remember_v1";
+  var K_SID = "iv_sid_v1";
+  var K_SPONSOR = "iv_sponsor_v1";
+  // 免费版可选的那一个地区，选定后不再更改
+  var K_FREE_REGION = "iv_free_region_v1";
 
-  // 付费套餐（体验版 = 1 天，用于先试后买）
+  // 赞助档位
   var PLANS = [
     { key: "day", name: "体验版", price: 2, days: 1, unit: "天", tag: "先试一天" },
     { key: "month", name: "月付", price: 8, days: 30, unit: "天", tag: "最灵活" },
@@ -34,7 +33,6 @@
 
   /* ---------------------------------------------------------- 工具 */
 
-  // UTF-8 化，让中文密码也能被哈希
   function toBytes(str) {
     try {
       return unescape(encodeURIComponent(str));
@@ -80,7 +78,7 @@
 
     for (i = 0; i < ascii.length; i++) {
       j = ascii.charCodeAt(i);
-      if (j >> 8) j = 63; // 非法字节兜底，避免脏数据
+      if (j >> 8) j = 63;
       words[i >> 2] |= j << (((3 - i) % 4) * 8);
     }
     words[words.length] = (asciiBitLength / maxWord) | 0;
@@ -127,31 +125,25 @@
     return out;
   }
 
-  var SALT = "iv-salt-2026";
-
   // 订阅 token 盐值：必须与 spider/subs.py 的 TOKEN_SALT 完全一致
   var TOKEN_SALT = "zzf-sub-2026";
 
   /**
-   * 开通登记接口地址（可选）。
-   * 填了就会在付款后自动把账号写进服务端用户表，专属订阅 1 分钟内自动生成；
-   * 留空则只有本地解锁，需要管理员手工在 data/users.json 里加一行。
+   * 赞助码 -> 16 位订阅 token。
+   * 与后端 sha256(TOKEN_SALT + "|" + 赞助码)[:16] 同一算法，
+   * 服务端只要知道赞助码就能推出订阅目录，前端也能自己拼出地址。
+   */
+  function tokenOf(id) {
+    return sha256(TOKEN_SALT + "|" + String(id || "").trim().toUpperCase()).slice(0, 16);
+  }
+
+  /**
+   * 开通登记接口（可选）。
+   * 填了就会在赞助后自动把赞助码写进服务端，订阅文件 1 分钟内自动生成；
+   * 留空则只能本机解锁，需要站长凭赞助码手工补录。
    * 例：https://你的worker.workers.dev/claim
    */
   var CLAIM_URL = "";
-
-  /**
-   * 手机号 -> 16 位订阅 token。
-   * 与后端 sha256(TOKEN_SALT + "|" + 手机号)[:16] 保持同一算法，
-   * 这样服务端只拿到手机号就能推出订阅目录，前端只拿到手机号就能拼出地址。
-   */
-  function tokenOf(phone) {
-    return sha256(TOKEN_SALT + "|" + String(phone || "").trim()).slice(0, 16);
-  }
-
-  function passwordHash(phone, pwd) {
-    return sha256(SALT + "|" + phone + "|" + pwd);
-  }
 
   function readJSON(key, fallback) {
     try {
@@ -171,107 +163,93 @@
     }
   }
 
-  /* ---------------------------------------------------------- 校验 */
+  /* ---------------------------------------------------------- 赞助码 */
 
-  function normPhone(v) {
-    return String(v || "").replace(/[\s-]/g, "");
-  }
+  // 去掉容易看错的 0/O/1/I，方便用户抄写
+  var ALPHABET = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
 
-  function validPhone(v) {
-    return /^1[3-9]\d{9}$/.test(normPhone(v));
-  }
-
-  function validPwd(v) {
-    return typeof v === "string" && v.length >= 6 && v.length <= 32;
-  }
-
-  /* ---------------------------------------------------------- 账号 */
-
-  function users() {
-    return readJSON(K_USERS, {});
-  }
-
-  function currentPhone() {
-    try {
-      return localStorage.getItem(K_SESSION) || "";
-    } catch (e) {
-      return "";
+  function newSid() {
+    var out = "";
+    if (window.crypto && window.crypto.getRandomValues) {
+      var buf = new Uint8Array(12);
+      window.crypto.getRandomValues(buf);
+      for (var i = 0; i < 12; i++) out += ALPHABET[buf[i] % ALPHABET.length];
+    } else {
+      for (var j = 0; j < 12; j++) out += ALPHABET[Math.floor(Math.random() * ALPHABET.length)];
     }
+    return out;
   }
 
-  function register(phone, pwd, regionKey) {
-    phone = normPhone(phone);
-    if (!validPhone(phone)) return { ok: false, msg: "请输入正确的 11 位手机号" };
-    if (!validPwd(pwd)) return { ok: false, msg: "密码长度需为 6~32 位" };
-    if (!regionKey) return { ok: false, msg: "请选择一个地区" };
+  function normSid(v) {
+    return String(v || "")
+      .toUpperCase()
+      .replace(/[^A-Z0-9]/g, "");
+  }
 
-    var db = users();
-    if (db[phone]) return { ok: false, msg: "该手机号已注册，请直接登录" };
-
-    db[phone] = {
-      p: passwordHash(phone, pwd),
-      r: String(regionKey),
-      t: Date.now(),
-    };
-    if (!writeJSON(K_USERS, db)) return { ok: false, msg: "浏览器存储不可用，请关闭无痕模式后重试" };
-
+  /** 读本机赞助码，没有就生成一个 */
+  function sid() {
+    var cur = "";
     try {
-      localStorage.setItem(K_SESSION, phone);
+      cur = localStorage.getItem(K_SID) || "";
     } catch (e) {}
-    return { ok: true, phone: phone };
-  }
+    cur = normSid(cur);
+    if (cur.length >= 8) return cur;
 
-  function login(phone, pwd) {
-    phone = normPhone(phone);
-    if (!validPhone(phone)) return { ok: false, msg: "请输入正确的 11 位手机号" };
-    var db = users();
-    var rec = db[phone];
-    if (!rec) return { ok: false, msg: "该手机号尚未注册" };
-    if (rec.p !== passwordHash(phone, pwd)) return { ok: false, msg: "密码错误" };
+    var made = newSid();
     try {
-      localStorage.setItem(K_SESSION, phone);
+      localStorage.setItem(K_SID, made);
     } catch (e) {}
-    return { ok: true, phone: phone };
+    return made;
   }
 
-  function logout() {
+  /** 用另一台设备的赞助码恢复（会覆盖本机记录） */
+  function setSid(code) {
+    var v = normSid(code);
+    if (v.length < 8 || v.length > 32) return { ok: false, msg: "赞助码格式不对" };
     try {
-      localStorage.removeItem(K_SESSION);
+      localStorage.setItem(K_SID, v);
+    } catch (e) {
+      return { ok: false, msg: "浏览器存储不可用" };
+    }
+    return { ok: true, sid: v };
+  }
+
+  /** 四位一组，方便抄写 */
+  function groupSid(v) {
+    var s = normSid(v);
+    var out = [];
+    for (var i = 0; i < s.length; i += 4) out.push(s.slice(i, i + 4));
+    return out.join(" ");
+  }
+
+  /* ---------------------------------------------------------- 赞助状态 */
+
+  function record() {
+    return readJSON(K_SPONSOR, null);
+  }
+
+  function clearSponsor() {
+    try {
+      localStorage.removeItem(K_SPONSOR);
     } catch (e) {}
-  }
-
-  /* ---------------------------------------------------------- 套餐 */
-
-  function members() {
-    return readJSON(K_MEMBER, {});
-  }
-
-  function memberOf(phone) {
-    if (!phone) return null;
-    var rec = members()[phone];
-    if (!rec || !rec.exp) return null;
-    return rec.exp > Date.now() ? rec : null;
   }
 
   /**
-   * 扫码后开通/续费。
-   * 不校验付款人（个人收款码无到账回调），用户点「我已完成付款」即生效。
-   * @param {string} planKey 套餐 key（day / month / quarter / year）
-   * @param {string} orderNo 订单号
+   * 赞助后解锁。
+   * 不校验付款人（个人收款码没有到账回调），点按钮即生效。
    */
   function unlock(planKey, orderNo) {
-    var phone = currentPhone();
-    if (!phone) return { ok: false, msg: "请先登录" };
-    if (!users()[phone]) return { ok: false, msg: "账号不存在，请重新登录" };
-
     var plan = planByKey(planKey) || planByKey(DEFAULT_PLAN);
-    var db = members();
-    var now = Date.now();
-    // 未到期则在原有效期上累加，已过期则从现在起算
-    var prev = db[phone] && db[phone].exp > now ? db[phone].exp : now;
-    var exp = prev + plan.days * 86400000;
+    var mySid = sid();
 
-    db[phone] = {
+    var prev = record();
+    var now = Date.now();
+    // 未到期就顺延，已过期则从现在起算
+    var base = prev && prev.exp > now ? prev.exp : now;
+    var exp = base + plan.days * 86400000;
+
+    var rec = {
+      sid: mySid,
       exp: exp,
       order: orderNo || "",
       ts: now,
@@ -279,74 +257,71 @@
       planName: plan.name,
       price: plan.price,
     };
-    if (!writeJSON(K_MEMBER, db)) return { ok: false, msg: "浏览器存储不可用，请关闭无痕模式" };
-
-    // 自动登记到服务端（配置了 CLAIM_URL 才启用）。
-    // 不阻塞、不校验结果：失败也只是订阅文件晚一点生成，不影响本地解锁。
-    if (CLAIM_URL && typeof fetch === "function") {
-      try {
-        fetch(CLAIM_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ phone: phone, plan: plan.key }),
-        })
-          .then(function (res) {
-            return res.ok ? res.json() : null;
-          })
-          .then(function (d) {
-            if (!d || !d.ok || !d.ts) return;
-            // 以服务端到期时间为准，避免前后端各算一套
-            var m = members();
-            if (m[phone]) {
-              m[phone].exp = Number(d.ts) * 1000;
-              writeJSON(K_MEMBER, m);
-            }
-          })
-          .catch(function () {});
-      } catch (e) {}
+    if (!writeJSON(K_SPONSOR, rec)) {
+      return { ok: false, msg: "浏览器存储不可用，请关闭无痕模式后重试" };
     }
 
+    claimRemote(mySid, plan.key);
     return { ok: true, exp: exp, plan: plan };
   }
 
-  function renewCancel() {
-    // 预留：如需退款/取消可在此处理
+  /** 把赞助码登记到服务端（配置了 CLAIM_URL 才生效），失败不影响本地解锁 */
+  function claimRemote(mySid, planKey) {
+    if (!CLAIM_URL || typeof fetch !== "function") return;
+    try {
+      fetch(CLAIM_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sid: mySid, plan: planKey }),
+      })
+        .then(function (res) {
+          return res.ok ? res.json() : null;
+        })
+        .then(function (d) {
+          if (!d || !d.ok || !d.ts) return;
+          // 以服务端到期时间为准，避免前后端各算一套
+          var rec = record();
+          if (!rec) return;
+          rec.exp = Number(d.ts) * 1000;
+          writeJSON(K_SPONSOR, rec);
+        })
+        .catch(function () {});
+    } catch (e) {}
   }
 
   /**
-   * 从服务端拉取账号的会员快照，修正本地状态。
-   * 换设备、清缓存、或管理员在后台续期后，靠这个自动恢复/同步。
-   * 数据源：data/users/<token>/meta.json（由每日任务生成，不含手机号明文）
-   * @returns {Promise<boolean>} 本地状态是否被改动
+   * 从服务端拉取本机赞助码的状态，修正本地记录。
+   * 换设备 / 清缓存 / 站长手工补录后，靠这个自动恢复。
+   * 数据源：data/users/<token>/meta.json（每日任务生成）
    */
-  function syncMember() {
-    var phone = currentPhone();
-    if (!phone) return Promise.resolve(false);
+  function syncSponsor() {
     if (typeof fetch !== "function") return Promise.resolve(false);
+    var mySid = sid();
+    // 纯数字（旧的手机号键）不走这条路
+    if (!mySid) return Promise.resolve(false);
 
-    var tok = tokenOf(phone);
-    return fetch("data/users/" + tok + "/meta.json", { cache: "no-store" })
+    return fetch("data/users/" + tokenOf(mySid) + "/meta.json", { cache: "no-store" })
       .then(function (res) {
         if (!res.ok) return null;
         return res.json();
       })
       .then(function (meta) {
         if (!meta || !meta.ts) return false;
-        // 服务端存的是秒级时间戳，本地统一用毫秒
         var expMs = Number(meta.ts) * 1000;
         if (!expMs) return false;
-        var db = members();
-        var prev = db[phone] || {};
-        if (prev.exp === expMs) return false;
-        db[phone] = {
+
+        var prev = record() || {};
+        if (prev.exp === expMs && prev.sid === mySid) return false;
+
+        writeJSON(K_SPONSOR, {
+          sid: mySid,
           exp: expMs,
           order: prev.order || "",
           ts: prev.ts || Date.now(),
           plan: prev.plan || "",
           planName: prev.planName || "",
           price: prev.price || 0,
-        };
-        writeJSON(K_MEMBER, db);
+        });
         return true;
       })
       .catch(function () {
@@ -354,42 +329,36 @@
       });
   }
 
-  /* ---------------------------------------------------------- 会话快照 */
+  /* ---------------------------------------------------------- 免费地区 */
 
-  function user() {
-    var phone = currentPhone();
-    if (!phone) return null;
-    var rec = users()[phone];
-    if (!rec) return null;
-
-    var raw = members()[phone] || null;
-    var mem = memberOf(phone); // 仅未过期才返回
-    var now = Date.now();
-    var expired = !mem && !!raw && !!raw.exp && raw.exp <= now;
-    var left = mem ? Math.max(0, Math.ceil((mem.exp - now) / 86400000)) : 0;
-
-    return {
-      phone: phone,
-      phoneMask: phone.slice(0, 3) + "****" + phone.slice(-4),
-      region: rec.r,
-      created: rec.t,
-      member: !!mem,
-      // 曾经开通过但现在已过期
-      expired: expired,
-      lastExp: raw && raw.exp ? raw.exp : 0,
-      lastExpText: raw && raw.exp ? fmtDate(raw.exp) : "",
-      lastPlanName: raw && raw.planName ? raw.planName : "",
-      exp: mem ? mem.exp : 0,
-      expText: mem ? fmtDate(mem.exp) : "",
-      order: mem ? mem.order : "",
-      plan: mem ? mem.plan || "" : "",
-      planName: mem ? mem.planName || "会员" : "",
-      price: mem ? mem.price || 0 : 0,
-      daysLeft: left,
-    };
+  /** 当前已选定的免费地区（没选过返回空串） */
+  function freeRegion() {
+    try {
+      return localStorage.getItem(K_FREE_REGION) || "";
+    } catch (e) {
+      return "";
+    }
   }
 
+  /**
+   * 选定免费地区。每个设备只能选一次，选定后不可更改；
+   * 想随时切换全部地区需要赞助。
+   */
+  function setFreeRegion(key) {
+    var cur = freeRegion();
+    if (cur) return { ok: false, msg: "免费地区已选定，赞助后可随时切换", key: cur };
+    try {
+      localStorage.setItem(K_FREE_REGION, String(key));
+    } catch (e) {
+      return { ok: false, msg: "浏览器存储不可用" };
+    }
+    return { ok: true, key: String(key) };
+  }
+
+  /* ---------------------------------------------------------- 视图 */
+
   function fmtDate(ts) {
+    if (!ts) return "";
     var d = new Date(ts);
     function p(n) {
       return n < 10 ? "0" + n : "" + n;
@@ -397,13 +366,13 @@
     return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate());
   }
 
-  /** 生成订单号，方便用户付款时写备注、也方便日后对账 */
-  function makeOrderNo(phone) {
+  /** 生成订单号，方便付款时写备注、也方便日后核对 */
+  function makeOrderNo(seed) {
     var d = new Date();
     function p(n) {
       return n < 10 ? "0" + n : "" + n;
     }
-    var tail = String(phone || "").slice(-4) || "0000";
+    var tail = normSid(seed).slice(-4) || "0000";
     var stamp =
       d.getFullYear() +
       p(d.getMonth() + 1) +
@@ -413,61 +382,33 @@
     return "ZB" + stamp + tail;
   }
 
-  /* ---------------------------------------------------------- 记住账号 */
+  function user() {
+    var mySid = sid();
+    var rec = record();
+    var now = Date.now();
+    var mem = rec && rec.exp > now ? rec : null;
+    var expired = !mem && !!rec && !!rec.exp && rec.exp <= now;
+    var left = mem ? Math.max(0, Math.ceil((mem.exp - now) / 86400000)) : 0;
 
-  function obscure(str) {
-    // 轻量可逆混淆：只是避免明文直接暴露在 DevTools 里，不是加密
-    var s = toBytes(str);
-    var out = "";
-    for (var i = 0; i < s.length; i++) {
-      out += String.fromCharCode(s.charCodeAt(i) ^ (0x5a + (i % 7)));
-    }
-    try {
-      return btoa(out);
-    } catch (e) {
-      return "";
-    }
-  }
-
-  function deobscure(str) {
-    try {
-      var raw = atob(str);
-      var out = "";
-      for (var i = 0; i < raw.length; i++) {
-        out += String.fromCharCode(raw.charCodeAt(i) ^ (0x5a + (i % 7)));
-      }
-      return decodeURIComponent(escape(out));
-    } catch (e) {
-      return "";
-    }
-  }
-
-  /**
-   * 记住登录信息。
-   * @param {string} phone 手机号
-   * @param {string} pwd   密码；传空字符串则只记住手机号
-   */
-  function saveRemember(phone, pwd) {
-    try {
-      if (!phone) {
-        localStorage.removeItem(K_REMEMBER);
-        return;
-      }
-      var payload = { phone: phone, p: pwd ? obscure(pwd) : "" };
-      localStorage.setItem(K_REMEMBER, JSON.stringify(payload));
-    } catch (e) {}
-  }
-
-  function remembered() {
-    var rec = readJSON(K_REMEMBER, null);
-    if (!rec || !rec.phone) return null;
-    return { phone: rec.phone, pwd: rec.p ? deobscure(rec.p) : "" };
-  }
-
-  function forgetRemember() {
-    try {
-      localStorage.removeItem(K_REMEMBER);
-    } catch (e) {}
+    return {
+      sid: mySid,
+      sidText: groupSid(mySid),
+      phone: "",
+      phoneMask: mem ? "本机赞助" : "未赞助",
+      region: "",
+      member: !!mem,
+      expired: expired,
+      exp: mem ? mem.exp : 0,
+      expText: mem ? fmtDate(mem.exp) : "",
+      lastExp: rec && rec.exp ? rec.exp : 0,
+      lastExpText: rec && rec.exp ? fmtDate(rec.exp) : "",
+      lastPlanName: rec && rec.planName ? rec.planName : "",
+      order: mem ? mem.order : "",
+      plan: mem ? rec.plan || "" : "",
+      planName: mem ? rec.planName || "赞助用户" : "",
+      price: mem ? rec.price || 0 : 0,
+      daysLeft: left,
+    };
   }
 
   window.IVAUTH = {
@@ -476,21 +417,20 @@
     planByKey: planByKey,
     sha256: sha256,
     tokenOf: tokenOf,
-    validPhone: validPhone,
-    register: register,
-    login: login,
-    logout: logout,
+    sid: sid,
+    sidText: function () {
+      return groupSid(sid());
+    },
+    setSid: setSid,
+    groupSid: groupSid,
     unlock: unlock,
+    clearSponsor: clearSponsor,
+    freeRegion: freeRegion,
+    setFreeRegion: setFreeRegion,
     user: user,
-    syncMember: syncMember,
+    syncSponsor: syncSponsor,
     makeOrderNo: makeOrderNo,
     fmtDate: fmtDate,
-    saveRemember: saveRemember,
-    remembered: remembered,
-    forgetRemember: forgetRemember,
-    isLoggedIn: function () {
-      return !!user();
-    },
     isMember: function () {
       var u = user();
       return !!(u && u.member);
