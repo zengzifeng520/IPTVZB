@@ -1324,7 +1324,7 @@ h2 .ico-thumb { width: 19px; height: 19px; margin-right: 3px; vertical-align: -3
    账号 / 登录 / 付款（v4）
    ============================================================ */
 
-.wrap.narrow { max-width: 880px; }
+.wrap.narrow { max-width: 1020px; }
 
 .btn-sm { height: 30px; padding: 0 11px; font-size: 12.5px; border-radius: 8px; }
 .btn-block { width: 100%; justify-content: center; }
@@ -1609,10 +1609,43 @@ h2 .ico-thumb { width: 19px; height: 19px; margin-right: 3px; vertical-align: -3
 .donate-qr-tip { margin: 12px 0 0; font-size: 13px; color: var(--text-2); }
 .donate-thanks { margin: 18px 0 0; font-size: 12.5px; color: var(--text-3); }
 
+/* ------------------------------------------------------------
+   支持作者页（account.html）单独放大字号 + 加宽
+   body 上挂了 .page-donate，其它页面完全不受影响
+   ------------------------------------------------------------ */
+.page-donate .panel.donate-panel { padding: 32px 26px 26px; }
+.page-donate .donate-title { font-size: 28px; }
+.page-donate .donate-sub { font-size: 15px; line-height: 1.8; }
+.page-donate .donate-thanks { font-size: 13.5px; }
+.page-donate .code-title { font-size: 15px; }
+.page-donate .code-tip { font-size: 13px; }
+.page-donate .code-hint { font-size: 12.5px; }
+
+.page-donate .panel { padding: 22px 24px 26px; }
+.page-donate .panel-head { margin: 0 0 16px; padding: 0 0 14px; }
+.page-donate .panel-head h2 { margin: 0; font-size: 22px; font-weight: 800; letter-spacing: -0.2px; }
+.page-donate .pill { font-size: 12.5px; padding: 4px 11px; }
+.page-donate .upgrade-desc { font-size: 14.5px; line-height: 1.8; margin-bottom: 16px; }
+
+.page-donate .sub-list { gap: 11px; }
+.page-donate .sub-item { padding: 15px 17px; gap: 14px; border-radius: 13px; }
+.page-donate .sub-item-title { font-size: 16px; gap: 8px; }
+.page-donate .sub-item-meta { font-size: 13.5px; margin-top: 3px; }
+.page-donate .sub-item-url { font-size: 13px; margin-top: 8px; }
+.page-donate .sub-item-act .btn { height: 36px; padding: 0 16px; font-size: 14px; border-radius: 9px; }
+.page-donate .auth-foot { font-size: 13.5px; }
+
+/* 宽屏两列：既用满宽度，又不把页面拉得特别长；窄屏保持单列 */
+@media (min-width: 1040px) {
+  .page-donate .sub-list {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;
+  }
+}
+
 /* 直接展示的双码：微信赞赏 + 抖音关注 */
 .donate-codes {
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px; max-width: 540px; margin: 0 auto; align-items: start;
+  gap: 20px; max-width: 600px; margin: 0 auto; align-items: start;
 }
 .code-card {
   padding: 12px;
@@ -1625,7 +1658,7 @@ h2 .ico-thumb { width: 19px; height: 19px; margin-right: 3px; vertical-align: -3
 /* 两张码统一成「同样大小的白底圆角方块」：
    左边方形码、右边圆形码都不再是各自的形状，视觉上完全对称、边缘干净 */
 .code-img {
-  width: 100%; max-width: 218px; aspect-ratio: 1 / 1;
+  width: 100%; max-width: 250px; aspect-ratio: 1 / 1;
   margin: 0 auto;
   display: flex; align-items: center; justify-content: center;
   padding: 9px;
