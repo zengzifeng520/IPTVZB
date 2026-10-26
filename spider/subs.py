@@ -174,23 +174,6 @@ def build_hotel_public(hotel: dict | None) -> dict:
     return payload
 
 
-def merge_channels(relay: list[dict], hotel: dict | None) -> list[dict]:
-    """全量订阅用：把酒店源频道合进组播频道（同 key 合并 streams）。"""
-    if not hotel:
-        return relay
-    by_key = {c["key"]: c for c in relay}
-    out = list(relay)
-    for hc in hotel["channels"]:
-        cur = by_key.get(hc["key"])
-        if cur is not None:
-            have = {s["u"] for s in cur["streams"]}
-            cur["streams"].extend([s for s in hc["streams"] if s["u"] not in have])
-        else:
-            out.append(hc)
-            by_key[hc["key"]] = hc
-    return out
-
-
 def build_free(channels: list[dict], regions: list[dict],
                hotel: dict | None = None) -> None:
     """免费订阅：按「到期日」分目录，只保留未来 FREE_DAYS 天。
@@ -356,9 +339,9 @@ def build_public_subs(channels: list[dict], regions: list[dict],
 
     n_chan = n_stream = 0
 
-    # 全量订阅：组播 + 酒店源合并
-    merged = merge_channels(channels, hotel)
-    n_chan, n_stream = _write(PUBLIC_DIR / "all.m3u", merged)
+    # 全量订阅：只含全部地区（组播中转）合并，**不含酒店源**
+    # 酒店源单独 hotel.m3u，两种源的协议/地区属性不同，混在一起播放器容易乱
+    n_chan, n_stream = _write(PUBLIC_DIR / "all.m3u", channels)
 
     # 分地区订阅 + 地区地址表
     for r in regions:
@@ -374,7 +357,9 @@ def build_public_subs(channels: list[dict], regions: list[dict],
         _write(PUBLIC_DIR / "hotel.m3u", hotel["channels"], hotel["host_set"])
         _write_urls(urls_dir / "hotel.json", hotel["channels"], hotel["host_set"])
 
-    print(f"  [subs] public/*.m3u 全量 {n_chan} 频道 / {n_stream} 条（公开可下载）")
+    print(
+        f"  [subs] public/*.m3u 全量 {n_chan} 频道 / {n_stream} 条（不含酒店源，公开可下载）"
+    )
     return {"channels": n_chan, "streams": n_stream}
 
 
@@ -462,8 +447,8 @@ def build_users(channels: list[dict], regions: list[dict],
             print(f"  [subs] users/{token}  已过期 -> 订阅清空")
             continue
 
-        # 全量订阅含组播 + 酒店源
-        c, s = _write(d / "all.m3u", merge_channels(channels, hotel))
+        # 全量订阅：只含组播中转（酒店源单独 hotel.m3u）
+        c, s = _write(d / "all.m3u", channels)
         for r in regions:
             host_set = set(r.get("hosts") or [])
             if not host_set:

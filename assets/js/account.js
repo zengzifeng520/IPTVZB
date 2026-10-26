@@ -99,14 +99,14 @@
     var all = state.subs.all || {};
     var items = [];
 
-    // 全量订阅（公开）
+    // 全量订阅（公开）：只含全部地区，不含酒店源
     items.push({
       key: "ALL",
       name: "全量订阅",
-      isp: "全部地区合并 + 酒店源",
+      isp: "全部地区合并（不含酒店源）",
       path: "data/public/all.m3u",
-      channels: all.channelsTotal || all.channels || 0,
-      streams: all.streamsTotal || all.streams || 0,
+      channels: all.channels || 0,
+      streams: all.streams || 0,
       big: true,
     });
 
