@@ -54,7 +54,7 @@ class ShushuSession:
             "Accept-Language": "zh-CN,zh;q=0.9",
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         })
-        # 直连，避免本地沙箱代理对 github.com 之外的站点返回 503
+        # 直连，避免本地沙箱代理对站点返回 503
         self.s.trust_env = False
         self.verbose = verbose
         self._token = None
@@ -66,15 +66,30 @@ class ShushuSession:
 
     # ---------------- 防护处理 ----------------
     def boot(self):
-        self.s.get(BASE + "/index.php", timeout=25)
+        """预热会话：访问首页拿 PHPSESSID，再拿挑战 cookie。"""
+        for i in range(4):
+            try:
+                self.s.get(BASE + "/index.php", timeout=40)
+                break
+            except requests.RequestException:
+                if i == 3:
+                    raise
+                time.sleep(5 * (i + 1))
         self.s.cookies.set("ad_ok", "1", domain="iptv.cqshushu.com", path="/")
         self._booted = True
-        return self.pass_challenge()
+        for i in range(3):
+            try:
+                return self.pass_challenge()
+            except requests.RequestException:
+                if i == 2:
+                    return False
+                time.sleep(8)
+        return False
 
     def pass_challenge(self) -> bool:
         """请求带 _js_challenge=1，服务器会 Set-Cookie: paer_sec_token 并 302。"""
         url = f"{BASE}/index.php?t=multicast&province=all&limit=10&page=1&_js_challenge=1"
-        r = self.s.get(url, allow_redirects=False, timeout=25)
+        r = self.s.get(url, allow_redirects=False, timeout=40)
         tok = self.s.cookies.get("paer_sec_token")
         if tok:
             self.log(f"    挑战通过 (token {len(tok)} chars)")
@@ -87,17 +102,30 @@ class ShushuSession:
         time.sleep(sec)
 
     def get(self, url, retries=5, base_backoff=45) -> requests.Response:
-        """带 429 退避 + 403 自动重过挑战。"""
+        """带 429 退避 + 403 自动重过挑战 + 网络异常重试。"""
+        last = None
         for i in range(retries):
-            r = self.s.get(url, timeout=30, allow_redirects=True)
+            try:
+                r = self.s.get(url, timeout=40, allow_redirects=True)
+            except requests.RequestException as e:
+                self.log(f"    网络异常 {type(e).__name__}，{5 * (i + 1)}s 后重试")
+                time.sleep(5 * (i + 1))
+                continue
             if r.status_code == 429:
                 self._wait(base_backoff * (i + 1))
                 continue
             if r.status_code == 403:
                 self.log("    403，重过挑战")
-                self.pass_challenge()
+                try:
+                    self.pass_challenge()
+                except requests.RequestException:
+                    pass
                 continue
             return r
+        # 全部重试失败：返回一个空响应对象，避免上层崩溃
+        r = requests.Response()
+        r.status_code = 0
+        r._content = b""
         return r
 
     # ---------------- 接口 ----------------
@@ -117,17 +145,24 @@ class ShushuSession:
     def parse(self, ip_port: str, deep: bool = False) -> dict:
         action = "deep_parse" if deep else "parse"
         for i in range(3):
-            r = self.s.post(
-                BASE + "/iptv_channel.php",
-                data={"action": action, "input": ip_port, "token": self.token()},
-                timeout=120,
-            )
+            try:
+                r = self.s.post(
+                    BASE + "/iptv_channel.php",
+                    data={"action": action, "input": ip_port, "token": self.token()},
+                    timeout=120,
+                )
+            except requests.RequestException as e:
+                self.log(f"    解析请求异常 {type(e).__name__}，{10 * (i + 1)}s 后重试")
+                time.sleep(10 * (i + 1))
+                continue
             if r.status_code == 429:
                 self._wait(30 * (i + 1))
                 continue
-            r.raise_for_status()
-            return r.json()
-        raise RuntimeError(f"解析失败 HTTP {r.status_code}")
+            try:
+                return r.json()
+            except ValueError:
+                return {"success": False, "message": f"非 JSON 响应 HTTP {r.status_code}"}
+        return {"success": False, "message": "解析请求多次失败"}
 
 
 # ---------------- 解析工具 ----------------
