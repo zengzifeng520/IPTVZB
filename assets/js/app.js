@@ -328,7 +328,6 @@
 
         renderStats();
         renderRegions();
-        renderHomeSubs();
 
         // 酒店源是独立分类：用 stats 里的数字填充入口卡片
         var hs = res[0].stats || {};

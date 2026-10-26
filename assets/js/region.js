@@ -186,36 +186,27 @@
   }
 
   function renderSubscribe() {
-    // 订阅地址全部公开，无需付费，打赏自愿
+    // 订阅链接统一收在「支持一下作者」页；这里只给入口，不直接暴露订阅地址
     var key = state.regionKey;
     var r = regionByKey(key);
     var mine = subByKey(key);
-    var all = (state.subs && state.subs.all) || null;
+    var name = r ? r.name : key;
 
-    el.subSec.hidden = false;
-    el.lockSec.hidden = true;
+    el.subSec.hidden = true;
+    el.lockSec.hidden = false;
+    state.subPath = "";
 
-    if (mine) {
-      state.subPath = "data/public/" + key + ".m3u";
-      el.subTitle.textContent = (r ? r.name : "") + " 订阅地址";
-      el.subDesc.textContent =
-        "公开订阅，粘贴到 PotPlayer / VLC / TiviMate / APTV 即可加载全部频道。数据每小时自动更新。";
-      el.subTag.textContent = (r ? r.name : "") + " · " + mine.channels + " 频道 / " + mine.streams + " 条";
-      el.subUrl.textContent = baseUrl() + state.subPath;
-      el.dlSub.href = state.subPath;
-    } else {
-      state.subPath = "";
-      el.subTag.textContent = "—";
-      el.subUrl.textContent = "订阅数据加载失败，请刷新重试";
-      el.dlSub.href = "#";
+    if (el.lockBody) {
+      el.lockBody.innerHTML =
+        "<h2>订阅地址在「支持一下作者」页</h2>" +
+        "<p>本页可以直接查看并复制 <b>" +
+        esc(name) +
+        "</b> 的全部播放地址；<br>" +
+        "M3U 订阅链接（全量 / 酒店源 / 分地区共 " +
+        state.regions.length +
+        " 份）统一放在支持一下作者页面，<b>免费、无需付款</b>。</p>" +
+        '<a class="btn btn-primary btn-lg" href="account.html" style="margin-top:6px">去订阅地址页</a>';
     }
-
-    var hosts = (r && r.hosts) || [];
-    el.hostChips.innerHTML = hosts
-      .map(function (h) {
-        return '<span class="host-chip" title="' + esc(h) + '">' + esc(hostLabel(h)) + "</span>";
-      })
-      .join("");
   }
 
   function renderList() {

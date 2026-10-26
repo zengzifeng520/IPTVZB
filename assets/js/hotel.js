@@ -147,30 +147,20 @@
   }
 
   function renderSubscribe() {
-    // 订阅地址全部公开，无需付费，打赏自愿
-    el.subSec.hidden = false;
-    el.lockSec.hidden = true;
-
+    // 订阅链接统一收在「支持一下作者」页；这里只给入口
     var s = (state.pub && state.pub.stats) || {};
 
-    state.subPath = "data/public/" + HOTEL_KEY + ".m3u";
-    el.subTitle.textContent = "酒店源订阅地址";
-    el.subDesc.textContent =
-      "公开订阅，粘贴到 PotPlayer / VLC / TiviMate / APTV 即可加载全部频道。酒店源 HLS 直连，全国可播。";
-    el.subTag.textContent = "酒店源 · " + (s.channels || 0) + " 频道 / " + (s.streams || 0) + " 条";
-    el.subUrl.textContent = baseUrl() + state.subPath;
-    el.dlSub.href = state.subPath;
+    el.subSec.hidden = true;
+    el.lockSec.hidden = false;
+    state.subPath = "";
 
-    // 主机列表：公开目录有就给公开的，否则从地址表里提取
-    var hosts = (state.pub && state.pub.hosts) || [];
-    if (!hosts.length && state.hostSet) {
-      hosts = Object.keys(state.hostSet);
+    if (el.lockBody) {
+      el.lockBody.innerHTML =
+        "<h2>订阅地址在「支持一下作者」页</h2>" +
+        "<p>本页可以直接查看并复制酒店源的全部播放地址；<br>" +
+        "M3U 订阅链接（全量 / 酒店源 / 分地区）统一放在支持一下作者页面，<b>免费、无需付款</b>。</p>" +
+        '<a class="btn btn-primary btn-lg" href="account.html" style="margin-top:6px">去订阅地址页</a>';
     }
-    el.hostChips.innerHTML = hosts
-      .map(function (h) {
-        return '<span class="host-chip" title="' + esc(h) + '">' + esc(hostLabel(h)) + "</span>";
-      })
-      .join("");
   }
 
   function renderList() {

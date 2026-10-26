@@ -8,8 +8,8 @@
 <title>IPTV直播源分发系统 · 全国直播源按地区取用</title>
 <meta name="description" content="全国 17 个地区直播频道与播放地址免费查看，M3U 订阅免费下载，适配 PotPlayer / VLC / TiviMate / APTV。">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%236366f1'/><stop offset='1' stop-color='%23ec4899'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='url(%23g)'/><rect x='25' y='29' width='50' height='42' rx='8' fill='%231e1b4b'/><path d='M41 40l22 10-22 10z' fill='white'/></svg>">
-<link rel="stylesheet" href="assets/css/app.css?v=20261027e">
-<script src="assets/js/theme.js?v=20261027e"></script>
+<link rel="stylesheet" href="assets/css/app.css?v=20261027f">
+<script src="assets/js/theme.js?v=20261027f"></script>
 </head>
 <body>
 
@@ -65,20 +65,12 @@
 
   <div class="stats stats-center" id="stats"></div>
 
-  <!-- 订阅地址：首页直接可复制，无需进入其他页面 -->
-  <section class="subs-home" id="subsHome">
-    <div class="section-head">
-      <h2>订阅地址</h2>
-      <span class="sub">复制下面地址，粘到播放器「订阅 / 远程列表」即可全量加载</span>
-    </div>
-    <div class="subs-list" id="subsQuick"></div>
-    <div class="subs-more">
-      <button class="subs-toggle" id="subsToggle" type="button" aria-expanded="false">
-        按地区订阅（<span id="subsRegionN">17</span> 个地区）<span class="subs-caret">▾</span>
-      </button>
-    </div>
-    <div class="subs-list subs-regions" id="subsRegions" hidden></div>
-  </section>
+  <!-- 订阅地址统一收在「支持一下作者」页 -->
+  <p class="subs-tip">
+    M3U / TXT 订阅地址统一放在
+    <a href="account.html" class="subs-tip-link"><svg class="ico-thumb" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.8 10.4h2.6c.5 0 .9.4.9.9v8.3c0 .5-.4.9-.9.9H2.8c-.5 0-.9-.4-.9-.9v-8.3c0-.5.4-.9.9-.9Z"/><path d="M7.8 10.1 12 2.1c.2-.4.6-.7 1.1-.7 1.4 0 2.5 1.1 2.5 2.5v4.4h4.2c1.4 0 2.4 1.3 2.1 2.6l-1.3 6.7c-.2 1.1-1.2 1.9-2.3 1.9H7.8V10.1Z"/></svg>支持一下作者</a>
+    页面，点进去即可复制或下载。
+  </p>
 
   <section class="preview">
     <div class="section-head">
@@ -131,7 +123,7 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="assets/js/auth.js?v=20261027e"></script>
-<script src="assets/js/app.js?v=20261027e"></script>
+<script src="assets/js/auth.js?v=20261027f"></script>
+<script src="assets/js/app.js?v=20261027f"></script>
 </body>
 </html>
