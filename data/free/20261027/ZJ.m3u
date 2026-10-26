@@ -246,19 +246,19 @@ http://125.118.207.78:4000/udp/233.50.201.184:5140
 #EXTINF:-1 tvg-name="浙江少儿" group-title="少儿频道",浙江少儿
 http://115.196.150.241:9999/udp/233.50.201.138:5140
 #EXTINF:-1 tvg-name="浙江少儿" group-title="少儿频道",浙江少儿
-http://122.246.144.233:7777/rtp/233.50.201.138:5140
-#EXTINF:-1 tvg-name="浙江少儿" group-title="少儿频道",浙江少儿
 http://125.118.207.78:4000/udp/233.50.201.138:5140
 #EXTINF:-1 tvg-name="浙江少儿" group-title="少儿频道",浙江少儿
 http://dous.cc:4023/udp/233.50.201.138:5140
 #EXTINF:-1 tvg-name="浙江少儿" group-title="少儿频道",浙江少儿
 http://guany.myds.me:25852/udp/233.50.201.138:5140
 #EXTINF:-1 tvg-name="浙江少儿" group-title="少儿频道",浙江少儿
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.33:5140
+#EXTINF:-1 tvg-name="浙江少儿" group-title="少儿频道",浙江少儿
 http://www.liangcl.top:8686/udp/233.50.201.138:5140
 #EXTINF:-1 tvg-name="浙江少儿" group-title="少儿频道",浙江少儿
 http://zjhuct.icu:8889/udp/233.50.201.138:5140
 #EXTINF:-1 tvg-name="之江纪录" group-title="纪实频道",之江纪录
-http://122.246.144.233:7777/rtp/233.50.202.25:5140
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.202.25:5140
 #EXTINF:-1 tvg-name="凤凰中文" group-title="港澳频道",凤凰中文
 http://115.196.150.241:9999/udp/233.50.200.42:5140
 #EXTINF:-1 tvg-name="凤凰中文" group-title="港澳频道",凤凰中文
@@ -366,8 +366,6 @@ http://guany.myds.me:25852/udp/233.50.201.187:5140
 #EXTINF:-1 tvg-name="第一财经" group-title="数字频道",第一财经
 http://115.196.150.241:9999/udp/233.50.200.125:5140
 #EXTINF:-1 tvg-name="第一财经" group-title="数字频道",第一财经
-http://122.246.144.233:7777/rtp/233.50.200.125:5140
-#EXTINF:-1 tvg-name="第一财经" group-title="数字频道",第一财经
 http://125.118.207.78:4000/udp/233.50.200.125:5140
 #EXTINF:-1 tvg-name="第一财经" group-title="数字频道",第一财经
 http://dous.cc:4023/udp/233.50.200.125:5140
@@ -385,6 +383,12 @@ http://115.196.150.241:9999/udp/233.50.201.188:5140
 http://125.118.207.78:4000/udp/233.50.200.124:5140
 #EXTINF:-1 tvg-name="茶频道" group-title="数字频道",茶频道
 http://125.118.207.78:4000/udp/233.50.201.188:5140
+#EXTINF:-1 tvg-name="ymg新闻" group-title="地方频道",ymg新闻
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.159:5140
+#EXTINF:-1 tvg-name="临平新闻" group-title="地方频道",临平新闻
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.202.32:5140
+#EXTINF:-1 tvg-name="丽水新闻" group-title="地方频道",丽水新闻
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.162:5140
 #EXTINF:-1 tvg-name="丽水新闻综合" group-title="地方频道",丽水新闻综合
 http://115.196.150.241:9999/udp/233.50.201.162:5140
 #EXTINF:-1 tvg-name="丽水新闻综合" group-title="地方频道",丽水新闻综合
@@ -398,7 +402,7 @@ http://www.liangcl.top:8686/udp/233.50.201.162:5140
 #EXTINF:-1 tvg-name="丽水新闻综合" group-title="地方频道",丽水新闻综合
 http://zjhuct.icu:8889/udp/233.50.201.162:5140
 #EXTINF:-1 tvg-name="北京纪实科教" group-title="地方频道",北京纪实科教
-http://122.246.144.233:7777/rtp/233.50.202.34:5140
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.202.34:5140
 #EXTINF:-1 tvg-name="台州新闻" group-title="地方频道",台州新闻
 http://115.196.150.241:9999/udp/233.50.201.157:5140
 #EXTINF:-1 tvg-name="台州新闻" group-title="地方频道",台州新闻
@@ -420,17 +424,11 @@ http://dous.cc:4023/udp/233.50.201.163:5140
 #EXTINF:-1 tvg-name="嘉兴新闻" group-title="地方频道",嘉兴新闻
 http://guany.myds.me:25852/udp/233.50.201.163:5140
 #EXTINF:-1 tvg-name="嘉兴新闻" group-title="地方频道",嘉兴新闻
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.163:5140
+#EXTINF:-1 tvg-name="嘉兴新闻" group-title="地方频道",嘉兴新闻
 http://www.liangcl.top:8686/udp/233.50.201.163:5140
 #EXTINF:-1 tvg-name="嘉兴新闻" group-title="地方频道",嘉兴新闻
 http://zjhuct.icu:8889/udp/233.50.201.163:5140
-#EXTINF:-1 tvg-name="宁波1" group-title="地方频道",宁波1
-http://122.246.144.233:7777/rtp/233.50.201.168:5140
-#EXTINF:-1 tvg-name="宁波2" group-title="地方频道",宁波2
-http://122.246.144.233:7777/rtp/233.50.201.178:5140
-#EXTINF:-1 tvg-name="宁波3" group-title="地方频道",宁波3
-http://122.246.144.233:7777/rtp/233.50.201.179:5140
-#EXTINF:-1 tvg-name="宁波4" group-title="地方频道",宁波4
-http://122.246.144.233:7777/rtp/233.50.201.180:5140
 #EXTINF:-1 tvg-name="宁波少儿" group-title="地方频道",宁波少儿
 http://115.196.150.241:9999/udp/233.50.201.181:5140
 #EXTINF:-1 tvg-name="宁波少儿" group-title="地方频道",宁波少儿
@@ -482,8 +480,6 @@ http://zjhuct.icu:8889/udp/233.50.201.178:5140
 #EXTINF:-1 tvg-name="宁波综合" group-title="地方频道",宁波综合
 http://115.196.150.241:9999/udp/233.50.201.168:5140
 #EXTINF:-1 tvg-name="宁波综合" group-title="地方频道",宁波综合
-http://122.246.144.233:7777/udp/233.50.201.168:5140
-#EXTINF:-1 tvg-name="宁波综合" group-title="地方频道",宁波综合
 http://125.118.207.78:4000/udp/233.50.201.168:5140
 #EXTINF:-1 tvg-name="宁波综合" group-title="地方频道",宁波综合
 http://dous.cc:4023/udp/233.50.201.168:5140
@@ -493,10 +489,10 @@ http://guany.myds.me:25852/udp/233.50.201.168:5140
 http://www.liangcl.top:8686/udp/233.50.201.168:5140
 #EXTINF:-1 tvg-name="宁波综合" group-title="地方频道",宁波综合
 http://zjhuct.icu:8889/udp/233.50.201.168:5140
+#EXTINF:-1 tvg-name="新闻综合" group-title="地方频道",新闻综合
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.202.11:5140
 #EXTINF:-1 tvg-name="杭州导视" group-title="地方频道",杭州导视
 http://115.196.150.241:9999/udp/233.50.201.182:5140
-#EXTINF:-1 tvg-name="杭州导视" group-title="地方频道",杭州导视
-http://122.246.144.233:7777/rtp/233.50.201.182:5140
 #EXTINF:-1 tvg-name="杭州导视" group-title="地方频道",杭州导视
 http://125.118.207.78:4000/udp/233.50.201.182:5140
 #EXTINF:-1 tvg-name="杭州导视" group-title="地方频道",杭州导视
@@ -504,13 +500,13 @@ http://dous.cc:4023/udp/233.50.201.182:5140
 #EXTINF:-1 tvg-name="杭州导视" group-title="地方频道",杭州导视
 http://guany.myds.me:25852/udp/233.50.201.182:5140
 #EXTINF:-1 tvg-name="杭州导视" group-title="地方频道",杭州导视
-http://www.liangcl.top:8686/udp/233.50.201.182:5140
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.182:5140
 #EXTINF:-1 tvg-name="杭州导视" group-title="地方频道",杭州导视
-http://zjhuct.icu:8889/udp/233.50.201.182:5140
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.26:5140
+#EXTINF:-1 tvg-name="杭州导视" group-title="地方频道",杭州导视
+http://www.liangcl.top:8686/udp/233.50.201.182:5140
 #EXTINF:-1 tvg-name="杭州影视" group-title="地方频道",杭州影视
 http://115.196.150.241:9999/udp/233.50.201.176:5140
-#EXTINF:-1 tvg-name="杭州影视" group-title="地方频道",杭州影视
-http://122.246.144.233:7777/rtp/233.50.201.176:5140
 #EXTINF:-1 tvg-name="杭州影视" group-title="地方频道",杭州影视
 http://125.118.207.78:4000/udp/233.50.201.176:5140
 #EXTINF:-1 tvg-name="杭州影视" group-title="地方频道",杭州影视
@@ -518,13 +514,13 @@ http://dous.cc:4023/udp/233.50.201.176:5140
 #EXTINF:-1 tvg-name="杭州影视" group-title="地方频道",杭州影视
 http://guany.myds.me:25852/udp/233.50.201.176:5140
 #EXTINF:-1 tvg-name="杭州影视" group-title="地方频道",杭州影视
-http://www.liangcl.top:8686/udp/233.50.201.176:5140
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.176:5140
 #EXTINF:-1 tvg-name="杭州影视" group-title="地方频道",杭州影视
-http://zjhuct.icu:8889/udp/233.50.201.176:5140
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.24:5140
+#EXTINF:-1 tvg-name="杭州影视" group-title="地方频道",杭州影视
+http://www.liangcl.top:8686/udp/233.50.201.176:5140
 #EXTINF:-1 tvg-name="杭州明珠" group-title="地方频道",杭州明珠
 http://115.196.150.241:9999/udp/233.50.201.174:5140
-#EXTINF:-1 tvg-name="杭州明珠" group-title="地方频道",杭州明珠
-http://122.246.144.233:7777/rtp/233.50.201.174:5140
 #EXTINF:-1 tvg-name="杭州明珠" group-title="地方频道",杭州明珠
 http://125.118.207.78:4000/udp/233.50.201.174:5140
 #EXTINF:-1 tvg-name="杭州明珠" group-title="地方频道",杭州明珠
@@ -532,13 +528,13 @@ http://dous.cc:4023/udp/233.50.201.174:5140
 #EXTINF:-1 tvg-name="杭州明珠" group-title="地方频道",杭州明珠
 http://guany.myds.me:25852/udp/233.50.201.174:5140
 #EXTINF:-1 tvg-name="杭州明珠" group-title="地方频道",杭州明珠
-http://www.liangcl.top:8686/udp/233.50.201.174:5140
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.174:5140
 #EXTINF:-1 tvg-name="杭州明珠" group-title="地方频道",杭州明珠
-http://zjhuct.icu:8889/udp/233.50.201.174:5140
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.22:5140
+#EXTINF:-1 tvg-name="杭州明珠" group-title="地方频道",杭州明珠
+http://www.liangcl.top:8686/udp/233.50.201.174:5140
 #EXTINF:-1 tvg-name="杭州生活" group-title="地方频道",杭州生活
 http://115.196.150.241:9999/udp/233.50.201.175:5140
-#EXTINF:-1 tvg-name="杭州生活" group-title="地方频道",杭州生活
-http://122.246.144.233:7777/rtp/233.50.201.175:5140
 #EXTINF:-1 tvg-name="杭州生活" group-title="地方频道",杭州生活
 http://125.118.207.78:4000/udp/233.50.201.175:5140
 #EXTINF:-1 tvg-name="杭州生活" group-title="地方频道",杭州生活
@@ -546,13 +542,13 @@ http://dous.cc:4023/udp/233.50.201.175:5140
 #EXTINF:-1 tvg-name="杭州生活" group-title="地方频道",杭州生活
 http://guany.myds.me:25852/udp/233.50.201.175:5140
 #EXTINF:-1 tvg-name="杭州生活" group-title="地方频道",杭州生活
-http://www.liangcl.top:8686/udp/233.50.201.175:5140
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.175:5140
 #EXTINF:-1 tvg-name="杭州生活" group-title="地方频道",杭州生活
-http://zjhuct.icu:8889/udp/233.50.201.175:5140
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.23:5140
+#EXTINF:-1 tvg-name="杭州生活" group-title="地方频道",杭州生活
+http://www.liangcl.top:8686/udp/233.50.201.175:5140
 #EXTINF:-1 tvg-name="杭州综合" group-title="地方频道",杭州综合
 http://115.196.150.241:9999/udp/233.50.201.173:5140
-#EXTINF:-1 tvg-name="杭州综合" group-title="地方频道",杭州综合
-http://122.246.144.233:7777/rtp/233.50.201.173:5140
 #EXTINF:-1 tvg-name="杭州综合" group-title="地方频道",杭州综合
 http://125.118.207.78:4000/udp/233.50.201.173:5140
 #EXTINF:-1 tvg-name="杭州综合" group-title="地方频道",杭州综合
@@ -560,9 +556,11 @@ http://dous.cc:4023/udp/233.50.201.173:5140
 #EXTINF:-1 tvg-name="杭州综合" group-title="地方频道",杭州综合
 http://guany.myds.me:25852/udp/233.50.201.173:5140
 #EXTINF:-1 tvg-name="杭州综合" group-title="地方频道",杭州综合
-http://www.liangcl.top:8686/udp/233.50.201.173:5140
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.173:5140
 #EXTINF:-1 tvg-name="杭州综合" group-title="地方频道",杭州综合
-http://zjhuct.icu:8889/udp/233.50.201.173:5140
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.21:5140
+#EXTINF:-1 tvg-name="杭州综合" group-title="地方频道",杭州综合
+http://www.liangcl.top:8686/udp/233.50.201.173:5140
 #EXTINF:-1 tvg-name="杭州青少" group-title="地方频道",杭州青少
 http://115.196.150.241:9999/udp/233.50.201.177:5140
 #EXTINF:-1 tvg-name="杭州青少" group-title="地方频道",杭州青少
@@ -572,11 +570,13 @@ http://dous.cc:4023/udp/233.50.201.177:5140
 #EXTINF:-1 tvg-name="杭州青少" group-title="地方频道",杭州青少
 http://guany.myds.me:25852/udp/233.50.201.177:5140
 #EXTINF:-1 tvg-name="杭州青少" group-title="地方频道",杭州青少
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.177:5140
+#EXTINF:-1 tvg-name="杭州青少" group-title="地方频道",杭州青少
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.25:5140
+#EXTINF:-1 tvg-name="杭州青少" group-title="地方频道",杭州青少
 http://www.liangcl.top:8686/udp/233.50.201.177:5140
 #EXTINF:-1 tvg-name="杭州青少" group-title="地方频道",杭州青少
 http://zjhuct.icu:8889/udp/233.50.201.177:5140
-#EXTINF:-1 tvg-name="杭州青少体育" group-title="地方频道",杭州青少体育
-http://122.246.144.233:7777/rtp/233.50.201.177:5140
 #EXTINF:-1 tvg-name="桐乡新闻" group-title="地方频道",桐乡新闻
 http://115.196.150.241:9999/udp/233.50.201.169:5140
 #EXTINF:-1 tvg-name="桐乡新闻" group-title="地方频道",桐乡新闻
@@ -585,6 +585,8 @@ http://125.118.207.78:4000/udp/233.50.201.169:5140
 http://dous.cc:4023/udp/233.50.201.169:5140
 #EXTINF:-1 tvg-name="桐乡新闻" group-title="地方频道",桐乡新闻
 http://guany.myds.me:25852/udp/233.50.201.169:5140
+#EXTINF:-1 tvg-name="桐乡新闻" group-title="地方频道",桐乡新闻
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.169:5140
 #EXTINF:-1 tvg-name="桐乡新闻" group-title="地方频道",桐乡新闻
 http://www.liangcl.top:8686/udp/233.50.201.169:5140
 #EXTINF:-1 tvg-name="桐乡新闻" group-title="地方频道",桐乡新闻
@@ -601,8 +603,6 @@ http://guany.myds.me:25852/udp/233.50.201.79:5140
 http://www.liangcl.top:8686/udp/233.50.201.79:5140
 #EXTINF:-1 tvg-name="浙江之声广播" group-title="地方频道",浙江之声广播
 http://zjhuct.icu:8889/udp/233.50.201.79:5140
-#EXTINF:-1 tvg-name="浙江好易购" group-title="地方频道",浙江好易购
-http://122.246.144.233:7777/rtp/233.50.201.248:5140
 #EXTINF:-1 tvg-name="浙江教育" group-title="地方频道",浙江教育
 http://115.196.150.241:9999/udp/233.50.201.134:5140
 #EXTINF:-1 tvg-name="浙江教育" group-title="地方频道",浙江教育
@@ -612,13 +612,15 @@ http://dous.cc:4023/udp/233.50.201.134:5140
 #EXTINF:-1 tvg-name="浙江教育" group-title="地方频道",浙江教育
 http://guany.myds.me:25852/udp/233.50.201.134:5140
 #EXTINF:-1 tvg-name="浙江教育" group-title="地方频道",浙江教育
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.134:5140
+#EXTINF:-1 tvg-name="浙江教育" group-title="地方频道",浙江教育
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.30:5140
+#EXTINF:-1 tvg-name="浙江教育" group-title="地方频道",浙江教育
 http://www.liangcl.top:8686/udp/233.50.201.134:5140
 #EXTINF:-1 tvg-name="浙江教育" group-title="地方频道",浙江教育
 http://zjhuct.icu:8889/udp/233.50.201.134:5140
 #EXTINF:-1 tvg-name="浙江新闻" group-title="地方频道",浙江新闻
 http://115.196.150.241:9999/udp/233.50.201.137:5140
-#EXTINF:-1 tvg-name="浙江新闻" group-title="地方频道",浙江新闻
-http://122.246.144.233:7777/rtp/233.50.201.137:5140
 #EXTINF:-1 tvg-name="浙江新闻" group-title="地方频道",浙江新闻
 http://125.118.207.78:4000/udp/233.50.201.137:5140
 #EXTINF:-1 tvg-name="浙江新闻" group-title="地方频道",浙江新闻
@@ -626,9 +628,11 @@ http://dous.cc:4023/udp/233.50.201.137:5140
 #EXTINF:-1 tvg-name="浙江新闻" group-title="地方频道",浙江新闻
 http://guany.myds.me:25852/udp/233.50.201.137:5140
 #EXTINF:-1 tvg-name="浙江新闻" group-title="地方频道",浙江新闻
-http://www.liangcl.top:8686/udp/233.50.201.137:5140
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.137:5140
 #EXTINF:-1 tvg-name="浙江新闻" group-title="地方频道",浙江新闻
-http://zjhuct.icu:8889/udp/233.50.201.137:5140
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.34:5140
+#EXTINF:-1 tvg-name="浙江新闻" group-title="地方频道",浙江新闻
+http://www.liangcl.top:8686/udp/233.50.201.137:5140
 #EXTINF:-1 tvg-name="浙江新闻广播" group-title="地方频道",浙江新闻广播
 http://115.196.150.241:9999/udp/233.50.201.80:5140
 #EXTINF:-1 tvg-name="浙江新闻广播" group-title="地方频道",浙江新闻广播
@@ -644,17 +648,17 @@ http://zjhuct.icu:8889/udp/233.50.201.80:5140
 #EXTINF:-1 tvg-name="浙江民生" group-title="地方频道",浙江民生
 http://115.196.150.241:9999/udp/233.50.201.136:5140
 #EXTINF:-1 tvg-name="浙江民生" group-title="地方频道",浙江民生
-http://122.246.144.233:7777/rtp/233.50.201.136:5140
-#EXTINF:-1 tvg-name="浙江民生" group-title="地方频道",浙江民生
 http://125.118.207.78:4000/udp/233.50.201.136:5140
 #EXTINF:-1 tvg-name="浙江民生" group-title="地方频道",浙江民生
 http://dous.cc:4023/udp/233.50.201.136:5140
 #EXTINF:-1 tvg-name="浙江民生" group-title="地方频道",浙江民生
 http://guany.myds.me:25852/udp/233.50.201.136:5140
 #EXTINF:-1 tvg-name="浙江民生" group-title="地方频道",浙江民生
-http://www.liangcl.top:8686/udp/233.50.201.136:5140
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.136:5140
 #EXTINF:-1 tvg-name="浙江民生" group-title="地方频道",浙江民生
-http://zjhuct.icu:8889/udp/233.50.201.136:5140
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.32:5140
+#EXTINF:-1 tvg-name="浙江民生" group-title="地方频道",浙江民生
+http://www.liangcl.top:8686/udp/233.50.201.136:5140
 #EXTINF:-1 tvg-name="浙江生活" group-title="地方频道",浙江生活
 http://115.196.150.241:9999/udp/233.50.201.133:5140
 #EXTINF:-1 tvg-name="浙江生活" group-title="地方频道",浙江生活
@@ -667,8 +671,6 @@ http://guany.myds.me:25852/udp/233.50.201.133:5140
 http://www.liangcl.top:8686/udp/233.50.201.133:5140
 #EXTINF:-1 tvg-name="浙江生活" group-title="地方频道",浙江生活
 http://zjhuct.icu:8889/udp/233.50.201.133:5140
-#EXTINF:-1 tvg-name="浙江科教影视" group-title="地方频道",浙江科教影视
-http://122.246.144.233:7777/rtp/233.50.201.134:5140
 #EXTINF:-1 tvg-name="浙江纪录" group-title="地方频道",浙江纪录
 http://115.196.150.241:9999/udp/233.50.202.25:5140
 #EXTINF:-1 tvg-name="浙江纪录" group-title="地方频道",浙江纪录
@@ -682,11 +684,9 @@ http://www.liangcl.top:8686/udp/233.50.202.25:5140
 #EXTINF:-1 tvg-name="浙江纪录" group-title="地方频道",浙江纪录
 http://zjhuct.icu:8889/udp/233.50.202.25:5140
 #EXTINF:-1 tvg-name="浙江经济生活" group-title="地方频道",浙江经济生活
-http://122.246.144.233:7777/rtp/233.50.201.133:5140
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.29:5140
 #EXTINF:-1 tvg-name="浙江钱江" group-title="地方频道",浙江钱江
 http://115.196.150.241:9999/udp/233.50.201.132:5140
-#EXTINF:-1 tvg-name="浙江钱江" group-title="地方频道",浙江钱江
-http://122.246.144.233:7777/rtp/233.50.201.132:5140
 #EXTINF:-1 tvg-name="浙江钱江" group-title="地方频道",浙江钱江
 http://125.118.207.78:4000/udp/233.50.201.132:5140
 #EXTINF:-1 tvg-name="浙江钱江" group-title="地方频道",浙江钱江
@@ -694,11 +694,13 @@ http://dous.cc:4023/udp/233.50.201.132:5140
 #EXTINF:-1 tvg-name="浙江钱江" group-title="地方频道",浙江钱江
 http://guany.myds.me:25852/udp/233.50.201.132:5140
 #EXTINF:-1 tvg-name="浙江钱江" group-title="地方频道",浙江钱江
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.28:5140
+#EXTINF:-1 tvg-name="浙江钱江" group-title="地方频道",浙江钱江
 http://www.liangcl.top:8686/udp/233.50.201.132:5140
 #EXTINF:-1 tvg-name="浙江钱江" group-title="地方频道",浙江钱江
 http://zjhuct.icu:8889/udp/233.50.201.132:5140
 #EXTINF:-1 tvg-name="温州新闻" group-title="地方频道",温州新闻
-http://122.246.144.233:7777/rtp/233.50.201.87:5140
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.87:5140
 #EXTINF:-1 tvg-name="温州综合" group-title="地方频道",温州综合
 http://115.196.150.241:9999/udp/233.50.201.87:5140
 #EXTINF:-1 tvg-name="温州综合" group-title="地方频道",温州综合
@@ -711,6 +713,8 @@ http://guany.myds.me:25852/udp/233.50.201.87:5140
 http://www.liangcl.top:8686/udp/233.50.201.87:5140
 #EXTINF:-1 tvg-name="温州综合" group-title="地方频道",温州综合
 http://zjhuct.icu:8889/udp/233.50.201.87:5140
+#EXTINF:-1 tvg-name="湖州公共" group-title="地方频道",湖州公共
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.158:5140
 #EXTINF:-1 tvg-name="湖州新闻" group-title="地方频道",湖州新闻
 http://115.196.150.241:9999/udp/233.50.201.158:5140
 #EXTINF:-1 tvg-name="湖州新闻" group-title="地方频道",湖州新闻
@@ -724,7 +728,7 @@ http://www.liangcl.top:8686/udp/233.50.201.158:5140
 #EXTINF:-1 tvg-name="湖州新闻" group-title="地方频道",湖州新闻
 http://zjhuct.icu:8889/udp/233.50.201.158:5140
 #EXTINF:-1 tvg-name="绍兴新闻" group-title="地方频道",绍兴新闻
-http://122.246.144.233:7777/rtp/233.50.201.156:5140
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.156:5140
 #EXTINF:-1 tvg-name="绍兴综合" group-title="地方频道",绍兴综合
 http://115.196.150.241:9999/udp/233.50.201.156:5140
 #EXTINF:-1 tvg-name="绍兴综合" group-title="地方频道",绍兴综合
@@ -740,17 +744,15 @@ http://zjhuct.icu:8889/udp/233.50.201.156:5140
 #EXTINF:-1 tvg-name="衢州公共" group-title="地方频道",衢州公共
 http://115.196.150.241:9999/udp/233.50.202.12:5140
 #EXTINF:-1 tvg-name="衢州公共" group-title="地方频道",衢州公共
-http://122.246.144.233:7777/rtp/233.50.202.12:5140
-#EXTINF:-1 tvg-name="衢州公共" group-title="地方频道",衢州公共
 http://125.118.207.78:4000/udp/233.50.202.12:5140
 #EXTINF:-1 tvg-name="衢州公共" group-title="地方频道",衢州公共
 http://dous.cc:4023/udp/233.50.202.12:5140
 #EXTINF:-1 tvg-name="衢州公共" group-title="地方频道",衢州公共
 http://guany.myds.me:25852/udp/233.50.202.12:5140
 #EXTINF:-1 tvg-name="衢州公共" group-title="地方频道",衢州公共
-http://www.liangcl.top:8686/udp/233.50.202.12:5140
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.202.12:5140
 #EXTINF:-1 tvg-name="衢州公共" group-title="地方频道",衢州公共
-http://zjhuct.icu:8889/udp/233.50.202.12:5140
+http://www.liangcl.top:8686/udp/233.50.202.12:5140
 #EXTINF:-1 tvg-name="衢州新闻" group-title="地方频道",衢州新闻
 http://115.196.150.241:9999/udp/233.50.201.155:5140
 #EXTINF:-1 tvg-name="衢州新闻" group-title="地方频道",衢州新闻
@@ -765,8 +767,6 @@ http://www.liangcl.top:8686/udp/233.50.201.155:5140
 http://zjhuct.icu:8889/udp/233.50.201.155:5140
 #EXTINF:-1 tvg-name="衢州综合" group-title="地方频道",衢州综合
 http://115.196.150.241:9999/udp/233.50.202.11:5140
-#EXTINF:-1 tvg-name="衢州综合" group-title="地方频道",衢州综合
-http://122.246.144.233:7777/rtp/233.50.202.11:5140
 #EXTINF:-1 tvg-name="衢州综合" group-title="地方频道",衢州综合
 http://125.118.207.78:4000/udp/233.50.202.11:5140
 #EXTINF:-1 tvg-name="衢州综合" group-title="地方频道",衢州综合
@@ -785,6 +785,8 @@ http://125.118.207.78:4000/udp/233.50.201.161:5140
 http://dous.cc:4023/udp/233.50.201.161:5140
 #EXTINF:-1 tvg-name="金华新闻" group-title="地方频道",金华新闻
 http://guany.myds.me:25852/udp/233.50.201.161:5140
+#EXTINF:-1 tvg-name="金华新闻" group-title="地方频道",金华新闻
+http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.161:5140
 #EXTINF:-1 tvg-name="金华新闻" group-title="地方频道",金华新闻
 http://www.liangcl.top:8686/udp/233.50.201.161:5140
 #EXTINF:-1 tvg-name="金华新闻" group-title="地方频道",金华新闻

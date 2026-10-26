@@ -133,8 +133,6 @@ http://27.154.198.20:10000/rtp/239.61.2.76:8450
 http://e1.woc.iiiya.cn:18888/rtp/239.61.2.76:8450
 #EXTINF:-1 tvg-name="东方财经" group-title="主题频道",东方财经
 http://e3.woc.iiiya.cn:18888/rtp/239.61.2.76:8450
-#EXTINF:-1 tvg-name="东方财经" group-title="主题频道",东方财经
-http://woc.iiiya.cn:18888/rtp/239.61.2.76:8450
 #EXTINF:-1 tvg-name="法治天地" group-title="主题频道",法治天地
 http://27.154.198.20:10000/rtp/239.61.2.75:8444
 #EXTINF:-1 tvg-name="中华特产" group-title="数字频道",中华特产
