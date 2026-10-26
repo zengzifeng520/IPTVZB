@@ -156,6 +156,17 @@
    */
   var CLAIM_URL = "";
 
+  /**
+   * 开通口令（防白拿）。
+   *
+   * 用户付款后点「立即开通」时必须输入这个口令，输对了才解锁。
+   * 站长收款后把口令发给用户即可，不用逐个后台补录。
+   *
+   * 改这里：把口令换成你自己的（建议纯数字/字母，好发给用户）。
+   * 想完全关闭口令校验，把值改成空字符串 ""。
+   */
+  var CLAIM_PASS = "IPTV2026";
+
   function readJSON(key, fallback) {
     try {
       var raw = localStorage.getItem(key);
@@ -246,14 +257,18 @@
   }
 
   /**
-   * 点「我已完成付款」——立即开通，无需站长确认。
+   * 点「我已完成付款」——立即开通（需口令校验）。
    *
-   * 本机立刻写入会员记录（乐观解锁），用户马上看到会员态；
+   * 先校验开通口令（防没付款的人白拿），口令对了才本机解锁，
    * 同时把赞助码 POST 到 CLAIM_URL 自动登记，服务端据此生成
-   * 专属订阅文件（约 1 分钟）。个人收款码没有到账回调，这里按
-   * 「信任式」处理——点按钮即视为付款成功，不再等站长核对。
+   * 专属订阅文件（约 1 分钟）。
    */
-  function unlock(planKey, orderNo) {
+  function unlock(planKey, orderNo, pass) {
+    // 口令校验：站长收款后把口令发给用户，输对了才解锁
+    if (CLAIM_PASS && String(pass || "").trim() !== CLAIM_PASS) {
+      return { ok: false, msg: "开通口令错误，请向站长索取" };
+    }
+
     var plan = planByKey(planKey) || planByKey(DEFAULT_PLAN);
     var mySid = sid();
     var now = Date.now();

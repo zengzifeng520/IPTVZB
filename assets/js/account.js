@@ -30,6 +30,7 @@
     orderNo: document.getElementById("orderNo"),
     copyOrder: document.getElementById("copyOrder"),
     confirmPay: document.getElementById("confirmPay"),
+    passInput: document.getElementById("passInput"),
     sidText: document.getElementById("sidText"),
     sidInput: document.getElementById("sidInput"),
     sidMsg: document.getElementById("sidMsg"),
@@ -381,7 +382,8 @@
     btn.disabled = true;
     btn.textContent = "正在解锁…";
 
-    var r = A.unlock(state.planKey, state.order);
+    var pass = el.passInput ? el.passInput.value : "";
+    var r = A.unlock(state.planKey, state.order, pass);
     if (!r.ok) {
       btn.disabled = false;
       btn.textContent = "我已完成付款，立即开通";
