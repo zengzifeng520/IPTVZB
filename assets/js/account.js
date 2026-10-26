@@ -247,6 +247,10 @@
           "</div>" +
           '<div class="pending-douyin">' +
           '<img src="assets/img/douyin.jpg" alt="站长抖音">' +
+          '<div class="pending-douyin-info">' +
+          '<div class="dy-id">抖音号：50933304234</div>' +
+          '<div class="dy-tip">抖音扫一扫，立即关注我</div>' +
+          "</div>" +
           "</div>";
       } else {
         el.pendingBox.hidden = true;

@@ -1882,13 +1882,36 @@ input { font-family: inherit; }
   border: 1px dashed rgba(251, 191, 36, 0.4); border-radius: 10px;
   user-select: all;
 }
-.pending-douyin { margin-top: 12px; text-align: center; }
+.pending-douyin {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
 .pending-douyin img {
-  display: inline-block;
-  width: 132px;
+  display: block;
+  flex: none;
+  width: 150px;
   border-radius: 10px;
   border: 1px solid var(--border-strong);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+.pending-douyin-info { text-align: left; }
+.pending-douyin-info .dy-id {
+  font-size: 19px; font-weight: 800;
+  color: var(--text); letter-spacing: 0.5px;
+}
+.pending-douyin-info .dy-tip {
+  margin-top: 8px;
+  font-size: 15px; font-weight: 700;
+  color: #fbbf24;
+}
+[data-theme="light"] .pending-douyin-info .dy-id { color: #b45309; }
+[data-theme="light"] .pending-douyin-info .dy-tip { color: #d97706; }
+@media (max-width: 520px) {
+  .pending-douyin { flex-direction: column; }
+  .pending-douyin-info { text-align: center; }
 }
 
 /* 页脚三条说明（程序采集 / 开源说明 / 免责声明） */
