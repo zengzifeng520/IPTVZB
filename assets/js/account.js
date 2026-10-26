@@ -233,7 +233,7 @@
     }
     if (el.sidText) el.sidText.textContent = u.sidText || "—";
 
-    // 待确认申请：站长确认后订阅链接才生效
+    // 待确认申请：付款后联系站长（抖音）确认，订阅链接才生效
     if (el.pendingBox) {
       if (!u.member && pend) {
         el.pendingBox.hidden = false;
@@ -241,9 +241,12 @@
           '<b>已提交开通申请（' +
           esc(pend.planName || "") +
           "）</b>" +
-          "<p>订阅链接需站长确认后才生效。请把下面的赞助码发给站长：</p>" +
+          "<p>付款后请联系站长确认（抖音），把赞助码发给站长：</p>" +
           '<div class="pending-code">' +
           esc(u.sidText || "") +
+          "</div>" +
+          '<div class="pending-douyin">' +
+          '<img src="assets/img/douyin.jpg" alt="站长抖音">' +
           "</div>";
       } else {
         el.pendingBox.hidden = true;
