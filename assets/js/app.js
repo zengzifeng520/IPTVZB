@@ -5,7 +5,7 @@
   "use strict";
 
   // 部署后改成你的仓库地址，首页右上角会显示入口
-  const REPO_URL = "https://github.com/zengzifeng520/IPTVZB";
+  const REPO_URL = "https://github.com/zengzifeng520/ZZF";
 
   const state = {
     data: null,
