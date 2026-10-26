@@ -34,3 +34,8 @@ Thumbs.db
 # 不进 main（GitHub Pages 会公开 main 的全部内容）
 data/proxy.json
 data/regions.json
+
+# 酒店源采集中间态（每轮重建，不入库；成品是 data/proxy_hotel.json）
+spider/data/hotel_ok.json
+spider/data/hotel_hosts.json
+spider/data/proxy_hotel.m3u

@@ -32,6 +32,9 @@ import config
 CST = timezone(timedelta(hours=8))
 
 PROXY_JSON = config.WEB_DATA_DIR / "proxy.json"
+# 酒店源：HLS 直连（/hls/x/index.m3u8、/tsfile/live/x.m3u8?key=txiptv），
+# 不受地区限制，单独作为「酒店源」地区呈现，由 hotel_pool.py 生成。
+HOTEL_JSON = config.WEB_DATA_DIR / "proxy_hotel.json"
 REGIONS_JSON = config.WEB_DATA_DIR / "regions.json"
 SUB_DIR = config.WEB_DATA_DIR / "sub"
 INDEX_JSON = SUB_DIR / "index.json"
@@ -172,6 +175,11 @@ def build_public(channels: list[dict], regions: list[dict]) -> dict:
         if (r.get("channels") or 0) > 0
     ]
 
+    # 酒店源单列统计：首页要分开显示「组播中转」和「酒店源」
+    hotel_region = next((r for r in out_regions if r["key"] == "HOTEL"), None)
+    hotel_hosts = len(hotel_region["hosts"]) if hotel_region else 0
+    hotel_streams = hotel_region["streams"] if hotel_region else 0
+
     payload = {
         "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
         "stats": {
@@ -179,6 +187,11 @@ def build_public(channels: list[dict], regions: list[dict]) -> dict:
             "channels": len(out_channels),
             "streams": total_streams,
             "regions": len(out_regions),
+            # 细分：组播中转 vs 酒店源
+            "relayHosts": len(hosts) - hotel_hosts,
+            "relayStreams": total_streams - hotel_streams,
+            "hotelHosts": hotel_hosts,
+            "hotelStreams": hotel_streams,
         },
         "regions": out_regions,
         "channels": out_channels,
@@ -333,6 +346,46 @@ def build() -> dict:
     regions = []
     if REGIONS_JSON.exists():
         regions = json.loads(REGIONS_JSON.read_text(encoding="utf-8")).get("regions", [])
+
+    # ---- 合并酒店源：当成第 18 个「地区」，复用全部地区/订阅/付费墙逻辑 ----
+    if HOTEL_JSON.exists():
+        try:
+            hd = json.loads(HOTEL_JSON.read_text(encoding="utf-8"))
+        except Exception as exc:  # noqa: BLE001
+            print(f"  [subs] 酒店源解析失败，跳过：{exc}")
+            hd = {}
+        h_chans = hd.get("channels") or []
+        h_hosts = [x["h"] for x in (hd.get("hosts") or []) if x.get("h")]
+        if h_chans and h_hosts:
+            # 同频道合并：CCTV1 既可能在安徽组播里，也可能在酒店源里
+            by_key = {c["key"]: c for c in channels}
+            for hc in h_chans:
+                cur = by_key.get(hc["key"])
+                if cur is not None:
+                    have = {s["u"] for s in cur["streams"]}
+                    cur["streams"].extend(
+                        [s for s in hc["streams"] if s["u"] not in have]
+                    )
+                else:
+                    channels.append(hc)
+                    by_key[hc["key"]] = hc
+            regions.append(
+                {
+                    "key": "HOTEL",
+                    "name": "酒店源",
+                    "isp": "HLS",
+                    "channels": len(h_chans),
+                    "streams": sum(len(c["streams"]) for c in h_chans),
+                    "hosts": h_hosts,
+                }
+            )
+            print(
+                "  [subs] 并入酒店源：%d 台 / %d 频道 / %d 条"
+                % (len(h_hosts), len(h_chans),
+                   sum(len(c["streams"]) for c in h_chans))
+            )
+        else:
+            print("  [subs] 酒店源为空，跳过")
 
     # 公开目录：只有频道名 + 各地区条数，没有任何地址
     payload = build_public(channels, regions)

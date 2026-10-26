@@ -103,11 +103,12 @@
 
   function renderStats() {
     var s = (state.proxy && state.proxy.stats) || {};
+    // 组播中转与酒店源分开显示：前者挑地区，后者全国通用
     var items = [
-      { n: s.hosts || 0, t: "台中转服务器", accent: true },
+      { n: s.relayHosts || 0, t: "台组播中转", accent: true },
+      { n: s.hotelHosts || 0, t: "台酒店源", accent: false },
       { n: s.channels || 0, t: "个频道", accent: false },
       { n: s.streams || 0, t: "条播放地址", accent: false },
-      { n: state.regions.length || 0, t: "个地区", accent: false },
     ];
     el.stats.innerHTML = items
       .map(function (i) {
@@ -117,8 +118,11 @@
 
     // 首页标题里的数字跟着池子走，新增地区/频道不用再改文案
     if (el.heroNums) {
+      var nRegion = (state.regions || []).filter(function (r) {
+        return r.key !== "HOTEL";
+      }).length;
       el.heroNums.textContent =
-        (state.regions.length || 0) + " 个地区、" + (s.channels || 0) + " 个频道";
+        nRegion + " 个地区、" + (s.channels || 0) + " 个频道";
     }
   }
 

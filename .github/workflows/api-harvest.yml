@@ -68,6 +68,12 @@ jobs:
           PYTHONIOENCODING: utf-8
         run: cd spider && python regions.py
 
+      - name: Harvest hotel sources (HLS)
+        continue-on-error: true
+        env:
+          PYTHONIOENCODING: utf-8
+        run: cd spider && python hotel_pool.py
+
       - name: Generate subscriptions
         env:
           PYTHONIOENCODING: utf-8
@@ -79,7 +85,7 @@ jobs:
           bash scripts/push_state.sh
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f data/public data/users.json data/free
+          git add -f data/public data/proxy_hotel.json data/users.json data/free
           [ -d data/users ] && git add -f data/users || true
           if git diff --staged --quiet; then
             echo "池子无变化，跳过提交"
