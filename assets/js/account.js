@@ -225,11 +225,17 @@
     var all = state.subs.all || {};
     var items = [];
 
+    // 专属订阅：路径带账号 token，会员到期后服务端把文件写成空列表
+    var token = state.user.phone ? A.tokenOf(state.user.phone) : "";
+    function userPath(tail) {
+      return token ? "data/users/" + token + "/" + tail : "";
+    }
+
     items.push({
       key: "ALL",
       name: "全量订阅",
       isp: "全部地区合并",
-      path: all.sub,
+      path: userPath("all.m3u"),
       channels: all.channels,
       streams: all.streams,
       mine: false,
@@ -241,7 +247,7 @@
         key: r.key,
         name: r.name,
         isp: r.isp,
-        path: r.sub,
+        path: userPath(r.key + ".m3u"),
         channels: r.channels,
         streams: r.streams,
         mine: r.key === myRegion,

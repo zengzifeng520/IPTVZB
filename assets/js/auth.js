@@ -129,6 +129,18 @@
 
   var SALT = "iv-salt-2026";
 
+  // 订阅 token 盐值：必须与 spider/subs.py 的 TOKEN_SALT 完全一致
+  var TOKEN_SALT = "zzf-sub-2026";
+
+  /**
+   * 手机号 -> 16 位订阅 token。
+   * 与后端 sha256(TOKEN_SALT + "|" + 手机号)[:16] 保持同一算法，
+   * 这样服务端只拿到手机号就能推出订阅目录，前端只拿到手机号就能拼出地址。
+   */
+  function tokenOf(phone) {
+    return sha256(TOKEN_SALT + "|" + String(phone || "").trim()).slice(0, 16);
+  }
+
   function passwordHash(phone, pwd) {
     return sha256(SALT + "|" + phone + "|" + pwd);
   }
@@ -267,6 +279,47 @@
     // 预留：如需退款/取消可在此处理
   }
 
+  /**
+   * 从服务端拉取账号的会员快照，修正本地状态。
+   * 换设备、清缓存、或管理员在后台续期后，靠这个自动恢复/同步。
+   * 数据源：data/users/<token>/meta.json（由每日任务生成，不含手机号明文）
+   * @returns {Promise<boolean>} 本地状态是否被改动
+   */
+  function syncMember() {
+    var phone = currentPhone();
+    if (!phone) return Promise.resolve(false);
+    if (typeof fetch !== "function") return Promise.resolve(false);
+
+    var tok = tokenOf(phone);
+    return fetch("data/users/" + tok + "/meta.json", { cache: "no-store" })
+      .then(function (res) {
+        if (!res.ok) return null;
+        return res.json();
+      })
+      .then(function (meta) {
+        if (!meta || !meta.ts) return false;
+        // 服务端存的是秒级时间戳，本地统一用毫秒
+        var expMs = Number(meta.ts) * 1000;
+        if (!expMs) return false;
+        var db = members();
+        var prev = db[phone] || {};
+        if (prev.exp === expMs) return false;
+        db[phone] = {
+          exp: expMs,
+          order: prev.order || "",
+          ts: prev.ts || Date.now(),
+          plan: prev.plan || "",
+          planName: prev.planName || "",
+          price: prev.price || 0,
+        };
+        writeJSON(K_MEMBER, db);
+        return true;
+      })
+      .catch(function () {
+        return false;
+      });
+  }
+
   /* ---------------------------------------------------------- 会话快照 */
 
   function user() {
@@ -388,12 +441,14 @@
     DEFAULT_PLAN: DEFAULT_PLAN,
     planByKey: planByKey,
     sha256: sha256,
+    tokenOf: tokenOf,
     validPhone: validPhone,
     register: register,
     login: login,
     logout: logout,
     unlock: unlock,
     user: user,
+    syncMember: syncMember,
     makeOrderNo: makeOrderNo,
     fmtDate: fmtDate,
     saveRemember: saveRemember,

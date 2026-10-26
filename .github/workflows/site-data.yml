@@ -18,6 +18,10 @@ on:
         description: "同时抓取 cqshushu 的第三方 IP 列表（较慢，默认关闭）"
         required: false
         default: "false"
+  # 改了用户表就立刻重建专属订阅，不用等到次日凌晨
+  push:
+    paths:
+      - "data/users.json"
 
 permissions:
   contents: write
@@ -28,6 +32,8 @@ concurrency:
 
 jobs:
   update:
+    # push 触发时只重建订阅，不做抓取/探测
+    if: github.event_name != 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -85,6 +91,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f data/proxy.json data/regions.json data/sub
+          # 用户专属订阅：users.json 是用户表，data/users/ 下是每人一份的 m3u
+          git add -f data/users.json data/users
           git add -f spider/data/shushu_ours.json spider/data/proxy_shushu.m3u 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "数据无变化，跳过提交"
@@ -101,4 +109,46 @@ jobs:
             sleep 5
           done
           echo "::error::连续 5 次推送失败"
+          exit 1
+
+  # 用户表（data/users.json）变更后：只重建订阅文件，不重新抓源，约 1 分钟完成
+  rebuild-subscriptions:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    concurrency:
+      group: rebuild-subs
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Rebuild per-user subscriptions
+        env:
+          PYTHONIOENCODING: utf-8
+        run: cd spider && python subs.py
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/users.json data/users data/sub
+          if git diff --staged --quiet; then
+            echo "订阅无变化，跳过提交"
+            exit 0
+          fi
+          git commit -m "chore(sub): 重建用户专属订阅 $(date -u '+%Y-%m-%d %H:%M UTC')"
+          for i in 1 2 3; do
+            if git pull --rebase --autostash -X ours origin main && git push origin HEAD:main; then
+              echo "推送成功（第 $i 次尝试）"
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "第 $i 次推送失败，5 秒后重试"
+            sleep 5
+          done
+          echo "::error::连续 3 次推送失败"
           exit 1

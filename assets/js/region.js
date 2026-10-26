@@ -200,21 +200,26 @@
     var mine = subByKey(state.regionKey);
     var all = (state.subs && state.subs.all) || null;
 
-    if (mine) {
-      state.subPath = mine.sub;
+    // 专属订阅：每个账号一份，路径里带 token；会员到期后服务端会把文件写成空列表
+    var token = window.IVAUTH && state.user && state.user.phone
+      ? window.IVAUTH.tokenOf(state.user.phone)
+      : "";
+
+    if (mine && token) {
+      state.subPath = "data/users/" + token + "/" + state.regionKey + ".m3u";
       el.subTag.textContent = (r ? r.name : "") + " · " + mine.channels + " 频道 / " + mine.streams + " 条";
-      el.subUrl.textContent = baseUrl() + mine.sub;
-      el.dlSub.href = mine.sub;
-      el.subTitle.textContent = (r ? r.name : "") + " 订阅地址";
+      el.subUrl.textContent = baseUrl() + state.subPath;
+      el.dlSub.href = state.subPath;
+      el.subTitle.textContent = (r ? r.name : "") + " 专属订阅地址";
       el.subDesc.textContent =
-        "把这条地址粘贴到播放器的「订阅 / 远程列表」。本地区服务器只在本省运营商网内可用，跨省线路大多连不上。";
-    } else if (all) {
-      state.subPath = all.sub;
+        "这是你账号专属的订阅地址，请勿分享。会员到期后该地址会自动停止更新，播放器刷新后频道将为空。";
+    } else if (all && token) {
+      state.subPath = "data/users/" + token + "/all.m3u";
       el.subTag.textContent = "全量";
-      el.subUrl.textContent = baseUrl() + all.sub;
-      el.dlSub.href = all.sub;
-      el.subTitle.textContent = "全量订阅地址";
-      el.subDesc.textContent = "包含全部地区服务器，适合手动挑选线路。跨省地址大多无法播放，建议优先用分地区订阅。";
+      el.subUrl.textContent = baseUrl() + state.subPath;
+      el.dlSub.href = state.subPath;
+      el.subTitle.textContent = "全量专属订阅地址";
+      el.subDesc.textContent = "包含全部地区服务器，适合手动挑选线路。会员到期后该地址会自动停止更新。";
     } else {
       state.subPath = "";
       el.subTag.textContent = "—";
@@ -397,28 +402,34 @@
       location.replace("login.html?next=" + encodeURIComponent(location.pathname + location.search));
       return;
     }
-    el.acctLink.textContent = state.user.phoneMask;
-    if (el.navLogout) el.navLogout.hidden = false;
-
     var params = new URLSearchParams(location.search);
 
-    Promise.all([
-      fetch("data/proxy.json", { cache: "no-cache" }).then(function (r) {
-        if (!r.ok) throw new Error("proxy.json HTTP " + r.status);
-        return r.json();
-      }),
-      fetch("data/regions.json", { cache: "no-cache" }).then(function (r) {
-        if (!r.ok) throw new Error("regions.json HTTP " + r.status);
-        return r.json();
-      }),
-      fetch("data/sub/index.json", { cache: "no-cache" })
-        .then(function (r) {
-          return r.ok ? r.json() : null;
-        })
-        .catch(function () {
-          return null;
-        }),
-    ])
+    // 先同步服务端会员快照（换设备 / 后台续期后自动恢复），再渲染页面
+    window.IVAUTH.syncMember()
+      .then(function (changed) {
+        if (changed) state.user = window.IVAUTH.user();
+        el.acctLink.textContent = state.user.phoneMask;
+        if (el.navLogout) el.navLogout.hidden = false;
+      })
+      .then(function () {
+        return Promise.all([
+          fetch("data/proxy.json", { cache: "no-cache" }).then(function (r) {
+            if (!r.ok) throw new Error("proxy.json HTTP " + r.status);
+            return r.json();
+          }),
+          fetch("data/regions.json", { cache: "no-cache" }).then(function (r) {
+            if (!r.ok) throw new Error("regions.json HTTP " + r.status);
+            return r.json();
+          }),
+          fetch("data/sub/index.json", { cache: "no-cache" })
+            .then(function (r) {
+              return r.ok ? r.json() : null;
+            })
+            .catch(function () {
+              return null;
+            }),
+        ]);
+      })
       .then(function (res) {
         state.proxy = res[0];
         state.regions = (res[1].regions || []).slice().sort(function (a, b) {
