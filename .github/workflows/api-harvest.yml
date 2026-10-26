@@ -1,0 +1,92 @@
+name: API harvest (relay pool)
+
+# 每天两次（北京 04:20 / 16:20）：
+#   1. 拉 809899 组播接口（多关键词并集）+ foodieguide 滚雪球，把新中转灌进池子
+#   2. 探测存活 → 按「频道 × 地区」限量合并 → 重算地区 → 重发订阅
+# 失效剔除由 pool-check.yml 每小时单独负责。
+
+on:
+  schedule:
+    # UTC 20:20 = 北京 04:20；UTC 08:20 = 北京 16:20
+    - cron: "20 20 * * *"
+    - cron: "20 8 * * *"
+  workflow_dispatch:
+    inputs:
+      no_foodie:
+        description: "跳过 foodieguide 滚雪球（更快）"
+        required: false
+        default: "false"
+      hotel:
+        description: "额外收酒店源里的 udp 中转"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: proxy-data
+  cancel-in-progress: false
+
+jobs:
+  harvest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install requests urllib3
+
+      - name: Harvest multicast APIs
+        continue-on-error: true
+        env:
+          PYTHONIOENCODING: utf-8
+        run: |
+          cd spider
+          ARGS=""
+          [ "${{ github.event.inputs.no_foodie }}" = "true" ] && ARGS="$ARGS --no-foodie"
+          [ "${{ github.event.inputs.hotel }}" = "true" ] && ARGS="$ARGS --hotel"
+          timeout 1500 python api_harvest.py $ARGS || echo "::warning::API 采集未完成，沿用既有池子"
+
+      - name: Probe & merge pool
+        env:
+          PYTHONIOENCODING: utf-8
+        run: cd spider && python udpxy.py
+
+      - name: Group servers by region
+        env:
+          PYTHONIOENCODING: utf-8
+        run: cd spider && python regions.py
+
+      - name: Generate subscriptions
+        env:
+          PYTHONIOENCODING: utf-8
+        run: cd spider && python subs.py
+
+      - name: Commit data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/proxy.json data/regions.json data/sub data/users.json data/free
+          [ -d data/users ] && git add -f data/users || true
+          if git diff --staged --quiet; then
+            echo "池子无变化，跳过提交"
+            exit 0
+          fi
+          git commit -m "chore(pool): API 采集更新中转池 $(date -u '+%Y-%m-%d %H:%M UTC')"
+          for i in 1 2 3 4 5; do
+            if git pull --rebase --autostash -X ours origin main && git push origin HEAD:main; then
+              echo "推送成功（第 $i 次尝试）"
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "第 $i 次推送失败，5 秒后重试"
+            sleep 5
+          done
+          echo "::error::连续 5 次推送失败"
+          exit 1

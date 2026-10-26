@@ -20,6 +20,7 @@
     openPay: document.getElementById("openPay"),
     renewBtn: document.getElementById("renewBtn"),
     subList: document.getElementById("subList"),
+    coverNums: document.getElementById("coverNums"),
     payModal: document.getElementById("payModal"),
     payPlans: document.getElementById("payPlans"),
     payAmount: document.getElementById("payAmount"),
@@ -441,6 +442,7 @@
         state.subs = d;
         renderSubs();
         checkSubReady();
+        renderCover();
       })
       .catch(function () {
         renderSubs();
@@ -448,15 +450,25 @@
       });
   }
 
+  // 覆盖范围数字跟着数据走，池子扩容后不用改文案
+  function renderCover() {
+    if (!el.coverNums) return;
+    var all = (state.subs && state.subs.all) || {};
+    var nRegion = (state.subs && state.subs.regions || []).length;
+    if (!all.channels) return;
+    el.coverNums.textContent =
+      nRegion + " 个地区 / " + all.channels + " 个频道 / " + all.streams + " 条地址";
+  }
+
   // 先从服务端同步赞助状态（换设备 / 站长补录后自动恢复）
   A.syncSponsor()
     .then(function (changed) {
       if (changed) state.user = A.user();
       renderHead();
-      if (state.user.member) loadSubs();
+      loadSubs();
     })
     .catch(function () {
-      if (state.user.member) loadSubs();
+      loadSubs();
     });
 
   // ?pay=1 直接展开付款弹层

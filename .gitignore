@@ -17,6 +17,15 @@ spider/data/shushu_relays.json
 # 探测缓存（3 小时内复用，不入库）
 spider/data/hosts_probe.json
 
+# API 采集的原始产物（几 MB，只在当轮合并里用，不入库）
+# 池子的持久状态是 data/proxy.json，它会被 udpxy.py 当作延续源
+spider/data/api_hosts.json
+spider/data/api_cache.json
+spider/data/proxy_api.m3u
+spider/data/foodie_hosts.json
+spider/data/foodie_cache.json
+spider/data/proxy_foodie.m3u
+
 # 系统
 .DS_Store
 Thumbs.db

@@ -12,6 +12,7 @@
   var el = {
     cta: document.getElementById("acctCtaInner"),
     stats: document.getElementById("stats"),
+    heroNums: document.getElementById("heroNums"),
     grid: document.getElementById("regionGrid"),
     previewSub: document.getElementById("previewSub"),
     navAcct: document.getElementById("navAcct"),
@@ -113,6 +114,12 @@
         return '<div class="stat' + (i.accent ? " accent" : "") + '"><b>' + i.n + "</b><span>" + i.t + "</span></div>";
       })
       .join("");
+
+    // 首页标题里的数字跟着池子走，新增地区/频道不用再改文案
+    if (el.heroNums) {
+      el.heroNums.textContent =
+        (state.regions.length || 0) + " 个地区、" + (s.channels || 0) + " 个频道";
+    }
   }
 
   /* ---------------------------------------------------------- 地区卡片 */

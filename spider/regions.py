@@ -14,6 +14,8 @@
 from __future__ import annotations
 
 import json
+import re
+import socket
 import time
 from pathlib import Path
 
@@ -56,6 +58,17 @@ def norm_isp(isp: str) -> str:
         if any(k in low for k in keys):
             return label
     return "其他"
+
+
+def _ip_of(host: str) -> str:
+    """'1.2.3.4:8080' -> 1.2.3.4；域名中转先解析成 IP，ip-api 不认域名。"""
+    h = (host or "").rsplit(":", 1)[0]
+    if re.fullmatch(r"\d{1,3}(?:\.\d{1,3}){3}", h):
+        return h
+    try:
+        return socket.gethostbyname(h)
+    except Exception:  # noqa: BLE001
+        return ""
 
 
 def load_cache() -> tuple[dict, float]:
@@ -109,7 +122,7 @@ def build() -> dict:
     hosts = payload.get("hosts", [])
     channels = payload.get("channels", [])
 
-    ips = sorted({h["h"].rsplit(":", 1)[0] for h in hosts})
+    ips = sorted({_ip_of(h["h"]) for h in hosts} - {""})
     print(f"  [region] 查询 {len(ips)} 台服务器归属地")
     geo = lookup(ips)
 
@@ -117,7 +130,7 @@ def build() -> dict:
     host_region: dict[str, str] = {}
     region_meta: dict[str, dict] = {}
     for h in hosts:
-        ip = h["h"].rsplit(":", 1)[0]
+        ip = _ip_of(h["h"])
         g = geo.get(ip) or {"code": "", "name": "未知", "isp": "其他"}
         code = g["code"] or "XX"
         h["r"] = code
@@ -151,6 +164,10 @@ def build() -> dict:
             }
         )
     regions.sort(key=lambda r: (-r["streams"], r["name"]))
+
+    # 一台可用服务器都没有的地区（比如巡检把所有中转都剔了）不展示，
+    # 免得首页出现 0 频道的空卡片
+    regions = [r for r in regions if r["channels"] > 0]
 
     PROXY_JSON.write_text(
         json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8"

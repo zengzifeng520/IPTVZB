@@ -1,0 +1,77 @@
+name: Pool health check
+
+# 每小时巡检一次中转池：浅检 /status + 深检抽样取流。
+# 连续 2 次判死的主机从 proxy.json 摘掉，并拉黑 12 小时（避免每日全量重建又捡回来），
+# 摘除后自动重算地区、重发订阅。
+# 全灭保护：一轮全不可达视为网络问题，不改任何数据。
+
+on:
+  schedule:
+    # 每小时第 7 分钟（错开整点的任务高峰）
+    - cron: "7 * * * *"
+  workflow_dispatch:
+    inputs:
+      shallow:
+        description: "只查 /status，不取流（更快）"
+        required: false
+        default: "false"
+      dry_run:
+        description: "只报告不写文件"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pool-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install requests urllib3
+
+      - name: Health check & prune
+        env:
+          PYTHONIOENCODING: utf-8
+        run: |
+          cd spider
+          ARGS=""
+          [ "${{ github.event.inputs.shallow }}" = "true" ] && ARGS="$ARGS --shallow"
+          [ "${{ github.event.inputs.dry_run }}" = "true" ] && ARGS="$ARGS --dry-run"
+          python pool_check.py $ARGS
+
+      - name: Commit data
+        if: github.event.inputs.dry_run != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f spider/data/pool_state.json spider/data/pool_drop.txt 2>/dev/null || true
+          git add -f data/proxy.json data/regions.json data/sub data/users.json data/free
+          [ -d data/users ] && git add -f data/users || true
+          if git diff --staged --quiet; then
+            echo "无变化，跳过提交"
+            exit 0
+          fi
+          git commit -m "chore(pool): 巡检剔除失效中转 $(date -u '+%Y-%m-%d %H:%M UTC')"
+          for i in 1 2 3 4 5; do
+            if git pull --rebase --autostash -X ours origin main && git push origin HEAD:main; then
+              echo "推送成功（第 $i 次尝试）"
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "第 $i 次推送失败，5 秒后重试"
+            sleep 5
+          done
+          echo "::error::连续 5 次推送失败"
+          exit 1

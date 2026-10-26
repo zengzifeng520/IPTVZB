@@ -31,11 +31,34 @@ urllib3.disable_warnings()
 
 SOURCE_FILE = config.DATA_DIR / "proxy_source.m3u"
 SOURCE_SHUSHU = config.DATA_DIR / "proxy_shushu.m3u"
+SOURCE_API = config.DATA_DIR / "proxy_api.m3u"
+SOURCE_FOODIE = config.DATA_DIR / "proxy_foodie.m3u"
 PROBE_CACHE = config.DATA_DIR / "hosts_probe.json"
+DROP_TXT = config.DATA_DIR / "pool_drop.txt"
 OUT_FILE = config.WEB_DATA_DIR / "proxy.json"
 
-# http://1.2.3.4:8080/udp/239.1.1.1:8000
-PROXY_RE = re.compile(r"^(https?)://(\d+\.\d+\.\d+\.\d+):(\d+)/(?:udp|rtp)/([\d.]+):(\d+)", re.I)
+# 限量：同一频道在同一地区最多留几条线路。
+# 不限的话池子一扩大，proxy.json 会到 3 万多条地址，
+# 每人一份订阅文件加起来几百 MB，仓库直接爆掉。
+MAX_PER_REGION = 3
+MAX_PER_CHANNEL = 16
+UNKNOWN_REGION_CAP = 4
+
+PROVINCES = [
+    "北京", "上海", "天津", "重庆",
+    "河北", "山西", "辽宁", "吉林", "黑龙江",
+    "江苏", "浙江", "安徽", "福建", "江西", "山东",
+    "河南", "湖北", "湖南", "广东", "广西", "海南",
+    "四川", "贵州", "云南", "西藏", "陕西", "甘肃",
+    "青海", "宁夏", "新疆", "内蒙古",
+    "香港", "澳门", "台湾",
+]
+
+# http://1.2.3.4:8080/udp/239.1.1.1:8000 或 http://abc.xyz:8080/rtp/239.1.1.1:8000
+# 池子里有不少中转是用域名（DDNS / 动态域名）发布的，必须一并支持
+PROXY_RE = re.compile(
+    r"^(https?)://([A-Za-z0-9._\-]+):(\d+)/(?:udp|rtp)/([\d.]+):(\d+)", re.I
+)
 EXTINF_NAME_RE = re.compile(r",([^,]*)$")
 
 
@@ -55,6 +78,7 @@ def _parse_one(path: Path) -> list[dict]:
     text = path.read_text(encoding="utf-8", errors="ignore")
     entries: list[dict] = []
     pending = None
+    group = ""
     for raw in text.splitlines():
         line = raw.strip()
         if not line:
@@ -66,6 +90,8 @@ def _parse_one(path: Path) -> list[dict]:
             if not pending:
                 m2 = re.search(r'tvg-name="([^"]*)"', line)
                 pending = m2.group(1) if m2 else ""
+            mg = re.search(r'group-title="([^"]*)"', line)
+            group = mg.group(1) if mg else ""
             continue
         if line.startswith("#"):
             continue
@@ -81,10 +107,78 @@ def _parse_one(path: Path) -> list[dict]:
                     "host": f"{ip}:{port}",
                     "scheme": scheme,
                     "multicast": f"{mcast_ip}:{mcast_port}",
+                    "group": group,
                 }
             )
         pending = None
+        group = ""
     return entries
+
+
+def region_of(group: str) -> str:
+    """group-title「四川电信」「湖南省 湖南电信」→ 省份名；认不出返回空。"""
+    g = (group or "").strip()
+    for p in PROVINCES:
+        if g.startswith(p):
+            return p
+    return ""
+
+
+def load_prev() -> list[dict]:
+    """把当前 proxy.json 里的地址也当成一路来源。
+
+    这样池子本身就是状态：API 采集的原始 m3u 有好几 MB，不用每天提交两次
+    （会撑爆仓库），只要它在本轮采集里参与合并就行；没采集的那些天，
+    池子靠这里延续，再由每小时巡检剔除失效的。
+    """
+    if not OUT_FILE.exists():
+        return []
+    try:
+        payload = json.loads(OUT_FILE.read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001
+        return []
+    region_by_host = {
+        h.get("h"): h.get("rn") or "" for h in (payload.get("hosts") or [])
+    }
+    out: list[dict] = []
+    for ch in payload.get("channels") or []:
+        key = ch.get("key") or ""
+        for s in ch.get("streams") or []:
+            host = s.get("h") or ""
+            if not host or not s.get("u"):
+                continue
+            out.append(
+                {
+                    "name": key,
+                    "url": s["u"],
+                    "host": host,
+                    "scheme": "http",
+                    "multicast": s.get("m", ""),
+                    "group": region_by_host.get(host, ""),
+                }
+            )
+    return out
+
+
+def load_drop() -> set[str]:
+    """读巡检拉黑表（data/pool_drop.txt），未过期的直接跳过不采集。"""
+    if not DROP_TXT.exists():
+        return set()
+    now = time.time()
+    out: set[str] = set()
+    for line in DROP_TXT.read_text(encoding="utf-8", errors="ignore").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        parts = line.split()
+        if len(parts) < 2:
+            continue
+        try:
+            if float(parts[1]) > now:
+                out.add(parts[0])
+        except ValueError:
+            continue
+    return out
 
 
 def probe_host(host: str, timeout: tuple[float, float] = (4.0, 7.0)) -> dict:
@@ -164,8 +258,14 @@ def probe_or_cache(hosts: list[str], workers: int = 24) -> dict[str, dict]:
 
 def build(probe_hosts: bool = True) -> dict:
     matcher = normalize.load_matcher(config.CATEGORIES_PATH)
-    sources = [p for p in (SOURCE_FILE, SOURCE_SHUSHU) if p.exists()]
+    sources = [
+        p for p in (SOURCE_FILE, SOURCE_SHUSHU, SOURCE_API, SOURCE_FOODIE) if p.exists()
+    ]
     entries = parse_source(sources)
+    prev = load_prev()
+    if prev:
+        print(f"  [proxy] 延续现有池子 {len(prev)} 条地址")
+        entries.extend(prev)
     if not entries:
         return {"error": "无源数据"}
     print(f"  [proxy] 解析 {len(entries)} 条中转地址（{len(sources)} 个源文件）")
@@ -185,11 +285,21 @@ def build(probe_hosts: bool = True) -> dict:
     if probe_hosts and not alive and len(hosts) >= 5:
         return {"error": f"探测结果全灭（0/{len(hosts)}），疑似网络中断，保留原有数据"}
 
+    # 拉黑的（巡检判死）即使 /status 通也不算存活，统计口径要一致
+    banned = load_drop()
+    if banned:
+        n_before = len(alive)
+        alive -= banned
+        print(f"  [proxy] 跳过巡检拉黑的主机 {len(banned)} 台（存活 {n_before} -> {len(alive)}）")
+
     # 频道 → 地址（仅保留存活服务器的线路）
     by_channel: dict[str, list[dict]] = defaultdict(list)
     seen: set[str] = set()
     dropped = 0
     for e in entries:
+        if e["host"] in banned:
+            dropped += 1
+            continue
         if e["host"] not in alive:
             dropped += 1
             continue
@@ -208,8 +318,30 @@ def build(probe_hosts: bool = True) -> dict:
                 "u": e["url"],
                 "m": e["multicast"],
                 "t": (meta or {}).get("type", "地方频道"),
+                "region": region_of(e.get("group", "")),
             }
         )
+
+    # 限量：同频道同地区留几条，避免池子扩大后地址数爆炸
+    def _pick(streams: list[dict]) -> list[dict]:
+        buckets: dict[str, list[dict]] = defaultdict(list)
+        for s in streams:
+            buckets[s["region"] or "?"].append(s)
+        chosen: list[dict] = []
+        for reg, items in buckets.items():
+            items.sort(key=lambda s: (round(status[s["h"]]["ms"] / 50), s["h"]))
+            cap = UNKNOWN_REGION_CAP if reg == "?" else MAX_PER_REGION
+            chosen.extend(items[:cap])
+        if len(chosen) > MAX_PER_CHANNEL:
+            chosen.sort(key=lambda s: (round(status[s["h"]]["ms"] / 50), s["h"]))
+            chosen = chosen[:MAX_PER_CHANNEL]
+        return chosen
+
+    total_before = sum(len(v) for v in by_channel.values())
+    by_channel = {k: _pick(v) for k, v in by_channel.items()}
+    total_after = sum(len(v) for v in by_channel.values())
+    if total_before != total_after:
+        print(f"  [proxy] 限量：{total_before} -> {total_after} 条（同频道同地区 ≤{MAX_PER_REGION}）")
 
     # 排序：分类顺序 → 频道序号
     order = [

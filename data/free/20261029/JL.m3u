@@ -1,0 +1,117 @@
+#EXTM3U
+#EXTINF:-1 tvg-name="CCTV-3" group-title="央视频道",CCTV-3
+http://36.49.50.4:8800/rtp/239.37.0.231:5540
+#EXTINF:-1 tvg-name="CCTV-3" group-title="央视频道",CCTV-3
+http://36.49.50.4:8800/rtp/239.37.0.189:5540
+#EXTINF:-1 tvg-name="CCTV-4" group-title="央视频道",CCTV-4
+http://36.49.50.4:8800/rtp/239.37.0.022:5540
+#EXTINF:-1 tvg-name="CCTV-15" group-title="央视频道",CCTV-15
+http://36.49.50.4:8800/rtp/239.37.0.030:5540
+#EXTINF:-1 tvg-name="CCTV世界地理" group-title="央视频道",CCTV世界地理
+http://36.49.50.4:8800/rtp/239.37.0.079:5540
+#EXTINF:-1 tvg-name="CCTV兵器科技" group-title="央视频道",CCTV兵器科技
+http://36.49.50.4:8800/rtp/239.37.0.084:5540
+#EXTINF:-1 tvg-name="CCTV女性时尚" group-title="央视频道",CCTV女性时尚
+http://36.49.50.4:8800/rtp/239.37.0.069:5540
+#EXTINF:-1 tvg-name="CCTV怀旧剧场" group-title="央视频道",CCTV怀旧剧场
+http://36.49.50.4:8800/rtp/239.37.0.082:5540
+#EXTINF:-1 tvg-name="CCTV电视指南" group-title="央视频道",CCTV电视指南
+http://36.49.50.4:8800/rtp/239.37.0.115:5540
+#EXTINF:-1 tvg-name="CCTV第一剧场" group-title="央视频道",CCTV第一剧场
+http://36.49.50.4:8800/rtp/239.37.0.078:5540
+#EXTINF:-1 tvg-name="CCTV风云剧场" group-title="央视频道",CCTV风云剧场
+http://36.49.50.4:8800/rtp/239.37.0.114:5540
+#EXTINF:-1 tvg-name="CCTV风云足球" group-title="央视频道",CCTV风云足球
+http://36.49.50.4:8800/rtp/239.37.0.080:5540
+#EXTINF:-1 tvg-name="CCTV风云音乐" group-title="央视频道",CCTV风云音乐
+http://36.49.50.4:8800/rtp/239.37.0.081:5540
+#EXTINF:-1 tvg-name="三沙卫视" group-title="卫视频道",三沙卫视
+http://36.49.50.4:8800/rtp/239.37.0.200:5540
+#EXTINF:-1 tvg-name="三沙卫视" group-title="卫视频道",三沙卫视
+http://36.49.50.4:8800/rtp/239.37.0.201:5540
+#EXTINF:-1 tvg-name="内蒙古卫视" group-title="卫视频道",内蒙古卫视
+http://36.49.50.4:8800/rtp/239.37.0.036:5540
+#EXTINF:-1 tvg-name="哈哈炫动" group-title="卫视频道",哈哈炫动
+http://36.49.50.4:8800/rtp/239.37.0.065:5540
+#EXTINF:-1 tvg-name="延边卫视" group-title="卫视频道",延边卫视
+http://36.49.50.4:8800/rtp/239.37.0.116:5540
+#EXTINF:-1 tvg-name="吉林影视" group-title="影视频道",吉林影视
+http://36.49.50.4:8800/rtp/239.37.0.103:5540
+#EXTINF:-1 tvg-name="CHC动作电影" group-title="电影频道",CHC动作电影
+http://36.49.50.4:8800/rtp/239.37.0.186:5540
+#EXTINF:-1 tvg-name="CHC家庭影院" group-title="电影频道",CHC家庭影院
+http://36.49.50.4:8800/rtp/239.37.0.188:5540
+#EXTINF:-1 tvg-name="CHC高清电影" group-title="电影频道",CHC高清电影
+http://36.49.50.4:8800/rtp/239.37.0.187:5540
+#EXTINF:-1 tvg-name="上海纪实人文" group-title="纪实频道",上海纪实人文
+http://36.49.50.4:8800/rtp/239.37.0.152:5540
+#EXTINF:-1 tvg-name="国学频道" group-title="数字频道",国学频道
+http://36.49.50.4:8800/rtp/239.37.0.093:5540
+#EXTINF:-1 tvg-name="梨园频道" group-title="数字频道",梨园频道
+http://36.49.50.4:8800/rtp/239.37.0.088:5540
+#EXTINF:-1 tvg-name="武术世界" group-title="数字频道",武术世界
+http://36.49.50.4:8800/rtp/239.37.0.076:5540
+#EXTINF:-1 tvg-name="环球奇观" group-title="数字频道",环球奇观
+http://36.49.50.4:8800/rtp/239.37.0.070:5540
+#EXTINF:-1 tvg-name="老故事" group-title="数字频道",老故事
+http://36.49.50.4:8800/rtp/239.37.0.113:5540
+#EXTINF:-1 tvg-name="乾安综合" group-title="地方频道",乾安综合
+http://36.49.50.4:8800/rtp/239.37.0.181:5540
+#EXTINF:-1 tvg-name="公共" group-title="地方频道",公共
+http://36.49.50.4:8800/rtp/239.37.0.128:5540
+#EXTINF:-1 tvg-name="公共" group-title="地方频道",公共
+http://36.49.50.4:8800/rtp/239.37.0.136:5540
+#EXTINF:-1 tvg-name="公共" group-title="地方频道",公共
+http://36.49.50.4:8800/rtp/239.37.0.251:5540
+#EXTINF:-1 tvg-name="农安综合" group-title="地方频道",农安综合
+http://36.49.50.4:8800/rtp/239.37.0.144:5540
+#EXTINF:-1 tvg-name="吉林7" group-title="地方频道",吉林7
+http://36.49.50.4:8800/rtp/239.37.0.107:5540
+#EXTINF:-1 tvg-name="吉林乡村" group-title="地方频道",吉林乡村
+http://36.49.50.4:8800/rtp/239.37.0.105:5540
+#EXTINF:-1 tvg-name="吉林公共新闻" group-title="地方频道",吉林公共新闻
+http://36.49.50.4:8800/rtp/239.37.0.106:5540
+#EXTINF:-1 tvg-name="吉林教育" group-title="地方频道",吉林教育
+http://36.49.50.4:8800/rtp/239.37.0.126:5540
+#EXTINF:-1 tvg-name="吉林生活" group-title="地方频道",吉林生活
+http://36.49.50.4:8800/rtp/239.37.0.104:5540
+#EXTINF:-1 tvg-name="吉林篮球" group-title="地方频道",吉林篮球
+http://36.49.50.4:8800/rtp/239.37.0.108:5540
+#EXTINF:-1 tvg-name="吉林篮球" group-title="地方频道",吉林篮球
+http://36.49.50.4:8800/rtp/239.37.0.205:5540
+#EXTINF:-1 tvg-name="吉林篮球" group-title="地方频道",吉林篮球
+http://36.49.50.4:8800/rtp/239.37.0.206:5540
+#EXTINF:-1 tvg-name="吉林都市" group-title="地方频道",吉林都市
+http://36.49.50.4:8800/rtp/239.37.0.102:5540
+#EXTINF:-1 tvg-name="四平1" group-title="地方频道",四平1
+http://36.49.50.4:8800/rtp/239.37.0.130:5540
+#EXTINF:-1 tvg-name="四平2" group-title="地方频道",四平2
+http://36.49.50.4:8800/rtp/239.37.0.131:5540
+#EXTINF:-1 tvg-name="新闻综合" group-title="地方频道",新闻综合
+http://36.49.50.4:8800/rtp/239.37.0.127:5540
+#EXTINF:-1 tvg-name="新闻综合" group-title="地方频道",新闻综合
+http://36.49.50.4:8800/rtp/239.37.0.135:5540
+#EXTINF:-1 tvg-name="新闻综合" group-title="地方频道",新闻综合
+http://36.49.50.4:8800/rtp/239.37.0.174:5540
+#EXTINF:-1 tvg-name="新闻综合1" group-title="地方频道",新闻综合1
+http://36.49.50.4:8800/rtp/239.37.0.137:5540
+#EXTINF:-1 tvg-name="松原" group-title="地方频道",松原
+http://36.49.50.4:8800/rtp/239.37.0.246:5540
+#EXTINF:-1 tvg-name="松原公共" group-title="地方频道",松原公共
+http://36.49.50.4:8800/rtp/239.37.0.247:5540
+#EXTINF:-1 tvg-name="梨树新闻" group-title="地方频道",梨树新闻
+http://36.49.50.4:8800/rtp/239.37.0.168:5540
+#EXTINF:-1 tvg-name="白山公告2" group-title="地方频道",白山公告2
+http://36.49.50.4:8800/rtp/239.37.0.138:5540
+#EXTINF:-1 tvg-name="看不清综合" group-title="地方频道",看不清综合
+http://36.49.50.4:8800/rtp/239.37.0.175:5540
+#EXTINF:-1 tvg-name="科教" group-title="地方频道",科教
+http://36.49.50.4:8800/rtp/239.37.0.129:5540
+#EXTINF:-1 tvg-name="综合" group-title="地方频道",综合
+http://36.49.50.4:8800/rtp/239.37.0.172:5540
+#EXTINF:-1 tvg-name="综合纪实" group-title="地方频道",综合纪实
+http://36.49.50.4:8800/rtp/239.37.0.170:5540
+#EXTINF:-1 tvg-name="集安综合" group-title="地方频道",集安综合
+http://36.49.50.4:8800/rtp/239.37.0.145:5540
+#EXTINF:-1 tvg-name="风尚生活" group-title="地方频道",风尚生活
+http://36.49.50.4:8800/rtp/239.37.0.224:5540

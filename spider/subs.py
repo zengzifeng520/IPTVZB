@@ -91,6 +91,7 @@ def build_free(channels: list[dict], regions: list[dict]) -> None:
     """
     today = datetime.now(CST).date()
     keep: set[str] = set()
+    valid = {r["key"] for r in regions}
 
     for i in range(FREE_DAYS + 1):
         key = (today + timedelta(days=i)).strftime("%Y%m%d")
@@ -106,6 +107,10 @@ def build_free(channels: list[dict], regions: list[dict]) -> None:
             c, _s = _write(target, channels, host_set)
             if not c:
                 target.write_text(EMPTY_SUB, encoding="utf-8")
+        # 地区已经下线的旧文件要清掉，否则会留一批 0 频道的空壳
+        for p in d.iterdir():
+            if p.suffix == ".m3u" and p.stem not in valid:
+                p.unlink(missing_ok=True)
 
     if FREE_DIR.exists():
         for p in FREE_DIR.iterdir():
