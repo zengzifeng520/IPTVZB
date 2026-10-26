@@ -1,0 +1,16 @@
+# Cloudflare Worker 部署配置（赞助自动登记接口）
+# 对应 worker/claim.js
+
+name = "iptv-claim"
+main = "worker/claim.js"
+compatibility_date = "2024-01-01"
+
+# 部署命令（在 site_repo 目录下执行）：
+#   npx wrangler deploy
+# 需要先设置两个环境变量：
+#   CLOUDFLARE_API_TOKEN   = 你的 cfat_... 令牌
+#   CLOUDFLARE_ACCOUNT_ID  = 你的 32 位账户 ID
+#
+# 部署后设置 GitHub token 到 Worker secret：
+#   npx wrangler secret put GH_TOKEN
+#   （输入一个能写 zengzifeng520/ZZF 仓库的 GitHub PAT）

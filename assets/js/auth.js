@@ -154,7 +154,7 @@
    * 留空：用户只能在本机解锁（换设备/清缓存会丢），专属订阅文件不会自动生成，
    * 需要站长在 admin 后台手工补录。
    */
-  var CLAIM_URL = "";
+  var CLAIM_URL = "https://iptv-claim.609650909.workers.dev/claim";
 
   /**
    * 开通口令（防白拿）。
