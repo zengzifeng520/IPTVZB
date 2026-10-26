@@ -350,10 +350,14 @@
     }
 
     closePay();
-    toast(plan.name + " 已解锁，有效期至 " + A.fmtDate(r.exp));
+    toast(
+      A.remoteEnabled()
+        ? plan.name + " 已解锁，有效期至 " + A.fmtDate(r.exp)
+        : "已解锁本机；请把下方赞助码发给站长，即可开通专属订阅"
+    );
     setTimeout(function () {
       location.reload();
-    }, 900);
+    }, 1400);
   });
 
   /* ------------------------------------------------ 专属订阅就绪检测 */
@@ -370,7 +374,8 @@
         el.subList.insertAdjacentHTML(
           "afterbegin",
           '<div class="empty-inline" style="text-align:left;padding:10px 12px">' +
-            "专属订阅正在生成，通常 1 分钟内生效。如果超过 10 分钟仍不可用，请退出后重新登录再试。" +
+            "专属订阅正在生成，通常 1 分钟内生效。如果超过 10 分钟仍不可用，" +
+            "请把本页下方的赞助码发给站长补录。" +
             "</div>"
         );
       })

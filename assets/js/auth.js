@@ -329,6 +329,11 @@
       });
   }
 
+  /** 是否已配置自动登记接口（没配就得靠站长手工补录） */
+  function remoteEnabled() {
+    return !!CLAIM_URL;
+  }
+
   /* ---------------------------------------------------------- 免费地区 */
 
   /** 当前已选定的免费地区（没选过返回空串） */
@@ -424,6 +429,7 @@
     setSid: setSid,
     groupSid: groupSid,
     unlock: unlock,
+    remoteEnabled: remoteEnabled,
     clearSponsor: clearSponsor,
     freeRegion: freeRegion,
     setFreeRegion: setFreeRegion,
