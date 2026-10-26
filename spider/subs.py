@@ -137,6 +137,13 @@ def build_users(channels: list[dict], regions: list[dict]) -> dict:
         print(f"  [subs] users.json 解析失败，跳过：{exc}")
         return {}
     if not isinstance(users, dict) or not users:
+        # 用户表被清空时，必须把旧的用户目录一起删掉，
+        # 否则那条订阅链接还能继续下载，等于删号没生效
+        if USERS_DIR.exists():
+            for p in USERS_DIR.iterdir():
+                if p.is_dir():
+                    shutil.rmtree(p, ignore_errors=True)
+                    print(f"  [subs] 清理已删除用户的订阅目录 {p.name}")
         print("  [subs] users.json 为空，跳过用户专属订阅")
         return {}
 
