@@ -1,11 +1,15 @@
+# Python
 __pycache__/
+*.py[cod]
+.venv/
+venv/
 
-*.pyc
+# 采集缓存与数据库（由 Actions 每次重建，不入库）
+spider/data/cache/
+spider/data/*.db
+spider/data/*.db-wal
+spider/data/*.db-shm
 
-*.log
-
-*.m3u
-*.txt
-
-# 巡检失败计数（放在 Actions 缓存里，不入库）
-checked/state.json
+# 系统
+.DS_Store
+Thumbs.db

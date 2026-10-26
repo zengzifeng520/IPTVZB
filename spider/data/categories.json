@@ -1,0 +1,2623 @@
+[
+ {
+  "id": 100100,
+  "name": "CCTV1",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV1",
+   "CCTV-1",
+   "CCTV综合",
+   "CCTV-综合",
+   "中央1"
+  ],
+  "logo": null
+ },
+ {
+  "id": 100200,
+  "name": "CCTV2",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV2",
+   "CCTV-2",
+   "CCTV财经",
+   "CCTV-财经",
+   "中央2"
+  ],
+  "logo": null
+ },
+ {
+  "id": 100300,
+  "name": "CCTV3",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV3",
+   "CCTV-3",
+   "CCTV综艺",
+   "CCTV-综艺",
+   "中央3"
+  ],
+  "logo": null
+ },
+ {
+  "id": 100400,
+  "name": "CCTV4",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV4",
+   "CCTV-4",
+   "CCTV中文国际",
+   "CCTV-中文国际",
+   "中央4"
+  ],
+  "logo": null
+ },
+ {
+  "id": 100500,
+  "name": "CCTV4K",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV4K",
+   "CCTV-4K",
+   "CCTV4K50p",
+   "CCTV4K超高清",
+   "中央4k",
+   "中央4K"
+  ],
+  "logo": null
+ },
+ {
+  "id": 100600,
+  "name": "CCTV4欧洲",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV4欧洲",
+   "CCTV-4欧洲",
+   "中央4欧洲",
+   "中文国际欧洲"
+  ],
+  "logo": null
+ },
+ {
+  "id": 100700,
+  "name": "CCTV4美洲",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV4美洲",
+   "CCTV-4美洲",
+   "中央4美洲",
+   "中文国际美洲"
+  ],
+  "logo": null
+ },
+ {
+  "id": 100800,
+  "name": "CCTV5",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV5",
+   "CCTV-5",
+   "CCTV体育",
+   "CCTV-体育",
+   "中央5"
+  ],
+  "logo": null
+ },
+ {
+  "id": 100900,
+  "name": "CCTV5+",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV5+",
+   "CCTV-5+",
+   "CCTV5P",
+   "中央5+"
+  ],
+  "logo": null
+ },
+ {
+  "id": 101000,
+  "name": "CCTV6",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV6",
+   "CCTV-6",
+   "CCTV电影",
+   "CCTV-电影",
+   "中央6"
+  ],
+  "logo": null
+ },
+ {
+  "id": 101100,
+  "name": "CCTV7",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV7",
+   "CCTV-7",
+   "CCTV国防军事",
+   "CCTV7-国防军事",
+   "中央7"
+  ],
+  "logo": null
+ },
+ {
+  "id": 101200,
+  "name": "CCTV8",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV8",
+   "CCTV-8",
+   "CCTV电视剧",
+   "CCTV-电视剧",
+   "中央8"
+  ],
+  "logo": null
+ },
+ {
+  "id": 101300,
+  "name": "CCTV8K",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV8K",
+   "CCTV-8K",
+   "中央8K"
+  ],
+  "logo": null
+ },
+ {
+  "id": 101400,
+  "name": "CCTV9",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV9",
+   "CCTV-9",
+   "CCTV纪录",
+   "CCTV-纪录",
+   "中央9"
+  ],
+  "logo": null
+ },
+ {
+  "id": 101500,
+  "name": "CCTV10",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV10",
+   "CCTV-10",
+   "CCTV科教",
+   "CCTV-科教",
+   "中央10"
+  ],
+  "logo": null
+ },
+ {
+  "id": 101600,
+  "name": "CCTV11",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV11",
+   "CCTV-11",
+   "CCTV戏曲",
+   "CCTV-戏曲",
+   "中央11"
+  ],
+  "logo": null
+ },
+ {
+  "id": 101700,
+  "name": "CCTV12",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV12",
+   "CCTV-12",
+   "CCTV社会与法",
+   "CCTV-社会与法",
+   "中央12"
+  ],
+  "logo": null
+ },
+ {
+  "id": 101800,
+  "name": "CCTV13",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV13",
+   "CCTV-13",
+   "CCTV新闻",
+   "CCTV-新闻",
+   "中央13"
+  ],
+  "logo": null
+ },
+ {
+  "id": 101900,
+  "name": "CCTV14",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV14",
+   "CCTV-14",
+   "CCTV少儿",
+   "CCTV-少儿",
+   "中央14"
+  ],
+  "logo": null
+ },
+ {
+  "id": 102000,
+  "name": "CCTV15",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV15",
+   "CCTV-15",
+   "CCTV音乐",
+   "CCTV-音乐",
+   "中央15"
+  ],
+  "logo": null
+ },
+ {
+  "id": 102100,
+  "name": "CCTV16",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV16",
+   "CCTV-16",
+   "CCTV奥林匹克",
+   "CCTV-奥林匹克",
+   "中央16"
+  ],
+  "logo": null
+ },
+ {
+  "id": 102200,
+  "name": "CCTV17",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV17",
+   "CCTV-17",
+   "CCTV农业农村",
+   "CCTV-农业农村",
+   "中央17"
+  ],
+  "logo": null
+ },
+ {
+  "id": 102300,
+  "name": "CCTV风云音乐",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV风云音乐",
+   "风云音乐"
+  ],
+  "logo": null
+ },
+ {
+  "id": 102400,
+  "name": "CCTV世界地理",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV世界地理",
+   "世界地理",
+   "地理世界"
+  ],
+  "logo": null
+ },
+ {
+  "id": 102500,
+  "name": "CCTV第一剧场",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV第一剧场",
+   "第一剧场"
+  ],
+  "logo": null
+ },
+ {
+  "id": 102600,
+  "name": "CCTV风云剧场",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV风云剧场",
+   "风云剧场"
+  ],
+  "logo": null
+ },
+ {
+  "id": 102700,
+  "name": "CCTV央视精品",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV央视精品",
+   "央视精品",
+   "文化精品"
+  ],
+  "logo": null
+ },
+ {
+  "id": 102800,
+  "name": "CCTV兵器科技",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV兵器科技",
+   "兵器科技"
+  ],
+  "logo": null
+ },
+ {
+  "id": 102900,
+  "name": "CCTV风云足球",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV风云足球",
+   "风云足球"
+  ],
+  "logo": null
+ },
+ {
+  "id": 103000,
+  "name": "CCTV高网频道",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV高网频道",
+   "高网",
+   "高尔夫"
+  ],
+  "logo": null
+ },
+ {
+  "id": 103100,
+  "name": "CCTV怀旧剧场",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV怀旧剧场",
+   "怀旧剧场"
+  ],
+  "logo": null
+ },
+ {
+  "id": 103200,
+  "name": "CCTV女性时尚",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV女性时尚",
+   "女性时尚"
+  ],
+  "logo": null
+ },
+ {
+  "id": 103300,
+  "name": "CCTV央视台球",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV央视台球",
+   "央视台球"
+  ],
+  "logo": null
+ },
+ {
+  "id": 103310,
+  "name": "CCTV风云足球",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV风云足球",
+   "风云足球"
+  ],
+  "logo": null
+ },
+ {
+  "id": 103320,
+  "name": "CCTV电视指南",
+  "type": "央视频道",
+  "aliases": [
+   "CCTV电视指南",
+   "电视指南"
+  ],
+  "logo": null
+ },
+ {
+  "id": 400200,
+  "name": "CGTN",
+  "type": "央视频道",
+  "aliases": [
+   "CGTN"
+  ],
+  "logo": null
+ },
+ {
+  "id": 400210,
+  "name": "CGTN法语",
+  "type": "央视频道",
+  "aliases": [
+   "CGTN法语",
+   "CGTN Français"
+  ],
+  "logo": null
+ },
+ {
+  "id": 400220,
+  "name": "CGTN俄语",
+  "type": "央视频道",
+  "aliases": [
+   "CGTN俄语",
+   "CGTN Русский"
+  ],
+  "logo": null
+ },
+ {
+  "id": 400230,
+  "name": "CGTN阿语",
+  "type": "央视频道",
+  "aliases": [
+   "CGTN阿语",
+   "CGTN Arabic",
+   "CGTN阿拉伯语"
+  ],
+  "logo": null
+ },
+ {
+  "id": 400240,
+  "name": "CGTN西语",
+  "type": "央视频道",
+  "aliases": [
+   "CGTN西语",
+   "CGTN Español",
+   "CGTN西班牙语"
+  ],
+  "logo": null
+ },
+ {
+  "id": 400250,
+  "name": "CGTN纪录",
+  "type": "央视频道",
+  "aliases": [
+   "CGTN纪录",
+   "CGTN Documentary",
+   "CGTN记录",
+   "CGTN外语记录",
+   "CGTN外语纪录"
+  ],
+  "logo": null
+ },
+ {
+  "id": 200100,
+  "name": "湖南卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "湖南卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 200200,
+  "name": "浙江卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "浙江卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 200300,
+  "name": "江苏卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "江苏卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 200400,
+  "name": "北京卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "北京卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 200500,
+  "name": "东方卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "东方卫视",
+   "上海卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 200600,
+  "name": "安徽卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "安徽卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 200700,
+  "name": "广东卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "广东卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 200800,
+  "name": "深圳卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "深圳卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 200900,
+  "name": "辽宁卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "辽宁卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 201000,
+  "name": "海南卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "海南卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 201100,
+  "name": "山东卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "山东卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 201200,
+  "name": "天津卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "天津卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 201300,
+  "name": "重庆卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "重庆卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 201400,
+  "name": "东南卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "东南卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 201500,
+  "name": "甘肃卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "甘肃卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 201600,
+  "name": "广西卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "广西卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 201700,
+  "name": "贵州卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "贵州卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 201800,
+  "name": "河北卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "河北卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 201900,
+  "name": "黑龙江卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "黑龙江卫视",
+   "黑龙卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 202000,
+  "name": "河南卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "河南卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 202100,
+  "name": "湖北卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "湖北卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 202200,
+  "name": "江西卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "江西卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 202300,
+  "name": "吉林卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "吉林卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 202400,
+  "name": "内蒙古卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "内蒙古卫视",
+   "内蒙卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 202500,
+  "name": "宁夏卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "宁夏卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 202600,
+  "name": "山西卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "山西卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 202700,
+  "name": "陕西卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "陕西卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 202800,
+  "name": "四川卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "四川卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 202900,
+  "name": "新疆卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "新疆卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 203000,
+  "name": "云南卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "云南卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 203100,
+  "name": "厦门卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "厦门卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 203200,
+  "name": "青海卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "青海卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 203300,
+  "name": "西藏卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "西藏卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 203400,
+  "name": "兵团卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "兵团卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 203500,
+  "name": "延边卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "延边卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 203600,
+  "name": "黄河卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "黄河卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 203700,
+  "name": "康巴卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "康巴卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 203710,
+  "name": "三沙卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "三沙卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 203720,
+  "name": "大湾区卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "大湾区卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 203800,
+  "name": "卡酷动画",
+  "type": "卫视频道",
+  "aliases": [
+   "卡酷动画",
+   "卡酷"
+  ],
+  "logo": null
+ },
+ {
+  "id": 203810,
+  "name": "哈哈炫动",
+  "type": "卫视频道",
+  "aliases": [
+   "哈哈炫动",
+   "炫动"
+  ],
+  "logo": null
+ },
+ {
+  "id": 203820,
+  "name": "金鹰卡通",
+  "type": "卫视频道",
+  "aliases": [
+   "金鹰卡通"
+  ],
+  "logo": null
+ },
+ {
+  "id": 203830,
+  "name": "嘉佳卡通",
+  "type": "卫视频道",
+  "aliases": [
+   "嘉佳卡通"
+  ],
+  "logo": null
+ },
+ {
+  "id": 203840,
+  "name": "优漫卡通",
+  "type": "卫视频道",
+  "aliases": [
+   "优漫卡通"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900000,
+  "name": "海峡卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "海峡卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900001,
+  "name": "农林卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "农林卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900003,
+  "name": "南方卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "南方卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900006,
+  "name": "安多卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "安多卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900009,
+  "name": "香港卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "香港卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900010,
+  "name": "中华卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "中华卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900011,
+  "name": "泰山卫视",
+  "type": "卫视频道",
+  "aliases": [
+   "泰山卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900026,
+  "name": "五星体育",
+  "type": "体育频道",
+  "aliases": [
+   "五星体育"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900027,
+  "name": "劲爆体育",
+  "type": "体育频道",
+  "aliases": [
+   "劲爆体育"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900028,
+  "name": "江苏体育",
+  "type": "体育频道",
+  "aliases": [
+   "江苏体育"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900029,
+  "name": "广东体育",
+  "type": "体育频道",
+  "aliases": [
+   "广东体育"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900030,
+  "name": "辽宁体育",
+  "type": "体育频道",
+  "aliases": [
+   "辽宁体育"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900031,
+  "name": "上海体育",
+  "type": "体育频道",
+  "aliases": [
+   "上海体育",
+   "七彩戏剧"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900032,
+  "name": "北京体育",
+  "type": "体育频道",
+  "aliases": [
+   "北京体育",
+   "冬奥纪实"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900033,
+  "name": "天津体育",
+  "type": "体育频道",
+  "aliases": [
+   "天津体育"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900034,
+  "name": "山东体育",
+  "type": "体育频道",
+  "aliases": [
+   "山东体育"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900035,
+  "name": "湖北体育",
+  "type": "体育频道",
+  "aliases": [
+   "湖北体育"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900036,
+  "name": "四川体育",
+  "type": "体育频道",
+  "aliases": [
+   "四川体育"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900037,
+  "name": "NewTV超级体育",
+  "type": "体育频道",
+  "aliases": [
+   "NewTV超级体育",
+   "超级体育"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900038,
+  "name": "咪咕体育",
+  "type": "体育频道",
+  "aliases": [
+   "咪咕体育"
+  ],
+  "logo": null
+ },
+ {
+  "id": 300100,
+  "name": "湖南影视",
+  "type": "影视频道",
+  "aliases": [
+   "湖南影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 300200,
+  "name": "浙江影视",
+  "type": "影视频道",
+  "aliases": [
+   "浙江影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 300300,
+  "name": "江苏影视",
+  "type": "影视频道",
+  "aliases": [
+   "江苏影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 300400,
+  "name": "北京影视",
+  "type": "影视频道",
+  "aliases": [
+   "北京影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 300500,
+  "name": "东方影视",
+  "type": "影视频道",
+  "aliases": [
+   "东方影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 300600,
+  "name": "安徽影视",
+  "type": "影视频道",
+  "aliases": [
+   "安徽影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 300700,
+  "name": "广东影视",
+  "type": "影视频道",
+  "aliases": [
+   "广东影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 300800,
+  "name": "深圳影视",
+  "type": "影视频道",
+  "aliases": [
+   "深圳影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 300900,
+  "name": "辽宁影视",
+  "type": "影视频道",
+  "aliases": [
+   "辽宁影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 301000,
+  "name": "海南影视",
+  "type": "影视频道",
+  "aliases": [
+   "海南影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 301100,
+  "name": "山东影视",
+  "type": "影视频道",
+  "aliases": [
+   "山东影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 301200,
+  "name": "天津影视",
+  "type": "影视频道",
+  "aliases": [
+   "天津影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 301300,
+  "name": "重庆影视",
+  "type": "影视频道",
+  "aliases": [
+   "重庆影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 301400,
+  "name": "东南影视",
+  "type": "影视频道",
+  "aliases": [
+   "东南影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 301500,
+  "name": "甘肃影视",
+  "type": "影视频道",
+  "aliases": [
+   "甘肃影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 301600,
+  "name": "广西影视",
+  "type": "影视频道",
+  "aliases": [
+   "广西影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 301700,
+  "name": "贵州影视",
+  "type": "影视频道",
+  "aliases": [
+   "贵州影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 301800,
+  "name": "河北影视",
+  "type": "影视频道",
+  "aliases": [
+   "河北影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 301900,
+  "name": "黑龙江影视",
+  "type": "影视频道",
+  "aliases": [
+   "黑龙江影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 302000,
+  "name": "河南影视",
+  "type": "影视频道",
+  "aliases": [
+   "河南影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 302100,
+  "name": "湖北影视",
+  "type": "影视频道",
+  "aliases": [
+   "湖北影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 302200,
+  "name": "江西影视",
+  "type": "影视频道",
+  "aliases": [
+   "江西影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 302300,
+  "name": "吉林影视",
+  "type": "影视频道",
+  "aliases": [
+   "吉林影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 302400,
+  "name": "内蒙古影视",
+  "type": "影视频道",
+  "aliases": [
+   "内蒙古影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 302500,
+  "name": "宁夏影视",
+  "type": "影视频道",
+  "aliases": [
+   "宁夏影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 302600,
+  "name": "山西影视",
+  "type": "影视频道",
+  "aliases": [
+   "山西影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 302700,
+  "name": "陕西影视",
+  "type": "影视频道",
+  "aliases": [
+   "陕西影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 302800,
+  "name": "四川影视",
+  "type": "影视频道",
+  "aliases": [
+   "四川影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 302900,
+  "name": "厦门影视",
+  "type": "影视频道",
+  "aliases": [
+   "厦门影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 303000,
+  "name": "新疆影视",
+  "type": "影视频道",
+  "aliases": [
+   "新疆影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 303100,
+  "name": "云南影视",
+  "type": "影视频道",
+  "aliases": [
+   "云南影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 303200,
+  "name": "青海影视",
+  "type": "影视频道",
+  "aliases": [
+   "青海影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 303300,
+  "name": "西藏影视",
+  "type": "影视频道",
+  "aliases": [
+   "西藏影视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900050,
+  "name": "都市剧场",
+  "type": "影视频道",
+  "aliases": [
+   "都市剧场"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900051,
+  "name": "古装剧场",
+  "type": "影视频道",
+  "aliases": [
+   "古装剧场"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900052,
+  "name": "军旅剧场",
+  "type": "影视频道",
+  "aliases": [
+   "军旅剧场"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900053,
+  "name": "上海都市",
+  "type": "影视频道",
+  "aliases": [
+   "上海都市"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900054,
+  "name": "南国都市",
+  "type": "影视频道",
+  "aliases": [
+   "南国都市"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900055,
+  "name": "浙江钱江都市",
+  "type": "影视频道",
+  "aliases": [
+   "浙江钱江都市",
+   "钱江都市"
+  ],
+  "logo": null
+ },
+ {
+  "id": 600100,
+  "name": "CHC家庭影院",
+  "type": "电影频道",
+  "aliases": [
+   "CHC家庭影院",
+   "CHC-家庭影院"
+  ],
+  "logo": null
+ },
+ {
+  "id": 600200,
+  "name": "CHC动作电影",
+  "type": "电影频道",
+  "aliases": [
+   "CHC动作电影",
+   "CHC-动作电影"
+  ],
+  "logo": null
+ },
+ {
+  "id": 600300,
+  "name": "CHC高清电影",
+  "type": "电影频道",
+  "aliases": [
+   "CHC高清电影",
+   "CHC-高清电影"
+  ],
+  "logo": null
+ },
+ {
+  "id": 600400,
+  "name": "东森电影",
+  "type": "电影频道",
+  "aliases": [
+   "东森电影",
+   "東森電影"
+  ],
+  "logo": null
+ },
+ {
+  "id": 600500,
+  "name": "美亚电影",
+  "type": "电影频道",
+  "aliases": [
+   "美亚电影",
+   "美亞電影"
+  ],
+  "logo": null
+ },
+ {
+  "id": 600600,
+  "name": "科幻电影",
+  "type": "电影频道",
+  "aliases": [
+   "科幻电影",
+   "爱科幻"
+  ],
+  "logo": null
+ },
+ {
+  "id": 600700,
+  "name": "星空卫视",
+  "type": "电影频道",
+  "aliases": [
+   "星空卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 600800,
+  "name": "华语影院",
+  "type": "电影频道",
+  "aliases": [
+   "华语影院"
+  ],
+  "logo": null
+ },
+ {
+  "id": 600900,
+  "name": "邵氏影院",
+  "type": "电影频道",
+  "aliases": [
+   "邵氏影院"
+  ],
+  "logo": null
+ },
+ {
+  "id": 601000,
+  "name": "欧美影院",
+  "type": "电影频道",
+  "aliases": [
+   "欧美影院"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900056,
+  "name": "CHC影迷电影",
+  "type": "电影频道",
+  "aliases": [
+   "CHC影迷电影"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900059,
+  "name": "1905电影网",
+  "type": "电影频道",
+  "aliases": [
+   "1905电影网",
+   "1905电影"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900060,
+  "name": "黑莓电影",
+  "type": "电影频道",
+  "aliases": [
+   "黑莓电影"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900061,
+  "name": "龙华电影",
+  "type": "电影频道",
+  "aliases": [
+   "龙华电影"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900015,
+  "name": "卡酷少儿",
+  "type": "少儿频道",
+  "aliases": [
+   "卡酷少儿",
+   "卡酷动画"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900017,
+  "name": "动漫秀场",
+  "type": "少儿频道",
+  "aliases": [
+   "动漫秀场"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900018,
+  "name": "浙江少儿",
+  "type": "少儿频道",
+  "aliases": [
+   "浙江少儿"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900019,
+  "name": "河北少儿",
+  "type": "少儿频道",
+  "aliases": [
+   "河北少儿"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900020,
+  "name": "黑龙江少儿",
+  "type": "少儿频道",
+  "aliases": [
+   "黑龙江少儿"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900021,
+  "name": "南京少儿",
+  "type": "少儿频道",
+  "aliases": [
+   "南京少儿"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900022,
+  "name": "甘肃少儿",
+  "type": "少儿频道",
+  "aliases": [
+   "甘肃少儿"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900023,
+  "name": "宁夏少儿",
+  "type": "少儿频道",
+  "aliases": [
+   "宁夏少儿"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900024,
+  "name": "内蒙古少儿",
+  "type": "少儿频道",
+  "aliases": [
+   "内蒙古少儿"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900025,
+  "name": "福建少儿",
+  "type": "少儿频道",
+  "aliases": [
+   "福建少儿"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900042,
+  "name": "金鹰纪实",
+  "type": "纪实频道",
+  "aliases": [
+   "金鹰纪实"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900043,
+  "name": "上海纪实人文",
+  "type": "纪实频道",
+  "aliases": [
+   "上海纪实人文",
+   "纪实人文"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900044,
+  "name": "求索纪录",
+  "type": "纪实频道",
+  "aliases": [
+   "求索纪录",
+   "求索记录"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900045,
+  "name": "之江纪录",
+  "type": "纪实频道",
+  "aliases": [
+   "之江纪录",
+   "之江记录"
+  ],
+  "logo": null
+ },
+ {
+  "id": 800100,
+  "name": "恐怖港片",
+  "type": "主题频道",
+  "aliases": [
+   "恐怖港片",
+   "绝版电影 港片女鬼",
+   "恐怖电影"
+  ],
+  "logo": null
+ },
+ {
+  "id": 800200,
+  "name": "经典港片",
+  "type": "主题频道",
+  "aliases": [
+   "经典港片",
+   "港片电影",
+   "经典港片 3000部",
+   "【港台】鬼片 惊悚 喜剧",
+   "经典港片电影"
+  ],
+  "logo": null
+ },
+ {
+  "id": 800300,
+  "name": "看电视剧",
+  "type": "主题频道",
+  "aliases": [
+   "看电视剧",
+   "经典电影 电视剧",
+   "24小时循环播电视剧"
+  ],
+  "logo": null
+ },
+ {
+  "id": 800400,
+  "name": "玄幻系列",
+  "type": "主题频道",
+  "aliases": [
+   "玄幻系列",
+   "玄幻电影"
+  ],
+  "logo": null
+ },
+ {
+  "id": 800500,
+  "name": "警匪系列",
+  "type": "主题频道",
+  "aliases": [
+   "警匪系列",
+   "大家都在看的警匪片",
+   "机场超燃警匪片"
+  ],
+  "logo": null
+ },
+ {
+  "id": 800600,
+  "name": "搞笑喜剧",
+  "type": "主题频道",
+  "aliases": [
+   "搞笑喜剧",
+   "热门喜剧",
+   "经典搞笑影片",
+   "喜剧闹翻天",
+   "最新喜剧电影"
+  ],
+  "logo": null
+ },
+ {
+  "id": 800700,
+  "name": "动作大片",
+  "type": "主题频道",
+  "aliases": [
+   "动作大片",
+   "国产动作电影",
+   "国产大片电影",
+   "热血动作片合集",
+   "高分动作大片-热血出击",
+   "精彩动作电影",
+   "国外最强动作大片"
+  ],
+  "logo": null
+ },
+ {
+  "id": 800800,
+  "name": "惊悚恐怖",
+  "type": "主题频道",
+  "aliases": [
+   "惊悚恐怖",
+   "深夜惊悚大片",
+   "欧美惊悚"
+  ],
+  "logo": null
+ },
+ {
+  "id": 800900,
+  "name": "科幻大片",
+  "type": "主题频道",
+  "aliases": [
+   "科幻大片",
+   "国外科幻",
+   "科幻电影"
+  ],
+  "logo": null
+ },
+ {
+  "id": 801000,
+  "name": "末日系列",
+  "type": "主题频道",
+  "aliases": [
+   "末日系列"
+  ],
+  "logo": null
+ },
+ {
+  "id": 801100,
+  "name": "战警系列",
+  "type": "主题频道",
+  "aliases": [
+   "战警系列"
+  ],
+  "logo": null
+ },
+ {
+  "id": 801200,
+  "name": "美国队长",
+  "type": "主题频道",
+  "aliases": [
+   "美国队长"
+  ],
+  "logo": null
+ },
+ {
+  "id": 801300,
+  "name": "变形金刚",
+  "type": "主题频道",
+  "aliases": [
+   "变形金刚"
+  ],
+  "logo": null
+ },
+ {
+  "id": 801400,
+  "name": "看侏罗纪",
+  "type": "主题频道",
+  "aliases": [
+   "看侏罗纪",
+   "侏罗纪公园"
+  ],
+  "logo": null
+ },
+ {
+  "id": 801500,
+  "name": "速度激情",
+  "type": "主题频道",
+  "aliases": [
+   "速度激情",
+   "速度与激情"
+  ],
+  "logo": null
+ },
+ {
+  "id": 801600,
+  "name": "漫威英雄",
+  "type": "主题频道",
+  "aliases": [
+   "漫威英雄",
+   "漫威",
+   "美国超级英雄"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900046,
+  "name": "法治天地",
+  "type": "主题频道",
+  "aliases": [
+   "法治天地"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900047,
+  "name": "东方财经",
+  "type": "主题频道",
+  "aliases": [
+   "东方财经"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900048,
+  "name": "重温经典",
+  "type": "主题频道",
+  "aliases": [
+   "重温经典"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900049,
+  "name": "数码时代",
+  "type": "主题频道",
+  "aliases": [
+   "数码时代"
+  ],
+  "logo": null
+ },
+ {
+  "id": 700100,
+  "name": "刘德华",
+  "type": "明星频道",
+  "aliases": [
+   "刘德华",
+   "华子系列"
+  ],
+  "logo": null
+ },
+ {
+  "id": 700200,
+  "name": "成龙",
+  "type": "明星频道",
+  "aliases": [
+   "成龙",
+   "成龙系列",
+   "【成龙经典】动作"
+  ],
+  "logo": null
+ },
+ {
+  "id": 700300,
+  "name": "周星驰",
+  "type": "明星频道",
+  "aliases": [
+   "周星驰",
+   "星爷经典-百看不厌"
+  ],
+  "logo": null
+ },
+ {
+  "id": 700500,
+  "name": "林正英",
+  "type": "明星频道",
+  "aliases": [
+   "林正英",
+   "英叔僵尸 3000部",
+   "林正英 僵尸 鬼片",
+   "林正英经典",
+   "国内玄幻电影-林正英"
+  ],
+  "logo": null
+ },
+ {
+  "id": 700600,
+  "name": "洪金宝",
+  "type": "明星频道",
+  "aliases": [
+   "洪金宝",
+   "洪金宝福星系列"
+  ],
+  "logo": null
+ },
+ {
+  "id": 700700,
+  "name": "周润发",
+  "type": "明星频道",
+  "aliases": [
+   "周润发",
+   "发哥系列"
+  ],
+  "logo": null
+ },
+ {
+  "id": 400100,
+  "name": "中国教育1",
+  "type": "国教频道",
+  "aliases": [
+   "中国教育1",
+   "CETV1",
+   "CETV-1",
+   "中国教育-1"
+  ],
+  "logo": null
+ },
+ {
+  "id": 400110,
+  "name": "中国教育2",
+  "type": "国教频道",
+  "aliases": [
+   "中国教育2",
+   "CETV2",
+   "CETV-2",
+   "中国教育-2"
+  ],
+  "logo": null
+ },
+ {
+  "id": 400120,
+  "name": "中国教育3",
+  "type": "国教频道",
+  "aliases": [
+   "中国教育3",
+   "CETV3",
+   "CETV-3",
+   "中国教育-3"
+  ],
+  "logo": null
+ },
+ {
+  "id": 400130,
+  "name": "中国教育4",
+  "type": "国教频道",
+  "aliases": [
+   "中国教育4",
+   "CETV4",
+   "CETV-4",
+   "中国教育-4"
+  ],
+  "logo": null
+ },
+ {
+  "id": 500100,
+  "name": "凤凰中文",
+  "type": "港澳频道",
+  "aliases": [
+   "凤凰中文",
+   "凤凰卫视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 500200,
+  "name": "凤凰资讯",
+  "type": "港澳频道",
+  "aliases": [
+   "凤凰资讯",
+   "凤凰-资讯",
+   "凤凰卫视资讯"
+  ],
+  "logo": null
+ },
+ {
+  "id": 500300,
+  "name": "凤凰香港",
+  "type": "港澳频道",
+  "aliases": [
+   "凤凰香港"
+  ],
+  "logo": null
+ },
+ {
+  "id": 500400,
+  "name": "翡翠台",
+  "type": "港澳频道",
+  "aliases": [
+   "翡翠台"
+  ],
+  "logo": null
+ },
+ {
+  "id": 500500,
+  "name": "明珠台",
+  "type": "港澳频道",
+  "aliases": [
+   "明珠台"
+  ],
+  "logo": null
+ },
+ {
+  "id": 500600,
+  "name": "天映经典",
+  "type": "港澳频道",
+  "aliases": [
+   "天映经典",
+   "天映頻道"
+  ],
+  "logo": null
+ },
+ {
+  "id": 500700,
+  "name": "TVBS亚洲台",
+  "type": "港澳频道",
+  "aliases": [
+   "TVBS亚洲台"
+  ],
+  "logo": null
+ },
+ {
+  "id": 500800,
+  "name": "HBO FAMILY",
+  "type": "港澳频道",
+  "aliases": [
+   "HBO FAMILY",
+   "HBO FAMILY HD"
+  ],
+  "logo": null
+ },
+ {
+  "id": 500900,
+  "name": "SHOWTIME FAMILY ZONE",
+  "type": "港澳频道",
+  "aliases": [
+   "SHOWTIME FAMILY ZONE",
+   "SHOWTIME FAMILY ZONE HD"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900062,
+  "name": "TVBPlus",
+  "type": "港澳频道",
+  "aliases": [
+   "TVBPlus",
+   "TVB Plus",
+   "TVB+"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900063,
+  "name": "无线新闻",
+  "type": "港澳频道",
+  "aliases": [
+   "无线新闻",
+   "TVB新闻",
+   "无线新闻台"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900064,
+  "name": "TVB星河",
+  "type": "港澳频道",
+  "aliases": [
+   "TVB星河",
+   "星河频道"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900066,
+  "name": "澳视澳门",
+  "type": "港澳频道",
+  "aliases": [
+   "澳视澳门",
+   "澳门澳视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900067,
+  "name": "澳视卫星",
+  "type": "港澳频道",
+  "aliases": [
+   "澳视卫星"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900068,
+  "name": "莲花卫视",
+  "type": "港澳频道",
+  "aliases": [
+   "莲花卫视",
+   "澳门莲花"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900069,
+  "name": "香港开电视",
+  "type": "港澳频道",
+  "aliases": [
+   "香港开电视",
+   "开电视"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900070,
+  "name": "ViuTV",
+  "type": "港澳频道",
+  "aliases": [
+   "ViuTV",
+   "Viu TV"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900071,
+  "name": "Now新闻",
+  "type": "港澳频道",
+  "aliases": [
+   "Now新闻",
+   "NOW新闻"
+  ],
+  "logo": null
+ },
+ {
+  "id": 900072,
+  "name": "无线财经",
+  "type": "港澳频道",
+  "aliases": [
+   "无线财经"
+  ],
+  "logo": null
+ },
+ {
+  "id": 400800,
+  "name": "第一财经",
+  "type": "数字频道",
+  "aliases": [
+   "第一财经",
+   "第1财经"
+  ],
+  "logo": null
+ },
+ {
+  "id": 400900,
+  "name": "梨园频道",
+  "type": "数字频道",
+  "aliases": [
+   "梨园频道",
+   "梨园"
+  ],
+  "logo": null
+ },
+ {
+  "id": 401000,
+  "name": "电竞天堂",
+  "type": "数字频道",
+  "aliases": [
+   "电竞天堂"
+  ],
+  "logo": null
+ },
+ {
+  "id": 401100,
+  "name": "生活时尚",
+  "type": "数字频道",
+  "aliases": [
+   "生活时尚"
+  ],
+  "logo": null
+ },
+ {
+  "id": 401200,
+  "name": "国学频道",
+  "type": "数字频道",
+  "aliases": [
+   "国学频道"
+  ],
+  "logo": null
+ },
+ {
+  "id": 401300,
+  "name": "中国天气",
+  "type": "数字频道",
+  "aliases": [
+   "中国天气"
+  ],
+  "logo": null
+ },
+ {
+  "id": 401400,
+  "name": "中华特产",
+  "type": "数字频道",
+  "aliases": [
+   "中华特产"
+  ],
+  "logo": null
+ },
+ {
+  "id": 401500,
+  "name": "欢笑剧场",
+  "type": "数字频道",
+  "aliases": [
+   "欢笑剧场"
+  ],
+  "logo": null
+ },
+ {
+  "id": 401700,
+  "name": "求索科学",
+  "type": "数字频道",
+  "aliases": [
+   "求索科学"
+  ],
+  "logo": null
+ },
+ {
+  "id": 401800,
+  "name": "求索动物",
+  "type": "数字频道",
+  "aliases": [
+   "求索动物"
+  ],
+  "logo": null
+ },
+ {
+  "id": 401900,
+  "name": "求索记录",
+  "type": "数字频道",
+  "aliases": [
+   "求索记录"
+  ],
+  "logo": null
+ },
+ {
+  "id": 402400,
+  "name": "彩民在线",
+  "type": "数字频道",
+  "aliases": [
+   "彩民在线"
+  ],
+  "logo": null
+ },
+ {
+  "id": 402500,
+  "name": "法律服务",
+  "type": "数字频道",
+  "aliases": [
+   "法律服务"
+  ],
+  "logo": null
+ },
+ {
+  "id": 402600,
+  "name": "留学世界",
+  "type": "数字频道",
+  "aliases": [
+   "留学世界"
+  ],
+  "logo": null
+ },
+ {
+  "id": 402700,
+  "name": "青年学苑",
+  "type": "数字频道",
+  "aliases": [
+   "青年学苑"
+  ],
+  "logo": null
+ },
+ {
+  "id": 402800,
+  "name": "摄影频道",
+  "type": "数字频道",
+  "aliases": [
+   "摄影频道"
+  ],
+  "logo": null
+ },
+ {
+  "id": 402900,
+  "name": "天元围棋",
+  "type": "数字频道",
+  "aliases": [
+   "天元围棋"
+  ],
+  "logo": null
+ },
+ {
+  "id": 403000,
+  "name": "现代女性",
+  "type": "数字频道",
+  "aliases": [
+   "现代女性"
+  ],
+  "logo": null
+ },
+ {
+  "id": 403100,
+  "name": "早期教育",
+  "type": "数字频道",
+  "aliases": [
+   "早期教育"
+  ],
+  "logo": null
+ },
+ {
+  "id": 403200,
+  "name": "证券资讯",
+  "type": "数字频道",
+  "aliases": [
+   "证券资讯"
+  ],
+  "logo": null
+ },
+ {
+  "id": 403400,
+  "name": "茶频道",
+  "type": "数字频道",
+  "aliases": [
+   "茶频道",
+   "茶频"
+  ],
+  "logo": null
+ },
+ {
+  "id": 403500,
+  "name": "武术世界",
+  "type": "数字频道",
+  "aliases": [
+   "武术世界"
+  ],
+  "logo": null
+ },
+ {
+  "id": 403600,
+  "name": "发现之旅",
+  "type": "数字频道",
+  "aliases": [
+   "发现之旅"
+  ],
+  "logo": null
+ },
+ {
+  "id": 403700,
+  "name": "环球奇观",
+  "type": "数字频道",
+  "aliases": [
+   "环球奇观"
+  ],
+  "logo": null
+ },
+ {
+  "id": 403800,
+  "name": "文物宝库",
+  "type": "数字频道",
+  "aliases": [
+   "文物宝库"
+  ],
+  "logo": null
+ },
+ {
+  "id": 403900,
+  "name": "新科动漫",
+  "type": "数字频道",
+  "aliases": [
+   "新科动漫"
+  ],
+  "logo": null
+ },
+ {
+  "id": 404000,
+  "name": "幼儿教育",
+  "type": "数字频道",
+  "aliases": [
+   "幼儿教育"
+  ],
+  "logo": null
+ },
+ {
+  "id": 404100,
+  "name": "老故事",
+  "type": "数字频道",
+  "aliases": [
+   "老故事"
+  ],
+  "logo": null
+ },
+ {
+  "id": 404200,
+  "name": "快乐垂钓",
+  "type": "数字频道",
+  "aliases": [
+   "快乐垂钓"
+  ],
+  "logo": null
+ },
+ {
+  "id": 404300,
+  "name": "书画频道",
+  "type": "数字频道",
+  "aliases": [
+   "书画频道"
+  ],
+  "logo": null
+ },
+ {
+  "id": 404400,
+  "name": "先锋乒羽",
+  "type": "数字频道",
+  "aliases": [
+   "先锋乒羽"
+  ],
+  "logo": null
+ },
+ {
+  "id": 404500,
+  "name": "车迷频道",
+  "type": "数字频道",
+  "aliases": [
+   "车迷频道"
+  ],
+  "logo": null
+ },
+ {
+  "id": 404600,
+  "name": "优优宝贝",
+  "type": "数字频道",
+  "aliases": [
+   "优优宝贝"
+  ],
+  "logo": null
+ },
+ {
+  "id": 404700,
+  "name": "四海钓鱼",
+  "type": "数字频道",
+  "aliases": [
+   "四海钓鱼"
+  ],
+  "logo": null
+ },
+ {
+  "id": 404800,
+  "name": "动感音乐",
+  "type": "数字频道",
+  "aliases": [
+   "动感音乐"
+  ],
+  "logo": null
+ },
+ {
+  "id": 404900,
+  "name": "环球旅游",
+  "type": "数字频道",
+  "aliases": [
+   "环球旅游"
+  ],
+  "logo": null
+ },
+ {
+  "id": 405000,
+  "name": "新娱乐",
+  "type": "数字频道",
+  "aliases": [
+   "新娱乐"
+  ],
+  "logo": null
+ },
+ {
+  "id": 405100,
+  "name": "京视剧场",
+  "type": "数字频道",
+  "aliases": [
+   "京视剧场"
+  ],
+  "logo": null
+ },
+ {
+  "id": 405200,
+  "name": "弈坛春秋",
+  "type": "数字频道",
+  "aliases": [
+   "弈坛春秋"
+  ],
+  "logo": null
+ },
+ {
+  "id": 405300,
+  "name": "央广健康",
+  "type": "数字频道",
+  "aliases": [
+   "央广健康"
+  ],
+  "logo": null
+ },
+ {
+  "id": 405400,
+  "name": "时代家居",
+  "type": "数字频道",
+  "aliases": [
+   "时代家居"
+  ],
+  "logo": null
+ },
+ {
+  "id": 405500,
+  "name": "时代出行",
+  "type": "数字频道",
+  "aliases": [
+   "时代出行"
+  ],
+  "logo": null
+ },
+ {
+  "id": 405600,
+  "name": "时代风尚",
+  "type": "数字频道",
+  "aliases": [
+   "时代风尚"
+  ],
+  "logo": null
+ },
+ {
+  "id": 405700,
+  "name": "财富天下",
+  "type": "数字频道",
+  "aliases": [
+   "财富天下"
+  ],
+  "logo": null
+ },
+ {
+  "id": 405800,
+  "name": "百姓健康",
+  "type": "数字频道",
+  "aliases": [
+   "百姓健康"
+  ],
+  "logo": null
+ },
+ {
+  "id": 405900,
+  "name": "精品剧场",
+  "type": "数字频道",
+  "aliases": [
+   "精品剧场"
+  ],
+  "logo": null
+ },
+ {
+  "id": 406000,
+  "name": "少儿动漫",
+  "type": "数字频道",
+  "aliases": [
+   "少儿动漫"
+  ],
+  "logo": null
+ },
+ {
+  "id": 406100,
+  "name": "游戏风云",
+  "type": "数字频道",
+  "aliases": [
+   "游戏风云"
+  ],
+  "logo": null
+ }
+]

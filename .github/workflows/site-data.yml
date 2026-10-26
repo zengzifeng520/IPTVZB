@@ -1,0 +1,76 @@
+name: Update site data
+
+# 每天抓取公开直播源 → 逐条探测 → 重新生成 data/channels.json 与订阅文件。
+# 提交后 GitHub Pages 会自动重新发布（无需额外部署步骤）。
+
+on:
+  schedule:
+    # UTC 19:20 = 北京时间 03:20
+    - cron: "20 19 * * *"
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "只探测前 N 条（留空为全量）"
+        required: false
+        default: ""
+      recheck:
+        description: "忽略历史结果，全量重测（true/false）"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: site-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install requests urllib3
+
+      - name: Crawl & probe
+        env:
+          PYTHONIOENCODING: utf-8
+        run: |
+          cd spider
+          ARGS="--workers 24"
+          if [ -n "${{ github.event.inputs.limit }}" ]; then
+            ARGS="$ARGS --limit ${{ github.event.inputs.limit }}"
+          fi
+          if [ "${{ github.event.inputs.recheck }}" = "true" ]; then
+            ARGS="$ARGS --recheck"
+          fi
+          python run.py $ARGS
+
+      - name: Commit data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/channels.json data/playlist.m3u data/playlist.txt
+          if git diff --staged --quiet; then
+            echo "数据无变化，跳过提交"
+            exit 0
+          fi
+          git commit -m "chore(data): 自动更新直播源 $(date -u '+%Y-%m-%d %H:%M UTC')"
+          for i in 1 2 3 4 5; do
+            if git pull --rebase --autostash -X ours origin main && git push origin HEAD:main; then
+              echo "推送成功（第 $i 次尝试）"
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "第 $i 次推送失败，5 秒后重试"
+            sleep 5
+          done
+          echo "::error::连续 5 次推送失败"
+          exit 1

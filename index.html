@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07080c">
+<title>光影直播 · 全网直播源聚合</title>
+<meta name="description" content="聚合全网公开直播源，实时检测可用性与清晰度，支持在线播放与 M3U/TXT 订阅导出。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%238b5cf6'/><path d='M38 30l30 20-30 20z' fill='white'/></svg>">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 6h16v12H4z"/><path d="m10 9 5 3-5 3z" fill="currentColor" stroke="none"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-name" id="brandName">光影直播</span>
+        <span class="brand-sub">Live TV Index</span>
+      </span>
+    </a>
+
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+      </svg>
+      <input id="q" type="search" placeholder="搜索频道，如 CCTV-1、湖南卫视、凤凰" autocomplete="off" spellcheck="false">
+      <kbd>/</kbd>
+    </div>
+
+    <div class="top-actions">
+      <a class="btn" href="data/playlist.m3u" download title="下载 M3U 订阅文件">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 19h16"/>
+        </svg>
+        <span>订阅</span>
+      </a>
+      <a class="btn" id="repoLink" href="#" target="_blank" rel="noopener" title="GitHub 仓库">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.85.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.4 9.4 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.8-4.58 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/>
+        </svg>
+        <span>GitHub</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1>全网直播源，<em>一屏尽览</em></h1>
+    <p id="heroDesc">自动抓取公开直播源，逐条检测清晰度与播放速度，只把能用的留给你。</p>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <nav class="cats"><div class="cats-inner" id="cats"></div></nav>
+
+  <div class="section-head">
+    <h2 id="secTitle">全部频道</h2>
+    <span class="sub" id="secSub"></span>
+  </div>
+
+  <div class="grid" id="grid"></div>
+  <div id="sentinel" style="height:1px"></div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div>
+      <p><b>免责声明</b>：本站不存储、不制作、不转播任何视频内容，所有播放地址均来自互联网公开资源，版权归原权利人所有。本站仅提供技术聚合与可用性检测。</p>
+      <p>如权利人认为内容侵权，请通过仓库 Issue 联系，我们会在核实后移除相关索引。</p>
+    </div>
+    <div style="text-align:right">
+      <p>数据更新：<span id="updAt">—</span></p>
+      <p>开源地址：<a id="repoFoot" href="#">GitHub</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>
