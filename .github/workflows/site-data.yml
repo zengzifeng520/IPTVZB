@@ -86,12 +86,6 @@ jobs:
           PYTHONIOENCODING: utf-8
         run: cd spider && python regions.py
 
-      - name: Harvest hotel sources (HLS)
-        continue-on-error: true
-        env:
-          PYTHONIOENCODING: utf-8
-        run: cd spider && python hotel_pool.py
-
       - name: Generate subscriptions (all + per region)
         env:
           PYTHONIOENCODING: utf-8

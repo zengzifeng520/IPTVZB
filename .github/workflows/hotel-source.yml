@@ -1,0 +1,72 @@
+name: Hotel source refresh
+
+# 酒店源（HLS）每天固定刷新两次：北京 06:00 / 18:00
+#   拉 extract_hotel 全量 -> 逐条验活 -> 归一化聚合 -> 重建订阅
+# 和组播采集解耦：组播走 api-harvest / site-data，酒店源只在这里跑，
+# 时间固定，不再跟着采集任务漂移。
+
+on:
+  schedule:
+    # UTC 22:00 = 北京次日 06:00；UTC 10:00 = 北京 18:00
+    - cron: "0 22 * * *"
+    - cron: "0 10 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hotel-source
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Restore relay pool from state branch
+        run: bash scripts/restore_state.sh
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install requests urllib3
+
+      - name: Harvest hotel sources (HLS)
+        env:
+          PYTHONIOENCODING: utf-8
+        run: cd spider && timeout 1800 python hotel_pool.py
+
+      - name: Rebuild subscriptions
+        env:
+          PYTHONIOENCODING: utf-8
+        run: cd spider && python subs.py
+
+      - name: Commit data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/public data/proxy_hotel.json data/users.json data/free
+          [ -d data/users ] && git add -f data/users || true
+          if git diff --staged --quiet; then
+            echo "酒店源无变化，跳过提交"
+            exit 0
+          fi
+          git commit -m "chore(hotel): 刷新酒店源 $(date -u '+%Y-%m-%d %H:%M UTC')"
+          for i in 1 2 3 4 5; do
+            if git pull --rebase --autostash -X ours origin main && git push origin HEAD:main; then
+              echo "推送成功（第 $i 次尝试）"
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "第 $i 次推送失败，5 秒后重试"
+            sleep 5
+          done
+          echo "::error::连续 5 次推送失败"
+          exit 1
