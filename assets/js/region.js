@@ -210,11 +210,9 @@
       } else {
         // 免费额度：一个地区，用公共文件
         state.subPath = mine.sub;
-        el.subTitle.textContent = (r ? r.name : "") + " 订阅地址";
+        el.subTitle.textContent = (r ? r.name : "") + " 订阅地址（免费）";
         el.subDesc.textContent =
-          "免费版每个设备可选 1 个地区，现在就这一个。赞助后可随时切换全部 " +
-          state.regions.length +
-          " 个地区，并拿到专属订阅。";
+          "免费订阅是公共线路，不保证有效性和稳定性，失效后不会单独维护。想要稳定观看全部频道，赞助后可获得专属订阅。";
       }
       el.subTag.textContent = (r ? r.name : "") + " · " + mine.channels + " 频道 / " + mine.streams + " 条";
       el.subUrl.textContent = baseUrl() + state.subPath;
@@ -250,9 +248,7 @@
       el.lockBody.innerHTML =
         "<h2>免费版可以先选 1 个地区</h2>" +
         "<p>不赞助也能拿到 <b>1 个地区</b> 的订阅地址，选定后不可更改。<br>" +
-        "赞助后可随时切换全部 " +
-        state.regions.length +
-        " 个地区，并拿到专属订阅。</p>" +
+        "<b>免费订阅为公共线路，不保证有效性</b>，想稳定观看全部频道需要赞助。</p>" +
         '<button class="btn btn-primary btn-lg" type="button" data-act="pick" style="margin-top:6px">就选「' +
         esc(name) +
         "」</button>" +
@@ -266,9 +262,8 @@
       "<h2>你的免费地区是「" +
       esc(fname) +
       "」</h2>" +
-      "<p>免费版每个设备只能选 1 个地区，选定后不可更改。<br>赞助后可随时切换全部 " +
-      state.regions.length +
-      " 个地区。</p>" +
+      "<p>免费版每个设备只能选 1 个地区，选定后不可更改。<br>" +
+      "<b>免费订阅为公共线路，不保证有效性</b>，想稳定观看全部频道需要赞助。</p>" +
       '<a class="btn btn-primary btn-lg" href="region.html?r=' +
       encodeURIComponent(freeKey) +
       '" style="margin-top:6px">去看「' +
