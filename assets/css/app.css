@@ -1108,7 +1108,8 @@ input { font-family: inherit; }
 
 .btn-sm { height: 30px; padding: 0 11px; font-size: 12.5px; border-radius: 8px; }
 .btn-block { width: 100%; justify-content: center; }
-.btn-lg { height: 46px; font-size: 14.5px; font-weight: 600; border-radius: 11px; }
+.btn-lg { height: 46px; font-size: 14.5px; font-weight: 600; border-radius: 12px; }
+.auth-form .btn-block { margin-top: 4px; }
 .btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
 .pill {
@@ -1136,33 +1137,33 @@ input { font-family: inherit; }
 .auth-hero p { margin: 0; color: var(--text-2); font-size: 13.5px; }
 
 .auth-card {
-  padding: 26px;
-  border-radius: var(--r-lg);
-  background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.022));
-  border: 1px solid var(--border);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.42);
-  backdrop-filter: blur(14px);
+  padding: 30px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #0f0f13 0%, #09090c 100%);
+  border: 1px solid rgba(255, 255, 255, 0.062);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.035);
 }
 
 .auth-tabs {
   display: inline-flex; gap: 4px;
-  padding: 4px; margin-bottom: 22px;
-  border-radius: 11px;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  padding: 4px; margin-bottom: 26px;
+  border-radius: 12px;
+  background: #131316;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 .auth-tab {
-  height: 32px; padding: 0 20px;
-  border-radius: 8px;
-  font-size: 13.5px; font-weight: 600;
+  height: 34px; padding: 0 22px;
+  border-radius: 9px;
+  font-size: 14px; font-weight: 600;
   color: var(--text-3);
   transition: all 0.18s var(--ease);
 }
-.auth-tab.active { background: var(--surface-3); color: var(--text); }
+.auth-tab:hover { color: var(--text-2); }
+.auth-tab.active { background: #2b2b31; color: var(--text); }
 
-.auth-form { display: flex; flex-direction: column; gap: 16px; }
+.auth-form { display: flex; flex-direction: column; gap: 20px; }
 
-.field { display: flex; flex-direction: column; gap: 7px; }
+.field { display: flex; flex-direction: column; gap: 9px; }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .field-label {
   font-size: 12.5px; font-weight: 600; color: var(--text-2);
@@ -1171,18 +1172,24 @@ input { font-family: inherit; }
 .field-hint { font-style: normal; font-size: 11.5px; font-weight: 400; color: var(--text-3); }
 
 .field input {
-  height: 44px; padding: 0 14px;
+  height: 46px; padding: 0 15px;
   border-radius: 10px;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--border);
+  background: #0a0a0d;
+  border: 1px solid rgba(255, 255, 255, 0.085);
   color: var(--text);
-  font-size: 14px;
+  font-size: 14.5px;
   outline: none;
   transition: all 0.18s var(--ease);
   width: 100%;
+  appearance: none;
 }
-.field input::placeholder { color: var(--text-3); }
-.field input:focus { border-color: rgba(139, 92, 246, 0.6); background: rgba(0, 0, 0, 0.42); box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.14); }
+.field input::placeholder { color: #5c6172; }
+.field input:hover { border-color: rgba(255, 255, 255, 0.13); }
+.field input:focus {
+  border-color: rgba(139, 92, 246, 0.75);
+  background: #0c0c10;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
 
 .region-picker {
   display: grid;
@@ -1191,16 +1198,16 @@ input { font-family: inherit; }
 }
 .region-picker-loading { grid-column: 1/-1; padding: 16px; text-align: center; color: var(--text-3); font-size: 12.5px; }
 .region-opt {
-  display: flex; flex-direction: column; align-items: center; gap: 2px;
-  padding: 10px 6px;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 11px 6px;
   border-radius: 10px;
-  background: rgba(0, 0, 0, 0.26);
-  border: 1px solid var(--border);
+  background: #0a0a0d;
+  border: 1px solid rgba(255, 255, 255, 0.085);
   transition: all 0.16s var(--ease);
 }
-.region-opt b { font-size: 13.5px; font-weight: 600; color: var(--text-2); }
+.region-opt b { font-size: 14px; font-weight: 600; color: var(--text-2); }
 .region-opt span { font-size: 11px; color: var(--text-3); }
-.region-opt:hover { border-color: var(--border-strong); background: var(--surface-2); }
+.region-opt:hover { border-color: rgba(255, 255, 255, 0.16); background: #101015; }
 .region-opt.active {
   border-color: rgba(139, 92, 246, 0.7);
   background: rgba(139, 92, 246, 0.16);
