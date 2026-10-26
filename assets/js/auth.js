@@ -319,12 +319,29 @@
     // 纯数字（旧的手机号键）不走这条路
     if (!mySid) return Promise.resolve(false);
 
-    return fetch("data/users/" + tokenOf(mySid) + "/meta.json", { cache: "no-store" })
+    // 带时间戳绕过 Pages 的 CDN 缓存：否则刚开通/刚撤销都可能读到旧状态
+    var metaUrl =
+      "data/users/" + tokenOf(mySid) + "/meta.json?_=" + Date.now();
+    return fetch(metaUrl, { cache: "no-store" })
       .then(function (res) {
+        // 服务端明确回 404：这个赞助码从来没被开通 → 不能继续当会员
+        if (res.status === 404) return { _missing: true };
+        // 其它错误（断网、临时故障）不动本地状态，避免误伤已开通用户
         if (!res.ok) return null;
-        return res.json();
+        return res.json().catch(function () {
+          return null;
+        });
       })
       .then(function (meta) {
+        if (meta && meta._missing) {
+          if (record()) {
+            try {
+              localStorage.removeItem(K_SPONSOR);
+            } catch (e) {}
+            return true;
+          }
+          return false;
+        }
         if (!meta || !meta.ts) return false;
         var expMs = Number(meta.ts) * 1000;
         if (!expMs) return false;
