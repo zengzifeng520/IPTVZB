@@ -1,0 +1,63 @@
+#EXTM3U
+#EXTINF:-1 tvg-name="CCTV4美洲" group-title="央视频道",CCTV4美洲
+http://101.wifi98.com:9001/rtp/232.0.0.59:1234
+#EXTINF:-1 tvg-name="CCTV央视台球" group-title="央视频道",CCTV央视台球
+http://101.wifi98.com:9001/rtp/232.0.0.60:1234
+#EXTINF:-1 tvg-name="CCTV央视精品" group-title="央视频道",CCTV央视精品
+http://101.wifi98.com:9001/rtp/232.0.0.56:1234
+#EXTINF:-1 tvg-name="CCTV女性时尚" group-title="央视频道",CCTV女性时尚
+http://101.wifi98.com:9001/rtp/232.0.0.51:1234
+#EXTINF:-1 tvg-name="CCTV电视指南" group-title="央视频道",CCTV电视指南
+http://101.wifi98.com:9001/rtp/232.0.0.91:1234
+#EXTINF:-1 tvg-name="CGTN纪录" group-title="央视频道",CGTN纪录
+http://101.wifi98.com:9001/rtp/232.0.0.198:1234
+#EXTINF:-1 tvg-name="CGTN阿语" group-title="央视频道",CGTN阿语
+http://101.wifi98.com:9001/rtp/232.0.0.43:1234
+#EXTINF:-1 tvg-name="优漫卡通" group-title="卫视频道",优漫卡通
+http://101.wifi98.com:9001/rtp/232.0.0.159:1234
+#EXTINF:-1 tvg-name="厦门卫视" group-title="卫视频道",厦门卫视
+http://101.wifi98.com:9001/rtp/232.0.0.160:1234
+#EXTINF:-1 tvg-name="延边卫视" group-title="卫视频道",延边卫视
+http://101.wifi98.com:9001/rtp/232.0.0.161:1234
+#EXTINF:-1 tvg-name="北京体育" group-title="体育频道",北京体育
+http://101.wifi98.com:9001/rtp/232.0.0.162:1234
+#EXTINF:-1 tvg-name="辽宁体育" group-title="体育频道",辽宁体育
+http://101.wifi98.com:9001/rtp/232.0.0.164:1234
+#EXTINF:-1 tvg-name="辽宁影视" group-title="影视频道",辽宁影视
+http://101.wifi98.com:9001/rtp/232.0.0.25:1234
+#EXTINF:-1 tvg-name="中国教育2" group-title="国教频道",中国教育2
+http://101.wifi98.com:9001/rtp/232.0.0.238:1234
+#EXTINF:-1 tvg-name="上海纪实" group-title="地方频道",上海纪实
+http://101.wifi98.com:9001/rtp/232.0.0.132:1234
+#EXTINF:-1 tvg-name="大洼综合" group-title="地方频道",大洼综合
+http://101.wifi98.com:9001/rtp/232.0.0.146:1234
+#EXTINF:-1 tvg-name="安多藏语综合" group-title="地方频道",安多藏语综合
+http://101.wifi98.com:9001/rtp/232.0.0.105:1234
+#EXTINF:-1 tvg-name="康巴藏语综合" group-title="地方频道",康巴藏语综合
+http://101.wifi98.com:9001/rtp/232.0.0.109:1234
+#EXTINF:-1 tvg-name="抚顺教育" group-title="地方频道",抚顺教育
+http://101.wifi98.com:9001/rtp/232.0.0.145:1234
+#EXTINF:-1 tvg-name="抚顺综合" group-title="地方频道",抚顺综合
+http://101.wifi98.com:9001/rtp/232.0.0.143:1234
+#EXTINF:-1 tvg-name="沈阳新闻综合" group-title="地方频道",沈阳新闻综合
+http://101.wifi98.com:9001/rtp/232.0.0.206:1234
+#EXTINF:-1 tvg-name="爱生活" group-title="地方频道",爱生活
+http://101.wifi98.com:9001/rtp/232.0.0.148:1234
+#EXTINF:-1 tvg-name="辽宁公共" group-title="地方频道",辽宁公共
+http://101.wifi98.com:9001/rtp/232.0.0.168:1234
+#EXTINF:-1 tvg-name="辽宁北方" group-title="地方频道",辽宁北方
+http://101.wifi98.com:9001/rtp/232.0.0.151:1234
+#EXTINF:-1 tvg-name="辽宁宜佳购物" group-title="地方频道",辽宁宜佳购物
+http://101.wifi98.com:9001/rtp/232.0.0.30:1234
+#EXTINF:-1 tvg-name="辽宁教育青少" group-title="地方频道",辽宁教育青少
+http://101.wifi98.com:9001/rtp/232.0.0.241:1234
+#EXTINF:-1 tvg-name="辽宁生活" group-title="地方频道",辽宁生活
+http://101.wifi98.com:9001/rtp/232.0.0.150:1234
+#EXTINF:-1 tvg-name="辽宁经济" group-title="地方频道",辽宁经济
+http://101.wifi98.com:9001/rtp/232.0.0.156:1234
+#EXTINF:-1 tvg-name="辽宁都市" group-title="地方频道",辽宁都市
+http://101.wifi98.com:9001/rtp/232.0.0.154:1234
+#EXTINF:-1 tvg-name="辽河文化生活" group-title="地方频道",辽河文化生活
+http://101.wifi98.com:9001/rtp/232.0.0.215:1234
+#EXTINF:-1 tvg-name="辽河新闻综合" group-title="地方频道",辽河新闻综合
+http://101.wifi98.com:9001/rtp/232.0.0.214:1234
