@@ -8,8 +8,8 @@
 <title>IPTV直播源分发系统 · 全国直播源按地区取用</title>
 <meta name="description" content="全国 17 个地区直播频道与播放地址免费查看，M3U 订阅免费下载，适配 PotPlayer / VLC / TiviMate / APTV。">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%236366f1'/><stop offset='1' stop-color='%23ec4899'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='url(%23g)'/><rect x='25' y='29' width='50' height='42' rx='8' fill='%231e1b4b'/><path d='M41 40l22 10-22 10z' fill='white'/></svg>">
-<link rel="stylesheet" href="assets/css/app.css?v=20261027j">
-<script src="assets/js/theme.js?v=20261027j"></script>
+<link rel="stylesheet" href="assets/css/app.css?v=20261027k">
+<script src="assets/js/theme.js?v=20261027k"></script>
 </head>
 <body>
 
@@ -80,22 +80,10 @@
     <div class="region-grid" id="regionGrid"></div>
     <p class="region-hint">
       中转服务器大多只在本省运营商网络内可用，所以每个地区是一套独立的频道与订阅地址。
-      点你所在地区，直接看该地区的频道与订阅链接。
+      点你所在地区，直接看该地区的频道与订阅链接。<br>
+      最后一格的「酒店源」是 HLS 直连，不限地区、任何网络都能播。
     </p>
 
-    <!-- 酒店源：独立分类，不受地区限制 -->
-    <a class="hotel-entry" href="hotel.html" id="hotelEntry" hidden>
-      <span class="he-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/>
-        </svg>
-      </span>
-      <span class="he-body">
-        <span class="he-title">酒店源<em class="he-tag">不限地区</em></span>
-        <span class="he-desc">HLS 直连，任何网络都能播 · <b id="hotelNums">—</b></span>
-      </span>
-      <span class="he-go">去看看</span>
-    </a>
   </section>
 </main>
 
@@ -123,7 +111,7 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="assets/js/auth.js?v=20261027j"></script>
-<script src="assets/js/app.js?v=20261027j"></script>
+<script src="assets/js/auth.js?v=20261027k"></script>
+<script src="assets/js/app.js?v=20261027k"></script>
 </body>
 </html>

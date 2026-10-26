@@ -17,8 +17,6 @@
     previewSub: document.getElementById("previewSub"),
     navAcct: document.getElementById("navAcct"),
     updAt: document.getElementById("updAt"),
-    hotelEntry: document.getElementById("hotelEntry"),
-    hotelNums: document.getElementById("hotelNums"),
     playWelcome: document.getElementById("playWelcome"),
     playIco: document.getElementById("playIco"),
     playTxt: document.getElementById("playTxt"),
@@ -205,13 +203,33 @@
     );
   }
 
+  // 酒店源也排进地区网格（放在最后一个格子），不再单独占一条横幅
+  function hotelCard(s) {
+    return (
+      '<a class="region-card is-hotel" href="hotel.html">' +
+      '<div class="rc-head"><span class="rc-name">酒店源</span>' +
+      '<span class="rc-isp is-cyan">不限地区</span></div>' +
+      '<div class="rc-nums"><b>' +
+      (s.hotelChannels || 0) +
+      "</b> 频道<span class=\"rc-dot\">·</span><b>" +
+      (s.hotelStreams || 0) +
+      "</b> 条地址</div>" +
+      '<div class="rc-foot"><span>' +
+      (s.hotelHosts || 0) +
+      ' 台源 · HLS 直连</span><span class="rc-go">查看频道 →</span></div>' +
+      "</a>"
+    );
+  }
+
   function renderRegions() {
     if (!state.regions.length) {
       el.grid.innerHTML =
         '<div class="empty" style="grid-column:1/-1"><h3>暂无地区数据</h3><p>数据正在更新，稍后再试</p></div>';
       return;
     }
-    el.grid.innerHTML = state.regions.map(regionCard).join("");
+    var hs = (state.pub && state.pub.stats) || {};
+    el.grid.innerHTML =
+      state.regions.map(regionCard).join("") + (hs.hotelStreams ? hotelCard(hs) : "");
     el.previewSub.textContent =
       state.regions.length + " 个地区 · 每个地区一套独立的频道与订阅";
   }
@@ -251,16 +269,6 @@
 
         renderStats();
         renderRegions();
-
-        // 酒店源是独立分类：用 stats 里的数字填充入口卡片
-        var hs = res[0].stats || {};
-        if (el.hotelEntry && hs.hotelStreams) {
-          el.hotelEntry.hidden = false;
-          if (el.hotelNums) {
-            el.hotelNums.textContent =
-              (hs.hotelHosts || 0) + " 台、" + (hs.hotelChannels || 0) + " 个频道";
-          }
-        }
 
         // 账号状态条依赖 regions 长度，重新渲染一次
         renderAccount();
