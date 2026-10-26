@@ -195,7 +195,8 @@ input { font-family: inherit; }
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  margin: 2px 0 14px;
+  max-width: 680px;
+  margin: 2px auto 14px;
   padding: 16px 20px;
   border-radius: 13px;
   background: var(--surface);
@@ -953,7 +954,7 @@ input { font-family: inherit; }
 .hero-center p { margin: 0 auto; max-width: 600px; }
 
 .cta-card {
-  max-width: 720px;
+  max-width: 680px;
   margin: 0 auto 26px;
   padding: 20px;
   border-radius: var(--r-lg);
