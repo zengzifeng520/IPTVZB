@@ -7,14 +7,22 @@
 ## 工作方式
 
 ```
-Quake 测绘采集 ──► proxy_source.m3u（63 台中转服务器 / 7584 条地址）
-IPTV神器Pro接口 ─► proxy_shushu.m3u（每日增量，见下）
+proxy_source.m3u（Quake 测绘，63 台服务器 / 7584 条地址）
                         │
                         ▼
-                 udpxy.py 探测 /status
-                        │  存活 35 台
+              ① 本地探测 /status（结果缓存 3 小时）
+                        │  存活 33 台
                         ▼
-                  data/proxy.json（516 频道 / 3197 条地址）
+        ② 存活主机 → IPTV神器Pro 解析接口 → 全量频道清单
+                        │  8 台可解析 / 1665 条地址
+                        ▼
+              proxy_shushu.m3u（接口枚举结果）
+                        │
+                        ▼
+              ③ udpxy.py 合并两个源 → 频道名归一化
+                        │
+                        ▼
+                  data/proxy.json（551 频道 / 3873 条地址）
                         │
                         ▼
         tokens.py 按 Token 分配服务器 ──► data/sub/<token>.m3u
@@ -23,30 +31,37 @@ IPTV神器Pro接口 ─► proxy_shushu.m3u（每日增量，见下）
               前端：输入 Token → 查表 → 展示地址
 ```
 
-## 第二个数据源：IPTV神器Pro 接口
+全灭保护：若某次探测 0 台存活（多为网络中断），脚本降并发重测一轮，仍全灭则**不覆盖**已有 `proxy.json`，避免线上地址池被清空。
 
-除 Quake 测绘的历史数据外，还会从公开站点 `iptv.cqshushu.com` 的接口增量抓取中转服务器。全程走接口，不在本地逐 IP 扫端口：
+## 频道扩充：IPTV神器Pro 解析接口
 
-| 步骤 | 接口 | 说明 |
-|---|---|---|
-| 列表 | `index.php?t=<类型>&limit=10&page=N` | 拿 IP、类型、频道数、状态 |
-| 详情 | `index.php?p=<加密ID>&t=<类型>` | 拿 `IP:端口` |
-| 解析 | `POST iptv_channel.php` (`action=parse`) | 一次返回该服务器全部频道 + rtp 中转地址 |
+我们手上的 m3u 是「按 URL 抓到的碎片」，每台服务器只覆盖部分频道。`iptv.cqshushu.com` 提供一个解析接口，让服务器**自己报全量**频道与 rtp 地址——实测单台是 m3u 的 2~3 倍（如 `110.177.180.47:5555`：m3u 54 条 → 接口 119 条）。
 
-要点：
+因此流程改成**用自己的探测结果喂接口**，而不是信它给的 IP 列表：
 
-- 页面有 JS 挑战，需先请求带 `_js_challenge=1` 拿到 `paer_sec_token` cookie，再加 `ad_ok=1`
-- 解析接口需要签名 token：`base64("${秒}_${djb2('iptv_secret_key_2026'+秒+同样的盐)}")`，已用 Python 等价实现（`shushu_api.py`），无需 Node
-- 有较严格的频率限制，脚本内做了 429 退避与断点续抓（`data/shushu_*.json`）
-- 多数中转服务器带 ISP 白名单，只能在对应运营商网络内访问，因此抓到的地址仍要过一遍本地 `/status` 探测才算可用
+| 步骤 | 做什么 |
+|---|---|
+| ① 本地探测 | `/status` 判断哪些服务器本机真的可达（这决定地址对用户有没有用） |
+| ② 喂接口 | 只把存活主机 `IP:端口` POST 到 `iptv_channel.php`（`action=parse`），一次拿回整台服务器的频道 |
+| ③ 合并 | `shushu_import.py` 转成 `proxy_shushu.m3u`，`udpxy.py` 与 Quake 源合并去重 |
+
+接口细节：
+
+- 页面有 JS 挑战：请求带 `_js_challenge=1` 拿到 `paer_sec_token` cookie（HttpOnly，2 小时），另需 `ad_ok=1`
+- 解析接口需要签名 token：`base64("${秒}_${djb2('iptv_secret_key_2026'+秒+同样的盐)}")`，已用 Python 等价实现（`shushu_api.py`），不依赖 Node
+- 频率限制严格（429），脚本做了 45~90s 退避与断点续抓
+- 它自己列的第三方 IP 列表实测基本已死（59 个 IP 全部解析失败），所以默认不抓；需要时用 `shushu_crawl.py`
 
 ```bash
 cd spider
-python shushu_crawl.py          # 采集 → data/shushu_relays.json → data/proxy_shushu.m3u
-python shushu_crawl.py list     # 仅抓列表
-python shushu_crawl.py detail   # 仅抓端口
-python shushu_crawl.py parse    # 仅抓频道
-python shushu_crawl.py import   # 仅转 m3u
+python shushu_enrich.py            # 本地探测 → 喂解析接口 → data/shushu_ours.json
+python shushu_enrich.py --limit 5  # 只解析 5 台（调试）
+python shushu_enrich.py --force    # 忽略已有结果全部重解析
+python shushu_import.py            # 转成 data/proxy_shushu.m3u
+python udpxy.py                    # 合并两个源并汇聚（复用探测缓存）
+python tokens.py                   # 重新分发 Token 订阅
+
+python shushu_crawl.py             # 可选：抓它自己的 IP 列表（默认不开）
 ```
 
 ## 页面

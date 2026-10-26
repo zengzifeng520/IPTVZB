@@ -1,5 +1,7 @@
 #EXTM3U x-tvg-url=""
 #EXTINF:-1 tvg-name="CCTV-1" group-title="央视频道",CCTV-1
+http://116.168.44.65:10000/rtp/239.3.1.129:8008
+#EXTINF:-1 tvg-name="CCTV-1" group-title="央视频道",CCTV-1
 http://116.230.212.78:8222/rtp/233.18.204.52:5140
 #EXTINF:-1 tvg-name="CCTV-1" group-title="央视频道",CCTV-1
 http://116.230.212.78:8222/rtp/233.18.204.20:5140
@@ -32,6 +34,8 @@ http://118.77.107.10:8085/rtp/226.0.2.217:9648
 #EXTINF:-1 tvg-name="CCTV-2" group-title="央视频道",CCTV-2
 http://116.168.44.65:10000/udp/225.0.4.2:7980
 #EXTINF:-1 tvg-name="CCTV-2" group-title="央视频道",CCTV-2
+http://116.168.44.65:10000/rtp/239.3.1.60:8084
+#EXTINF:-1 tvg-name="CCTV-2" group-title="央视频道",CCTV-2
 http://116.230.212.78:8222/rtp/233.18.204.68:5140
 #EXTINF:-1 tvg-name="CCTV-2" group-title="央视频道",CCTV-2
 http://116.230.212.78:8222/rtp/233.18.204.21:5140
@@ -44,6 +48,10 @@ http://118.77.107.10:8085/rtp/226.0.2.19:8064
 #EXTINF:-1 tvg-name="CCTV-3" group-title="央视频道",CCTV-3
 http://116.168.44.65:10000/udp/225.0.4.142:7980
 #EXTINF:-1 tvg-name="CCTV-3" group-title="央视频道",CCTV-3
+http://116.168.44.65:10000/rtp/239.3.1.172:8001
+#EXTINF:-1 tvg-name="CCTV-3" group-title="央视频道",CCTV-3
+http://116.168.44.65:10000/rtp/239.3.1.193:8012
+#EXTINF:-1 tvg-name="CCTV-3" group-title="央视频道",CCTV-3
 http://116.230.212.78:8222/rtp/233.18.204.69:5140
 #EXTINF:-1 tvg-name="CCTV-3" group-title="央视频道",CCTV-3
 http://116.230.212.78:8222/rtp/233.18.204.22:5140
@@ -51,6 +59,8 @@ http://116.230.212.78:8222/rtp/233.18.204.22:5140
 http://117.172.235.44:60000/rtp/239.11.0.101:5140
 #EXTINF:-1 tvg-name="CCTV-3" group-title="央视频道",CCTV-3
 http://118.77.107.10:8085/rtp/226.0.2.20:8072
+#EXTINF:-1 tvg-name="CCTV-4" group-title="央视频道",CCTV-4
+http://116.168.44.65:10000/rtp/239.3.1.105:8092
 #EXTINF:-1 tvg-name="CCTV-4" group-title="央视频道",CCTV-4
 http://116.230.212.78:8222/rtp/233.18.204.70:5140
 #EXTINF:-1 tvg-name="CCTV-4" group-title="央视频道",CCTV-4
@@ -68,6 +78,10 @@ http://117.172.235.44:60000/rtp/239.10.0.108:5140
 #EXTINF:-1 tvg-name="CCTV-5" group-title="央视频道",CCTV-5
 http://116.168.44.65:10000/udp/225.0.4.143:7980
 #EXTINF:-1 tvg-name="CCTV-5" group-title="央视频道",CCTV-5
+http://116.168.44.65:10000/rtp/239.3.1.173:8001
+#EXTINF:-1 tvg-name="CCTV-5" group-title="央视频道",CCTV-5
+http://116.168.44.65:10000/rtp/239.3.1.89:4120
+#EXTINF:-1 tvg-name="CCTV-5" group-title="央视频道",CCTV-5
 http://116.230.212.78:8222/rtp/233.18.204.71:5140
 #EXTINF:-1 tvg-name="CCTV-5" group-title="央视频道",CCTV-5
 http://116.230.212.78:8222/rtp/233.18.204.24:5140
@@ -82,6 +96,8 @@ http://117.172.235.44:60000/rtp/239.11.0.236:5140
 #EXTINF:-1 tvg-name="CCTV-5" group-title="央视频道",CCTV-5
 http://118.77.107.10:8085/rtp/226.0.2.22:8088
 #EXTINF:-1 tvg-name="CCTV-5+" group-title="央视频道",CCTV-5+
+http://116.168.44.65:10000/rtp/239.3.1.130:8004
+#EXTINF:-1 tvg-name="CCTV-5+" group-title="央视频道",CCTV-5+
 http://116.230.212.78:8222/rtp/233.18.204.67:5140
 #EXTINF:-1 tvg-name="CCTV-5+" group-title="央视频道",CCTV-5+
 http://117.172.235.44:60000/rtp/239.11.0.241:5140
@@ -89,6 +105,8 @@ http://117.172.235.44:60000/rtp/239.11.0.241:5140
 http://117.64.100.107:4022/rtp/238.1.78.237:7768
 #EXTINF:-1 tvg-name="CCTV-6" group-title="央视频道",CCTV-6
 http://116.168.44.65:10000/udp/225.0.4.140:7980
+#EXTINF:-1 tvg-name="CCTV-6" group-title="央视频道",CCTV-6
+http://116.168.44.65:10000/rtp/239.3.1.174:8001
 #EXTINF:-1 tvg-name="CCTV-6" group-title="央视频道",CCTV-6
 http://116.230.212.78:8222/rtp/233.18.204.72:5140
 #EXTINF:-1 tvg-name="CCTV-6" group-title="央视频道",CCTV-6
@@ -102,6 +120,8 @@ http://118.77.107.10:8085/rtp/226.0.2.23:8096
 #EXTINF:-1 tvg-name="CCTV-7" group-title="央视频道",CCTV-7
 http://116.168.44.65:10000/udp/225.0.4.4:7980
 #EXTINF:-1 tvg-name="CCTV-7" group-title="央视频道",CCTV-7
+http://116.168.44.65:10000/rtp/239.3.1.61:8104
+#EXTINF:-1 tvg-name="CCTV-7" group-title="央视频道",CCTV-7
 http://116.230.212.78:8222/rtp/233.18.204.26:5140
 #EXTINF:-1 tvg-name="CCTV-7" group-title="央视频道",CCTV-7
 http://116.230.212.78:8222/rtp/233.18.204.73:5140
@@ -109,6 +129,10 @@ http://116.230.212.78:8222/rtp/233.18.204.73:5140
 http://117.172.235.44:60000/rtp/239.11.0.110:5140
 #EXTINF:-1 tvg-name="CCTV-7" group-title="央视频道",CCTV-7
 http://118.77.107.10:8085/rtp/226.0.2.159:9184
+#EXTINF:-1 tvg-name="CCTV-8" group-title="央视频道",CCTV-8
+http://116.168.44.65:10000/rtp/239.3.1.175:8001
+#EXTINF:-1 tvg-name="CCTV-8" group-title="央视频道",CCTV-8
+http://116.168.44.65:10000/rtp/239.3.1.85:4120
 #EXTINF:-1 tvg-name="CCTV-8" group-title="央视频道",CCTV-8
 http://116.230.212.78:8222/rtp/233.18.204.27:5140
 #EXTINF:-1 tvg-name="CCTV-8" group-title="央视频道",CCTV-8
@@ -122,6 +146,8 @@ http://118.77.107.10:8085/rtp/226.0.2.25:8112
 #EXTINF:-1 tvg-name="CCTV-8" group-title="央视频道",CCTV-8
 http://118.77.107.10:8085/rtp/226.0.2.211:9600
 #EXTINF:-1 tvg-name="CCTV-9" group-title="央视频道",CCTV-9
+http://116.168.44.65:10000/rtp/239.3.1.62:8112
+#EXTINF:-1 tvg-name="CCTV-9" group-title="央视频道",CCTV-9
 http://116.230.212.78:8222/rtp/233.18.204.40:5140
 #EXTINF:-1 tvg-name="CCTV-9" group-title="央视频道",CCTV-9
 http://116.230.212.78:8222/rtp/233.18.204.75:5140
@@ -131,6 +157,10 @@ http://117.172.235.44:60000/rtp/239.11.0.111:5140
 http://117.64.100.107:4022/rtp/238.1.78.240:7792
 #EXTINF:-1 tvg-name="CCTV-9" group-title="央视频道",CCTV-9
 http://118.77.107.10:8085/rtp/226.0.2.161:9200
+#EXTINF:-1 tvg-name="CCTV-10" group-title="央视频道",CCTV-10
+http://116.168.44.65:10000/rtp/239.3.1.63:8116
+#EXTINF:-1 tvg-name="CCTV-10" group-title="央视频道",CCTV-10
+http://116.168.44.65:10000/rtp/239.3.1.86:4120
 #EXTINF:-1 tvg-name="CCTV-10" group-title="央视频道",CCTV-10
 http://116.230.212.78:8222/rtp/233.18.204.29:5140
 #EXTINF:-1 tvg-name="CCTV-10" group-title="央视频道",CCTV-10
@@ -142,6 +172,8 @@ http://118.77.107.10:8085/rtp/226.0.2.27:8128
 #EXTINF:-1 tvg-name="CCTV-11" group-title="央视频道",CCTV-11
 http://116.168.44.65:10000/udp/225.0.4.7:7980
 #EXTINF:-1 tvg-name="CCTV-11" group-title="央视频道",CCTV-11
+http://116.168.44.65:10000/rtp/239.3.1.152:8120
+#EXTINF:-1 tvg-name="CCTV-11" group-title="央视频道",CCTV-11
 http://116.230.212.78:8222/rtp/233.18.204.30:5140
 #EXTINF:-1 tvg-name="CCTV-11" group-title="央视频道",CCTV-11
 http://116.230.212.78:8222/rtp/233.18.204.77:5140
@@ -151,6 +183,8 @@ http://117.172.235.44:60000/rtp/239.11.0.22:5140
 http://117.64.100.107:4022/rtp/238.1.78.206:7502
 #EXTINF:-1 tvg-name="CCTV-12" group-title="央视频道",CCTV-12
 http://116.168.44.65:10000/udp/225.0.4.8:7980
+#EXTINF:-1 tvg-name="CCTV-12" group-title="央视频道",CCTV-12
+http://116.168.44.65:10000/rtp/239.3.1.64:8124
 #EXTINF:-1 tvg-name="CCTV-12" group-title="央视频道",CCTV-12
 http://116.230.212.78:8222/rtp/233.18.204.31:5140
 #EXTINF:-1 tvg-name="CCTV-12" group-title="央视频道",CCTV-12
@@ -164,6 +198,8 @@ http://118.77.107.10:8085/rtp/226.0.2.164:9224
 #EXTINF:-1 tvg-name="CCTV-12" group-title="央视频道",CCTV-12
 http://118.77.107.10:8085/rtp/226.0.2.29:8144
 #EXTINF:-1 tvg-name="CCTV-13" group-title="央视频道",CCTV-13
+http://116.168.44.65:10000/rtp/239.3.1.124:8128
+#EXTINF:-1 tvg-name="CCTV-13" group-title="央视频道",CCTV-13
 http://116.230.212.78:8222/rtp/233.18.204.79:5140
 #EXTINF:-1 tvg-name="CCTV-13" group-title="央视频道",CCTV-13
 http://116.230.212.78:8222/rtp/233.18.204.32:5140
@@ -175,6 +211,8 @@ http://117.64.100.107:4022/rtp/238.1.79.35:4392
 http://118.77.107.10:8085/rtp/226.0.2.165:9232
 #EXTINF:-1 tvg-name="CCTV-13" group-title="央视频道",CCTV-13
 http://118.77.107.10:8085/rtp/226.0.2.30:8152
+#EXTINF:-1 tvg-name="CCTV-14" group-title="央视频道",CCTV-14
+http://116.168.44.65:10000/rtp/239.3.1.65:8132
 #EXTINF:-1 tvg-name="CCTV-14" group-title="央视频道",CCTV-14
 http://116.230.212.78:8222/rtp/233.18.204.80:5140
 #EXTINF:-1 tvg-name="CCTV-14" group-title="央视频道",CCTV-14
@@ -188,6 +226,8 @@ http://118.77.107.10:8085/rtp/226.0.2.31:8160
 #EXTINF:-1 tvg-name="CCTV-15" group-title="央视频道",CCTV-15
 http://116.168.44.65:10000/udp/225.0.4.11:7980
 #EXTINF:-1 tvg-name="CCTV-15" group-title="央视频道",CCTV-15
+http://116.168.44.65:10000/rtp/239.3.1.153:8136
+#EXTINF:-1 tvg-name="CCTV-15" group-title="央视频道",CCTV-15
 http://116.230.212.78:8222/rtp/233.18.204.81:5140
 #EXTINF:-1 tvg-name="CCTV-15" group-title="央视频道",CCTV-15
 http://116.230.212.78:8222/rtp/233.18.204.34:5140
@@ -195,6 +235,8 @@ http://116.230.212.78:8222/rtp/233.18.204.34:5140
 http://117.172.235.44:60000/rtp/239.11.0.26:5140
 #EXTINF:-1 tvg-name="CCTV-15" group-title="央视频道",CCTV-15
 http://118.77.107.10:8085/rtp/226.0.2.32:8168
+#EXTINF:-1 tvg-name="CCTV-16" group-title="央视频道",CCTV-16
+http://116.168.44.65:10000/rtp/239.3.1.184:8001
 #EXTINF:-1 tvg-name="CCTV-16" group-title="央视频道",CCTV-16
 http://116.230.212.78:8222/rtp/233.18.204.82:5140
 #EXTINF:-1 tvg-name="CCTV-16" group-title="央视频道",CCTV-16
@@ -206,6 +248,8 @@ http://118.77.107.10:8085/rtp/226.0.2.169:9264
 #EXTINF:-1 tvg-name="CCTV-17" group-title="央视频道",CCTV-17
 http://116.168.44.65:10000/udp/225.0.4.180:7980
 #EXTINF:-1 tvg-name="CCTV-17" group-title="央视频道",CCTV-17
+http://116.168.44.65:10000/rtp/239.3.1.151:8144
+#EXTINF:-1 tvg-name="CCTV-17" group-title="央视频道",CCTV-17
 http://116.230.212.78:8222/rtp/233.18.204.83:5140
 #EXTINF:-1 tvg-name="CCTV-17" group-title="央视频道",CCTV-17
 http://116.230.212.78:8222/rtp/233.18.204.35:5140
@@ -215,6 +259,10 @@ http://117.172.235.44:60000/rtp/239.11.0.107:5140
 http://117.64.100.107:4022/rtp/238.1.78.178:7296
 #EXTINF:-1 tvg-name="CCTV-17" group-title="央视频道",CCTV-17
 http://118.77.107.10:8085/rtp/226.0.2.170:9272
+#EXTINF:-1 tvg-name="CCTV4欧洲" group-title="央视频道",CCTV4欧洲
+http://116.168.44.65:10000/rtp/239.3.1.213:4220
+#EXTINF:-1 tvg-name="CCTV4美洲" group-title="央视频道",CCTV4美洲
+http://116.168.44.65:10000/rtp/239.3.1.214:4220
 #EXTINF:-1 tvg-name="CCTV世界地理" group-title="央视频道",CCTV世界地理
 http://116.230.212.78:8222/rtp/233.18.204.179:5140
 #EXTINF:-1 tvg-name="CCTV世界地理" group-title="央视频道",CCTV世界地理
@@ -296,6 +344,8 @@ http://117.64.100.107:4022/rtp/238.1.79.58:4600
 #EXTINF:-1 tvg-name="CGTN" group-title="央视频道",CGTN
 http://116.168.44.65:10000/udp/225.0.4.12:7980
 #EXTINF:-1 tvg-name="CGTN" group-title="央视频道",CGTN
+http://116.168.44.65:10000/rtp/239.3.1.215:4220
+#EXTINF:-1 tvg-name="CGTN" group-title="央视频道",CGTN
 http://116.230.212.78:8222/rtp/233.18.204.28:5140
 #EXTINF:-1 tvg-name="CGTN" group-title="央视频道",CGTN
 http://117.172.235.44:60000/rtp/239.11.0.138:5140
@@ -303,6 +353,18 @@ http://117.172.235.44:60000/rtp/239.11.0.138:5140
 http://117.172.235.44:60000/rtp/239.11.0.245:5140
 #EXTINF:-1 tvg-name="CGTN" group-title="央视频道",CGTN
 http://117.64.100.107:4022/rtp/238.1.78.50:6272
+#EXTINF:-1 tvg-name="CGTN俄语" group-title="央视频道",CGTN俄语
+http://116.168.44.65:10000/rtp/239.3.1.220:4220
+#EXTINF:-1 tvg-name="CGTN法语" group-title="央视频道",CGTN法语
+http://116.168.44.65:10000/rtp/239.3.1.218:4220
+#EXTINF:-1 tvg-name="CGTN纪录" group-title="央视频道",CGTN纪录
+http://116.168.44.65:10000/rtp/239.3.1.216:4220
+#EXTINF:-1 tvg-name="CGTN西语" group-title="央视频道",CGTN西语
+http://116.168.44.65:10000/rtp/239.3.1.217:4220
+#EXTINF:-1 tvg-name="CGTN阿语" group-title="央视频道",CGTN阿语
+http://116.168.44.65:10000/rtp/239.3.1.219:4220
+#EXTINF:-1 tvg-name="三沙卫视" group-title="卫视频道",三沙卫视
+http://116.168.44.65:10000/rtp/239.3.1.155:4120
 #EXTINF:-1 tvg-name="三沙卫视" group-title="卫视频道",三沙卫视
 http://116.230.212.78:8222/rtp/233.18.204.172:5140
 #EXTINF:-1 tvg-name="三沙卫视" group-title="卫视频道",三沙卫视
@@ -311,6 +373,8 @@ http://116.230.212.78:8222/rtp/233.18.204.149:5140
 http://117.172.235.44:60000/rtp/239.10.0.116:5140
 #EXTINF:-1 tvg-name="三沙卫视" group-title="卫视频道",三沙卫视
 http://117.64.100.107:4022/rtp/238.1.78.27:6144
+#EXTINF:-1 tvg-name="东南卫视" group-title="卫视频道",东南卫视
+http://116.168.44.65:10000/rtp/239.3.1.156:8148
 #EXTINF:-1 tvg-name="东南卫视" group-title="卫视频道",东南卫视
 http://116.230.212.78:8222/rtp/233.18.204.94:5140
 #EXTINF:-1 tvg-name="东南卫视" group-title="卫视频道",东南卫视
@@ -321,6 +385,10 @@ http://117.172.235.44:60000/rtp/239.11.0.41:5140
 http://117.64.100.107:4022/rtp/238.1.78.22:6104
 #EXTINF:-1 tvg-name="东方卫视" group-title="卫视频道",东方卫视
 http://116.168.44.65:10000/udp/225.0.4.103:7980
+#EXTINF:-1 tvg-name="东方卫视" group-title="卫视频道",东方卫视
+http://116.168.44.65:10000/rtp/239.3.1.119:3006
+#EXTINF:-1 tvg-name="东方卫视" group-title="卫视频道",东方卫视
+http://116.168.44.65:10000/rtp/239.3.1.136:8032
 #EXTINF:-1 tvg-name="东方卫视" group-title="卫视频道",东方卫视
 http://116.230.212.78:8222/rtp/233.18.204.51:5140
 #EXTINF:-1 tvg-name="东方卫视" group-title="卫视频道",东方卫视
@@ -335,6 +403,8 @@ http://117.64.100.107:4022/rtp/238.1.79.39:4428
 http://117.64.100.107:4022/rtp/238.1.78.163:7176
 #EXTINF:-1 tvg-name="东方卫视" group-title="卫视频道",东方卫视
 http://118.77.107.10:8085/rtp/226.0.2.34:8184
+#EXTINF:-1 tvg-name="云南卫视" group-title="卫视频道",云南卫视
+http://116.168.44.65:10000/rtp/239.3.1.26:8108
 #EXTINF:-1 tvg-name="云南卫视" group-title="卫视频道",云南卫视
 http://116.230.212.78:8222/rtp/233.18.204.106:5140
 #EXTINF:-1 tvg-name="云南卫视" group-title="卫视频道",云南卫视
@@ -360,6 +430,8 @@ http://117.64.100.107:4022/rtp/238.1.78.104:6704
 #EXTINF:-1 tvg-name="内蒙古卫视" group-title="卫视频道",内蒙古卫视
 http://116.168.44.65:10000/udp/225.0.4.38:7980
 #EXTINF:-1 tvg-name="内蒙古卫视" group-title="卫视频道",内蒙古卫视
+http://116.168.44.65:10000/rtp/239.3.1.43:8176
+#EXTINF:-1 tvg-name="内蒙古卫视" group-title="卫视频道",内蒙古卫视
 http://116.230.212.78:8222/rtp/233.18.204.217:5140
 #EXTINF:-1 tvg-name="内蒙古卫视" group-title="卫视频道",内蒙古卫视
 http://116.230.212.78:8222/rtp/233.18.204.141:5140
@@ -371,6 +443,12 @@ http://117.64.100.107:4022/rtp/238.1.78.103:6696
 http://118.77.107.10:8085/rtp/226.0.2.63:8416
 #EXTINF:-1 tvg-name="北京卫视" group-title="卫视频道",北京卫视
 http://116.168.44.65:10000/udp/225.0.4.17:7980
+#EXTINF:-1 tvg-name="北京卫视" group-title="卫视频道",北京卫视
+http://116.168.44.65:10000/rtp/239.3.1.140:8001
+#EXTINF:-1 tvg-name="北京卫视" group-title="卫视频道",北京卫视
+http://116.168.44.65:10000/rtp/239.3.1.139:8001
+#EXTINF:-1 tvg-name="北京卫视" group-title="卫视频道",北京卫视
+http://116.168.44.65:10000/rtp/239.3.1.241:8000
 #EXTINF:-1 tvg-name="北京卫视" group-title="卫视频道",北京卫视
 http://116.230.212.78:8222/rtp/233.18.204.209:5140
 #EXTINF:-1 tvg-name="北京卫视" group-title="卫视频道",北京卫视
@@ -392,7 +470,11 @@ http://118.77.107.10:8085/rtp/226.0.2.177:9328
 #EXTINF:-1 tvg-name="卡酷动画" group-title="卫视频道",卡酷动画
 http://118.77.107.10:8085/rtp/226.0.2.57:8368
 #EXTINF:-1 tvg-name="厦门卫视" group-title="卫视频道",厦门卫视
+http://116.168.44.65:10000/rtp/239.3.1.143:4120
+#EXTINF:-1 tvg-name="厦门卫视" group-title="卫视频道",厦门卫视
 http://117.64.100.107:4022/rtp/238.1.78.246:7840
+#EXTINF:-1 tvg-name="吉林卫视" group-title="卫视频道",吉林卫视
+http://116.168.44.65:10000/rtp/239.3.1.240:8172
 #EXTINF:-1 tvg-name="吉林卫视" group-title="卫视频道",吉林卫视
 http://116.230.212.78:8222/rtp/233.18.204.131:5140
 #EXTINF:-1 tvg-name="吉林卫视" group-title="卫视频道",吉林卫视
@@ -414,9 +496,15 @@ http://117.64.100.107:4022/rtp/238.1.78.82:6528
 #EXTINF:-1 tvg-name="哈哈炫动" group-title="卫视频道",哈哈炫动
 http://118.77.107.10:8085/rtp/226.0.2.44:8264
 #EXTINF:-1 tvg-name="嘉佳卡通" group-title="卫视频道",嘉佳卡通
+http://116.168.44.65:10000/rtp/239.3.1.147:9268
+#EXTINF:-1 tvg-name="嘉佳卡通" group-title="卫视频道",嘉佳卡通
 http://116.230.212.78:8222/rtp/233.18.204.151:5140
 #EXTINF:-1 tvg-name="嘉佳卡通" group-title="卫视频道",嘉佳卡通
 http://117.172.235.44:60000/rtp/239.11.0.203:5140
+#EXTINF:-1 tvg-name="四川卫视" group-title="卫视频道",四川卫视
+http://116.168.44.65:10000/rtp/239.3.1.131:3001
+#EXTINF:-1 tvg-name="四川卫视" group-title="卫视频道",四川卫视
+http://116.168.44.65:10000/rtp/239.3.1.29:8288
 #EXTINF:-1 tvg-name="四川卫视" group-title="卫视频道",四川卫视
 http://116.230.212.78:8222/rtp/233.18.204.225:5140
 #EXTINF:-1 tvg-name="四川卫视" group-title="卫视频道",四川卫视
@@ -435,6 +523,8 @@ http://117.64.100.107:4022/rtp/238.1.79.51:4520
 http://117.64.100.107:4022/rtp/238.1.78.30:6168
 #EXTINF:-1 tvg-name="天津卫视" group-title="卫视频道",天津卫视
 http://116.168.44.65:10000/udp/225.0.4.18:7980
+#EXTINF:-1 tvg-name="天津卫视" group-title="卫视频道",天津卫视
+http://116.168.44.65:10000/rtp/239.3.1.141:1234
 #EXTINF:-1 tvg-name="天津卫视" group-title="卫视频道",天津卫视
 http://116.230.212.78:8222/rtp/233.18.204.129:5140
 #EXTINF:-1 tvg-name="天津卫视" group-title="卫视频道",天津卫视
@@ -466,6 +556,8 @@ http://117.172.235.50:60000/udp/239.11.0.124:5140
 #EXTINF:-1 tvg-name="安徽卫视" group-title="卫视频道",安徽卫视
 http://116.168.44.65:10000/udp/225.0.4.16:7980
 #EXTINF:-1 tvg-name="安徽卫视" group-title="卫视频道",安徽卫视
+http://116.168.44.65:10000/rtp/239.3.1.211:8064
+#EXTINF:-1 tvg-name="安徽卫视" group-title="卫视频道",安徽卫视
 http://116.230.212.78:8222/rtp/233.18.204.93:5140
 #EXTINF:-1 tvg-name="安徽卫视" group-title="卫视频道",安徽卫视
 http://116.230.212.78:8222/rtp/233.18.204.127:5140
@@ -477,6 +569,10 @@ http://117.64.100.107:4022/rtp/238.1.79.27:4328
 http://117.64.100.107:4022/rtp/238.1.78.150:7072
 #EXTINF:-1 tvg-name="山东卫视" group-title="卫视频道",山东卫视
 http://116.168.44.65:10000/udp/225.0.4.20:7980
+#EXTINF:-1 tvg-name="山东卫视" group-title="卫视频道",山东卫视
+http://116.168.44.65:10000/rtp/239.3.1.144:3005
+#EXTINF:-1 tvg-name="山东卫视" group-title="卫视频道",山东卫视
+http://116.168.44.65:10000/rtp/239.3.1.209:8052
 #EXTINF:-1 tvg-name="山东卫视" group-title="卫视频道",山东卫视
 http://116.230.212.78:8222/rtp/233.18.204.228:5140
 #EXTINF:-1 tvg-name="山东卫视" group-title="卫视频道",山东卫视
@@ -495,6 +591,8 @@ http://118.77.107.10:8085/rtp/226.0.2.149:9104
 http://118.77.107.10:8085/rtp/226.0.2.51:8320
 #EXTINF:-1 tvg-name="山西卫视" group-title="卫视频道",山西卫视
 http://116.168.44.65:10000/udp/225.0.4.37:7980
+#EXTINF:-1 tvg-name="山西卫视" group-title="卫视频道",山西卫视
+http://116.168.44.65:10000/rtp/239.3.1.42:8172
 #EXTINF:-1 tvg-name="山西卫视" group-title="卫视频道",山西卫视
 http://116.230.212.78:8222/rtp/233.18.204.211:5140
 #EXTINF:-1 tvg-name="山西卫视" group-title="卫视频道",山西卫视
@@ -516,6 +614,10 @@ http://116.168.44.65:10000/udp/225.0.4.84:7980
 #EXTINF:-1 tvg-name="广东卫视" group-title="卫视频道",广东卫视
 http://116.168.44.65:10000/udp/225.0.4.102:7980
 #EXTINF:-1 tvg-name="广东卫视" group-title="卫视频道",广东卫视
+http://116.168.44.65:10000/rtp/239.3.1.203:2000
+#EXTINF:-1 tvg-name="广东卫视" group-title="卫视频道",广东卫视
+http://116.168.44.65:10000/rtp/239.3.1.142:8048
+#EXTINF:-1 tvg-name="广东卫视" group-title="卫视频道",广东卫视
 http://116.230.212.78:8222/rtp/233.18.204.218:5140
 #EXTINF:-1 tvg-name="广东卫视" group-title="卫视频道",广东卫视
 http://116.230.212.78:8222/rtp/233.18.204.88:5140
@@ -529,6 +631,8 @@ http://117.64.100.107:4022/rtp/238.1.79.25:4312
 http://117.64.100.107:4022/rtp/238.1.78.161:7160
 #EXTINF:-1 tvg-name="广东卫视" group-title="卫视频道",广东卫视
 http://118.77.107.10:8085/rtp/226.0.2.45:8272
+#EXTINF:-1 tvg-name="广西卫视" group-title="卫视频道",广西卫视
+http://116.168.44.65:10000/rtp/239.3.1.39:8300
 #EXTINF:-1 tvg-name="广西卫视" group-title="卫视频道",广西卫视
 http://116.230.212.78:8222/rtp/233.18.204.107:5140
 #EXTINF:-1 tvg-name="广西卫视" group-title="卫视频道",广西卫视
@@ -580,6 +684,10 @@ http://117.64.100.107:4022/rtp/238.1.78.110:6752
 #EXTINF:-1 tvg-name="江苏卫视" group-title="卫视频道",江苏卫视
 http://116.168.44.65:10000/udp/225.0.4.104:7980
 #EXTINF:-1 tvg-name="江苏卫视" group-title="卫视频道",江苏卫视
+http://116.168.44.65:10000/rtp/239.3.1.113:3003
+#EXTINF:-1 tvg-name="江苏卫视" group-title="卫视频道",江苏卫视
+http://116.168.44.65:10000/rtp/239.3.1.135:8028
+#EXTINF:-1 tvg-name="江苏卫视" group-title="卫视频道",江苏卫视
 http://116.230.212.78:8222/rtp/233.18.204.226:5140
 #EXTINF:-1 tvg-name="江苏卫视" group-title="卫视频道",江苏卫视
 http://116.230.212.78:8222/rtp/233.18.204.85:5140
@@ -592,6 +700,8 @@ http://117.64.100.107:4022/rtp/238.1.78.165:7192
 #EXTINF:-1 tvg-name="江苏卫视" group-title="卫视频道",江苏卫视
 http://117.64.100.107:4022/rtp/238.1.78.37:4088
 #EXTINF:-1 tvg-name="江西卫视" group-title="卫视频道",江西卫视
+http://116.168.44.65:10000/rtp/239.3.1.123:8164
+#EXTINF:-1 tvg-name="江西卫视" group-title="卫视频道",江西卫视
 http://116.230.212.78:8222/rtp/233.18.204.95:5140
 #EXTINF:-1 tvg-name="江西卫视" group-title="卫视频道",江西卫视
 http://116.230.212.78:8222/rtp/233.18.204.130:5140
@@ -599,6 +709,8 @@ http://116.230.212.78:8222/rtp/233.18.204.130:5140
 http://117.172.235.44:60000/rtp/239.11.0.42:5140
 #EXTINF:-1 tvg-name="江西卫视" group-title="卫视频道",江西卫视
 http://117.64.100.107:4022/rtp/238.1.78.26:6136
+#EXTINF:-1 tvg-name="河北卫视" group-title="卫视频道",河北卫视
+http://116.168.44.65:10000/rtp/239.3.1.148:8072
 #EXTINF:-1 tvg-name="河北卫视" group-title="卫视频道",河北卫视
 http://116.230.212.78:8222/rtp/233.18.204.140:5140
 #EXTINF:-1 tvg-name="河北卫视" group-title="卫视频道",河北卫视
@@ -612,6 +724,8 @@ http://116.168.44.65:10000/udp/225.0.4.124:7980
 #EXTINF:-1 tvg-name="河南卫视" group-title="卫视频道",河南卫视
 http://116.168.44.65:10000/udp/225.0.4.22:7980
 #EXTINF:-1 tvg-name="河南卫视" group-title="卫视频道",河南卫视
+http://116.168.44.65:10000/rtp/239.3.1.50:8184
+#EXTINF:-1 tvg-name="河南卫视" group-title="卫视频道",河南卫视
 http://116.230.212.78:8222/rtp/233.18.204.105:5140
 #EXTINF:-1 tvg-name="河南卫视" group-title="卫视频道",河南卫视
 http://116.230.212.78:8222/rtp/233.18.204.145:5140
@@ -621,6 +735,10 @@ http://117.172.235.44:60000/rtp/239.11.0.44:5140
 http://117.64.100.107:4022/rtp/238.1.79.65:4632
 #EXTINF:-1 tvg-name="河南卫视" group-title="卫视频道",河南卫视
 http://118.77.107.10:8085/rtp/226.0.2.195:9472
+#EXTINF:-1 tvg-name="浙江卫视" group-title="卫视频道",浙江卫视
+http://116.168.44.65:10000/rtp/239.3.1.114:3004
+#EXTINF:-1 tvg-name="浙江卫视" group-title="卫视频道",浙江卫视
+http://116.168.44.65:10000/rtp/239.3.1.137:8036
 #EXTINF:-1 tvg-name="浙江卫视" group-title="卫视频道",浙江卫视
 http://116.230.212.78:8222/rtp/233.18.204.84:5140
 #EXTINF:-1 tvg-name="浙江卫视" group-title="卫视频道",浙江卫视
@@ -644,6 +762,10 @@ http://117.64.100.107:4022/rtp/238.1.79.49:4504
 #EXTINF:-1 tvg-name="深圳卫视" group-title="卫视频道",深圳卫视
 http://116.168.44.65:10000/udp/225.0.4.101:7980
 #EXTINF:-1 tvg-name="深圳卫视" group-title="卫视频道",深圳卫视
+http://116.168.44.65:10000/rtp/239.3.1.202:2000
+#EXTINF:-1 tvg-name="深圳卫视" group-title="卫视频道",深圳卫视
+http://116.168.44.65:10000/rtp/239.3.1.134:8020
+#EXTINF:-1 tvg-name="深圳卫视" group-title="卫视频道",深圳卫视
 http://116.230.212.78:8222/rtp/233.18.204.219:5140
 #EXTINF:-1 tvg-name="深圳卫视" group-title="卫视频道",深圳卫视
 http://116.230.212.78:8222/rtp/233.18.204.89:5140
@@ -660,6 +782,8 @@ http://118.77.107.10:8085/rtp/226.0.2.47:8288
 #EXTINF:-1 tvg-name="湖北卫视" group-title="卫视频道",湖北卫视
 http://116.168.44.65:10000/udp/225.0.4.217:7980
 #EXTINF:-1 tvg-name="湖北卫视" group-title="卫视频道",湖北卫视
+http://116.168.44.65:10000/rtp/239.3.1.138:8044
+#EXTINF:-1 tvg-name="湖北卫视" group-title="卫视频道",湖北卫视
 http://116.230.212.78:8222/rtp/233.18.204.92:5140
 #EXTINF:-1 tvg-name="湖北卫视" group-title="卫视频道",湖北卫视
 http://116.230.212.78:8222/rtp/233.18.204.142:5140
@@ -667,6 +791,10 @@ http://116.230.212.78:8222/rtp/233.18.204.142:5140
 http://117.172.235.44:60000/rtp/239.11.0.74:5140
 #EXTINF:-1 tvg-name="湖北卫视" group-title="卫视频道",湖北卫视
 http://117.64.100.107:4022/rtp/238.1.78.168:7216
+#EXTINF:-1 tvg-name="湖南卫视" group-title="卫视频道",湖南卫视
+http://116.168.44.65:10000/rtp/239.3.1.112:3002
+#EXTINF:-1 tvg-name="湖南卫视" group-title="卫视频道",湖南卫视
+http://116.168.44.65:10000/rtp/239.3.1.132:8012
 #EXTINF:-1 tvg-name="湖南卫视" group-title="卫视频道",湖南卫视
 http://116.230.212.78:8222/rtp/233.18.204.119:5140
 #EXTINF:-1 tvg-name="湖南卫视" group-title="卫视频道",湖南卫视
@@ -700,6 +828,8 @@ http://118.77.107.10:8085/rtp/226.0.2.55:8352
 #EXTINF:-1 tvg-name="西藏卫视" group-title="卫视频道",西藏卫视
 http://116.168.44.65:10000/udp/225.0.4.42:7980
 #EXTINF:-1 tvg-name="西藏卫视" group-title="卫视频道",西藏卫视
+http://116.168.44.65:10000/rtp/239.3.1.166:8188
+#EXTINF:-1 tvg-name="西藏卫视" group-title="卫视频道",西藏卫视
 http://116.230.212.78:8222/rtp/233.18.204.222:5140
 #EXTINF:-1 tvg-name="西藏卫视" group-title="卫视频道",西藏卫视
 http://116.230.212.78:8222/rtp/233.18.204.134:5140
@@ -711,6 +841,8 @@ http://117.64.100.107:4022/rtp/238.1.78.101:6680
 http://118.77.107.10:8085/rtp/226.0.2.66:8440
 #EXTINF:-1 tvg-name="贵州卫视" group-title="卫视频道",贵州卫视
 http://116.168.44.65:10000/udp/225.0.4.175:7980
+#EXTINF:-1 tvg-name="贵州卫视" group-title="卫视频道",贵州卫视
+http://116.168.44.65:10000/rtp/239.3.1.149:8076
 #EXTINF:-1 tvg-name="贵州卫视" group-title="卫视频道",贵州卫视
 http://116.230.212.78:8222/rtp/233.18.204.144:5140
 #EXTINF:-1 tvg-name="贵州卫视" group-title="卫视频道",贵州卫视
@@ -724,6 +856,8 @@ http://118.77.107.10:8085/rtp/226.0.2.180:9352
 #EXTINF:-1 tvg-name="辽宁卫视" group-title="卫视频道",辽宁卫视
 http://116.168.44.65:10000/udp/225.0.4.19:7980
 #EXTINF:-1 tvg-name="辽宁卫视" group-title="卫视频道",辽宁卫视
+http://116.168.44.65:10000/rtp/239.3.1.210:8056
+#EXTINF:-1 tvg-name="辽宁卫视" group-title="卫视频道",辽宁卫视
 http://116.230.212.78:8222/rtp/233.18.204.96:5140
 #EXTINF:-1 tvg-name="辽宁卫视" group-title="卫视频道",辽宁卫视
 http://116.230.212.78:8222/rtp/233.18.204.126:5140
@@ -735,6 +869,8 @@ http://117.64.100.107:4022/rtp/238.1.78.21:6096
 http://118.77.107.10:8085/rtp/226.0.2.35:8192
 #EXTINF:-1 tvg-name="辽宁卫视" group-title="卫视频道",辽宁卫视
 http://118.77.107.10:8085/rtp/226.0.2.173:9296
+#EXTINF:-1 tvg-name="重庆卫视" group-title="卫视频道",重庆卫视
+http://116.168.44.65:10000/rtp/239.3.1.122:8160
 #EXTINF:-1 tvg-name="重庆卫视" group-title="卫视频道",重庆卫视
 http://116.230.212.78:8222/rtp/233.18.204.100:5140
 #EXTINF:-1 tvg-name="重庆卫视" group-title="卫视频道",重庆卫视
@@ -748,6 +884,8 @@ http://118.77.107.10:8085/rtp/226.0.2.50:8312
 #EXTINF:-1 tvg-name="金鹰卡通" group-title="卫视频道",金鹰卡通
 http://116.168.44.65:10000/udp/225.0.4.46:7980
 #EXTINF:-1 tvg-name="金鹰卡通" group-title="卫视频道",金鹰卡通
+http://116.168.44.65:10000/rtp/239.3.1.51:9252
+#EXTINF:-1 tvg-name="金鹰卡通" group-title="卫视频道",金鹰卡通
 http://116.230.212.78:8222/rtp/233.18.204.150:5140
 #EXTINF:-1 tvg-name="金鹰卡通" group-title="卫视频道",金鹰卡通
 http://116.230.212.78:8222/rtp/233.18.204.113:5140
@@ -759,6 +897,8 @@ http://117.64.100.107:4022/rtp/238.1.78.100:6672
 http://118.77.107.10:8085/rtp/226.0.2.172:9288
 #EXTINF:-1 tvg-name="金鹰卡通" group-title="卫视频道",金鹰卡通
 http://118.77.107.10:8085/rtp/226.0.2.41:8240
+#EXTINF:-1 tvg-name="陕西卫视" group-title="卫视频道",陕西卫视
+http://116.168.44.65:10000/rtp/239.3.1.41:8140
 #EXTINF:-1 tvg-name="陕西卫视" group-title="卫视频道",陕西卫视
 http://116.230.212.78:8222/rtp/233.18.204.223:5140
 #EXTINF:-1 tvg-name="陕西卫视" group-title="卫视频道",陕西卫视
@@ -772,6 +912,8 @@ http://117.172.235.50:60000/udp/239.11.0.54:5140
 #EXTINF:-1 tvg-name="陕西卫视" group-title="卫视频道",陕西卫视
 http://117.64.100.107:4022/rtp/238.1.78.88:6576
 #EXTINF:-1 tvg-name="青海卫视" group-title="卫视频道",青海卫视
+http://116.168.44.65:10000/rtp/239.3.1.44:8184
+#EXTINF:-1 tvg-name="青海卫视" group-title="卫视频道",青海卫视
 http://116.230.212.78:8222/rtp/233.18.204.112:5140
 #EXTINF:-1 tvg-name="青海卫视" group-title="卫视频道",青海卫视
 http://116.230.212.78:8222/rtp/233.18.204.133:5140
@@ -783,6 +925,8 @@ http://117.64.100.107:4022/rtp/238.1.78.102:6688
 http://118.77.107.10:8085/rtp/226.0.2.59:8384
 #EXTINF:-1 tvg-name="黑龙江卫视" group-title="卫视频道",黑龙江卫视
 http://116.168.44.65:10000/udp/225.0.4.23:7980
+#EXTINF:-1 tvg-name="黑龙江卫视" group-title="卫视频道",黑龙江卫视
+http://116.168.44.65:10000/rtp/239.3.1.133:8016
 #EXTINF:-1 tvg-name="黑龙江卫视" group-title="卫视频道",黑龙江卫视
 http://116.230.212.78:8222/rtp/233.18.204.90:5140
 #EXTINF:-1 tvg-name="黑龙江卫视" group-title="卫视频道",黑龙江卫视
@@ -807,6 +951,8 @@ http://117.64.100.107:4022/rtp/238.1.78.85:6552
 http://116.230.212.78:8222/rtp/233.18.204.58:5140
 #EXTINF:-1 tvg-name="五星体育" group-title="体育频道",五星体育
 http://116.230.212.78:8222/rtp/233.18.204.6:5140
+#EXTINF:-1 tvg-name="北京体育" group-title="体育频道",北京体育
+http://116.168.44.65:10000/rtp/239.3.1.243:8000
 #EXTINF:-1 tvg-name="咪咕体育" group-title="体育频道",咪咕体育
 http://117.172.235.44:60000/udp/239.11.0.122:5140
 #EXTINF:-1 tvg-name="咪咕体育" group-title="体育频道",咪咕体育
@@ -818,9 +964,15 @@ http://116.230.212.78:8222/rtp/233.18.204.2:5140
 #EXTINF:-1 tvg-name="东方影视" group-title="影视频道",东方影视
 http://116.230.212.78:8222/rtp/233.18.204.4:5140
 #EXTINF:-1 tvg-name="军旅剧场" group-title="影视频道",军旅剧场
+http://116.168.44.65:10000/rtp/239.3.1.69:4120
+#EXTINF:-1 tvg-name="军旅剧场" group-title="影视频道",军旅剧场
+http://116.168.44.65:10000/rtp/239.3.1.68:4120
+#EXTINF:-1 tvg-name="军旅剧场" group-title="影视频道",军旅剧场
 http://117.172.235.44:60000/rtp/239.10.0.125:5140
 #EXTINF:-1 tvg-name="军旅剧场" group-title="影视频道",军旅剧场
 http://117.172.235.44:60000/rtp/239.11.0.143:5140
+#EXTINF:-1 tvg-name="北京影视" group-title="影视频道",北京影视
+http://116.168.44.65:10000/rtp/239.3.1.158:8000
 #EXTINF:-1 tvg-name="古装剧场" group-title="影视频道",古装剧场
 http://116.168.44.65:10000/udp/225.0.4.147:7980
 #EXTINF:-1 tvg-name="古装剧场" group-title="影视频道",古装剧场
@@ -845,6 +997,8 @@ http://118.77.107.10:8085/rtp/226.0.2.237:9808
 http://118.77.107.10:8085/rtp/226.0.2.14:8024
 #EXTINF:-1 tvg-name="都市剧场" group-title="影视频道",都市剧场
 http://116.168.44.65:10000/udp/225.0.4.235:7980
+#EXTINF:-1 tvg-name="都市剧场" group-title="影视频道",都市剧场
+http://116.168.44.65:10000/rtp/239.3.1.67:4120
 #EXTINF:-1 tvg-name="都市剧场" group-title="影视频道",都市剧场
 http://116.230.212.78:8222/rtp/233.18.204.48:5140
 #EXTINF:-1 tvg-name="都市剧场" group-title="影视频道",都市剧场
@@ -886,6 +1040,8 @@ http://117.64.100.107:4022/rtp/238.1.78.154:7104
 #EXTINF:-1 tvg-name="动漫秀场" group-title="少儿频道",动漫秀场
 http://118.77.107.10:8085/rtp/226.0.2.183:9376
 #EXTINF:-1 tvg-name="卡酷少儿" group-title="少儿频道",卡酷少儿
+http://116.168.44.65:10000/rtp/239.3.1.189:8000
+#EXTINF:-1 tvg-name="卡酷少儿" group-title="少儿频道",卡酷少儿
 http://116.230.212.78:8222/rtp/233.18.204.109:5140
 #EXTINF:-1 tvg-name="卡酷少儿" group-title="少儿频道",卡酷少儿
 http://116.230.212.78:8222/rtp/233.18.204.152:5140
@@ -904,6 +1060,8 @@ http://117.64.100.107:4022/rtp/238.1.78.153:7096
 #EXTINF:-1 tvg-name="求索纪录" group-title="纪实频道",求索纪录
 http://117.172.235.44:60000/rtp/239.10.0.221:5140
 #EXTINF:-1 tvg-name="金鹰纪实" group-title="纪实频道",金鹰纪实
+http://116.168.44.65:10000/rtp/239.3.1.58:8156
+#EXTINF:-1 tvg-name="金鹰纪实" group-title="纪实频道",金鹰纪实
 http://116.230.212.78:8222/rtp/233.18.204.104:5140
 #EXTINF:-1 tvg-name="金鹰纪实" group-title="纪实频道",金鹰纪实
 http://117.172.235.44:60000/rtp/239.10.0.193:5140
@@ -911,6 +1069,8 @@ http://117.172.235.44:60000/rtp/239.10.0.193:5140
 http://117.64.100.107:4022/rtp/238.1.79.9:4184
 #EXTINF:-1 tvg-name="金鹰纪实" group-title="纪实频道",金鹰纪实
 http://118.77.107.10:8085/rtp/226.0.2.194:9464
+#EXTINF:-1 tvg-name="中国教育1" group-title="国教频道",中国教育1
+http://116.168.44.65:10000/rtp/239.3.1.57:8152
 #EXTINF:-1 tvg-name="中国教育1" group-title="国教频道",中国教育1
 http://116.230.212.78:8222/rtp/233.18.204.98:5140
 #EXTINF:-1 tvg-name="中国教育1" group-title="国教频道",中国教育1
@@ -932,6 +1092,8 @@ http://118.77.107.10:8085/rtp/226.0.2.68:8456
 #EXTINF:-1 tvg-name="中国教育1" group-title="国教频道",中国教育1
 http://118.77.107.10:8085/rtp/226.0.2.99:8704
 #EXTINF:-1 tvg-name="中国教育2" group-title="国教频道",中国教育2
+http://116.168.44.65:10000/rtp/239.3.1.54:4120
+#EXTINF:-1 tvg-name="中国教育2" group-title="国教频道",中国教育2
 http://116.230.212.78:8222/rtp/233.18.204.154:5140
 #EXTINF:-1 tvg-name="中国教育2" group-title="国教频道",中国教育2
 http://117.172.235.44:60000/rtp/239.11.0.246:5140
@@ -942,11 +1104,15 @@ http://117.172.235.44:60000/rtp/239.11.0.247:5140
 #EXTINF:-1 tvg-name="中国教育4" group-title="国教频道",中国教育4
 http://116.168.44.65:10000/udp/225.0.4.182:7980
 #EXTINF:-1 tvg-name="中国教育4" group-title="国教频道",中国教育4
+http://116.168.44.65:10000/rtp/239.3.1.56:4120
+#EXTINF:-1 tvg-name="中国教育4" group-title="国教频道",中国教育4
 http://116.230.212.78:8222/rtp/233.18.204.111:5140
 #EXTINF:-1 tvg-name="中国教育4" group-title="国教频道",中国教育4
 http://118.77.107.10:8085/rtp/226.0.2.70:8472
 #EXTINF:-1 tvg-name="成龙" group-title="明星频道",成龙
 http://116.168.44.65:10000/udp/225.0.4.170:7980
+#EXTINF:-1 tvg-name="成龙" group-title="明星频道",成龙
+http://116.168.44.65:10000/rtp/239.3.1.92:4120
 #EXTINF:-1 tvg-name="成龙" group-title="明星频道",成龙
 http://117.172.235.44:60000/udp/239.11.0.142:5140
 #EXTINF:-1 tvg-name="成龙" group-title="明星频道",成龙
@@ -975,6 +1141,8 @@ http://118.77.107.10:8085/rtp/226.0.2.103:8736
 http://118.77.107.10:8085/rtp/226.0.2.123:8896
 #EXTINF:-1 tvg-name="国学频道" group-title="数字频道",国学频道
 http://118.77.107.10:8085/rtp/226.0.2.116:8840
+#EXTINF:-1 tvg-name="快乐垂钓" group-title="数字频道",快乐垂钓
+http://116.168.44.65:10000/rtp/239.3.1.164:8001
 #EXTINF:-1 tvg-name="快乐垂钓" group-title="数字频道",快乐垂钓
 http://116.230.212.78:8222/rtp/233.18.204.42:5140
 #EXTINF:-1 tvg-name="快乐垂钓" group-title="数字频道",快乐垂钓
@@ -1040,9 +1208,13 @@ http://116.230.212.78:8222/rtp/233.18.204.5:5140
 #EXTINF:-1 tvg-name="老故事" group-title="数字频道",老故事
 http://118.77.107.10:8085/rtp/226.0.2.112:8808
 #EXTINF:-1 tvg-name="茶频道" group-title="数字频道",茶频道
+http://116.168.44.65:10000/rtp/239.3.1.165:8001
+#EXTINF:-1 tvg-name="茶频道" group-title="数字频道",茶频道
 http://116.230.212.78:8222/rtp/233.18.204.43:5140
 #EXTINF:-1 tvg-name="茶频道" group-title="数字频道",茶频道
 http://117.64.100.107:4022/rtp/238.1.79.30:4352
+#EXTINF:-1 tvg-name="财富天下" group-title="数字频道",财富天下
+http://116.168.44.65:10000/rtp/239.3.1.53:9136
 #EXTINF:-1 tvg-name="财富天下" group-title="数字频道",财富天下
 http://116.230.212.78:8222/rtp/233.18.204.41:5140
 #EXTINF:-1 tvg-name="财富天下" group-title="数字频道",财富天下
@@ -1101,6 +1273,30 @@ http://117.172.235.50:60000/udp/239.10.0.71:5140
 http://117.64.100.107:4022/rtp/238.1.78.207:7528
 #EXTINF:-1 tvg-name="利辛新闻综合" group-title="地方频道",利辛新闻综合
 http://117.64.100.107:4022/rtp/238.1.78.196:7440
+#EXTINF:-1 tvg-name="北京国际" group-title="地方频道",北京国际
+http://116.168.44.65:10000/rtp/239.3.1.235:8000
+#EXTINF:-1 tvg-name="北京密云" group-title="地方频道",北京密云
+http://116.168.44.65:10000/rtp/239.3.1.154:8001
+#EXTINF:-1 tvg-name="北京延庆" group-title="地方频道",北京延庆
+http://116.168.44.65:10000/rtp/239.3.1.187:8001
+#EXTINF:-1 tvg-name="北京房山" group-title="地方频道",北京房山
+http://116.168.44.65:10000/rtp/239.3.1.96:8001
+#EXTINF:-1 tvg-name="北京文艺" group-title="地方频道",北京文艺
+http://116.168.44.65:10000/rtp/239.3.1.242:8000
+#EXTINF:-1 tvg-name="北京新闻" group-title="地方频道",北京新闻
+http://116.168.44.65:10000/rtp/239.3.1.159:8000
+#EXTINF:-1 tvg-name="北京朝阳" group-title="地方频道",北京朝阳
+http://116.168.44.65:10000/rtp/239.3.1.163:8001
+#EXTINF:-1 tvg-name="北京生活" group-title="地方频道",北京生活
+http://116.168.44.65:10000/rtp/239.3.1.117:8000
+#EXTINF:-1 tvg-name="北京纪实科教" group-title="地方频道",北京纪实科教
+http://116.168.44.65:10000/rtp/239.3.1.115:8000
+#EXTINF:-1 tvg-name="北京财经" group-title="地方频道",北京财经
+http://116.168.44.65:10000/rtp/239.3.1.116:8000
+#EXTINF:-1 tvg-name="北京通州" group-title="地方频道",北京通州
+http://116.168.44.65:10000/rtp/239.3.1.221:8001
+#EXTINF:-1 tvg-name="北京门头沟" group-title="地方频道",北京门头沟
+http://116.168.44.65:10000/rtp/239.3.1.59:8001
 #EXTINF:-1 tvg-name="南充科教" group-title="地方频道",南充科教
 http://117.172.235.44:60000/udp/239.10.0.70:5140
 #EXTINF:-1 tvg-name="南充科教" group-title="地方频道",南充科教
@@ -1203,6 +1399,8 @@ http://117.64.100.107:4022/rtp/238.1.78.121:6840
 http://117.64.100.107:4022/rtp/238.1.78.123:6856
 #EXTINF:-1 tvg-name="寿县新闻综合" group-title="地方频道",寿县新闻综合
 http://117.64.100.107:4022/rtp/238.1.78.146:7040
+#EXTINF:-1 tvg-name="山东教育卫视" group-title="地方频道",山东教育卫视
+http://116.168.44.65:10000/rtp/239.3.1.52:4120
 #EXTINF:-1 tvg-name="山东教育卫视" group-title="地方频道",山东教育卫视
 http://117.172.235.44:60000/rtp/239.11.0.140:5140
 #EXTINF:-1 tvg-name="山东教育卫视" group-title="地方频道",山东教育卫视

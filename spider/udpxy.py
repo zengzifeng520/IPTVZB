@@ -31,6 +31,7 @@ urllib3.disable_warnings()
 
 SOURCE_FILE = config.DATA_DIR / "proxy_source.m3u"
 SOURCE_SHUSHU = config.DATA_DIR / "proxy_shushu.m3u"
+PROBE_CACHE = config.DATA_DIR / "hosts_probe.json"
 OUT_FILE = config.WEB_DATA_DIR / "proxy.json"
 
 # http://1.2.3.4:8080/udp/239.1.1.1:8000
@@ -116,6 +117,51 @@ def probe_all(hosts: list[str], workers: int = 24) -> dict[str, dict]:
     return {r["host"]: r for r in results}
 
 
+def save_probe_cache(status: dict[str, dict]) -> None:
+    """把探测结果落盘，供后续步骤（如解析接口枚举）复用，避免重复探测。"""
+    payload = {"ts": time.time(), "hosts": status}
+    PROBE_CACHE.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+
+
+def load_probe_cache(max_age: float = 3 * 3600) -> dict[str, dict] | None:
+    """读取 3 小时内的探测缓存，过期返回 None。"""
+    if not PROBE_CACHE.exists():
+        return None
+    try:
+        payload = json.loads(PROBE_CACHE.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    if time.time() - payload.get("ts", 0) > max_age:
+        return None
+    return payload.get("hosts") or None
+
+
+def probe_or_cache(hosts: list[str], workers: int = 24) -> dict[str, dict]:
+    """优先复用缓存，缺失的主机补测。
+
+    保护：若一次探测出现「全灭」（多为本机网络/沙箱临时拦截），
+    用更低并发重测一轮；仍全灭则不写缓存，避免把好数据覆盖成空。
+    """
+    cached = load_probe_cache() or {}
+    missing = [h for h in hosts if h not in cached]
+    if missing:
+        print(f"  [proxy] 探测 {len(missing)} 台（复用缓存 {len(hosts) - len(missing)} 台）")
+        fresh = probe_all(missing, workers)
+        alive_n = sum(1 for v in fresh.values() if v["alive"])
+        if alive_n == 0 and len(missing) >= 5:
+            print("  [proxy] 本轮全部不可达，疑似网络拦截，降并发重测 ...")
+            fresh = probe_all(missing, max(4, workers // 4))
+            alive_n = sum(1 for v in fresh.values() if v["alive"])
+        if alive_n == 0 and len(missing) >= 5:
+            print("  [proxy] 重测仍全灭，不更新探测缓存")
+            return {h: cached[h] for h in hosts if h in cached}
+        cached.update(fresh)
+        save_probe_cache(cached)
+    else:
+        print(f"  [proxy] 全部命中探测缓存（{len(hosts)} 台）")
+    return {h: cached[h] for h in hosts if h in cached}
+
+
 def build(probe_hosts: bool = True) -> dict:
     matcher = normalize.load_matcher(config.CATEGORIES_PATH)
     sources = [p for p in (SOURCE_FILE, SOURCE_SHUSHU) if p.exists()]
@@ -128,12 +174,16 @@ def build(probe_hosts: bool = True) -> dict:
     print(f"  [proxy] 待探测中转服务器 {len(hosts)} 台")
 
     if probe_hosts:
-        status = probe_all(hosts)
+        status = probe_or_cache(hosts)
         alive = {h for h, s in status.items() if s["alive"]}
     else:
         status = {h: {"host": h, "alive": True, "kind": "udpxy", "code": 200, "ms": 0} for h in hosts}
         alive = set(hosts)
     print(f"  [proxy] 存活 {len(alive)} / {len(hosts)} 台")
+
+    # 全灭保护：不覆盖线上已有数据（多为网络临时中断导致）
+    if probe_hosts and not alive and len(hosts) >= 5:
+        return {"error": f"探测结果全灭（0/{len(hosts)}），疑似网络中断，保留原有数据"}
 
     # 频道 → 地址（仅保留存活服务器的线路）
     by_channel: dict[str, list[dict]] = defaultdict(list)

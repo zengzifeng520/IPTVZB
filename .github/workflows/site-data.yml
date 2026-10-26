@@ -1,6 +1,7 @@
 name: Update proxy data
 
-# 每天探测公网 udpxy 中转服务器 → 汇聚频道地址池 → 生成各 Token 的专属订阅文件。
+# 每天：本地探测 udpxy 存活 → 用存活主机喂解析接口扩充频道清单
+#       → 汇聚频道地址池 → 生成各 Token 的专属订阅文件。
 # 提交后 GitHub Pages 自动重新发布。
 
 on:
@@ -11,6 +12,10 @@ on:
     inputs:
       skip_probe:
         description: "跳过服务器探测（true 则全部视为存活，仅重新生成）"
+        required: false
+        default: "false"
+      crawl_source_list:
+        description: "同时抓取 cqshushu 的第三方 IP 列表（较慢，默认关闭）"
         required: false
         default: "false"
 
@@ -35,14 +40,24 @@ jobs:
       - name: Install deps
         run: pip install requests urllib3
 
-      - name: Fetch relays from cqshushu API
+      - name: Enrich own servers via cqshushu parse API
         continue-on-error: true
         env:
           PYTHONIOENCODING: utf-8
         run: |
           cd spider
-          # 通过公开接口采集中转服务器与频道地址；失败不阻断后续流程
-          timeout 1800 python shushu_crawl.py || echo "::warning::cqshushu 采集未完成，使用既有数据"
+          # 先本地探测存活主机（结果写入缓存），再用它们喂解析接口取全量频道
+          timeout 2400 python shushu_enrich.py || echo "::warning::解析接口枚举未完成，沿用既有数据"
+          python shushu_import.py || true
+
+      - name: Crawl cqshushu source list (optional)
+        if: github.event.inputs.crawl_source_list == 'true'
+        continue-on-error: true
+        env:
+          PYTHONIOENCODING: utf-8
+        run: |
+          cd spider
+          timeout 2400 python shushu_crawl.py || echo "::warning::cqshushu 列表采集未完成"
 
       - name: Probe udpxy servers & build address pool
         env:
@@ -65,6 +80,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f data/proxy.json data/tokens.json data/sub
+          git add -f spider/data/shushu_ours.json spider/data/proxy_shushu.m3u 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "数据无变化，跳过提交"
             exit 0
