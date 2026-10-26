@@ -161,10 +161,14 @@ input { font-family: inherit; }
 .btn svg { width: 15px; height: 15px; }
 
 /* 点赞图标（内联 SVG，替代 emoji，避免字体渲染差异） */
-.ico-thumb { width: 15px; height: 15px; flex: none; display: inline-block; vertical-align: -2px; }
+.ico-thumb {
+  width: 15px; height: 15px; flex: none;
+  display: inline-block; vertical-align: -2px;
+  color: #ffc93c; filter: drop-shadow(0 1px 3px rgba(255, 180, 0, 0.35));
+}
 h2 .ico-thumb { width: 19px; height: 19px; margin-right: 3px; vertical-align: -3px; }
 .donate-thumb { display: inline-flex; align-items: center; vertical-align: -4px; }
-.donate-thumb .ico-thumb { width: 26px; height: 26px; vertical-align: 0; color: var(--accent); }
+.donate-thumb .ico-thumb { width: 28px; height: 28px; vertical-align: 0; color: #ffc93c; }
 .btn-primary {
   background: linear-gradient(135deg, var(--accent), #6d3fe0);
   border-color: transparent;
@@ -1601,7 +1605,7 @@ h2 .ico-thumb { width: 19px; height: 19px; margin-right: 3px; vertical-align: -3
 .code-card:hover { border-color: var(--border-strong); }
 /* 统一尺寸的方形容器：两张码视觉对称居中 */
 .code-img {
-  width: 128px; height: 128px;
+  width: 168px; height: 168px;
   margin: 0 auto;
   display: flex; align-items: center; justify-content: center;
   cursor: zoom-in;
@@ -1621,8 +1625,8 @@ h2 .ico-thumb { width: 19px; height: 19px; margin-right: 3px; vertical-align: -3
 .code-hint { margin-top: 6px; font-size: 11px; color: var(--accent); }
 
 @media (max-width: 420px) {
-  .donate-codes { gap: 9px; max-width: 300px; }
-  .code-img { width: 108px; height: 108px; }
+  .donate-codes { gap: 9px; max-width: 330px; }
+  .code-img { width: 138px; height: 138px; }
   .code-tip { font-size: 11px; }
 }
 
