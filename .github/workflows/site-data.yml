@@ -35,6 +35,15 @@ jobs:
       - name: Install deps
         run: pip install requests urllib3
 
+      - name: Fetch relays from cqshushu API
+        continue-on-error: true
+        env:
+          PYTHONIOENCODING: utf-8
+        run: |
+          cd spider
+          # 通过公开接口采集中转服务器与频道地址；失败不阻断后续流程
+          timeout 1800 python shushu_crawl.py || echo "::warning::cqshushu 采集未完成，使用既有数据"
+
       - name: Probe udpxy servers & build address pool
         env:
           PYTHONIOENCODING: utf-8

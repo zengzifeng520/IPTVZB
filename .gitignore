@@ -10,6 +10,11 @@ spider/data/*.db
 spider/data/*.db-wal
 spider/data/*.db-shm
 
+# cqshushu 采集中间态（断点续抓进度，每次运行重建）
+spider/data/shushu_list.json
+spider/data/shushu_detail.json
+spider/data/shushu_relays.json
+
 # 系统
 .DS_Store
 Thumbs.db

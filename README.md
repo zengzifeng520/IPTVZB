@@ -8,6 +8,7 @@
 
 ```
 Quake 测绘采集 ──► proxy_source.m3u（63 台中转服务器 / 7584 条地址）
+IPTV神器Pro接口 ─► proxy_shushu.m3u（每日增量，见下）
                         │
                         ▼
                  udpxy.py 探测 /status
@@ -20,6 +21,32 @@ Quake 测绘采集 ──► proxy_source.m3u（63 台中转服务器 / 7584 条
                         │
                         ▼
               前端：输入 Token → 查表 → 展示地址
+```
+
+## 第二个数据源：IPTV神器Pro 接口
+
+除 Quake 测绘的历史数据外，还会从公开站点 `iptv.cqshushu.com` 的接口增量抓取中转服务器。全程走接口，不在本地逐 IP 扫端口：
+
+| 步骤 | 接口 | 说明 |
+|---|---|---|
+| 列表 | `index.php?t=<类型>&limit=10&page=N` | 拿 IP、类型、频道数、状态 |
+| 详情 | `index.php?p=<加密ID>&t=<类型>` | 拿 `IP:端口` |
+| 解析 | `POST iptv_channel.php` (`action=parse`) | 一次返回该服务器全部频道 + rtp 中转地址 |
+
+要点：
+
+- 页面有 JS 挑战，需先请求带 `_js_challenge=1` 拿到 `paer_sec_token` cookie，再加 `ad_ok=1`
+- 解析接口需要签名 token：`base64("${秒}_${djb2('iptv_secret_key_2026'+秒+同样的盐)}")`，已用 Python 等价实现（`shushu_api.py`），无需 Node
+- 有较严格的频率限制，脚本内做了 429 退避与断点续抓（`data/shushu_*.json`）
+- 多数中转服务器带 ISP 白名单，只能在对应运营商网络内访问，因此抓到的地址仍要过一遍本地 `/status` 探测才算可用
+
+```bash
+cd spider
+python shushu_crawl.py          # 采集 → data/shushu_relays.json → data/proxy_shushu.m3u
+python shushu_crawl.py list     # 仅抓列表
+python shushu_crawl.py detail   # 仅抓端口
+python shushu_crawl.py parse    # 仅抓频道
+python shushu_crawl.py import   # 仅转 m3u
 ```
 
 ## 页面

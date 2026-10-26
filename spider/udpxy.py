@@ -30,6 +30,7 @@ import normalize
 urllib3.disable_warnings()
 
 SOURCE_FILE = config.DATA_DIR / "proxy_source.m3u"
+SOURCE_SHUSHU = config.DATA_DIR / "proxy_shushu.m3u"
 OUT_FILE = config.WEB_DATA_DIR / "proxy.json"
 
 # http://1.2.3.4:8080/udp/239.1.1.1:8000
@@ -37,11 +38,19 @@ PROXY_RE = re.compile(r"^(https?)://(\d+\.\d+\.\d+\.\d+):(\d+)/(?:udp|rtp)/([\d.
 EXTINF_NAME_RE = re.compile(r",([^,]*)$")
 
 
-def parse_source(path: Path = SOURCE_FILE) -> list[dict]:
-    """解析原始 m3u，返回 [{name, url, host, mcast}]。"""
-    if not path.exists():
-        print(f"  [proxy] 源文件不存在: {path}")
-        return []
+def parse_source(path: Path | list[Path] = None) -> list[dict]:
+    """解析原始 m3u（支持多个文件），返回 [{name, url, host, mcast}]。"""
+    paths = path if isinstance(path, list) else [path or SOURCE_FILE]
+    entries: list[dict] = []
+    for p in paths:
+        if not p or not Path(p).exists():
+            print(f"  [proxy] 源文件不存在: {p}")
+            continue
+        entries.extend(_parse_one(Path(p)))
+    return entries
+
+
+def _parse_one(path: Path) -> list[dict]:
     text = path.read_text(encoding="utf-8", errors="ignore")
     entries: list[dict] = []
     pending = None
@@ -109,10 +118,11 @@ def probe_all(hosts: list[str], workers: int = 24) -> dict[str, dict]:
 
 def build(probe_hosts: bool = True) -> dict:
     matcher = normalize.load_matcher(config.CATEGORIES_PATH)
-    entries = parse_source()
+    sources = [p for p in (SOURCE_FILE, SOURCE_SHUSHU) if p.exists()]
+    entries = parse_source(sources)
     if not entries:
         return {"error": "无源数据"}
-    print(f"  [proxy] 解析 {len(entries)} 条中转地址")
+    print(f"  [proxy] 解析 {len(entries)} 条中转地址（{len(sources)} 个源文件）")
 
     hosts = sorted({e["host"] for e in entries})
     print(f"  [proxy] 待探测中转服务器 {len(hosts)} 台")
