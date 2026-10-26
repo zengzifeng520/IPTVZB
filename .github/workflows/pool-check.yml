@@ -56,12 +56,6 @@ jobs:
           [ "${{ github.event.inputs.dry_run }}" = "true" ] && ARGS="$ARGS --dry-run"
           python pool_check.py $ARGS
 
-      - name: Rebuild subscriptions
-        if: github.event.inputs.dry_run != 'true'
-        env:
-          PYTHONIOENCODING: utf-8
-        run: cd spider && python subs.py
-
       - name: Commit data
         if: github.event.inputs.dry_run != 'true'
         run: |
