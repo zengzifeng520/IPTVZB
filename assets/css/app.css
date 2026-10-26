@@ -1637,6 +1637,8 @@ h2 .ico-thumb { width: 19px; height: 19px; margin-right: 3px; vertical-align: -3
   width: auto; height: auto;
   border-radius: 10px;
   background: #fff;
+  /* 裁掉裁图边缘的抗锯齿残色 */
+  clip-path: inset(1.5px round 10px);
 }
 .code-dy img { border-radius: 50%; background: transparent; }
 .code-title { margin-top: 9px; font-size: 13px; font-weight: 700; color: var(--text); }
