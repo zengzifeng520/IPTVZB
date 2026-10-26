@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f2f3f5">
+<title>酒店源 · 光影直播</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%238b5cf6'/><path d='M38 30l30 20-30 20z' fill='white'/></svg>">
+<link rel="stylesheet" href="assets/css/app.css?v=20261026x">
+<script src="assets/js/theme.js?v=20261026x"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 6h16v12H4z"/><path d="m10 9 5 3-5 3z" fill="currentColor" stroke="none"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-name">光影直播</span>
+        <span class="brand-sub">Live TV Index</span>
+      </span>
+    </a>
+    <div class="top-actions">
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题"></button>
+      <a class="btn" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px">
+          <path d="m15 18-6-6 6-6"/>
+        </svg>
+        <span>返回首页</span>
+      </a>
+      <a class="btn btn-primary" id="acctLink" href="account.html">赞助解锁</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" style="padding-top:26px">
+
+  <section class="page-summary">
+    <div class="ts-main">
+      <span class="ts-badge" id="tsBadge">—</span>
+      <h1 id="tsRegion">酒店源</h1>
+      <div class="ts-meta" id="tsMeta"></div>
+    </div>
+    <div class="ts-side" id="tsSide"></div>
+  </section>
+
+  <section class="hotel-note" id="hotelNote">
+    <div class="hotel-note-inner">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3v18M3 12h18" opacity="0"/>
+        <circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/>
+      </svg>
+      <p>酒店源是 <b>HLS 直连</b>，<b>不受地区限制</b>——任何网络、任何省份都能直接播放，所有播放器原生支持。<br>
+      来源为酒店 / 运营商的 IPTV 播控系统，稳定性略低于本省组播，但覆盖全国、即插即用。</p>
+    </div>
+  </section>
+
+  <!-- 会员：订阅交付 -->
+  <section class="subscribe" id="subSec" hidden>
+    <div class="sub-intro">
+      <h2 id="subTitle">订阅地址</h2>
+      <p id="subDesc">粘贴到 PotPlayer、VLC、TiviMate、APTV 的「订阅 / 远程列表」，自动加载全部频道与线路。</p>
+    </div>
+    <div class="sub-grid">
+      <div class="sub-card">
+        <div class="sub-top"><span class="sub-type">M3U</span><span class="sub-tag" id="subTag">酒店源</span></div>
+        <code class="sub-url" id="subUrl">—</code>
+        <div class="sub-acts">
+          <button class="btn btn-primary" id="copySub">复制地址</button>
+          <a class="btn" id="dlSub" href="#" download>下载文件</a>
+        </div>
+      </div>
+      <div class="sub-card">
+        <div class="sub-top"><span class="sub-type">服务器</span><span class="sub-tag">酒店 HLS 中转</span></div>
+        <div class="host-chips" id="hostChips"></div>
+        <div class="sub-note">所有地址都经这些酒店服务器转发，某台不可用时换其他线路即可。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 免费版：升级引导 -->
+  <section class="subscribe" id="lockSec" hidden>
+    <div class="lock-card">
+      <div class="lock-ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <div class="lock-body" id="lockBody">
+        <h2>播放地址与订阅需要赞助后获取</h2>
+        <p>
+          频道列表可以免费查看，但<b>播放地址需赞助后显示</b>。<br>
+          免费可先选酒店源订阅试用，<b>有效期 7 天</b>，到期自动失效。
+        </p>
+        <a class="btn btn-primary btn-lg" href="account.html" style="margin-top:6px">
+          去赞助解锁
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>频道地址</h2>
+      <span class="sub" id="addrSub">—</span>
+      <input class="mini-search" id="filter" type="search" placeholder="筛选频道" autocomplete="off">
+    </div>
+    <div class="addr-list" id="list"></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div class="foot-notes">
+      <p>1、本站资源由程序完成，自动化搜集组播源与酒店源，过滤低分辨率保留 1920×1080 高清，筛选播放速度优质流畅源，每小时自动巡检有效源更新、发布，覆盖全国各省市地区。</p>
+      <p>2、IPTV 频道动态源扫描处理程序，经过半年的迭代优化，Python 程序，项目开源，目前任务性能和频道质量已趋于稳定。</p>
+      <p>3、<b>免责声明</b>：本站不存储、不制作、不转播任何视频内容。播放地址由第三方中转服务器提供，本站仅做地址汇聚与可用性检测，版权归权利人所有。<br>如权利人认为内容侵权，请联系站长 V：sgifeng，核实后移除相关索引。</p>
+    </div>
+    <div class="foot-meta">
+      <p>数据更新：<span id="updAt">—</span></p>
+      <p class="foot-admin"><a href="admin.html">站长管理</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/js/auth.js?v=20261026x"></script>
+<script src="assets/js/hotel.js?v=20261026x"></script>
+</body>
+</html>

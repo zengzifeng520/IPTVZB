@@ -17,6 +17,8 @@
     previewSub: document.getElementById("previewSub"),
     navAcct: document.getElementById("navAcct"),
     updAt: document.getElementById("updAt"),
+    hotelEntry: document.getElementById("hotelEntry"),
+    hotelNums: document.getElementById("hotelNums"),
     toast: document.getElementById("toast"),
   };
 
@@ -107,8 +109,8 @@
     var items = [
       { n: s.relayHosts || 0, t: "台组播中转", accent: true },
       { n: s.hotelHosts || 0, t: "台酒店源", accent: false },
-      { n: s.channels || 0, t: "个频道", accent: false },
-      { n: s.streams || 0, t: "条播放地址", accent: false },
+      { n: s.channelsTotal || s.channels || 0, t: "个频道", accent: false },
+      { n: s.streamsTotal || s.streams || 0, t: "条播放地址", accent: false },
     ];
     el.stats.innerHTML = items
       .map(function (i) {
@@ -118,11 +120,8 @@
 
     // 首页标题里的数字跟着池子走，新增地区/频道不用再改文案
     if (el.heroNums) {
-      var nRegion = (state.regions || []).filter(function (r) {
-        return r.key !== "HOTEL";
-      }).length;
       el.heroNums.textContent =
-        nRegion + " 个地区、" + (s.channels || 0) + " 个频道";
+        (state.regions.length || 0) + " 个地区、" + (s.channelsTotal || s.channels || 0) + " 个频道";
     }
   }
 
@@ -204,6 +203,17 @@
 
         renderStats();
         renderRegions();
+
+        // 酒店源是独立分类：用 stats 里的数字填充入口卡片
+        var hs = res[0].stats || {};
+        if (el.hotelEntry && hs.hotelStreams) {
+          el.hotelEntry.hidden = false;
+          if (el.hotelNums) {
+            el.hotelNums.textContent =
+              (hs.hotelHosts || 0) + " 台、" + (hs.hotelChannels || 0) + " 个频道";
+          }
+        }
+
         // 账号状态条依赖 regions 长度，重新渲染一次
         renderAccount();
       })

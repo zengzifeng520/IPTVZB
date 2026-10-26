@@ -8,8 +8,8 @@
 <title>光影直播 · 全国直播源按地区取用</title>
 <meta name="description" content="全国 11 个地区直播频道列表免费查看，播放地址与 M3U 订阅赞助后解锁，适配 PotPlayer / VLC / TiviMate / APTV。">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%238b5cf6'/><path d='M38 30l30 20-30 20z' fill='white'/></svg>">
-<link rel="stylesheet" href="assets/css/app.css?v=20261026w">
-<script src="assets/js/theme.js?v=20261026w"></script>
+<link rel="stylesheet" href="assets/css/app.css?v=20261026x">
+<script src="assets/js/theme.js?v=20261026x"></script>
 </head>
 <body>
 
@@ -57,6 +57,20 @@
       中转服务器大多只在本省运营商网络内可用，所以每个地区是一套独立的频道与订阅地址。
       点你所在地区，直接看该地区的频道与订阅链接。
     </p>
+
+    <!-- 酒店源：独立分类，不受地区限制 -->
+    <a class="hotel-entry" href="hotel.html" id="hotelEntry" hidden>
+      <span class="he-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/>
+        </svg>
+      </span>
+      <span class="he-body">
+        <span class="he-title">酒店源<em class="he-tag">不限地区</em></span>
+        <span class="he-desc">HLS 直连，任何网络都能播 · <b id="hotelNums">—</b></span>
+      </span>
+      <span class="he-go">去看看</span>
+    </a>
   </section>
 </main>
 
@@ -76,7 +90,7 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="assets/js/auth.js?v=20261026w"></script>
-<script src="assets/js/app.js?v=20261026w"></script>
+<script src="assets/js/auth.js?v=20261026x"></script>
+<script src="assets/js/app.js?v=20261026x"></script>
 </body>
 </html>

@@ -46,6 +46,8 @@ USERS_DIR = config.WEB_DATA_DIR / "users"
 # 页面浏览用它；真正的地址只出现在每个会员自己的 data/users/<token>/ 下。
 PUBLIC_DIR = config.WEB_DATA_DIR / "public"
 PUBLIC_JSON = PUBLIC_DIR / "channels.json"
+# 酒店源独立目录：前端单独一个页面，不进地区网格
+HOTEL_PUBLIC = PUBLIC_DIR / "hotel.json"
 
 # 免费订阅：按「到期日」分目录，滚动保留未来 7 天，过期目录直接删掉
 FREE_DIR = config.WEB_DATA_DIR / "free"
@@ -90,7 +92,107 @@ def _write(path: Path, channels: list[dict], host_set: set[str] | None = None) -
     return n_chan, n_stream
 
 
-def build_free(channels: list[dict], regions: list[dict]) -> None:
+def cleanup_legacy_hotel() -> None:
+    """删掉旧版「HOTEL 当地区」留下的 HOTEL.m3u / urls/HOTEL.json。
+
+    注意：只在旧文件确实是大写命名时才删。Windows 上大小写不敏感，
+    如果只剩小写 hotel.m3u，说明已经是新版，跳过。
+    """
+    if FREE_DIR.exists():
+        for d in FREE_DIR.iterdir():
+            if not d.is_dir():
+                continue
+            for p in d.glob("*.m3u"):
+                if p.stem == "HOTEL":
+                    p.unlink(missing_ok=True)
+    if USERS_DIR.exists():
+        for d in USERS_DIR.iterdir():
+            if not d.is_dir():
+                continue
+            for p in d.glob("*.m3u"):
+                if p.stem == "HOTEL":
+                    p.unlink(missing_ok=True)
+            for p in (d / "urls").glob("*.json") if (d / "urls").exists() else []:
+                if p.stem == "HOTEL":
+                    p.unlink(missing_ok=True)
+
+
+def load_hotel() -> dict | None:
+    """读酒店源（独立模块，不塞进 regions）。
+
+    返回 {"channels": [...], "hosts": [...], "host_set": set} 或 None。
+    """
+    if not HOTEL_JSON.exists():
+        return None
+    try:
+        hd = json.loads(HOTEL_JSON.read_text(encoding="utf-8"))
+    except Exception as exc:  # noqa: BLE001
+        print(f"  [subs] 酒店源解析失败，跳过：{exc}")
+        return None
+    chans = hd.get("channels") or []
+    hosts = [x["h"] for x in (hd.get("hosts") or []) if x.get("h")]
+    if not chans or not hosts:
+        return None
+    return {"channels": chans, "hosts": hosts, "host_set": set(hosts)}
+
+
+def build_hotel_public(hotel: dict | None) -> dict:
+    """酒店源的公开目录：频道名 + 每频道条数，**没有任何地址**。"""
+    if not hotel:
+        print("  [subs] 无酒店源，跳过 public/hotel.json")
+        return {}
+    chans = hotel["channels"]
+    out = [
+        {
+            "key": c["key"],
+            "display": c.get("display") or c["key"],
+            "count": len(c.get("streams") or []),
+        }
+        for c in chans
+        if c.get("streams")
+    ]
+    out.sort(key=lambda c: (-c["count"], c["key"]))
+    total = sum(c["count"] for c in out)
+    payload = {
+        "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "stats": {
+            "hosts": len(hotel["hosts"]),
+            "channels": len(out),
+            "streams": total,
+        },
+        # 与地区一致：公开中转服务器列表（只有域名/IP:端口，不含任何播放地址）
+        "hosts": hotel["hosts"],
+        "hostCount": len(hotel["hosts"]),
+        "channels": out,
+    }
+    PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
+    HOTEL_PUBLIC.write_text(
+        json.dumps(payload, ensure_ascii=False, separators=(",", ":")),
+        encoding="utf-8",
+    )
+    print(f"  [subs] public/hotel.json  {len(out)} 频道 / {total} 条（仅名称，无地址）")
+    return payload
+
+
+def merge_channels(relay: list[dict], hotel: dict | None) -> list[dict]:
+    """全量订阅用：把酒店源频道合进组播频道（同 key 合并 streams）。"""
+    if not hotel:
+        return relay
+    by_key = {c["key"]: c for c in relay}
+    out = list(relay)
+    for hc in hotel["channels"]:
+        cur = by_key.get(hc["key"])
+        if cur is not None:
+            have = {s["u"] for s in cur["streams"]}
+            cur["streams"].extend([s for s in hc["streams"] if s["u"] not in have])
+        else:
+            out.append(hc)
+            by_key[hc["key"]] = hc
+    return out
+
+
+def build_free(channels: list[dict], regions: list[dict],
+               hotel: dict | None = None) -> None:
     """免费订阅：按「到期日」分目录，只保留未来 FREE_DAYS 天。
 
     目录名就是到期日期（YYYYMMDD），前端按「选地区当天 + 7 天」拼地址。
@@ -100,6 +202,10 @@ def build_free(channels: list[dict], regions: list[dict]) -> None:
     today = datetime.now(CST).date()
     keep: set[str] = set()
     valid = {r["key"] for r in regions}
+    has_hotel = bool(hotel and hotel.get("host_set"))
+    if has_hotel:
+        # 酒店源单独一个 hotel.m3u，不占地区位
+        valid.add("hotel")
 
     for i in range(FREE_DAYS + 1):
         key = (today + timedelta(days=i)).strftime("%Y%m%d")
@@ -115,6 +221,11 @@ def build_free(channels: list[dict], regions: list[dict]) -> None:
             c, _s = _write(target, channels, host_set)
             if not c:
                 target.write_text(EMPTY_SUB, encoding="utf-8")
+        if has_hotel:
+            target = d / "hotel.m3u"
+            c, _s = _write(target, hotel["channels"], hotel["host_set"])
+            if not c:
+                target.write_text(EMPTY_SUB, encoding="utf-8")
         # 地区已经下线的旧文件要清掉，否则会留一批 0 频道的空壳
         for p in d.iterdir():
             if p.suffix == ".m3u" and p.stem not in valid:
@@ -128,7 +239,8 @@ def build_free(channels: list[dict], regions: list[dict]) -> None:
     print(f"  [subs] 免费订阅目录 {len(keep)} 天（{min(keep)} ~ {max(keep)}）")
 
 
-def build_public(channels: list[dict], regions: list[dict]) -> dict:
+def build_public(channels: list[dict], regions: list[dict],
+                 hotel: dict | None = None) -> dict:
     """生成公开的频道目录：只有名字、分类、各地区的条数，**没有任何地址**。
 
     前端付费墙全靠它：未赞助的人就算把浏览器调试面板打开，
@@ -175,23 +287,29 @@ def build_public(channels: list[dict], regions: list[dict]) -> dict:
         if (r.get("channels") or 0) > 0
     ]
 
-    # 酒店源单列统计：首页要分开显示「组播中转」和「酒店源」
-    hotel_region = next((r for r in out_regions if r["key"] == "HOTEL"), None)
-    hotel_hosts = len(hotel_region["hosts"]) if hotel_region else 0
-    hotel_streams = hotel_region["streams"] if hotel_region else 0
+    # 酒店源是独立模块：这里只统计，不进 regions
+    h_ch = (hotel or {}).get("channels") or []
+    h_hosts = (hotel or {}).get("hosts") or []
+    hotel_streams = sum(len(c["streams"]) for c in h_ch)
+    all_keys = {c["key"] for c in channels} | {c["key"] for c in h_ch}
 
     payload = {
         "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
         "stats": {
+            # 组播中转
             "hosts": len(hosts),
             "channels": len(out_channels),
             "streams": total_streams,
             "regions": len(out_regions),
-            # 细分：组播中转 vs 酒店源
-            "relayHosts": len(hosts) - hotel_hosts,
-            "relayStreams": total_streams - hotel_streams,
-            "hotelHosts": hotel_hosts,
+            "relayHosts": len(hosts),
+            "relayStreams": total_streams,
+            # 酒店源（独立分类）
+            "hotelHosts": len(h_hosts),
+            "hotelChannels": len(h_ch),
             "hotelStreams": hotel_streams,
+            # 合计（频道去重）
+            "channelsTotal": len(all_keys),
+            "streamsTotal": total_streams + hotel_streams,
         },
         "regions": out_regions,
         "channels": out_channels,
@@ -225,7 +343,8 @@ def _write_urls(path: Path, channels: list[dict], host_set: set[str] | None = No
     return len(out)
 
 
-def build_users(channels: list[dict], regions: list[dict]) -> dict:
+def build_users(channels: list[dict], regions: list[dict],
+                hotel: dict | None = None) -> dict:
     """为 users.json 里每个用户生成专属订阅；到期用户写成空列表。
 
     users.json 结构：
@@ -300,13 +419,16 @@ def build_users(channels: list[dict], regions: list[dict]) -> dict:
             (d / "all.m3u").write_text(EMPTY_SUB, encoding="utf-8")
             for r in regions:
                 (d / f"{r['key']}.m3u").write_text(EMPTY_SUB, encoding="utf-8")
+            if hotel:
+                (d / "hotel.m3u").write_text(EMPTY_SUB, encoding="utf-8")
             # 地址表直接删掉，过期后连调试面板也看不到地址
             shutil.rmtree(d / "urls", ignore_errors=True)
             n_exp += 1
             print(f"  [subs] users/{token}  已过期 -> 订阅清空")
             continue
 
-        c, s = _write(d / "all.m3u", channels)
+        # 全量订阅含组播 + 酒店源
+        c, s = _write(d / "all.m3u", merge_channels(channels, hotel))
         for r in regions:
             host_set = set(r.get("hosts") or [])
             if not host_set:
@@ -318,6 +440,13 @@ def build_users(channels: list[dict], regions: list[dict]) -> dict:
                 continue
             # 页面展示用的地址表，按地区分开，前端只拉当前地区那份
             _write_urls(d / "urls" / f"{r['key']}.json", channels, host_set)
+        # 酒店源：独立订阅 + 独立地址表
+        if hotel:
+            hc, _hs = _write(d / "hotel.m3u", hotel["channels"], hotel["host_set"])
+            if not hc:
+                (d / "hotel.m3u").write_text(EMPTY_SUB, encoding="utf-8")
+            else:
+                _write_urls(d / "urls" / "hotel.json", hotel["channels"], hotel["host_set"])
         n_ok += 1
         left = max(0, int((ts - now) // 86400)) if ts else 0
         print(f"  [subs] users/{token}  {c:>4} 频道 / {s:>5} 条  剩 {left} 天")
@@ -347,57 +476,34 @@ def build() -> dict:
     if REGIONS_JSON.exists():
         regions = json.loads(REGIONS_JSON.read_text(encoding="utf-8")).get("regions", [])
 
-    # ---- 合并酒店源：当成第 18 个「地区」，复用全部地区/订阅/付费墙逻辑 ----
-    if HOTEL_JSON.exists():
-        try:
-            hd = json.loads(HOTEL_JSON.read_text(encoding="utf-8"))
-        except Exception as exc:  # noqa: BLE001
-            print(f"  [subs] 酒店源解析失败，跳过：{exc}")
-            hd = {}
-        h_chans = hd.get("channels") or []
-        h_hosts = [x["h"] for x in (hd.get("hosts") or []) if x.get("h")]
-        if h_chans and h_hosts:
-            # 同频道合并：CCTV1 既可能在安徽组播里，也可能在酒店源里
-            by_key = {c["key"]: c for c in channels}
-            for hc in h_chans:
-                cur = by_key.get(hc["key"])
-                if cur is not None:
-                    have = {s["u"] for s in cur["streams"]}
-                    cur["streams"].extend(
-                        [s for s in hc["streams"] if s["u"] not in have]
-                    )
-                else:
-                    channels.append(hc)
-                    by_key[hc["key"]] = hc
-            regions.append(
-                {
-                    "key": "HOTEL",
-                    "name": "酒店源",
-                    "isp": "HLS",
-                    "channels": len(h_chans),
-                    "streams": sum(len(c["streams"]) for c in h_chans),
-                    "hosts": h_hosts,
-                }
-            )
-            print(
-                "  [subs] 并入酒店源：%d 台 / %d 频道 / %d 条"
-                % (len(h_hosts), len(h_chans),
-                   sum(len(c["streams"]) for c in h_chans))
-            )
-        else:
-            print("  [subs] 酒店源为空，跳过")
+    # ---- 酒店源：独立模块（不塞进 regions，不参与地区网格）----
+    hotel = load_hotel()
+    if hotel:
+        print(
+            "  [subs] 酒店源：%d 台 / %d 频道 / %d 条（独立分类）"
+            % (len(hotel["hosts"]), len(hotel["channels"]),
+               sum(len(c["streams"]) for c in hotel["channels"]))
+        )
 
     # 公开目录：只有频道名 + 各地区条数，没有任何地址
-    payload = build_public(channels, regions)
+    payload = build_public(channels, regions, hotel)
     for r in payload["regions"]:
         print(
             f"  [subs] region/{r['key']:<4}       "
             f"{r['channels']:>4} 频道 / {r['streams']:>5} 条  {r['name']}"
         )
 
+    # 酒店源：独立的公开目录 + 独立订阅文件
+    build_hotel_public(hotel)
+
+    # 清掉旧版「HOTEL 当地区」留下的文件。必须放在生成 hotel.m3u **之前**：
+    # Windows 文件系统大小写不敏感，"HOTEL.m3u" 与 "hotel.m3u" 是同一个文件，
+    # 放到后面清理会把刚生成的一起删掉。
+    cleanup_legacy_hotel()
+
     # 传原始 regions（含频道为 0 的地区），保证每个目录下每个地区都有文件
-    build_free(channels, regions)
-    build_users(channels, regions)
+    build_free(channels, regions, hotel)
+    build_users(channels, regions, hotel)
 
     # 清掉老版本留下的公开全量文件与索引（data/sub 整个目录都不再需要）
     if SUB_DIR.exists():
