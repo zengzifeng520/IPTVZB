@@ -391,6 +391,78 @@ input { font-family: inherit; }
   box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.16);
 }
 
+/* ---------------------------------------------------------- 订阅区块 */
+.subscribe {
+  margin: 8px 0 22px;
+  padding: 18px 20px 20px;
+  border-radius: var(--r-lg);
+  background:
+    linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(34, 211, 238, 0.05)),
+    var(--surface);
+  border: 1px solid rgba(139, 92, 246, 0.22);
+  position: relative;
+  overflow: hidden;
+}
+.subscribe::after {
+  content: "";
+  position: absolute;
+  top: -60%; right: -10%;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.16), transparent 68%);
+  pointer-events: none;
+}
+.sub-intro { position: relative; z-index: 1; margin-bottom: 14px; }
+.sub-intro h2 {
+  margin: 0 0 5px;
+  font-size: 15px; font-weight: 650;
+  display: flex; align-items: center; gap: 8px;
+}
+.sub-intro h2::before {
+  content: ""; width: 3px; height: 14px; border-radius: 2px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+}
+.sub-intro p { margin: 0; font-size: 12.5px; color: var(--text-2); line-height: 1.65; }
+
+.sub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 11px;
+  position: relative;
+  z-index: 1;
+}
+.sub-card {
+  padding: 12px 14px;
+  border-radius: 11px;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+}
+.sub-top { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.sub-type {
+  font-size: 11px; font-weight: 800; letter-spacing: 1.2px;
+  color: var(--accent-2);
+}
+.sub-tag {
+  font-size: 10px; padding: 1px 6px; border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08); color: var(--text-3);
+}
+.sub-url {
+  display: block;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-size: 11.5px;
+  color: var(--text-2);
+  padding: 7px 9px;
+  border-radius: 7px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow-x: auto;
+  white-space: nowrap;
+  margin-bottom: 10px;
+  user-select: all;
+}
+.sub-acts { display: flex; gap: 7px; }
+.sub-acts .btn { height: 31px; font-size: 12px; padding: 0 11px; }
+
 /* ---------------------------------------------------------- 加载/空态 */
 .skeleton {
   border-radius: var(--r);
@@ -425,6 +497,98 @@ input { font-family: inherit; }
 .foot a { color: var(--text-2); border-bottom: 1px solid transparent; }
 .foot a:hover { color: var(--accent-2); border-color: currentColor; }
 .foot p { margin: 0 0 6px; max-width: 620px; line-height: 1.7; }
+
+/* ============================================================
+   频道详情页（线路列表，不含播放器）
+   ============================================================ */
+.channel-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 4px 0 18px;
+  flex-wrap: wrap;
+}
+.channel-logo {
+  width: 74px; height: 74px;
+  border-radius: 16px;
+  display: grid; place-items: center;
+  background: linear-gradient(150deg, hsl(var(--h) 40% 22%), hsl(calc(var(--h) + 45) 44% 12%));
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.8);
+}
+.channel-logo .ch-logo-text { font-size: 15px; padding: 0 6px; }
+.channel-info { flex: 1; min-width: 200px; }
+.channel-info h1 {
+  margin: 0 0 6px;
+  font-size: 22px; font-weight: 750; letter-spacing: -0.5px;
+}
+.channel-meta {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 12.5px; color: var(--text-3);
+}
+
+.line-list { }
+.line-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+  transition: background 0.15s;
+}
+.line-item:last-child { border-bottom: none; }
+.line-item:hover { background: var(--surface-2); }
+.line-idx {
+  width: 24px; height: 24px;
+  border-radius: 7px;
+  display: grid; place-items: center;
+  font-size: 11px; font-weight: 700;
+  background: var(--surface-3);
+  color: var(--text-2);
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+.line-body { flex: 1; min-width: 0; }
+.line-title {
+  font-size: 12.5px;
+  font-weight: 550;
+  margin-bottom: 3px;
+  display: flex; align-items: center; gap: 7px; flex-wrap: wrap;
+}
+.line-url {
+  display: block;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-size: 11px;
+  color: var(--text-3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.line-copy {
+  flex-shrink: 0;
+  height: 28px; padding: 0 10px;
+  border-radius: 7px;
+  font-size: 11.5px;
+  background: var(--surface-3);
+  color: var(--text-2);
+  border: 1px solid transparent;
+  transition: all 0.15s;
+}
+.line-copy:hover {
+  background: rgba(139, 92, 246, 0.22);
+  color: #fff;
+  border-color: rgba(139, 92, 246, 0.4);
+}
+.line-badge {
+  font-size: 10.5px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(52, 211, 153, 0.13);
+  color: #6ee7b7;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
 
 /* ============================================================
    播放页

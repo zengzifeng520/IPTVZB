@@ -69,6 +69,36 @@
     toast._t = setTimeout(() => el.toast.classList.remove("show"), 2200);
   }
 
+  function copyText(text, okMsg) {
+    const done = () => toast(okMsg || "已复制");
+    const fallback = () => {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); done(); } catch (e) { toast("复制失败，请手动选择"); }
+      document.body.removeChild(ta);
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(done).catch(fallback);
+    } else { fallback(); }
+  }
+
+  // 订阅地址按当前部署位置生成绝对路径，复制到播放器可直接用
+  function initSubscribe() {
+    const base = location.origin + location.pathname.replace(/[^/]*$/, "");
+    document.querySelectorAll("[data-sub]").forEach((node) => {
+      node.textContent = base + "data/" + node.dataset.sub;
+    });
+    document.querySelectorAll("[data-copy]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        copyText(base + "data/" + btn.dataset.copy, "订阅地址已复制");
+      });
+    });
+  }
+
   function esc(s) {
     return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   }
@@ -137,11 +167,13 @@
   function cardHTML(ch) {
     const q = ch.best.q;
     const n = ch.streams.length;
-    return `<a class="ch" href="watch.html?c=${encodeURIComponent(ch.key)}" data-key="${esc(ch.key)}">
+    return `<a class="ch" href="channel.html?c=${encodeURIComponent(ch.key)}" data-key="${esc(ch.key)}">
       <div class="ch-logo" style="--h:${hashHue(ch.key)}">
         ${logoHTML(ch)}
         <div class="ch-play"><span>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 6h11M3 12h11M3 18h7"/><path d="m16 9.5 5 2.5-5 2.5z" fill="currentColor" stroke="none"/>
+          </svg>
         </span></div>
       </div>
       <div class="ch-info">
@@ -272,6 +304,7 @@
       state.q = qParam;
     }
 
+    initSubscribe();
     renderStats();
     renderCats();
     renderList(true);
