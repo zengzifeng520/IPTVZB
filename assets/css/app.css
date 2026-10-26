@@ -1663,3 +1663,10 @@ input { font-family: inherit; }
   border: 1px dashed rgba(251, 191, 36, 0.4); border-radius: 10px;
   user-select: all;
 }
+
+/* 页脚三条说明（程序采集 / 开源说明 / 免责声明） */
+.foot-notes { flex: 1 1 100%; }
+.foot-notes p { max-width: none; margin: 0 0 8px; }
+.foot-notes p:last-child { margin-bottom: 0; }
+.foot-notes b { color: var(--text-2); }
+.foot-meta { margin-left: auto; text-align: right; }
