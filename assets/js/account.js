@@ -468,24 +468,16 @@
   syncPrice();
   renderHead();
 
-  fetch("data/regions.json", { cache: "no-cache" })
-    .then(function (r) {
-      return r.ok ? r.json() : { regions: [] };
-    })
-    .then(function (d) {
-      state.regions = d.regions || [];
-      renderHead();
-    })
-    .catch(function () {});
-
   function loadSubs() {
-    fetch("data/sub/index.json", { cache: "no-cache" })
+    fetch("data/public/channels.json", { cache: "no-cache" })
       .then(function (r) {
         if (!r.ok) throw new Error("HTTP " + r.status);
         return r.json();
       })
       .then(function (d) {
-        state.subs = d;
+        state.subs = { all: d.stats || {}, regions: d.regions || [] };
+        state.regions = d.regions || [];
+        renderHead();
         renderSubs();
         checkSubReady();
         renderCover();

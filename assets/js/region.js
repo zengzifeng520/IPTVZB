@@ -115,13 +115,34 @@
 
   /* ---------------------------------------------------------- 渲染 */
 
+  /** 会员的地址表：只拉当前地区那一份，几百 KB 以内 */
+  function loadUrls(key) {
+    var tok = state.user && state.user.sid ? window.IVAUTH.tokenOf(state.user.sid) : "";
+    if (!tok) return;
+    fetch("data/users/" + tok + "/urls/" + key + ".json", { cache: "no-store" })
+      .then(function (r) {
+        return r.ok ? r.json() : null;
+      })
+      .then(function (m) {
+        if (state.regionKey !== key) return;
+        state.urls = m || {};
+        state.channels.forEach(function (c) {
+          var arr = state.urls[c.key] || [];
+          c.streams = arr.map(function (p) {
+            return { h: p[0], u: p[1] };
+          });
+        });
+        renderSummary();
+        renderList();
+      })
+      .catch(function () {});
+  }
+
   function renderSummary() {
     var r = regionByKey(state.regionKey);
     var name = r ? r.name : "—";
     var nChan = state.channels.length;
-    var nStream = state.channels.reduce(function (n, c) {
-      return n + c.streams.length;
-    }, 0);
+    var nStream = r ? r.streams || 0 : 0;
     var nHost = r ? (r.hosts || []).length : 0;
 
     el.badge.textContent = isMember()
@@ -305,9 +326,7 @@
 
     var r = regionByKey(state.regionKey);
     var scope = r ? r.name + " · " : "";
-    var total = state.channels.reduce(function (n, c) {
-      return n + c.streams.length;
-    }, 0);
+    var total = regionByKey(state.regionKey) ? regionByKey(state.regionKey).streams || 0 : 0;
     el.addrSub.textContent = q
       ? scope + "匹配 " + list.length + " 个频道"
       : scope + state.channels.length + " 个频道 / " + total + " 条地址";
@@ -334,7 +353,7 @@
             esc(c.type || "") +
             "</span>" +
             '<span class="addr-count">' +
-            c.streams.length +
+            (c.n || c.streams.length) +
             " 条</span></summary>" +
             '<div class="addr-urls"><div style="padding:12px 14px;font-size:13px;opacity:.72">' +
             "播放地址需赞助后显示 · " +
@@ -396,26 +415,29 @@
     }
 
     state.regionKey = key;
-    var hostSet = {};
-    (r.hosts || []).forEach(function (h) {
-      hostSet[h] = 1;
-    });
 
-    state.channels = state.proxy.channels
-      .map(function (ch) {
-        var picked = ch.streams.filter(function (s) {
-          return hostSet[s.h];
-        });
-        return picked.length
-          ? { key: ch.key, display: ch.display, type: ch.type, streams: picked }
-          : null;
+    // 公开目录里只有名字和条数；地址由会员自己的 urls/<地区>.json 提供
+    state.channels = (state.pub.channels || [])
+      .filter(function (ch) {
+        return ch.regions && ch.regions[key];
       })
-      .filter(Boolean);
+      .map(function (ch) {
+        return {
+          key: ch.key,
+          display: ch.display,
+          type: ch.type,
+          n: ch.regions[key],
+          streams: [],
+        };
+      });
+    state.urls = null;
 
     renderSummary();
     renderChips();
     renderSubscribe();
     renderList();
+
+    if (isMember()) loadUrls(key);
 
     var url = new URL(location.href);
     url.searchParams.set("r", key);
@@ -488,32 +510,21 @@
         el.acctLink.textContent = state.user.member ? "我的订阅" : "赞助解锁";
       })
       .then(function () {
-        return Promise.all([
-          fetch("data/proxy.json", { cache: "no-cache" }).then(function (r) {
-            if (!r.ok) throw new Error("proxy.json HTTP " + r.status);
-            return r.json();
-          }),
-          fetch("data/regions.json", { cache: "no-cache" }).then(function (r) {
-            if (!r.ok) throw new Error("regions.json HTTP " + r.status);
-            return r.json();
-          }),
-          fetch("data/sub/index.json", { cache: "no-cache" })
-            .then(function (r) {
-              return r.ok ? r.json() : null;
-            })
-            .catch(function () {
-              return null;
-            }),
-        ]);
+        // 公开目录：只有频道名和各地区条数，不含地址
+        return fetch("data/public/channels.json", { cache: "no-cache" }).then(function (r) {
+          if (!r.ok) throw new Error("channels.json HTTP " + r.status);
+          return r.json();
+        });
       })
-      .then(function (res) {
-        state.proxy = res[0];
-        state.regions = (res[1].regions || []).slice().sort(function (a, b) {
+      .then(function (pub) {
+        state.pub = pub;
+        state.regions = (pub.regions || []).slice().sort(function (a, b) {
           return b.streams - a.streams;
         });
-        state.subs = res[2];
+        state.subs = { all: pub.stats || {}, regions: pub.regions || [] };
+        state.proxy = { stats: pub.stats || {}, generated_at: pub.generated_at };
 
-        if (el.updAt) el.updAt.textContent = state.proxy.generated_at || "—";
+        if (el.updAt) el.updAt.textContent = pub.generated_at || "—";
 
         if (!state.regions.length) return fail("地区数据为空", "请稍后刷新重试");
 

@@ -39,6 +39,11 @@ INDEX_JSON = SUB_DIR / "index.json"
 USERS_JSON = config.WEB_DATA_DIR / "users.json"
 USERS_DIR = config.WEB_DATA_DIR / "users"
 
+# 公开数据：只有频道名/分类/条数，**不含任何播放地址和服务器 IP**。
+# 页面浏览用它；真正的地址只出现在每个会员自己的 data/users/<token>/ 下。
+PUBLIC_DIR = config.WEB_DATA_DIR / "public"
+PUBLIC_JSON = PUBLIC_DIR / "channels.json"
+
 # 免费订阅：按「到期日」分目录，滚动保留未来 7 天，过期目录直接删掉
 FREE_DIR = config.WEB_DATA_DIR / "free"
 FREE_DAYS = 7
@@ -120,6 +125,93 @@ def build_free(channels: list[dict], regions: list[dict]) -> None:
     print(f"  [subs] 免费订阅目录 {len(keep)} 天（{min(keep)} ~ {max(keep)}）")
 
 
+def build_public(channels: list[dict], regions: list[dict]) -> dict:
+    """生成公开的频道目录：只有名字、分类、各地区的条数，**没有任何地址**。
+
+    前端付费墙全靠它：未赞助的人就算把浏览器调试面板打开，
+    拿到的也只有「CCTV-1 央视频道 安徽 3 条」这种信息，看不到 host 和 url。
+    """
+    region_of_host: dict[str, str] = {}
+    for r in regions:
+        for h in r.get("hosts") or []:
+            region_of_host[h] = r["key"]
+
+    out_channels = []
+    total_streams = 0
+    for ch in channels:
+        per: dict[str, int] = {}
+        for s in ch["streams"]:
+            key = region_of_host.get(s["h"])
+            if not key:
+                continue
+            per[key] = per.get(key, 0) + 1
+            total_streams += 1
+        if not per:
+            continue
+        out_channels.append(
+            {
+                "key": ch["key"],
+                "display": ch.get("display") or ch["key"],
+                "type": ch.get("type") or "",
+                "regions": per,
+            }
+        )
+
+    hosts = sorted({h for r in regions for h in (r.get("hosts") or [])})
+    out_regions = [
+        {
+            "key": r["key"],
+            "name": r["name"],
+            "isp": r.get("isp") or "",
+            "channels": r.get("channels") or 0,
+            "streams": r.get("streams") or 0,
+            "hosts": r.get("hosts") or [],
+            "hostCount": len(r.get("hosts") or []),
+        }
+        for r in regions
+        if (r.get("channels") or 0) > 0
+    ]
+
+    payload = {
+        "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "stats": {
+            "hosts": len(hosts),
+            "channels": len(out_channels),
+            "streams": total_streams,
+            "regions": len(out_regions),
+        },
+        "regions": out_regions,
+        "channels": out_channels,
+    }
+    PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
+    PUBLIC_JSON.write_text(
+        json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8"
+    )
+    print(
+        f"  [subs] public/channels.json  {len(out_channels)} 频道 / "
+        f"{total_streams} 条（仅名称，无地址）"
+    )
+    return payload
+
+
+def _write_urls(path: Path, channels: list[dict], host_set: set[str] | None = None) -> int:
+    """写某个会员某个地区的地址表：{频道key: [[host, url], ...]}"""
+    out: dict[str, list] = {}
+    for ch in channels:
+        arr = [
+            [s["h"], s["u"]]
+            for s in ch["streams"]
+            if host_set is None or s["h"] in host_set
+        ]
+        if arr:
+            out[ch["key"]] = arr
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8"
+    )
+    return len(out)
+
+
 def build_users(channels: list[dict], regions: list[dict]) -> dict:
     """为 users.json 里每个用户生成专属订阅；到期用户写成空列表。
 
@@ -195,6 +287,8 @@ def build_users(channels: list[dict], regions: list[dict]) -> dict:
             (d / "all.m3u").write_text(EMPTY_SUB, encoding="utf-8")
             for r in regions:
                 (d / f"{r['key']}.m3u").write_text(EMPTY_SUB, encoding="utf-8")
+            # 地址表直接删掉，过期后连调试面板也看不到地址
+            shutil.rmtree(d / "urls", ignore_errors=True)
             n_exp += 1
             print(f"  [subs] users/{token}  已过期 -> 订阅清空")
             continue
@@ -208,6 +302,9 @@ def build_users(channels: list[dict], regions: list[dict]) -> dict:
             rc, rs = _write(d / f"{r['key']}.m3u", channels, host_set)
             if not rc:
                 (d / f"{r['key']}.m3u").write_text(EMPTY_SUB, encoding="utf-8")
+                continue
+            # 页面展示用的地址表，按地区分开，前端只拉当前地区那份
+            _write_urls(d / "urls" / f"{r['key']}.json", channels, host_set)
         n_ok += 1
         left = max(0, int((ts - now) // 86400)) if ts else 0
         print(f"  [subs] users/{token}  {c:>4} 频道 / {s:>5} 条  剩 {left} 天")
@@ -237,71 +334,22 @@ def build() -> dict:
     if REGIONS_JSON.exists():
         regions = json.loads(REGIONS_JSON.read_text(encoding="utf-8")).get("regions", [])
 
-    # 全量：只在内存里统计，**不再落盘成公开文件**。
-    # data/sub/all.m3u 这种文件放在仓库里等于把 4147 条地址免费公开，
-    # 谁拿到 URL 都能直接下，跟「赞助才能看」完全冲突。
-    n_chan = len(channels)
-    n_stream = sum(len(c["streams"]) for c in channels)
-    print(f"  [subs] 全量统计          {n_chan:>4} 频道 / {n_stream:>5} 条（不生成公开文件）")
-
-    # 分地区：同样不落盘，只把「数量」写进索引给前端展示
-    index_regions = []
-    for r in regions:
-        host_set = set(r.get("hosts") or [])
-        if not host_set:
-            continue
-        c = 0
-        s = 0
-        for ch in channels:
-            picked = [x for x in ch["streams"] if x["h"] in host_set]
-            if picked:
-                c += 1
-                s += len(picked)
-        if not c:
-            continue
-        index_regions.append(
-            {
-                "key": r["key"],
-                "name": r["name"],
-                "isp": r.get("isp") or "",
-                "channels": c,
-                "streams": s,
-                "hosts": len(host_set),
-            }
+    # 公开目录：只有频道名 + 各地区条数，没有任何地址
+    payload = build_public(channels, regions)
+    for r in payload["regions"]:
+        print(
+            f"  [subs] region/{r['key']:<4}       "
+            f"{r['channels']:>4} 频道 / {r['streams']:>5} 条  {r['name']}"
         )
-        print(f"  [subs] region/{r['key']:<4}       {c:>4} 频道 / {s:>5} 条  {r['name']}")
-
-    index_regions.sort(key=lambda x: -x["streams"])
-    payload = {
-        "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
-        "all": {
-            "channels": n_chan,
-            "streams": n_stream,
-        },
-        "regions": index_regions,
-        # 用户专属订阅路径模板，前端把 {token} 换成实际 token
-        "user": {
-            "all": "data/users/{token}/all.m3u",
-            "region": "data/users/{token}/{key}.m3u",
-        },
-    }
-    INDEX_JSON.write_text(
-        json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8"
-    )
-    print(f"  [subs] 索引 {len(index_regions)} 个地区 -> {INDEX_JSON.name}")
 
     # 传原始 regions（含频道为 0 的地区），保证每个目录下每个地区都有文件
     build_free(channels, regions)
     build_users(channels, regions)
 
-    # 清掉历史遗留的公开全量文件（老版本会生成，留着等于免费公开全部地址）
-    for stale in (SUB_DIR / "all.m3u", SUB_DIR / "region"):
-        if stale.is_dir():
-            shutil.rmtree(stale, ignore_errors=True)
-            print(f"  [subs] 已删除历史公开文件 {stale.name}/")
-        elif stale.exists():
-            stale.unlink()
-            print(f"  [subs] 已删除历史公开文件 {stale.name}")
+    # 清掉老版本留下的公开全量文件与索引（data/sub 整个目录都不再需要）
+    if SUB_DIR.exists():
+        shutil.rmtree(SUB_DIR, ignore_errors=True)
+        print("  [subs] 已删除历史 data/sub 目录（公开的全量 m3u 不再生成）")
     return payload
 
 

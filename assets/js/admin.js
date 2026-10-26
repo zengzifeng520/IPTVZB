@@ -1,38 +1,41 @@
-/* 后台管理：直接用 GitHub Contents 接口读写 data/users.json
+/* 后台管理：管理员账号登录 + 直接读写订阅用户表
    ------------------------------------------------------------
-   本站是纯静态站，没有自建服务端。后台靠一个本仓库的 PAT 工作：
-   读 → GET  /repos/<repo>/contents/data/users.json
-   写 → PUT  同上（带 sha），提交后 Actions 自动重建订阅，约 1 分钟生效。
-   Token 只存在本机 localStorage，不发往任何第三方。 */
+   页面只暴露「账号 / 密码」，不出现任何第三方平台字样。
+   读：登录后即可查看订阅人数与状态。
+   写：保存时需要一次「管理密钥」（写入权限），只存本机 localStorage。
+   改动提交后自动重建订阅，约 1 分钟生效。 */
 (function () {
   "use strict";
 
+  /* 管理员凭据与数据位置（不在页面上展示） */
+  var ADMIN = { user: "admin", pass: "342815" };
+  var DATA = { owner: "zengzifeng520", repo: "ZZF", branch: "main", file: "data/users.json" };
   var API = "https://api.github.com";
-  var FILE = "data/users.json";
-  var BRANCH = "main";
-  var K_TOKEN = "iv_admin_token";
-  var K_REPO = "iv_admin_repo";
-  var SALT = "zzf-sub-2026"; // 必须与 spider/subs.py 的 TOKEN_SALT 一致
+
+  var K_KEY = "iv_admin_key";
+  var K_LOGIN = "iv_admin_login";
+  var SALT = "zzf-sub-2026"; // 与 spider/subs.py 的 TOKEN_SALT 一致
 
   var DAY = 86400000;
 
   var state = {
-    token: "",
-    repo: "",
+    key: "",
     sha: "",
-    users: {},      // 仓库里的原始数据 {sid: {...}}
-    rows: [],       // [{sid, expire, deleted, isNew}]
+    users: {},
+    rows: [],
     filter: "",
     dirty: false,
+    demo: false,
   };
 
   var el = {
     login: document.getElementById("loginPanel"),
     dash: document.getElementById("dash"),
-    token: document.getElementById("tokenInput"),
-    repo: document.getElementById("repoInput"),
+    user: document.getElementById("userInput"),
+    pass: document.getElementById("passInput"),
     remember: document.getElementById("rememberChk"),
     loginBtn: document.getElementById("loginBtn"),
+    loginMsg: document.getElementById("loginMsg"),
     logout: document.getElementById("logoutBtn"),
     stats: document.getElementById("adminStats"),
     body: document.getElementById("userBody"),
@@ -82,10 +85,8 @@
     return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate());
   }
 
-  /** 到期日 -> 当天 23:59:59 的时间戳（与 subs.py 的算法一致） */
   function expTs(dateStr) {
-    if (!dateStr) return 0;
-    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateStr);
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateStr || "");
     if (!m) return 0;
     return new Date(+m[1], +m[2] - 1, +m[3], 23, 59, 59).getTime();
   }
@@ -99,21 +100,16 @@
   }
 
   function tokenOf(sid) {
-    // 复用前端 auth.js 的纯 JS SHA-256，保证与后端 token_of 一致
     if (window.IVAUTH && window.IVAUTH.tokenOf) return window.IVAUTH.tokenOf(sid);
-    if (window.IVAUTH && window.IVAUTH.sha256) return window.IVAUTH.sha256(SALT + "|" + String(sid).trim().toUpperCase()).slice(0, 16);
     return "";
   }
 
-  /* ---------------------------------------------------------- GitHub API */
+  /* ---------------------------------------------------------- 数据接口 */
 
-  function gh(path, opts) {
+  function request(path, opts) {
     opts = opts || {};
-    var headers = {
-      Authorization: "Bearer " + state.token,
-      Accept: "application/vnd.github+json",
-      "X-GitHub-Api-Version": "2022-11-28",
-    };
+    var headers = { Accept: "application/vnd.github+json" };
+    if (state.key) headers.Authorization = "Bearer " + state.key;
     if (opts.body) headers["Content-Type"] = "application/json";
     opts.headers = headers;
     return fetch(API + path, opts).then(function (r) {
@@ -133,16 +129,20 @@
   }
 
   function explain(err) {
-    if (err.status === 401) return "Token 无效或已过期";
-    if (err.status === 403) return "Token 权限不足（需要本仓库 Contents 读写）";
-    if (err.status === 404) return "读不到仓库或文件，检查 owner/repo 是否填对";
-    if (err.status === 409) return "文件已被其他人改动，请刷新后重试";
-    return err.message || "请求失败";
+    if (err.status === 401 || err.status === 403) return "管理密钥无效或已过期";
+    if (err.status === 404) return "数据文件暂时读不到，请稍后再试";
+    if (err.status === 409) return "数据刚被改动过，请刷新后重试";
+    if (err.status === 422) return "提交内容被拒绝，请检查到期日期";
+    return err.message || "操作失败";
+  }
+
+  function dataPath() {
+    return "/repos/" + DATA.owner + "/" + DATA.repo + "/contents/" + DATA.file;
   }
 
   function loadRemote() {
-    var path = "/repos/" + state.repo + "/contents/" + FILE + "?ref=" + BRANCH;
-    return gh(path).then(function (d) {
+    var path = dataPath() + "?ref=" + DATA.branch + "&_=" + Date.now();
+    return request(path).then(function (d) {
       state.sha = (d && d.sha) || "";
       var text = d && d.content ? b64dec(d.content) : "{}";
       var obj = {};
@@ -158,37 +158,48 @@
     });
   }
 
+  /** 保存前确保有写入权限的密钥（只在本机保存，不写进数据） */
+  function ensureKey() {
+    if (state.key) return true;
+    var k = window.prompt(
+      "首次保存需要填写一次「管理密钥」（用于取得写入权限）。\n\n只保存在本机浏览器，不会上传。"
+    );
+    if (!k) return false;
+    state.key = k.trim();
+    try {
+      localStorage.setItem(K_KEY, state.key);
+    } catch (e) {}
+    return true;
+  }
+
   function saveRemote() {
     var out = {};
-    var now = Date.now();
     state.rows.forEach(function (r) {
       if (r.deleted) return;
       var sid = String(r.sid || "").trim().toUpperCase();
       if (!sid) return;
-      var orig = state.users[sid] || state.users[r.sid] || null;
-      var ts = expTs(r.expire);
-      // 到期日没改动就原样保留（连 ts 一起），避免无谓的重算
+      var orig = state.users[sid] || null;
       if (orig && orig.expire === r.expire) {
         out[sid] = orig;
         return;
       }
       var rec = { expire: r.expire };
-      // 新用户或改过日期：不带 ts，让 subs.py 按北京时间的当天 23:59:59 重算
       if (orig && orig.created) rec.created = orig.created;
-      if (!ts) delete rec.expire;
+      if (!expTs(r.expire)) delete rec.expire;
       out[sid] = rec;
     });
 
-    var content = JSON.stringify(out, null, 1) + "\n";
     var body = {
       message: "admin: 更新订阅用户（" + Object.keys(out).length + " 人）",
-      content: b64enc(content),
-      branch: BRANCH,
+      content: b64enc(JSON.stringify(out, null, 1) + "\n"),
+      branch: DATA.branch,
     };
     if (state.sha) body.sha = state.sha;
 
-    var path = "/repos/" + state.repo + "/contents/" + FILE;
-    return gh(path, { method: "PUT", body: JSON.stringify(body) }).then(function (d) {
+    return request(dataPath(), {
+      method: "PUT",
+      body: JSON.stringify(body),
+    }).then(function (d) {
       state.sha = (d && d.content && d.content.sha) || "";
       state.users = out;
       state.dirty = false;
@@ -197,15 +208,14 @@
     });
   }
 
-  /* ---------------------------------------------------------- 数据模型 */
+  /* ---------------------------------------------------------- 模型 */
 
   function buildRows() {
-    var now = Date.now();
     state.rows = Object.keys(state.users).map(function (sid) {
       var info = state.users[sid] || {};
       var date = info.expire || "";
       if (!date && info.ts) date = ymd(new Date(Number(info.ts) * 1000));
-      return { sid: sid, expire: date, deleted: false, isNew: false };
+      return { sid: sid, expire: date, deleted: false };
     });
     state.rows.sort(function (a, b) {
       return expTs(b.expire) - expTs(a.expire);
@@ -214,47 +224,35 @@
 
   function stats() {
     var now = Date.now();
-    var total = 0,
-      ok = 0,
-      exp = 0,
-      soon = 0;
+    var s = { total: 0, ok: 0, exp: 0, soon: 0 };
     state.rows.forEach(function (r) {
       if (r.deleted) return;
-      total++;
+      s.total++;
       var ts = expTs(r.expire);
       if (!ts) {
-        exp++;
+        s.exp++;
         return;
       }
       if (ts > now) {
-        ok++;
-        if (ts - now <= 7 * DAY) soon++;
-      } else exp++;
+        s.ok++;
+        if (ts - now <= 7 * DAY) s.soon++;
+      } else s.exp++;
     });
-    return { total: total, ok: ok, exp: exp, soon: soon };
+    return s;
   }
 
   /* ---------------------------------------------------------- 渲染 */
 
   function renderStats() {
     var s = stats();
-    var items = [
+    el.stats.innerHTML = [
       { n: s.total, t: "总订阅", cls: "" },
       { n: s.ok, t: "有效", cls: "ok" },
       { n: s.soon, t: "7 天内到期", cls: "warn" },
       { n: s.exp, t: "已过期", cls: "err" },
-    ];
-    el.stats.innerHTML = items
+    ]
       .map(function (i) {
-        return (
-          '<div class="admin-stat ' +
-          i.cls +
-          '"><b>' +
-          i.n +
-          "</b><span>" +
-          i.t +
-          "</span></div>"
-        );
+        return '<div class="admin-stat ' + i.cls + '"><b>' + i.n + "</b><span>" + i.t + "</span></div>";
       })
       .join("");
   }
@@ -278,89 +276,80 @@
       return;
     }
 
+    var now = Date.now();
     el.body.innerHTML = list
-      .map(function (r, i) {
+      .map(function (r) {
         var ts = expTs(r.expire);
-        var now = Date.now();
-        var left = ts ? daysLeft(ts) : 0;
+        var sid = String(r.sid);
         var status = !ts
           ? '<span class="pill pill-err">日期无效</span>'
           : ts > now
-          ? '<span class="pill pill-ok">有效</span>'
-          : '<span class="pill pill-err">已过期</span>';
-        var sid = String(r.sid);
+            ? '<span class="pill pill-ok">有效</span>'
+            : '<span class="pill pill-err">已过期</span>';
         return (
-          '<tr data-sid="' +
-          esc(sid) +
-          '" class="' +
-          (r.deleted ? "is-deleted" : "") +
-          '">' +
-          "<td><code class=\"admin-sid\">" +
-          esc(r.deleted ? groupSid(sid) + "（将删除）" : groupSid(sid)) +
-          "</code></td>" +
-          '<td><code class="admin-tok">' +
-          esc(tokenOf(sid)) +
-          "</code></td>" +
+          '<tr data-sid="' + esc(sid) + '" class="' + (r.deleted ? "is-deleted" : "") + '">' +
+          '<td><code class="admin-sid">' + esc(r.deleted ? groupSid(sid) + "（将删除）" : groupSid(sid)) + "</code></td>" +
+          '<td><code class="admin-tok">' + esc(tokenOf(sid)) + "</code></td>" +
           "<td>" +
           (r.deleted
             ? '<span class="admin-muted">—</span>'
-            : '<input type="date" class="admin-date" value="' +
-              esc(r.expire) +
-              '" data-act="date">') +
+            : '<input type="date" class="admin-date" value="' + esc(r.expire) + '" data-act="date">') +
           "</td>" +
-          "<td>" +
-          (r.deleted ? "—" : ts ? left + " 天" : "—") +
-          "</td>" +
-          "<td>" +
-          (r.deleted ? '<span class="pill">待删除</span>' : status) +
-          "</td>" +
+          "<td>" + (r.deleted ? "—" : ts ? daysLeft(ts) + " 天" : "—") + "</td>" +
+          "<td>" + (r.deleted ? '<span class="pill">待删除</span>' : status) + "</td>" +
           '<td class="ta-right admin-acts">' +
           (r.deleted
             ? '<button class="btn btn-sm" data-act="undo" type="button">撤销</button>'
             : '<button class="btn btn-sm" data-act="p30" type="button">+30 天</button>' +
               '<button class="btn btn-sm" data-act="p90" type="button">+90 天</button>' +
               '<button class="btn btn-sm btn-danger" data-act="del" type="button">删除</button>') +
-          "</td>" +
-          "</tr>"
+          "</td></tr>"
         );
       })
       .join("");
   }
 
   function updateDirty() {
-    el.saveBtn.disabled = !state.dirty;
-    el.saveHint.textContent = state.dirty
-      ? "有未保存的改动"
-      : "改动后点右侧「保存并发布」";
+    el.saveBtn.disabled = !state.dirty || state.demo;
+    el.saveHint.textContent = state.demo
+      ? "演示模式：数据是假的，不会提交"
+      : state.dirty
+        ? "有未保存的改动"
+        : "改动后点右侧「保存并发布」";
+  }
+
+  function findRow(sid) {
+    for (var i = 0; i < state.rows.length; i++) {
+      if (String(state.rows[i].sid) === sid) return state.rows[i];
+    }
+    return null;
   }
 
   /* ---------------------------------------------------------- 事件 */
 
   el.loginBtn.addEventListener("click", function () {
-    var token = el.token.value.trim();
-    var repo = el.repo.value.trim().replace(/^https?:\/\/github\.com\//, "").replace(/\/$/, "");
-    if (!token) return toast("请填写 GitHub Token");
-    if (!/^[\w.-]+\/[\w.-]+$/.test(repo)) return toast("仓库格式应为 owner/repo");
+    var u = (el.user.value || "").trim();
+    var p = el.pass.value || "";
+    if (!u || !p) return toast("请输入账号和密码");
+    if (u !== ADMIN.user || p !== ADMIN.pass) return toast("账号或密码不正确", 3000);
 
-    state.token = token;
-    state.repo = repo;
     el.loginBtn.disabled = true;
-    el.loginBtn.textContent = "正在验证…";
+    el.loginBtn.textContent = "正在登录…";
+    if (el.remember.checked) {
+      try {
+        localStorage.setItem(K_LOGIN, "1");
+      } catch (e) {}
+    }
+    state.key = localStorage.getItem(K_KEY) || "";
 
     loadRemote()
       .then(function () {
-        if (el.remember.checked) {
-          localStorage.setItem(K_TOKEN, token);
-          localStorage.setItem(K_REPO, repo);
-        } else {
-          localStorage.removeItem(K_TOKEN);
-          localStorage.removeItem(K_REPO);
-        }
         showDash();
         toast("登录成功");
       })
       .catch(function (err) {
-        toast("登录失败：" + explain(err), 4000);
+        showDash(); // 仍然进后台，保存时会再要求密钥
+        toast("读取数据失败：" + explain(err), 4000);
       })
       .then(function () {
         el.loginBtn.disabled = false;
@@ -368,23 +357,31 @@
       });
   });
 
+  el.pass.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") el.loginBtn.click();
+  });
+
   function showDash() {
     el.login.hidden = true;
     el.dash.hidden = false;
     el.logout.hidden = false;
     render();
+    updateDirty();
   }
 
   el.logout.addEventListener("click", function () {
-    localStorage.removeItem(K_TOKEN);
-    localStorage.removeItem(K_REPO);
-    state.token = state.repo = state.sha = "";
+    try {
+      localStorage.removeItem(K_LOGIN);
+      localStorage.removeItem(K_KEY);
+    } catch (e) {}
+    state.key = "";
+    state.sha = "";
     state.users = {};
     state.rows = [];
     el.dash.hidden = true;
     el.login.hidden = false;
     el.logout.hidden = true;
-    el.token.value = "";
+    el.pass.value = "";
   });
 
   el.search.addEventListener("input", function () {
@@ -405,24 +402,19 @@
   });
 
   el.addBtn.addEventListener("click", function () {
-    var sid = (window.prompt("新增用户\n请输入用户的 12 位赞助码（可在用户赞助页底部看到）") || "")
+    var sid = (window.prompt("新增用户\n请输入用户的 12 位赞助码（用户可在赞助页底部看到）") || "")
       .toUpperCase()
       .replace(/[^A-Z0-9]/g, "");
     if (!sid) return;
     if (sid.length < 6) return toast("赞助码太短");
-    if (state.users[sid]) return toast("这个赞助码已经存在");
+    if (state.users[sid] || findRow(sid)) return toast("这个赞助码已经存在");
 
     var days = window.prompt("有效天数（例如 30 / 90 / 365）", "30");
     if (days == null) return;
     var n = parseInt(days, 10);
     if (!n || n <= 0) return toast("天数不正确");
 
-    state.rows.unshift({
-      sid: sid,
-      expire: ymd(new Date(Date.now() + n * DAY)),
-      deleted: false,
-      isNew: true,
-    });
+    state.rows.unshift({ sid: sid, expire: ymd(new Date(Date.now() + n * DAY)), deleted: false });
     state.dirty = true;
     updateDirty();
     render();
@@ -433,11 +425,7 @@
     var btn = e.target.closest("[data-act]");
     if (!btn) return;
     var tr = e.target.closest("tr");
-    if (!tr) return;
-    var sid = tr.getAttribute("data-sid");
-    var row = state.rows.filter(function (r) {
-      return String(r.sid) === sid;
-    })[0];
+    var row = tr && findRow(tr.getAttribute("data-sid"));
     if (!row) return;
 
     var act = btn.getAttribute("data-act");
@@ -461,10 +449,7 @@
     var input = e.target.closest('[data-act="date"]');
     if (!input) return;
     var tr = e.target.closest("tr");
-    var sid = tr && tr.getAttribute("data-sid");
-    var row = state.rows.filter(function (r) {
-      return String(r.sid) === sid;
-    })[0];
+    var row = tr && findRow(tr.getAttribute("data-sid"));
     if (!row) return;
     row.expire = input.value;
     state.dirty = true;
@@ -473,24 +458,33 @@
   });
 
   el.saveBtn.addEventListener("click", function () {
+    if (!ensureKey()) return;
     el.saveBtn.disabled = true;
     el.saveBtn.textContent = "正在保存…";
+
     saveRemote()
       .then(function () {
-        toast("已提交，约 1 分钟后生效", 3600);
+        toast("已保存，约 1 分钟后生效", 3600);
         return loadRemote().then(function () {
           state.dirty = false;
           updateDirty();
         });
       })
       .catch(function (err) {
+        if (err.status === 401 || err.status === 403) {
+          try {
+            localStorage.removeItem(K_KEY);
+          } catch (e) {}
+          state.key = "";
+          toast("管理密钥不正确，请重新填写", 4000);
+          return;
+        }
         if (err.status === 409) {
-          // 别人刚提交过，重取 sha 后重试一次
           return loadRemote().then(function () {
             return saveRemote().then(function () {
               state.dirty = false;
               updateDirty();
-              toast("已提交（重试成功），约 1 分钟生效", 3600);
+              toast("已保存（自动重试成功），约 1 分钟生效", 3600);
             });
           });
         }
@@ -504,21 +498,18 @@
 
   /* ---------------------------------------------------------- 启动 */
 
-  /** ?demo=1 只用假数据看界面，不连仓库、不能保存 */
   function demoMode() {
     state.demo = true;
     var t = Date.now();
-    state.users = {
-      A1B2C3D4E5F6: { expire: ymd(new Date(t + 28 * DAY)) },
-      G7H8J9K2L3M4: { expire: ymd(new Date(t + 3 * DAY)) },
-      N5P6Q7R8S9T2: { expire: ymd(new Date(t + 180 * DAY)) },
-      U3V4W5X6Y7Z8: { expire: "2026-10-20" },
-    };
+    var fake = {};
+    fake["A1B2C3D4E5F6"] = { expire: ymd(new Date(t + 28 * DAY)) };
+    fake["G7H8J9K2L3M4"] = { expire: ymd(new Date(t + 3 * DAY)) };
+    fake["N5P6Q7R8S9T2"] = { expire: ymd(new Date(t + 180 * DAY)) };
+    fake["U3V4W5X6Y7Z8"] = { expire: "2026-10-20" };
+    state.users = fake;
     buildRows();
     showDash();
     el.logout.hidden = true;
-    el.saveBtn.disabled = true;
-    el.saveHint.textContent = "演示模式：数据是假的，不会提交";
   }
 
   (function boot() {
@@ -526,20 +517,15 @@
       demoMode();
       return;
     }
-    var t = localStorage.getItem(K_TOKEN) || "";
-    // 不在页面上写死仓库名，避免把私有仓库位置暴露给访客
-    var r = localStorage.getItem(K_REPO) || "";
-    el.repo.value = r;
-    if (t) {
-      el.token.value = t;
-      state.token = t;
-      state.repo = r;
+    // 记住登录状态：只跳过密码，写入仍需密钥
+    if (localStorage.getItem(K_LOGIN) === "1") {
+      state.key = localStorage.getItem(K_KEY) || "";
       loadRemote()
-        .then(function () {
-          showDash();
-        })
-        .catch(function (err) {
-          toast("自动登录失败：" + explain(err), 4000);
+        .then(showDash)
+        .catch(function () {
+          try {
+            localStorage.removeItem(K_LOGIN);
+          } catch (e) {}
         });
     }
   })();

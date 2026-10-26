@@ -104,7 +104,7 @@
   function renderStats() {
     var s = (state.proxy && state.proxy.stats) || {};
     var items = [
-      { n: s.hosts_alive || 0, t: "台中转服务器", accent: true },
+      { n: s.hosts || 0, t: "台中转服务器", accent: true },
       { n: s.channels || 0, t: "个频道", accent: false },
       { n: s.streams || 0, t: "条播放地址", accent: false },
       { n: state.regions.length || 0, t: "个地区", accent: false },
@@ -181,21 +181,19 @@
       renderAccount();
     });
 
+    // 公开数据里只有频道名与条数，没有任何播放地址
     var jobs = [
-      fetch("data/proxy.json", { cache: "no-cache" }).then(function (r) {
-        if (!r.ok) throw new Error("proxy.json HTTP " + r.status);
-        return r.json();
-      }),
-      fetch("data/regions.json", { cache: "no-cache" }).then(function (r) {
-        if (!r.ok) throw new Error("regions.json HTTP " + r.status);
+      fetch("data/public/channels.json", { cache: "no-cache" }).then(function (r) {
+        if (!r.ok) throw new Error("channels.json HTTP " + r.status);
         return r.json();
       }),
     ];
 
     Promise.all(jobs)
       .then(function (res) {
-        state.proxy = res[0];
-        state.regions = (res[1].regions || []).slice().sort(function (a, b) {
+        state.pub = res[0];
+        state.proxy = { stats: res[0].stats || {}, generated_at: res[0].generated_at };
+        state.regions = (res[0].regions || []).slice().sort(function (a, b) {
           return b.streams - a.streams;
         });
         if (el.updAt) el.updAt.textContent = state.proxy.generated_at || "—";

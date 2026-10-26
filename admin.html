@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>后台管理 · 光影直播</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%238b5cf6'/><path d='M38 30l30 20-30 20z' fill='white'/></svg>">
-<link rel="stylesheet" href="assets/css/app.css?v=20261026t">
+<link rel="stylesheet" href="assets/css/app.css?v=20261026u">
 </head>
 <body>
 
@@ -37,26 +37,24 @@
       <span class="pill pill-warn">仅站长使用</span>
     </div>
     <p class="admin-tip">
-      本站是纯静态站，没有自建服务端。后台通过 GitHub 接口直接读写仓库里的
-      <code>data/users.json</code>，所以需要一个有本仓库 <b>Contents 读写</b> 权限的
-      Personal Access Token。
+      登录后可查看订阅人数与状态、修改会员到期时间、删除用户。
+      改动保存后约 1 分钟生效。
     </p>
     <label class="admin-field">
-      <span>GitHub Token</span>
-      <input type="password" id="tokenInput" placeholder="github_pat_... 或 ghp_..." autocomplete="off" spellcheck="false">
+      <span>管理员账号</span>
+      <input type="text" id="userInput" value="admin" autocomplete="username" spellcheck="false">
     </label>
     <label class="admin-field">
-      <span>仓库（owner/repo）</span>
-      <input type="text" id="repoInput" placeholder="owner/repo（只填你自己的仓库）" spellcheck="false">
+      <span>密码</span>
+      <input type="password" id="passInput" placeholder="请输入密码" autocomplete="current-password">
     </label>
     <label class="admin-check">
       <input type="checkbox" id="rememberChk" checked>
-      <span>在本机记住 Token（下次免输入）</span>
+      <span>在本机记住登录状态</span>
     </label>
     <button class="btn btn-primary btn-block btn-lg" id="loginBtn" type="button">登录后台</button>
-    <p class="admin-tip admin-tip-sm">
-      Token 只保存在你这台浏览器，不会写进仓库、不会上传到任何地方。
-      建议用 Fine-grained token，只勾选本仓库的 <b>Contents: Read and write</b>。
+    <p class="admin-tip admin-tip-sm" id="loginMsg">
+      首次「保存」时会让你填一次管理密钥，用来取得写入权限，只存在本机，不会上传。
     </p>
   </section>
 
@@ -71,7 +69,7 @@
       </div>
 
       <div class="admin-toolbar">
-        <input type="text" id="searchInput" placeholder="搜索赞助码 / Token" spellcheck="false">
+        <input type="text" id="searchInput" placeholder="搜索赞助码 / 订阅标识" spellcheck="false">
         <button class="btn btn-sm" id="addBtn" type="button">+ 新增用户</button>
         <button class="btn btn-sm" id="reloadBtn" type="button">重新读取</button>
         <span class="admin-grow"></span>
@@ -83,7 +81,7 @@
           <thead>
             <tr>
               <th>赞助码</th>
-              <th>Token</th>
+              <th>订阅标识</th>
               <th>到期日</th>
               <th>剩余</th>
               <th>状态</th>
@@ -102,9 +100,9 @@
         <h2>说明</h2>
       </div>
       <ul class="admin-note">
-        <li>保存后仓库会触发 Actions 重建订阅，<b>约 1 分钟</b>生效，用户刷新页面即可看到新状态。</li>
+        <li>保存后会自动重建订阅，<b>约 1 分钟</b>生效，用户刷新页面即可看到新状态。</li>
         <li><b>改到期日</b>：直接改日期框，或点「+30 天 / +90 天」在原到期日上顺延。</li>
-        <li><b>删除</b>：用户从 users.json 移除，他的订阅目录会被删掉，链接变成 404。</li>
+        <li><b>删除</b>：用户从订阅名单移除，他的专属链接会被删除，变成 404。</li>
         <li><b>到期</b>：文件不会被删除，而是改写成空列表，播放器刷新后就是 0 个频道。</li>
         <li>赞助码是用户在本机自动生成的 12 位码，必须由用户提供给你后才能加进来。</li>
       </ul>
@@ -115,7 +113,7 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="assets/js/auth.js?v=20261026t"></script>
-<script src="assets/js/admin.js?v=20261026t"></script>
+<script src="assets/js/auth.js?v=20261026u"></script>
+<script src="assets/js/admin.js?v=20261026u"></script>
 </body>
 </html>

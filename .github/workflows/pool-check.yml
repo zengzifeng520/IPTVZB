@@ -57,7 +57,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f spider/data/pool_state.json spider/data/pool_drop.txt 2>/dev/null || true
-          git add -f data/proxy.json data/regions.json data/sub data/users.json data/free
+          git add -f data/proxy.json data/regions.json data/public data/users.json data/free
           [ -d data/users ] && git add -f data/users || true
           if git diff --staged --quiet; then
             echo "无变化，跳过提交"
