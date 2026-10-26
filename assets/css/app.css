@@ -190,6 +190,32 @@ input { font-family: inherit; }
 }
 .hero p { margin: 0; color: var(--text-2); font-size: 14.5px; max-width: 640px; }
 
+/* ---------------------------------------------------------- hero 左右分栏（标题+说明 | 宣传图） */
+.hero-split {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 44px 0 30px;
+}
+.hero-split .hero-text { flex: 1; max-width: 580px; }
+.hero-split .hero-text h1 { margin-bottom: 14px; }
+.hero-split .hero-text p { max-width: 560px; }
+.hero-promo { flex: none; }
+.hero-promo img {
+  display: block;
+  width: 230px; height: 230px;
+  border-radius: 16px;
+  object-fit: cover;
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+@media (max-width: 820px) {
+  .hero-split { flex-direction: column; gap: 22px; text-align: center; }
+  .hero-split .hero-text p { margin: 0 auto; }
+  .hero-promo img { width: 180px; height: 180px; }
+}
+
 /* ---------------------------------------------------------- 关于本站（项目介绍 + 欢迎语音） */
 .about-panel {
   margin: 4px 0 18px;
