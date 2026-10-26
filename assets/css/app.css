@@ -1488,6 +1488,21 @@ h2 .ico-thumb { width: 19px; height: 19px; margin-right: 3px; vertical-align: -3
 .upgrade-tip { margin: 12px 0 0; font-size: 12.5px; color: var(--text-3); text-align: center; }
 
 /* 订阅列表 */
+/* 首页订阅地址区块 */
+.subs-home { margin: 28px 0 18px; }
+.subs-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+.subs-more { margin: 12px 0 0; text-align: center; }
+.subs-toggle {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 7px 14px; border-radius: 999px;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text-2); font-size: 12.5px; cursor: pointer;
+  transition: all 0.16s var(--ease);
+}
+.subs-toggle:hover { color: var(--accent); border-color: var(--accent); background: var(--surface-2); }
+.subs-caret { display: inline-block; transition: transform 0.2s var(--ease); }
+.subs-toggle[aria-expanded="true"] .subs-caret { transform: rotate(180deg); }
+
 .sub-list { display: flex; flex-direction: column; gap: 9px; }
 .sub-item {
   display: flex; align-items: center; gap: 12px;

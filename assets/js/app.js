@@ -117,6 +117,121 @@
       "</div>";
   }
 
+  /* ---------------------------------------------------------- 首页订阅地址 */
+
+  function baseUrl() {
+    return location.origin + location.pathname.replace(/[^/]*$/, "");
+  }
+
+  function copyText(text, okMsg) {
+    var done = function () {
+      toast(okMsg || "已复制");
+    };
+    var fallback = function () {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand("copy");
+        done();
+      } catch (err) {
+        toast("复制失败，请长按选择");
+      }
+      document.body.removeChild(ta);
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(done).catch(fallback);
+    } else {
+      fallback();
+    }
+  }
+
+  function subItemHtml(name, meta, path) {
+    var url = baseUrl() + path;
+    return (
+      '<div class="sub-item">' +
+      '<div class="sub-item-main">' +
+      '<div class="sub-item-title">' +
+      esc(name) +
+      "</div>" +
+      '<div class="sub-item-meta">' +
+      esc(meta) +
+      "</div>" +
+      '<code class="sub-item-url">' +
+      esc(url) +
+      "</code>" +
+      "</div>" +
+      '<div class="sub-item-act">' +
+      '<button class="btn btn-sm btn-primary" data-copy-url="' +
+      esc(url) +
+      '">复制</button>' +
+      '<a class="btn btn-sm" href="' +
+      esc(path) +
+      '" download>下载</a>' +
+      "</div>" +
+      "</div>"
+    );
+  }
+
+  function renderHomeSubs() {
+    var quick = document.getElementById("subsQuick");
+    var regs = document.getElementById("subsRegions");
+    if (!quick) return;
+
+    var st = (state.pub && state.pub.stats) || {};
+    var html = "";
+
+    html += subItemHtml(
+      "全量订阅",
+      "全部地区合并 + 酒店源 · " + (st.channelsTotal || st.channels || 0) + " 频道 / " + (st.streamsTotal || st.streams || 0) + " 条",
+      "data/public/all.m3u"
+    );
+    if (st.hotelStreams) {
+      html += subItemHtml(
+        "酒店源订阅",
+        "HLS 直连 · 不限地区 · " + (st.hotelChannels || 0) + " 频道 / " + st.hotelStreams + " 条",
+        "data/public/hotel.m3u"
+      );
+    }
+    quick.innerHTML = html;
+
+    if (regs) {
+      regs.innerHTML = state.regions
+        .map(function (r) {
+          return subItemHtml(
+            r.name,
+            (r.isp || "") + " · " + r.channels + " 频道 / " + r.streams + " 条",
+            "data/public/" + r.key + ".m3u"
+          );
+        })
+        .join("");
+    }
+
+    var n = document.getElementById("subsRegionN");
+    if (n) n.textContent = state.regions.length;
+
+    var toggle = document.getElementById("subsToggle");
+    if (toggle) {
+      toggle.addEventListener("click", function () {
+        var open = regs.hidden;
+        regs.hidden = !open;
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        if (open) {
+          regs.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+      });
+    }
+  }
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-copy-url]");
+    if (!btn) return;
+    copyText(btn.dataset.copyUrl, "订阅地址已复制");
+  });
+
   /* ---------------------------------------------------------- 统计 */
 
   function renderStats() {
@@ -213,6 +328,7 @@
 
         renderStats();
         renderRegions();
+        renderHomeSubs();
 
         // 酒店源是独立分类：用 stats 里的数字填充入口卡片
         var hs = res[0].stats || {};
