@@ -8,6 +8,8 @@ http://j1900.silicaite.top:58888/rtp/239.49.9.9:6000
 #EXTINF:-1 tvg-name="CCTV兵器科技" group-title="央视频道",CCTV兵器科技
 http://j1900.silicaite.top:58888/rtp/239.49.1.64:6000
 #EXTINF:-1 tvg-name="CCTV央视台球" group-title="央视频道",CCTV央视台球
+http://j1900.silicaite.com:58888/rtp/239.49.9.22:6000
+#EXTINF:-1 tvg-name="CCTV央视台球" group-title="央视频道",CCTV央视台球
 http://j1900.silicaite.top:58888/rtp/239.49.9.22:6000
 #EXTINF:-1 tvg-name="CCTV央视精品" group-title="央视频道",CCTV央视精品
 http://j1900.silicaite.com:58888/rtp/239.49.9.11:6000
@@ -25,8 +27,6 @@ http://j1900.silicaite.com:58888/rtp/239.49.1.69:6000
 http://j1900.silicaite.top:58888/rtp/239.49.9.14:6000
 #EXTINF:-1 tvg-name="CCTV女性时尚" group-title="央视频道",CCTV女性时尚
 http://j1900.silicaite.top:58888/rtp/239.49.1.69:6000
-#EXTINF:-1 tvg-name="CCTV怀旧剧场" group-title="央视频道",CCTV怀旧剧场
-http://j1900.silicaite.top:58888/rtp/239.49.9.12:6000
 #EXTINF:-1 tvg-name="CCTV电视指南" group-title="央视频道",CCTV电视指南
 http://j1900.silicaite.top:58888/rtp/239.49.9.5:6000
 #EXTINF:-1 tvg-name="CCTV电视指南" group-title="央视频道",CCTV电视指南
@@ -35,6 +35,8 @@ http://j1900.silicaite.top:58888/rtp/239.49.1.60:6000
 http://j1900.silicaite.top:58888/rtp/239.49.9.15:6000
 #EXTINF:-1 tvg-name="CCTV第一剧场" group-title="央视频道",CCTV第一剧场
 http://j1900.silicaite.top:58888/rtp/239.49.1.226:6000
+#EXTINF:-1 tvg-name="CCTV风云剧场" group-title="央视频道",CCTV风云剧场
+http://j1900.silicaite.com:58888/rtp/239.49.9.10:6000
 #EXTINF:-1 tvg-name="CCTV风云剧场" group-title="央视频道",CCTV风云剧场
 http://j1900.silicaite.top:58888/rtp/239.49.9.10:6000
 #EXTINF:-1 tvg-name="CCTV风云剧场" group-title="央视频道",CCTV风云剧场
@@ -47,6 +49,10 @@ http://j1900.silicaite.top:58888/rtp/239.49.1.61:6000
 http://j1900.silicaite.top:58888/rtp/239.49.9.13:6000
 #EXTINF:-1 tvg-name="CCTV风云音乐" group-title="央视频道",CCTV风云音乐
 http://j1900.silicaite.top:58888/rtp/239.49.1.68:6000
+#EXTINF:-1 tvg-name="CCTV高网频道" group-title="央视频道",CCTV高网频道
+http://j1900.silicaite.com:58888/rtp/239.49.9.7:6000
+#EXTINF:-1 tvg-name="CCTV高网频道" group-title="央视频道",CCTV高网频道
+http://j1900.silicaite.com:58888/rtp/239.49.1.62:6000
 #EXTINF:-1 tvg-name="CCTV高网频道" group-title="央视频道",CCTV高网频道
 http://j1900.silicaite.top:58888/rtp/239.49.9.7:6000
 #EXTINF:-1 tvg-name="CCTV高网频道" group-title="央视频道",CCTV高网频道
@@ -103,8 +109,6 @@ http://j1900.silicaite.top:58888/rtp/239.49.1.227:6000
 http://j1900.silicaite.com:58888/rtp/239.49.1.233:6000
 #EXTINF:-1 tvg-name="先锋乒羽" group-title="数字频道",先锋乒羽
 http://j1900.silicaite.top:58888/rtp/239.49.1.233:6000
-#EXTINF:-1 tvg-name="梨园频道" group-title="数字频道",梨园频道
-http://j1900.silicaite.top:58888/rtp/239.49.9.21:6000
 #EXTINF:-1 tvg-name="东海新闻" group-title="地方频道",东海新闻
 http://j1900.silicaite.com:58888/rtp/239.49.9.48:6000
 #EXTINF:-1 tvg-name="东海新闻" group-title="地方频道",东海新闻

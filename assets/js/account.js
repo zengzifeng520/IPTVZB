@@ -1,50 +1,21 @@
-/* 赞助解锁 / 套餐选择 */
+/* 喜欢作者，请支持一下：打赏入口 + 免费订阅地址 */
 (function () {
   "use strict";
 
-  var A = window.IVAUTH;
-
   var el = {
-    phone: document.getElementById("acctPhone"),
-    avatar: document.getElementById("acctAvatar"),
-    badges: document.getElementById("acctBadges"),
-    plan: document.getElementById("statPlan"),
-    region: document.getElementById("statRegion"),
-    exp: document.getElementById("statExp"),
-    upgrade: document.getElementById("upgradePanel"),
-    upgradeTitle: document.getElementById("upgradeTitle"),
-    upgradePill: document.getElementById("upgradePill"),
-    member: document.getElementById("memberPanel"),
-    memberPill: document.getElementById("memberPill"),
-    planGrid: document.getElementById("planGrid"),
-    openPay: document.getElementById("openPay"),
-    renewBtn: document.getElementById("renewBtn"),
     subList: document.getElementById("subList"),
-    coverNums: document.getElementById("coverNums"),
-    pendingBox: document.getElementById("pendingBox"),
-    payModal: document.getElementById("payModal"),
-    payPlans: document.getElementById("payPlans"),
-    payAmount: document.getElementById("payAmount"),
-    payPlanNote: document.getElementById("payPlanNote"),
-    payStepAmount: document.getElementById("payStepAmount"),
-    orderNo: document.getElementById("orderNo"),
-    copyOrder: document.getElementById("copyOrder"),
-    confirmPay: document.getElementById("confirmPay"),
-    sidText: document.getElementById("sidText"),
-    sidInput: document.getElementById("sidInput"),
-    sidMsg: document.getElementById("sidMsg"),
-    copySid: document.getElementById("copySid"),
-    restoreBtn: document.getElementById("restoreBtn"),
-    resetBtn: document.getElementById("resetBtn"),
     toast: document.getElementById("toast"),
+    donateAmounts: document.getElementById("donateAmounts"),
+    donateOther: document.getElementById("donateOther"),
+    donateCustom: document.getElementById("donateCustom"),
+    customAmt: document.getElementById("customAmt"),
+    customOk: document.getElementById("customOk"),
+    donateQr: document.getElementById("donateQr"),
+    donatePayNum: document.getElementById("donatePayNum"),
   };
 
   var state = {
-    user: null,
-    regions: [],
     subs: null,
-    order: "",
-    planKey: A.DEFAULT_PLAN,
   };
 
   /* ---------------------------------------------------------- 工具 */
@@ -95,168 +66,48 @@
     return location.origin + location.pathname.replace(/[^/]*$/, "");
   }
 
-  function regionName(key) {
-    var r = state.regions.filter(function (x) {
-      return x.key === key;
-    })[0];
-    return r ? r.name : key || "—";
+  /* ---------------------------------------------------------- 打赏 */
+
+  function pickAmount(amt) {
+    var n = Number(amt);
+    if (!n || n <= 0) return;
+    el.donateCustom.hidden = true;
+    el.donateQr.hidden = false;
+    el.donatePayNum.textContent = "¥" + n;
+    // 高亮选中
+    var btns = el.donateAmounts.querySelectorAll(".amount");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].classList.toggle("active", Number(btns[i].dataset.amt) === n);
+    }
   }
 
-  function currentPlan() {
-    return A.planByKey(state.planKey) || A.planByKey(A.DEFAULT_PLAN);
+  if (el.donateAmounts) {
+    el.donateAmounts.addEventListener("click", function (e) {
+      var btn = e.target.closest("[data-amt]");
+      if (!btn) return;
+      pickAmount(btn.dataset.amt);
+    });
   }
 
-  function money(n) {
-    return "￥" + Number(n).toFixed(2);
+  if (el.donateOther) {
+    el.donateOther.addEventListener("click", function () {
+      el.donateCustom.hidden = false;
+      el.donateQr.hidden = true;
+      if (el.customAmt) el.customAmt.focus();
+    });
   }
 
-  /* ---------------------------------------------------------- 套餐 */
-
-  function renderPlans() {
-    el.planGrid.innerHTML = A.PLANS.map(function (p) {
-      var active = p.key === state.planKey;
-      return (
-        '<button type="button" class="plan' +
-        (active ? " active" : "") +
-        (p.hot ? " is-hot" : "") +
-        '" data-plan="' +
-        esc(p.key) +
-        '">' +
-        (p.hot ? '<span class="plan-hot">推荐</span>' : "") +
-        '<span class="plan-name">' +
-        esc(p.name) +
-        "</span>" +
-        '<span class="plan-price"><i>￥</i>' +
-        p.price +
-        "</span>" +
-        '<span class="plan-days">' +
-        p.days +
-        " " +
-        esc(p.unit) +
-        "</span>" +
-        '<span class="plan-tag">' +
-        esc(p.tag) +
-        "</span>" +
-        "</button>"
-      );
-    }).join("");
-  }
-
-  function renderPayPlans() {
-    el.payPlans.innerHTML = A.PLANS.map(function (p) {
-      var active = p.key === state.planKey;
-      return (
-        '<button type="button" class="pay-plan' +
-        (active ? " active" : "") +
-        '" data-plan="' +
-        esc(p.key) +
-        '">' +
-        "<b>" +
-        esc(p.name) +
-        "</b>" +
-        "<i>￥" +
-        p.price +
-        "</i></button>"
-      );
-    }).join("");
-  }
-
-  function syncPrice() {
-    var p = currentPlan();
-    el.payAmount.textContent = money(p.price);
-    el.payPlanNote.textContent = p.name + " · " + p.days + " " + p.unit;
-    el.payStepAmount.textContent = money(p.price);
-    if (el.openPay) el.openPay.textContent = "扫码赞助 ￥" + p.price + " 解锁订阅";
-  }
-
-  function setPlan(key) {
-    var p = A.planByKey(key);
-    if (!p) return;
-    state.planKey = key;
-    renderPlans();
-    renderPayPlans();
-    syncPrice();
+  if (el.customOk) {
+    el.customOk.addEventListener("click", function () {
+      var v = (el.customAmt.value || "").trim();
+      if (!v) return toast("请输入金额");
+      var n = Number(v);
+      if (!n || n <= 0) return toast("金额需大于 0");
+      pickAmount(n);
+    });
   }
 
   /* ---------------------------------------------------------- 渲染 */
-
-  function renderHead() {
-    var u = state.user;
-    var pend = A.pending();
-    el.phone.textContent = u.member
-      ? "已赞助"
-      : pend
-        ? "待开通"
-        : u.expired
-          ? "赞助已到期"
-          : "未赞助";
-    el.avatar.textContent = "光";
-    el.badges.innerHTML =
-      (u.member
-        ? '<span class="pill pill-ok">' + esc(u.planName || "已赞助") + "</span>"
-        : pend
-          ? '<span class="pill pill-warn">待开通</span>'
-          : u.expired
-            ? '<span class="pill pill-err">已到期</span>'
-            : '<span class="pill pill-warn">未赞助</span>') +
-      '<span class="pill">' + state.regions.length + " 个地区</span>";
-
-    el.plan.textContent = u.member
-      ? u.planName || "已赞助"
-      : pend
-        ? "待开通（" + (pend.planName || "") + "）"
-        : u.expired
-          ? "已到期"
-          : "未赞助";
-    el.region.textContent = "全部 " + state.regions.length + " 个地区免费浏览";
-    el.exp.textContent = u.member
-      ? u.expText + "（剩 " + u.daysLeft + " 天）"
-      : u.expired
-        ? u.lastExpText + "（已到期）"
-        : "—";
-
-    if (el.upgradeTitle) {
-      el.upgradeTitle.textContent = u.expired
-        ? "赞助已到期，再次赞助恢复订阅"
-        : pend
-          ? "开通申请待站长确认"
-          : "赞助解锁订阅链接";
-      el.upgradePill.textContent = u.expired ? "已到期" : pend ? "待开通" : "未赞助";
-      el.upgradePill.className =
-        "pill " + (u.expired ? "pill-err" : "pill-warn");
-    }
-
-    el.upgrade.hidden = !!u.member;
-    el.member.hidden = !u.member;
-    if (u.member && el.memberPill) {
-      el.memberPill.textContent = "剩 " + u.daysLeft + " 天";
-    }
-    if (el.sidText) el.sidText.textContent = u.sidText || "—";
-
-    // 待确认申请：付款后联系站长（抖音）确认，订阅链接才生效
-    if (el.pendingBox) {
-      if (!u.member && pend) {
-        el.pendingBox.hidden = false;
-        el.pendingBox.innerHTML =
-          '<b>已提交开通申请（' +
-          esc(pend.planName || "") +
-          "）</b>" +
-          "<p>付款后请联系站长确认（抖音），把赞助码发给站长：</p>" +
-          '<div class="pending-code">' +
-          esc(u.sidText || "") +
-          "</div>" +
-          '<div class="pending-douyin">' +
-          '<img src="assets/img/douyin.jpg" alt="站长抖音">' +
-          '<div class="pending-douyin-info">' +
-          '<div class="dy-id">抖音号：50933304234</div>' +
-          '<div class="dy-tip">抖音扫一扫，立即关注我</div>' +
-          "</div>" +
-          "</div>";
-      } else {
-        el.pendingBox.hidden = true;
-      }
-    }
-  }
 
   function renderSubs() {
     if (!state.subs) {
@@ -267,37 +118,42 @@
     var all = state.subs.all || {};
     var items = [];
 
-    // 专属订阅：路径带赞助码 token，到期后服务端把文件写成空列表
-    var token = state.user.sid ? A.tokenOf(state.user.sid) : "";
-    function userPath(tail) {
-      return token ? "data/users/" + token + "/" + tail : "";
-    }
-
+    // 全量订阅（公开）
     items.push({
       key: "ALL",
       name: "全量订阅",
-      isp: "全部地区合并",
-      path: userPath("all.m3u"),
-      channels: all.channels,
-      streams: all.streams,
-      mine: false,
+      isp: "全部地区合并 + 酒店源",
+      path: "data/public/all.m3u",
+      channels: all.channelsTotal || all.channels || 0,
+      streams: all.streamsTotal || all.streams || 0,
       big: true,
     });
 
+    // 分地区订阅（公开）
     (state.subs.regions || []).forEach(function (r) {
       items.push({
         key: r.key,
         name: r.name,
         isp: r.isp,
-        path: userPath(r.key + ".m3u"),
+        path: "data/public/" + r.key + ".m3u",
         channels: r.channels,
         streams: r.streams,
-        mine: false,
       });
     });
 
+    // 酒店源订阅（公开）
+    if (all.hotelStreams) {
+      items.push({
+        key: "hotel",
+        name: "酒店源",
+        isp: "HLS 直连 · 不限地区",
+        path: "data/public/hotel.m3u",
+        channels: all.hotelChannels || 0,
+        streams: all.hotelStreams || 0,
+      });
+    }
+
     items.sort(function (a, b) {
-      if (a.mine !== b.mine) return a.mine ? -1 : 1;
       if (a.big !== b.big) return a.big ? -1 : 1;
       return b.streams - a.streams;
     });
@@ -306,13 +162,10 @@
       .map(function (it) {
         var url = base + it.path;
         return (
-          '<div class="sub-item' +
-          (it.mine ? " is-mine" : "") +
-          '">' +
+          '<div class="sub-item">' +
           '<div class="sub-item-main">' +
           '<div class="sub-item-title">' +
           esc(it.name) +
-          (it.mine ? '<span class="pill pill-ok pill-xs">你所在地区</span>' : "") +
           "</div>" +
           '<div class="sub-item-meta">' +
           esc(it.isp || "") +
@@ -340,136 +193,7 @@
       .join("");
   }
 
-  /* ---------------------------------------------------------- 付款 */
-
-  function openPay() {
-    state.order = A.makeOrderNo(state.user.sid);
-    el.orderNo.textContent = state.order;
-    renderPayPlans();
-    syncPrice();
-    el.payModal.hidden = false;
-    document.body.style.overflow = "hidden";
-  }
-
-  function closePay() {
-    el.payModal.hidden = true;
-    document.body.style.overflow = "";
-  }
-
-  el.openPay.addEventListener("click", openPay);
-  if (el.renewBtn) el.renewBtn.addEventListener("click", openPay);
-
-  el.planGrid.addEventListener("click", function (e) {
-    var btn = e.target.closest("[data-plan]");
-    if (!btn) return;
-    setPlan(btn.dataset.plan);
-  });
-
-  el.payPlans.addEventListener("click", function (e) {
-    var btn = e.target.closest("[data-plan]");
-    if (!btn) return;
-    setPlan(btn.dataset.plan);
-  });
-
-  el.payModal.addEventListener("click", function (e) {
-    if (e.target.closest("[data-close]")) closePay();
-  });
-
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && !el.payModal.hidden) closePay();
-  });
-
-  el.copyOrder.addEventListener("click", function () {
-    copyText(state.order, "订单号已复制");
-  });
-
-  el.confirmPay.addEventListener("click", function () {
-    var btn = el.confirmPay;
-    var plan = currentPlan();
-    btn.disabled = true;
-    btn.textContent = "正在解锁…";
-
-    var r = A.unlock(state.planKey, state.order);
-    if (!r.ok) {
-      btn.disabled = false;
-      btn.textContent = "我已完成付款，立即开通";
-      return toast(r.msg);
-    }
-
-    closePay();
-    // 本机已解锁，但订阅链接需站长确认后才真正有效
-    toast("已提交！把赞助码发给站长确认后，订阅链接才生效");
-    renderHead();
-    setTimeout(function () {
-      location.reload();
-    }, 1000);
-  });
-
-  /* ------------------------------------------------ 专属订阅就绪检测 */
-
-  // 付款后订阅文件由服务端生成，首次开通通常 1 分钟内可用。
-  // 这里在账号页显示一条状态条，避免用户看到地址却打不开以为出错。
-  function checkSubReady() {
-    var u = A.user();
-    if (!u || !u.member || !el.subList) return;
-    var tok = A.tokenOf(u.sid);
-    fetch("data/users/" + tok + "/meta.json", { cache: "no-store" })
-      .then(function (res) {
-        if (res.ok) return;
-        el.subList.insertAdjacentHTML(
-          "afterbegin",
-          '<div class="empty-inline" style="text-align:left;padding:10px 12px">' +
-            "专属订阅正在生成，通常 1 分钟内生效。如果超过 10 分钟仍不可用，" +
-            "请稍后刷新页面重试。" +
-            "</div>"
-        );
-      })
-      .catch(function () {});
-  }
-
-  /* ---------------------------------------------------------- 赞助码 */
-
-  if (el.copySid) {
-    el.copySid.addEventListener("click", function () {
-      copyText(A.sidText(), "赞助码已复制，建议截图保存");
-    });
-  }
-
-  if (el.restoreBtn) {
-    el.restoreBtn.addEventListener("click", function () {
-      var code = (el.sidInput.value || "").trim();
-      if (!code) return toast("请先粘贴赞助码");
-      var r = A.setSid(code);
-      if (!r.ok) {
-        el.sidMsg.textContent = r.msg;
-        return toast(r.msg);
-      }
-      el.sidMsg.textContent = "已切换到 " + A.sidText() + "，正在重新读取状态…";
-      A.syncSponsor().then(function () {
-        setTimeout(function () {
-          location.reload();
-        }, 700);
-      });
-    });
-  }
-
-  // 清除本机赞助记录（站长测试后一键重置）
-  if (el.resetBtn) {
-    el.resetBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      if (!window.confirm("确定清除本机赞助记录吗？\n\n清除后将回到未赞助状态，赞助码也会重新生成。")) return;
-      var keys = ["iv_sid_v1", "iv_sponsor_v1", "iv_pending_v1", "iv_free_region_v1", "iv_free_expire_v1"];
-      keys.forEach(function (k) {
-        try {
-          localStorage.removeItem(k);
-        } catch (err) {}
-      });
-      toast("已清除本机记录");
-      setTimeout(function () {
-        location.reload();
-      }, 800);
-    });
-  }
+  /* ---------------------------------------------------------- 交互 */
 
   el.subList.addEventListener("click", function (e) {
     var btn = e.target.closest("[data-copy-url]");
@@ -479,54 +203,16 @@
 
   /* ---------------------------------------------------------- 启动 */
 
-  state.user = A.user();
-  renderPlans();
-  syncPrice();
-  renderHead();
-
-  function loadSubs() {
-    fetch("data/public/channels.json", { cache: "no-cache" })
-      .then(function (r) {
-        if (!r.ok) throw new Error("HTTP " + r.status);
-        return r.json();
-      })
-      .then(function (d) {
-        state.subs = { all: d.stats || {}, regions: d.regions || [] };
-        state.regions = d.regions || [];
-        renderHead();
-        renderSubs();
-        checkSubReady();
-        renderCover();
-      })
-      .catch(function () {
-        renderSubs();
-        checkSubReady();
-      });
-  }
-
-  // 覆盖范围数字跟着数据走，池子扩容后不用改文案
-  function renderCover() {
-    if (!el.coverNums) return;
-    var all = (state.subs && state.subs.all) || {};
-    var nRegion = (state.subs && state.subs.regions || []).length;
-    if (!all.channels) return;
-    el.coverNums.textContent =
-      nRegion + " 个地区 / " + all.channels + " 个频道 / " + all.streams + " 条地址";
-  }
-
-  // 先从服务端同步赞助状态（换设备 / 站长补录后自动恢复）
-  A.syncSponsor()
-    .then(function (changed) {
-      if (changed) state.user = A.user();
-      renderHead();
-      loadSubs();
+  fetch("data/public/channels.json", { cache: "no-cache" })
+    .then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    })
+    .then(function (d) {
+      state.subs = { all: d.stats || {}, regions: d.regions || [] };
+      renderSubs();
     })
     .catch(function () {
-      loadSubs();
+      renderSubs();
     });
-
-  // ?pay=1 直接展开付款弹层
-  if (new URLSearchParams(location.search).get("pay") === "1") {
-    openPay();
-  }
 })();

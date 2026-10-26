@@ -92,17 +92,11 @@
     return short + (p[1] ? ":" + p[1] : "");
   }
 
-  function isMember() {
-    return !!(state.user && state.user.member);
-  }
-
   /* ---------------------------------------------------------- 渲染 */
 
-  /** 会员地址表：data/users/<token>/urls/hotel.json（只对会员存在） */
+  /** 公开地址表：data/public/urls/hotel.json，任何人都能拿 */
   function loadUrls() {
-    var tok = state.user && state.user.sid ? window.IVAUTH.tokenOf(state.user.sid) : "";
-    if (!tok) return;
-    fetch("data/users/" + tok + "/urls/" + HOTEL_KEY + ".json", { cache: "no-store" })
+    fetch("data/public/urls/" + HOTEL_KEY + ".json", { cache: "no-store" })
       .then(function (r) {
         return r.ok ? r.json() : null;
       })
@@ -129,12 +123,8 @@
     var nStream = s.streams || 0;
     var nHost = s.hosts || 0;
 
-    el.badge.textContent = isMember()
-      ? (state.user.planName || "已赞助") + " · 订阅已解锁"
-      : state.user.expired
-        ? "赞助已到期"
-        : "免费浏览";
-    el.badge.className = "ts-badge" + (isMember() ? " is-ok" : state.user.expired ? " is-expired" : "");
+    el.badge.textContent = "地址免费";
+    el.badge.className = "ts-badge is-ok";
     el.title.textContent = "酒店源";
     el.meta.innerHTML =
       "<span>" +
@@ -145,57 +135,27 @@
       nHost +
       " 台服务器</span>";
 
-    if (isMember()) {
-      el.side.innerHTML =
-        '<span class="ts-side-tip">有效期至 ' + esc(state.user.expText) + "</span>" +
-        '<a class="btn" href="account.html">我的订阅</a>';
-    } else {
-      el.side.innerHTML =
-        '<span class="ts-side-tip">地址可免费查看</span>' +
-        '<a class="btn btn-primary" href="account.html">' +
-        (state.user.expired ? "重新赞助" : "赞助解锁订阅") +
-        "</a>";
-    }
+    el.side.innerHTML =
+      '<span class="ts-side-tip">喜欢就支持一下 👍</span>' +
+      '<a class="btn btn-primary" href="account.html">喜欢作者，请支持一下</a>';
   }
 
   function renderSubscribe() {
-    var member = isMember();
-    var freeKey = window.IVAUTH.freeRegion();
-    var freeOk = window.IVAUTH.freeValid();
-    // 赞助用户可用；免费用户只有把免费地区选成「酒店源」且未过期才能用
-    var canUse = member || (freeKey === HOTEL_KEY && freeOk);
-
-    el.subSec.hidden = !canUse;
-    el.lockSec.hidden = canUse;
-
-    if (!canUse) {
-      renderLock(freeKey, freeOk);
-      return;
-    }
+    // 订阅地址全部公开，无需付费，打赏自愿
+    el.subSec.hidden = false;
+    el.lockSec.hidden = true;
 
     var s = (state.pub && state.pub.stats) || {};
-    var token = state.user && state.user.sid ? window.IVAUTH.tokenOf(state.user.sid) : "";
 
-    if (member && token) {
-      state.subPath = "data/users/" + token + "/" + HOTEL_KEY + ".m3u";
-      el.subTitle.textContent = "酒店源专属订阅地址";
-      el.subDesc.textContent =
-        "这是你专属的订阅地址，请勿分享。赞助到期后该地址会自动停止更新，播放器刷新后频道将为空。";
-      el.subTag.textContent = "酒店源 · " + (s.channels || 0) + " 频道 / " + (s.streams || 0) + " 条";
-    } else {
-      var dir = window.IVAUTH.freeDir();
-      state.subPath = "data/free/" + dir + "/" + HOTEL_KEY + ".m3u";
-      el.subTitle.textContent = "酒店源免费订阅（7 天）";
-      el.subDesc.textContent =
-        "免费订阅有效期至 " +
-        window.IVAUTH.fmtDate(window.IVAUTH.freeExpire()) +
-        "，到期后这条链接自动失效。免费为公共线路，不保证稳定性；赞助后可拿专属订阅并查看全部播放地址。";
-      el.subTag.textContent = "酒店源 · " + (s.channels || 0) + " 频道 / " + (s.streams || 0) + " 条";
-    }
+    state.subPath = "data/public/" + HOTEL_KEY + ".m3u";
+    el.subTitle.textContent = "酒店源订阅地址";
+    el.subDesc.textContent =
+      "公开订阅，粘贴到 PotPlayer / VLC / TiviMate / APTV 即可加载全部频道。酒店源 HLS 直连，全国可播。";
+    el.subTag.textContent = "酒店源 · " + (s.channels || 0) + " 频道 / " + (s.streams || 0) + " 条";
     el.subUrl.textContent = baseUrl() + state.subPath;
     el.dlSub.href = state.subPath;
 
-    // 主机列表：公开目录有就给公开的，否则会员态从地址表里提取
+    // 主机列表：公开目录有就给公开的，否则从地址表里提取
     var hosts = (state.pub && state.pub.hosts) || [];
     if (!hosts.length && state.hostSet) {
       hosts = Object.keys(state.hostSet);
@@ -205,38 +165,6 @@
         return '<span class="host-chip" title="' + esc(h) + '">' + esc(hostLabel(h)) + "</span>";
       })
       .join("");
-  }
-
-  function renderLock(freeKey, freeOk) {
-    // 没选过免费地区
-    if (!freeKey) {
-      el.lockBody.innerHTML =
-        "<h2>免费版可以先选酒店源试用</h2>" +
-        "<p>不赞助只能看到频道名，<b>拿不到播放地址</b>。可以把酒店源选为免费订阅试用，有效期 <b>7 天</b>，到期自动失效（<b>免费试用不保证直播源有效性</b>）。<br>" +
-        "赞助后解锁全部播放地址，<b>可正常观看</b>，并拿到长期有效的专属订阅。</p>" +
-        '<button class="btn btn-primary btn-lg" type="button" data-act="pick" style="margin-top:6px">免费选酒店源试用</button>' +
-        '<a class="btn btn-lg" href="account.html" style="margin-top:8px">直接赞助解锁全部</a>';
-      return;
-    }
-
-    // 选过但已经到期
-    if (freeKey === HOTEL_KEY && !freeOk) {
-      el.lockBody.innerHTML =
-        "<h2>免费订阅已到期</h2>" +
-        "<p>你的酒店源 7 天免费订阅已于 " +
-        esc(window.IVAUTH.fmtDate(window.IVAUTH.freeExpire())) +
-        " 到期，链接已失效。<br>赞助后可查看全部播放地址，<b>可正常观看</b>，并拿到长期有效的专属订阅。</p>" +
-        '<a class="btn btn-primary btn-lg" href="account.html" style="margin-top:6px">去赞助解锁</a>';
-      return;
-    }
-
-    // 选的是别的省
-    el.lockBody.innerHTML =
-      "<h2>你的免费地区不是酒店源</h2>" +
-      "<p>你的免费订阅是地区组播（7 天），酒店源需要赞助后使用。<br>" +
-      "酒店源不限地区、全国可播，赞助后即可解锁全部播放地址，<b>可正常观看</b>。</p>" +
-      '<a class="btn btn-primary btn-lg" href="account.html" style="margin-top:6px">赞助解锁酒店源</a>' +
-      '<a class="btn btn-lg" href="region.html" style="margin-top:8px">去看我的免费地区</a>';
   }
 
   function renderList() {
@@ -257,33 +185,6 @@
 
     if (!list.length) {
       el.list.innerHTML = '<div class="empty"><h3>没有匹配的频道</h3><p>换个关键词试试</p></div>';
-      return;
-    }
-
-    // 未赞助：只给频道名和条数，播放地址一律不输出到页面
-    if (!isMember()) {
-      el.list.innerHTML = list
-        .map(function (c) {
-          return (
-            '<details class="addr-item" data-key="' +
-            esc(c.key) +
-            '"' +
-            (q ? " open" : "") +
-            "><summary>" +
-            '<span class="addr-name">' +
-            esc(c.display) +
-            "</span>" +
-            '<span class="addr-type">HLS</span>' +
-            '<span class="addr-count">' +
-            (c.count || 0) +
-            " 条</span></summary>" +
-            '<div class="addr-urls"><div style="padding:12px 14px;font-size:13px;opacity:.72">' +
-            "播放地址需赞助后显示 · " +
-            '<a href="account.html" style="color:inherit;text-decoration:underline">去赞助解锁</a>' +
-            "</div></div></details>"
-          );
-        })
-        .join("");
       return;
     }
 
@@ -368,17 +269,6 @@
     }, 150);
   });
 
-  // 免费版选酒店源（只此一次）
-  el.lockSec.addEventListener("click", function (e) {
-    var btn = e.target.closest('[data-act="pick"]');
-    if (!btn) return;
-    if (!window.confirm("免费版只能选 1 个订阅，选定后不可更改。\n确定把酒店源选为免费订阅吗？")) return;
-    var r = window.IVAUTH.setFreeRegion(HOTEL_KEY);
-    if (!r.ok) return toast(r.msg);
-    toast("已选酒店源，订阅地址已解锁");
-    renderSubscribe();
-  });
-
   /* ---------------------------------------------------------- 启动 */
 
   function fail(msg, detail) {
@@ -392,17 +282,12 @@
 
   function boot() {
     state.user = window.IVAUTH.user();
+    el.acctLink.textContent = "喜欢作者，请支持一下";
 
-    window.IVAUTH.syncSponsor()
-      .then(function (changed) {
-        if (changed) state.user = window.IVAUTH.user();
-        el.acctLink.textContent = state.user.member ? "我的订阅" : "赞助解锁";
-      })
-      .then(function () {
-        return fetch("data/public/hotel.json", { cache: "no-cache" }).then(function (r) {
-          if (!r.ok) throw new Error("hotel.json HTTP " + r.status);
-          return r.json();
-        });
+    fetch("data/public/hotel.json", { cache: "no-cache" })
+      .then(function (r) {
+        if (!r.ok) throw new Error("hotel.json HTTP " + r.status);
+        return r.json();
       })
       .then(function (pub) {
         state.pub = pub;
@@ -423,7 +308,7 @@
         renderSubscribe();
         renderList();
 
-        if (isMember()) loadUrls();
+        loadUrls();
       })
       .catch(function (err) {
         fail("数据加载失败", err.message);

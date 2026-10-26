@@ -343,6 +343,41 @@ def _write_urls(path: Path, channels: list[dict], host_set: set[str] | None = No
     return len(out)
 
 
+def build_public_subs(channels: list[dict], regions: list[dict],
+                      hotel: dict | None = None) -> dict:
+    """生成公开订阅文件：全量 + 分地区 + 酒店源 + 各地区地址表。
+
+    与付费墙解耦：这些文件放在 data/public/ 下，任何人都能直接下载，
+    播放地址也一并公开（打赏是自愿的，不限制任何访问）。
+    """
+    PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
+    urls_dir = PUBLIC_DIR / "urls"
+    urls_dir.mkdir(parents=True, exist_ok=True)
+
+    n_chan = n_stream = 0
+
+    # 全量订阅：组播 + 酒店源合并
+    merged = merge_channels(channels, hotel)
+    n_chan, n_stream = _write(PUBLIC_DIR / "all.m3u", merged)
+
+    # 分地区订阅 + 地区地址表
+    for r in regions:
+        host_set = set(r.get("hosts") or [])
+        if not host_set:
+            (PUBLIC_DIR / f"{r['key']}.m3u").write_text(EMPTY_SUB, encoding="utf-8")
+            continue
+        _write(PUBLIC_DIR / f"{r['key']}.m3u", channels, host_set)
+        _write_urls(urls_dir / f"{r['key']}.json", channels, host_set)
+
+    # 酒店源：独立订阅 + 地址表
+    if hotel:
+        _write(PUBLIC_DIR / "hotel.m3u", hotel["channels"], hotel["host_set"])
+        _write_urls(urls_dir / "hotel.json", hotel["channels"], hotel["host_set"])
+
+    print(f"  [subs] public/*.m3u 全量 {n_chan} 频道 / {n_stream} 条（公开可下载）")
+    return {"channels": n_chan, "streams": n_stream}
+
+
 def build_users(channels: list[dict], regions: list[dict],
                 hotel: dict | None = None) -> dict:
     """为 users.json 里每个用户生成专属订阅；到期用户写成空列表。
@@ -504,6 +539,9 @@ def build() -> dict:
     # 传原始 regions（含频道为 0 的地区），保证每个目录下每个地区都有文件
     build_free(channels, regions, hotel)
     build_users(channels, regions, hotel)
+
+    # 公开订阅：免费可下载的完整订阅（打赏自愿，不做付费墙）
+    build_public_subs(channels, regions, hotel)
 
     # 清掉老版本留下的公开全量文件与索引（data/sub 整个目录都不再需要）
     if SUB_DIR.exists():

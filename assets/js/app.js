@@ -46,8 +46,8 @@
 
   /* ---------------------------------------------------------- 欢迎语音（Web Speech TTS） */
   var WELCOME_TEXT =
-    "欢迎订购本站 IPTV 直播源。本站自动采集全国各省市的组播直播源与酒店源，" +
-    "过滤低分辨率、保留高清，每小时自动巡检更新。赞助即可解锁全部播放地址与专属订阅，祝您观看愉快。";
+    "欢迎使用本站 IPTV 直播源。本站自动采集全国各省市的组播直播源与酒店源，" +
+    "过滤低分辨率、保留高清，每小时自动巡检更新。播放地址与订阅全部免费，如果喜欢请支持一下作者，祝您观看愉快。";
 
   function initWelcomeVoice() {
     if (!el.playWelcome) return;
@@ -88,55 +88,24 @@
     return key || "—";
   }
 
-  /* ---------------------------------------------------------- 赞助状态条 */
+  /* ---------------------------------------------------------- 打赏状态条 */
 
   function renderAccount() {
     var u = state.user;
     if (!u) return;
 
-    el.navAcct.textContent = u.member ? "我的订阅" : "赞助解锁";
+    el.navAcct.textContent = "喜欢作者，请支持一下 👍";
     el.navAcct.href = "account.html";
-
-    if (u.member) {
-      el.cta.innerHTML =
-        '<div class="cta-row">' +
-        '<div class="cta-text">' +
-        '<h2><span class="pill pill-ok">已赞助</span> 全部 ' +
-        state.regions.length +
-        " 个地区已解锁</h2>" +
-        "<p>有效期至 <b>" +
-        esc(u.expText) +
-        "</b>（剩 " +
-        u.daysLeft +
-        " 天）。到期后订阅会自动停止更新，再次赞助即可恢复。</p>" +
-        "</div>" +
-        '<div class="cta-acts">' +
-        '<a class="btn btn-primary btn-lg" href="account.html">我的订阅</a>' +
-        "</div>" +
-        "</div>";
-      return;
-    }
 
     el.cta.innerHTML =
       '<div class="cta-row">' +
       '<div class="cta-text">' +
-      "<h2>" +
-      (u.expired ? "赞助已到期" : "免费可任选 1 个地区") +
-      "</h2>" +
-      "<p>" +
-      (u.expired
-        ? "你的赞助已于 <b>" +
-          esc(u.lastExpText) +
-          "</b> 到期，订阅地址已停止更新。再次赞助即可恢复。"
-        : "频道名可以免费看，但 <b>播放地址需赞助后显示</b>。免费可先拿 <b>1 个地区</b> 的订阅试用，<b>有效期 7 天</b>，到期自动失效（<b>免费试用不保证直播源有效性</b>）；赞助后解锁全部 " +
-          state.regions.length +
-          " 个地区与所有地址，<b>可正常观看</b>。") +
-      "</p>" +
+      "<h2>喜欢作者，请支持一下 👍</h2>" +
+      "<p>本站<b>全部免费</b>——播放地址、M3U 订阅都能直接看、直接下，不设付费墙。" +
+      "服务器与带宽有成本，如果觉得好用，欢迎<b>请作者喝杯咖啡</b>，多少都是心意。</p>" +
       "</div>" +
       '<div class="cta-acts">' +
-      '<a class="btn btn-primary btn-lg" href="account.html">' +
-      (u.expired ? "重新赞助" : "去赞助解锁全部") +
-      "</a>" +
+      '<a class="btn btn-primary btn-lg" href="account.html">支持一下作者</a>' +
       '<a class="btn btn-lg" href="region.html">先看看频道</a>' +
       "</div>" +
       "</div>";
@@ -168,7 +137,7 @@
 
   /* ---------------------------------------------------------- 地区卡片 */
 
-  // 频道地址全部免费浏览，赞助只影响「订阅链接」
+  // 频道地址与订阅全部免费浏览
   function regionCard(r) {
     return (
       '<a class="region-card" href="#" data-r="' +
@@ -218,13 +187,6 @@
     state.user = window.IVAUTH.user();
     renderAccount();
     initWelcomeVoice();
-
-    // 先从服务端同步赞助状态（换设备 / 站长补录后自动恢复）
-    window.IVAUTH.syncSponsor().then(function (changed) {
-      if (!changed) return;
-      state.user = window.IVAUTH.user();
-      renderAccount();
-    });
 
     // 公开数据里只有频道名与条数，没有任何播放地址
     var jobs = [

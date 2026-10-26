@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f2f3f5">
-<title>赞助解锁 · IPTV直播源分发系统</title>
+<title>喜欢作者，请支持一下 · IPTV直播源分发系统</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%236366f1'/><stop offset='1' stop-color='%23ec4899'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='url(%23g)'/><rect x='25' y='29' width='50' height='42' rx='8' fill='%231e1b4b'/><path d='M41 40l22 10-22 10z' fill='white'/></svg>">
 <link rel="stylesheet" href="assets/css/app.css?v=20261026an">
 <script src="assets/js/theme.js?v=20261026an"></script>
@@ -35,126 +35,54 @@
 
 <main class="wrap narrow">
 
-  <!-- 赞助状态概览 -->
-  <section class="acct-head">
-    <div class="acct-avatar" id="acctAvatar">光</div>
-    <div class="acct-id">
-      <h1 id="acctPhone">未赞助</h1>
-      <div class="acct-badges" id="acctBadges"></div>
+  <!-- 打赏卡片 -->
+  <section class="panel donate-panel">
+    <div class="donate-head">
+      <h1 class="donate-title">赠予作者 <span class="donate-thumb">👍</span></h1>
+      <p class="donate-sub">本站播放地址与订阅<b>全部免费</b>，不设付费墙、不用注册。<br>如果觉得好用，欢迎请作者喝杯咖啡，多少都是心意。</p>
     </div>
+
+    <!-- 金额选择（仿微信赞赏） -->
+    <div class="donate-amounts" id="donateAmounts">
+      <button class="amount" type="button" data-amt="5"><i>¥</i>5</button>
+      <button class="amount" type="button" data-amt="20"><i>¥</i>20</button>
+      <button class="amount" type="button" data-amt="50"><i>¥</i>50</button>
+      <button class="amount" type="button" data-amt="80"><i>¥</i>80</button>
+      <button class="amount" type="button" data-amt="100"><i>¥</i>100</button>
+      <button class="amount" type="button" data-amt="200"><i>¥</i>200</button>
+    </div>
+    <button class="donate-other" id="donateOther" type="button">其它金额</button>
+    <div class="donate-custom" id="donateCustom" hidden>
+      <input class="donate-custom-input" id="customAmt" type="number" min="1" step="1" placeholder="其它金额（元）" autocomplete="off">
+      <button class="btn btn-primary btn-sm" id="customOk" type="button">确定</button>
+    </div>
+
+    <!-- 二维码（选定金额后显示） -->
+    <div class="donate-qr" id="donateQr" hidden>
+      <img src="assets/img/wxpay.jpg" alt="微信赞赏码" loading="lazy">
+      <p class="donate-qr-tip">微信扫一扫，支付 <b id="donatePayNum">¥20</b> 支持作者 ☕</p>
+    </div>
+
+    <p class="donate-thanks">感谢每一位支持的朋友，你的心意是站点持续更新的动力 💪</p>
   </section>
 
-  <section class="acct-grid">
-    <div class="acct-stat">
-      <span class="acct-stat-k">当前状态</span>
-      <b id="statPlan">未赞助</b>
-    </div>
-    <div class="acct-stat">
-      <span class="acct-stat-k">可用内容</span>
-      <b id="statRegion">—</b>
-    </div>
-    <div class="acct-stat">
-      <span class="acct-stat-k">有效期至</span>
-      <b id="statExp">—</b>
-    </div>
-  </section>
-
-  <!-- 未赞助 / 已到期：选择档位 -->
-  <section class="panel upgrade-panel" id="upgradePanel" hidden>
+  <!-- 免费订阅地址 -->
+  <section class="panel">
     <div class="panel-head">
-      <h2 id="upgradeTitle">赞助解锁订阅链接</h2>
-      <span class="pill pill-warn" id="upgradePill">未赞助</span>
+      <h2>免费订阅地址</h2>
+      <span class="pill pill-ok">全部免费</span>
     </div>
-
-    <div class="pending-box" id="pendingBox" hidden></div>
-
     <p class="upgrade-desc">
-      频道列表免费查看，但 <b>播放地址需赞助后显示</b>。免费可先选 1 个地区的订阅，
-      <b>有效期只有 7 天</b>，到期自动失效（<b>免费试用不保证直播源有效性</b>）。赞助后可查看全部地址，并拿到一条专属 M3U 订阅链接 ——
-      粘进播放器就自动更新，覆盖 <b id="coverNums">全部地区与频道</b>，<b>可正常观看</b>，到期自动停止。
+      粘贴到 PotPlayer / VLC / TiviMate / APTV 的「订阅 / 远程列表」，即可加载全部频道。
+      数据每小时自动更新，跨省中转地址大多无法播放，建议优先用你所在地区那份。
     </p>
-
-    <div class="plan-grid" id="planGrid"></div>
-
-    <button class="btn btn-primary btn-block btn-lg" id="openPay">扫码赞助 ￥8 解锁订阅</button>
-    <p class="upgrade-tip">微信扫码支付 → 点页面按钮提交 → 把赞助码发给站长确认后，订阅生效。有效期从开通当天起算。</p>
-  </section>
-
-  <!-- 已赞助：订阅交付 -->
-  <section class="panel" id="memberPanel" hidden>
-    <div class="panel-head">
-      <h2>我的订阅地址</h2>
-      <div class="head-acts">
-        <span class="pill pill-ok" id="memberPill">已赞助</span>
-        <button class="btn btn-sm" id="renewBtn">续费 / 换档位</button>
-      </div>
-    </div>
-    <p class="upgrade-desc">粘贴到 PotPlayer / VLC / TiviMate / APTV 的「订阅 / 远程列表」，即可加载全部频道。</p>
     <div class="sub-list" id="subList"></div>
-    <p class="auth-note">建议优先用你所在地区的那份 —— 跨省中转地址大多无法播放。</p>
   </section>
-
-  <!-- 赞助码：换设备恢复 -->
-  <section class="panel" id="sidPanel">
-    <div class="panel-head">
-      <h2>本机赞助码</h2>
-      <button class="btn btn-sm" id="copySid" type="button">复制</button>
-    </div>
-    <p class="upgrade-desc">
-      这串码代表当前这台设备，已经自动生成，不需要注册。换手机或清了浏览器缓存时，
-      用它在下面恢复，就能继续用同一个订阅地址。
-    </p>
-    <code class="sub-item-url" id="sidText">—</code>
-    <div style="display:flex;gap:8px;margin-top:12px">
-      <input class="mini-search" id="sidInput" type="text" placeholder="粘贴赞助码，如 A1B2 C3D4 E5F6" autocomplete="off" style="flex:1;max-width:none">
-      <button class="btn" id="restoreBtn" type="button">恢复</button>
-    </div>
-    <p class="auth-note" id="sidMsg"></p>
-  </section>
-
-  <!-- 付款弹层 -->
-  <div class="pay-modal" id="payModal" hidden>
-    <div class="pay-backdrop" data-close></div>
-    <div class="pay-sheet" role="dialog" aria-modal="true" aria-labelledby="payTitle">
-      <button class="pay-close" data-close aria-label="关闭">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg>
-      </button>
-
-      <h2 id="payTitle">微信扫码赞助</h2>
-
-      <div class="pay-plans" id="payPlans"></div>
-
-      <p class="pay-sub">应付 <b id="payAmount">￥8.00</b> · <span id="payPlanNote">月付 30 天</span></p>
-
-      <div class="pay-qr">
-        <img src="assets/img/wxpay.jpg" alt="微信收款二维码" loading="eager">
-      </div>
-
-      <div class="pay-order">
-        <span class="pay-order-k">订单号</span>
-        <code id="orderNo">—</code>
-        <button class="btn btn-sm" id="copyOrder">复制</button>
-      </div>
-      <p class="pay-order-tip">付款时可在「添加备注」里填写订单号，便于日后核对。</p>
-
-      <ol class="pay-steps">
-        <li>微信扫一扫 → 扫描上方二维码</li>
-        <li>支付 <b id="payStepAmount">￥8.00</b>（建议备注订单号）</li>
-        <li>点下面按钮，把赞助码发给站长确认</li>
-      </ol>
-
-      <button class="btn btn-primary btn-block btn-lg" id="confirmPay">我已完成付款，提交开通</button>
-      <p class="pay-warn">
-        提交后本机解锁，订阅链接需站长确认后才生效。
-        把赞助码发给站长，确认后订阅地址即可使用。
-      </p>
-    </div>
-  </div>
 
   <p class="auth-foot">
     <a href="index.html">频道首页</a> ·
     <a href="region.html">浏览频道地址</a> ·
-    <a href="#" id="resetBtn">清除本机记录</a>
+    <a href="hotel.html">酒店源</a>
   </p>
 </main>
 

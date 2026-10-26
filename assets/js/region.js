@@ -109,17 +109,11 @@
     return null;
   }
 
-  function isMember() {
-    return !!(state.user && state.user.member);
-  }
-
   /* ---------------------------------------------------------- 渲染 */
 
-  /** 会员的地址表：只拉当前地区那一份，几百 KB 以内 */
+  /** 公开地址表：data/public/urls/<地区>.json，任何人都能拿 */
   function loadUrls(key) {
-    var tok = state.user && state.user.sid ? window.IVAUTH.tokenOf(state.user.sid) : "";
-    if (!tok) return;
-    fetch("data/users/" + tok + "/urls/" + key + ".json", { cache: "no-store" })
+    fetch("data/public/urls/" + key + ".json", { cache: "no-store" })
       .then(function (r) {
         return r.ok ? r.json() : null;
       })
@@ -145,12 +139,8 @@
     var nStream = r ? r.streams || 0 : 0;
     var nHost = r ? (r.hosts || []).length : 0;
 
-    el.badge.textContent = isMember()
-      ? (state.user.planName || "已赞助") + " · 订阅已解锁"
-      : state.user.expired
-        ? "赞助已到期"
-        : "免费浏览";
-    el.badge.className = "ts-badge" + (isMember() ? " is-ok" : state.user.expired ? " is-expired" : "");
+    el.badge.textContent = "地址免费";
+    el.badge.className = "ts-badge is-ok";
     el.region.textContent = name;
     el.meta.innerHTML =
       "<span>" +
@@ -161,17 +151,9 @@
       nHost +
       " 台中转服务器</span>";
 
-    if (isMember()) {
-      el.side.innerHTML =
-        '<span class="ts-side-tip">有效期至 ' + esc(state.user.expText) + "</span>" +
-        '<a class="btn" href="account.html">我的订阅</a>';
-    } else {
-      el.side.innerHTML =
-        '<span class="ts-side-tip">地址可免费查看</span>' +
-        '<a class="btn btn-primary" href="account.html">' +
-        (state.user.expired ? "重新赞助" : "赞助解锁订阅") +
-        "</a>";
-    }
+    el.side.innerHTML =
+      '<span class="ts-side-tip">喜欢就支持一下 👍</span>' +
+      '<a class="btn btn-primary" href="account.html">喜欢作者，请支持一下</a>';
   }
 
   function renderChips() {
@@ -193,62 +175,28 @@
       .join("");
 
     el.chips.innerHTML = html;
-    el.regionSub.textContent = isMember()
-      ? "全部 " + state.regions.length + " 个地区已解锁"
-      : state.user.expired
-        ? "赞助已到期，订阅已停止更新；再次赞助即可恢复"
-        : "免费版可任选 1 个地区订阅，赞助后解锁全部";
+    el.regionSub.textContent =
+      "全部 " + state.regions.length + " 个地区免费，地址与订阅直接可用";
   }
 
   function renderSubscribe() {
-    var member = isMember();
+    // 订阅地址全部公开，无需付费，打赏自愿
     var key = state.regionKey;
-    var freeKey = window.IVAUTH.freeRegion();
-    var freeOk = window.IVAUTH.freeValid();
-    // 赞助用户可用全部地区；免费用户只能用已选定且未过期的那一个
-    var canUse = member || (freeKey === key && freeOk);
-
-    el.subSec.hidden = !canUse;
-    el.lockSec.hidden = canUse;
-
-    if (!canUse) {
-      renderLock(key, freeKey, freeOk);
-      return;
-    }
-
     var r = regionByKey(key);
     var mine = subByKey(key);
     var all = (state.subs && state.subs.all) || null;
 
-    // 专属订阅：每个赞助账号一份，路径里带 token；到期后服务端把文件写成空列表
-    var token = state.user && state.user.sid ? window.IVAUTH.tokenOf(state.user.sid) : "";
+    el.subSec.hidden = false;
+    el.lockSec.hidden = true;
 
     if (mine) {
-      if (member && token) {
-        state.subPath = "data/users/" + token + "/" + key + ".m3u";
-        el.subTitle.textContent = (r ? r.name : "") + " 专属订阅地址";
-        el.subDesc.textContent =
-          "这是你专属的订阅地址，请勿分享。赞助到期后该地址会自动停止更新，播放器刷新后频道将为空。";
-      } else {
-        // 免费额度：公共目录，选地区当天 + 7 天后目录被删，链接自动失效
-        var dir = window.IVAUTH.freeDir();
-        state.subPath = "data/free/" + dir + "/" + key + ".m3u";
-        el.subTitle.textContent = (r ? r.name : "") + " 免费订阅（7 天）";
-        el.subDesc.textContent =
-          "免费订阅有效期至 " +
-          window.IVAUTH.fmtDate(window.IVAUTH.freeExpire()) +
-          "，到期后这条链接自动失效。免费为公共线路，不保证稳定性；赞助后可拿专属订阅并查看全部播放地址。";
-      }
+      state.subPath = "data/public/" + key + ".m3u";
+      el.subTitle.textContent = (r ? r.name : "") + " 订阅地址";
+      el.subDesc.textContent =
+        "公开订阅，粘贴到 PotPlayer / VLC / TiviMate / APTV 即可加载全部频道。数据每小时自动更新。";
       el.subTag.textContent = (r ? r.name : "") + " · " + mine.channels + " 频道 / " + mine.streams + " 条";
       el.subUrl.textContent = baseUrl() + state.subPath;
       el.dlSub.href = state.subPath;
-    } else if (all && member && token) {
-      state.subPath = "data/users/" + token + "/all.m3u";
-      el.subTag.textContent = "全量";
-      el.subUrl.textContent = baseUrl() + state.subPath;
-      el.dlSub.href = state.subPath;
-      el.subTitle.textContent = "全量专属订阅地址";
-      el.subDesc.textContent = "包含全部地区服务器，适合手动挑选线路。赞助到期后该地址会自动停止更新。";
     } else {
       state.subPath = "";
       el.subTag.textContent = "—";
@@ -262,54 +210,6 @@
         return '<span class="host-chip" title="' + esc(h) + '">' + esc(hostLabel(h)) + "</span>";
       })
       .join("");
-  }
-
-  /** 未赞助时：没选过地区就让他选，选过了就引导回去或去赞助 */
-  function renderLock(key, freeKey, freeOk) {
-    var r = regionByKey(key);
-    var name = r ? r.name : key;
-
-    if (!freeKey) {
-      el.lockBody.innerHTML =
-        "<h2>免费版可以先选 1 个地区</h2>" +
-        "<p>不赞助只能看到频道名，<b>拿不到播放地址</b>。可以先选 <b>1 个地区</b> 的订阅链接试用，有效期 <b>7 天</b>，到期自动失效（<b>免费试用不保证直播源有效性</b>）。<br>" +
-        "赞助后解锁全部地区地址，<b>可正常观看</b>，并拿到长期有效的专属订阅。</p>" +
-        '<button class="btn btn-primary btn-lg" type="button" data-act="pick" style="margin-top:6px">就选「' +
-        esc(name) +
-        "」</button>" +
-        '<a class="btn btn-lg" href="account.html" style="margin-top:8px">直接赞助解锁全部</a>';
-      return;
-    }
-
-    var fr = regionByKey(freeKey);
-    var fname = fr ? fr.name : freeKey;
-
-    // 选过但 7 天免费期已经结束
-    if (!freeOk) {
-      el.lockBody.innerHTML =
-        "<h2>免费订阅已到期</h2>" +
-        "<p>你在「" +
-        esc(fname) +
-        "」的 7 天免费订阅已于 " +
-        esc(window.IVAUTH.fmtDate(window.IVAUTH.freeExpire())) +
-        " 到期，链接已失效。<br>赞助后可查看全部播放地址，<b>可正常观看</b>，并拿到长期有效的专属订阅。</p>" +
-        '<a class="btn btn-primary btn-lg" href="account.html" style="margin-top:6px">去赞助解锁</a>';
-      return;
-    }
-
-    el.lockBody.innerHTML =
-      "<h2>你的免费地区是「" +
-      esc(fname) +
-      "」</h2>" +
-      "<p>免费订阅有效期至 <b>" +
-      esc(window.IVAUTH.fmtDate(window.IVAUTH.freeExpire())) +
-      "</b>，到期后链接自动失效（免费试用不保证直播源有效性）。<br>播放地址仍需赞助后显示。</p>" +
-      '<a class="btn btn-primary btn-lg" href="region.html?r=' +
-      encodeURIComponent(freeKey) +
-      '" style="margin-top:6px">去看「' +
-      esc(fname) +
-      "」</a>" +
-      '<a class="btn btn-lg" href="account.html" style="margin-top:8px">赞助解锁全部</a>';
   }
 
   function renderList() {
@@ -333,35 +233,6 @@
 
     if (!list.length) {
       el.list.innerHTML = '<div class="empty"><h3>没有匹配的频道</h3><p>换个关键词试试</p></div>';
-      return;
-    }
-
-    // 未赞助：只给频道名和条数，播放地址一律不输出到页面
-    if (!isMember()) {
-      el.list.innerHTML = list
-        .map(function (c) {
-          return (
-            '<details class="addr-item" data-key="' +
-            esc(c.key) +
-            '"' +
-            (q ? " open" : "") +
-            "><summary>" +
-            '<span class="addr-name">' +
-            esc(c.display) +
-            "</span>" +
-            '<span class="addr-type">' +
-            esc(c.type || "") +
-            "</span>" +
-            '<span class="addr-count">' +
-            (c.n || c.streams.length) +
-            " 条</span></summary>" +
-            '<div class="addr-urls"><div style="padding:12px 14px;font-size:13px;opacity:.72">' +
-            "播放地址需赞助后显示 · " +
-            '<a href="account.html" style="color:inherit;text-decoration:underline">去赞助解锁</a>' +
-            "</div></div></details>"
-          );
-        })
-        .join("");
       return;
     }
 
@@ -437,7 +308,7 @@
     renderSubscribe();
     renderList();
 
-    if (isMember()) loadUrls(key);
+    loadUrls(key);
 
     var url = new URL(location.href);
     url.searchParams.set("r", key);
@@ -475,19 +346,6 @@
     }, 150);
   });
 
-  // 免费版选地区（只此一次）
-  el.lockSec.addEventListener("click", function (e) {
-    var btn = e.target.closest('[data-act="pick"]');
-    if (!btn) return;
-    var key = state.regionKey;
-    var name = (regionByKey(key) || {}).name || key;
-    if (!window.confirm("免费版只能选 1 个地区，选定后不可更改。\n确定选「" + name + "」吗？")) return;
-    var r = window.IVAUTH.setFreeRegion(key);
-    if (!r.ok) return toast(r.msg);
-    toast("已选「" + name + "」，订阅地址已解锁");
-    renderSubscribe();
-  });
-
   /* ---------------------------------------------------------- 启动 */
 
   function fail(msg, detail) {
@@ -502,19 +360,13 @@
   function boot() {
     state.user = window.IVAUTH.user();
     var params = new URLSearchParams(location.search);
+    el.acctLink.textContent = "喜欢作者，请支持一下";
 
-    // 先同步服务端赞助状态（换设备 / 站长补录后自动恢复），再渲染页面
-    window.IVAUTH.syncSponsor()
-      .then(function (changed) {
-        if (changed) state.user = window.IVAUTH.user();
-        el.acctLink.textContent = state.user.member ? "我的订阅" : "赞助解锁";
-      })
-      .then(function () {
-        // 公开目录：只有频道名和各地区条数，不含地址
-        return fetch("data/public/channels.json", { cache: "no-cache" }).then(function (r) {
-          if (!r.ok) throw new Error("channels.json HTTP " + r.status);
-          return r.json();
-        });
+    // 公开目录：含地区与频道统计
+    fetch("data/public/channels.json", { cache: "no-cache" })
+      .then(function (r) {
+        if (!r.ok) throw new Error("channels.json HTTP " + r.status);
+        return r.json();
       })
       .then(function (pub) {
         state.pub = pub;
