@@ -1,0 +1,19 @@
+# 本站数据仅供站内浏览，禁止任何形式的整站抓取、镜像与二次分发
+User-agent: *
+Disallow: /
+
+# 明确禁止常见采集器
+User-agent: Bytespider
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /

@@ -527,7 +527,8 @@
       return;
     }
     var t = localStorage.getItem(K_TOKEN) || "";
-    var r = localStorage.getItem(K_REPO) || "zengzifeng520/ZZF";
+    // 不在页面上写死仓库名，避免把私有仓库位置暴露给访客
+    var r = localStorage.getItem(K_REPO) || "";
     el.repo.value = r;
     if (t) {
       el.token.value = t;

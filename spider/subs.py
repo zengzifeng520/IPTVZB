@@ -237,18 +237,26 @@ def build() -> dict:
     if REGIONS_JSON.exists():
         regions = json.loads(REGIONS_JSON.read_text(encoding="utf-8")).get("regions", [])
 
-    # 全量
-    n_chan, n_stream = _write(SUB_DIR / "all.m3u", channels)
-    print(f"  [subs] all.m3u            {n_chan:>4} 频道 / {n_stream:>5} 条")
+    # 全量：只在内存里统计，**不再落盘成公开文件**。
+    # data/sub/all.m3u 这种文件放在仓库里等于把 4147 条地址免费公开，
+    # 谁拿到 URL 都能直接下，跟「赞助才能看」完全冲突。
+    n_chan = len(channels)
+    n_stream = sum(len(c["streams"]) for c in channels)
+    print(f"  [subs] 全量统计          {n_chan:>4} 频道 / {n_stream:>5} 条（不生成公开文件）")
 
-    # 分地区
+    # 分地区：同样不落盘，只把「数量」写进索引给前端展示
     index_regions = []
     for r in regions:
         host_set = set(r.get("hosts") or [])
         if not host_set:
             continue
-        path = SUB_DIR / "region" / f"{r['key']}.m3u"
-        c, s = _write(path, channels, host_set)
+        c = 0
+        s = 0
+        for ch in channels:
+            picked = [x for x in ch["streams"] if x["h"] in host_set]
+            if picked:
+                c += 1
+                s += len(picked)
         if not c:
             continue
         index_regions.append(
@@ -256,7 +264,6 @@ def build() -> dict:
                 "key": r["key"],
                 "name": r["name"],
                 "isp": r.get("isp") or "",
-                "sub": f"data/sub/region/{r['key']}.m3u",
                 "channels": c,
                 "streams": s,
                 "hosts": len(host_set),
@@ -268,7 +275,6 @@ def build() -> dict:
     payload = {
         "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
         "all": {
-            "sub": "data/sub/all.m3u",
             "channels": n_chan,
             "streams": n_stream,
         },
@@ -287,6 +293,15 @@ def build() -> dict:
     # 传原始 regions（含频道为 0 的地区），保证每个目录下每个地区都有文件
     build_free(channels, regions)
     build_users(channels, regions)
+
+    # 清掉历史遗留的公开全量文件（老版本会生成，留着等于免费公开全部地址）
+    for stale in (SUB_DIR / "all.m3u", SUB_DIR / "region"):
+        if stale.is_dir():
+            shutil.rmtree(stale, ignore_errors=True)
+            print(f"  [subs] 已删除历史公开文件 {stale.name}/")
+        elif stale.exists():
+            stale.unlink()
+            print(f"  [subs] 已删除历史公开文件 {stale.name}")
     return payload
 
 
