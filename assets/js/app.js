@@ -15,6 +15,7 @@
     grid: document.getElementById("regionGrid"),
     previewSub: document.getElementById("previewSub"),
     navAcct: document.getElementById("navAcct"),
+    navLogout: document.getElementById("navLogout"),
     updAt: document.getElementById("updAt"),
     toast: document.getElementById("toast"),
   };
@@ -52,6 +53,7 @@
     if (!u) {
       el.navAcct.textContent = "登录 / 注册";
       el.navAcct.href = "login.html";
+      if (el.navLogout) el.navLogout.hidden = true;
       el.cta.innerHTML =
         '<div class="cta-row">' +
         '<div class="cta-text">' +
@@ -68,6 +70,7 @@
 
     el.navAcct.textContent = u.member ? "会员中心" : "我的账号";
     el.navAcct.href = "account.html";
+    if (el.navLogout) el.navLogout.hidden = false;
 
     if (u.member) {
       el.cta.innerHTML =
@@ -206,6 +209,16 @@
       location.href = "account.html";
     }, 900);
   });
+
+  if (el.navLogout) {
+    el.navLogout.addEventListener("click", function () {
+      window.IVAUTH.logout();
+      toast("已退出登录");
+      setTimeout(function () {
+        location.href = "index.html";
+      }, 420);
+    });
+  }
 
   /* ---------------------------------------------------------- 启动 */
 

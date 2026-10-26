@@ -13,6 +13,7 @@
   var K_USERS = "iv_users_v1";
   var K_SESSION = "iv_session_v1";
   var K_MEMBER = "iv_member_v1";
+  var K_REMEMBER = "iv_remember_v1";
 
   var PRICE = 15;
   var MEMBER_DAYS = 365;
@@ -290,6 +291,63 @@
     return "ZB" + stamp + tail;
   }
 
+  /* ---------------------------------------------------------- 记住账号 */
+
+  function obscure(str) {
+    // 轻量可逆混淆：只是避免明文直接暴露在 DevTools 里，不是加密
+    var s = toBytes(str);
+    var out = "";
+    for (var i = 0; i < s.length; i++) {
+      out += String.fromCharCode(s.charCodeAt(i) ^ (0x5a + (i % 7)));
+    }
+    try {
+      return btoa(out);
+    } catch (e) {
+      return "";
+    }
+  }
+
+  function deobscure(str) {
+    try {
+      var raw = atob(str);
+      var out = "";
+      for (var i = 0; i < raw.length; i++) {
+        out += String.fromCharCode(raw.charCodeAt(i) ^ (0x5a + (i % 7)));
+      }
+      return decodeURIComponent(escape(out));
+    } catch (e) {
+      return "";
+    }
+  }
+
+  /**
+   * 记住登录信息。
+   * @param {string} phone 手机号
+   * @param {string} pwd   密码；传空字符串则只记住手机号
+   */
+  function saveRemember(phone, pwd) {
+    try {
+      if (!phone) {
+        localStorage.removeItem(K_REMEMBER);
+        return;
+      }
+      var payload = { phone: phone, p: pwd ? obscure(pwd) : "" };
+      localStorage.setItem(K_REMEMBER, JSON.stringify(payload));
+    } catch (e) {}
+  }
+
+  function remembered() {
+    var rec = readJSON(K_REMEMBER, null);
+    if (!rec || !rec.phone) return null;
+    return { phone: rec.phone, pwd: rec.p ? deobscure(rec.p) : "" };
+  }
+
+  function forgetRemember() {
+    try {
+      localStorage.removeItem(K_REMEMBER);
+    } catch (e) {}
+  }
+
   window.IVAUTH = {
     PRICE: PRICE,
     MEMBER_DAYS: MEMBER_DAYS,
@@ -302,6 +360,9 @@
     user: user,
     makeOrderNo: makeOrderNo,
     fmtDate: fmtDate,
+    saveRemember: saveRemember,
+    remembered: remembered,
+    forgetRemember: forgetRemember,
     isLoggedIn: function () {
       return !!user();
     },

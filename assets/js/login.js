@@ -14,12 +14,18 @@
     register: document.getElementById("formRegister"),
     loginPhone: document.getElementById("loginPhone"),
     loginPwd: document.getElementById("loginPwd"),
+    rememberMe: document.getElementById("rememberMe"),
     regPhone: document.getElementById("regPhone"),
     regPwd: document.getElementById("regPwd"),
     regPwd2: document.getElementById("regPwd2"),
     picker: document.getElementById("regionPicker"),
     err: document.getElementById("authErr"),
     toast: document.getElementById("toast"),
+    logged: document.getElementById("authLogged"),
+    alAvatar: document.getElementById("alAvatar"),
+    alPhone: document.getElementById("alPhone"),
+    alPlan: document.getElementById("alPlan"),
+    alLogout: document.getElementById("alLogout"),
   };
 
   var state = { region: "", regions: [] };
@@ -126,8 +132,17 @@
   el.login.addEventListener("submit", function (e) {
     e.preventDefault();
     showErr("");
-    var r = window.IVAUTH.login(el.loginPhone.value, el.loginPwd.value);
+    var phone = el.loginPhone.value;
+    var pwd = el.loginPwd.value;
+    var r = window.IVAUTH.login(phone, pwd);
     if (!r.ok) return showErr(r.msg);
+
+    // 勾选则连密码一起记住，否则只记手机号
+    window.IVAUTH.saveRemember(
+      String(phone).replace(/[\s-]/g, ""),
+      el.rememberMe.checked ? pwd : ""
+    );
+
     toast("登录成功");
     setTimeout(goNext, 400);
   });
@@ -141,18 +156,64 @@
     if (!state.region) return showErr("请先选择你所在的地区");
     var r = window.IVAUTH.register(el.regPhone.value, p1, state.region);
     if (!r.ok) return showErr(r.msg);
+
+    // 刚注册的账号直接记住，省得下次再输
+    window.IVAUTH.saveRemember(r.phone, el.rememberMe.checked ? p1 : "");
+
     toast("注册成功");
     setTimeout(goNext, 400);
   });
 
+  /* ---------------------------------------------------------- 已登录状态 */
+
+  function renderLogged(u) {
+    if (!u) {
+      el.logged.hidden = true;
+      return;
+    }
+    el.logged.hidden = false;
+    el.alAvatar.textContent = u.phoneMask.slice(-4, -3) || "光";
+    el.alPhone.textContent = u.phoneMask;
+    el.alPlan.textContent = u.member ? "会员" : "体验版";
+    el.alPlan.className = "pill " + (u.member ? "pill-ok" : "pill-warn");
+  }
+
+  el.alLogout.addEventListener("click", function () {
+    window.IVAUTH.logout();
+    renderLogged(null);
+    showErr("");
+    toast("已退出登录");
+    setTab("login");
+    // 退出后仍保留记住的账号，方便再次登录
+    prefill();
+  });
+
+  /* ---------------------------------------------------------- 预填 */
+
+  function prefill() {
+    var rec = window.IVAUTH.remembered();
+    if (!rec) return;
+    if (!el.loginPhone.value) el.loginPhone.value = rec.phone;
+    if (!el.loginPwd.value && rec.pwd) {
+      el.loginPwd.value = rec.pwd;
+      el.rememberMe.checked = true;
+    } else if (!rec.pwd) {
+      el.rememberMe.checked = false;
+    }
+  }
+
   /* ---------------------------------------------------------- 启动 */
 
-  // 已登录直接走人
-  if (window.IVAUTH.isLoggedIn() && qs.get("stay") !== "1") {
+  var current = window.IVAUTH.user();
+
+  // 已登录且不是「切换账号」进来的，直接放行
+  if (current && qs.get("stay") !== "1") {
     goNext();
     return;
   }
 
+  renderLogged(current);
+  prefill();
   loadRegions();
   setTab(tab);
 })();

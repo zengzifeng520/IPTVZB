@@ -25,6 +25,7 @@
     toast: document.getElementById("toast"),
     updAt: document.getElementById("updAt"),
     acctLink: document.getElementById("acctLink"),
+    navLogout: document.getElementById("navLogout"),
   };
 
   var state = {
@@ -363,6 +364,16 @@
     }, 150);
   });
 
+  if (el.navLogout) {
+    el.navLogout.addEventListener("click", function () {
+      window.IVAUTH.logout();
+      toast("已退出登录");
+      setTimeout(function () {
+        location.href = "index.html";
+      }, 420);
+    });
+  }
+
   /* ---------------------------------------------------------- 启动 */
 
   function fail(msg, detail) {
@@ -381,6 +392,7 @@
       return;
     }
     el.acctLink.textContent = state.user.phoneMask;
+    if (el.navLogout) el.navLogout.hidden = false;
 
     var params = new URLSearchParams(location.search);
 
