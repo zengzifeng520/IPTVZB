@@ -559,6 +559,13 @@ input { font-family: inherit; }
 }
 .disclaimer-panel .dp-update .up-label { font-size: 14px; font-weight: 700; color: var(--text-3); letter-spacing: 0.5px; }
 .disclaimer-panel .dp-update .up-time { font-size: 22px; font-weight: 800; color: var(--text); letter-spacing: 0.3px; white-space: nowrap; }
+.disclaimer-panel .dp-update .up-clock {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13px; font-weight: 600;
+  color: var(--text-3);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
 
 @media (max-width: 720px) {
   .disclaimer-panel { flex-direction: column; align-items: stretch; gap: 18px; }

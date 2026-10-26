@@ -541,3 +541,25 @@
     },
   };
 })();
+
+/* ============================================================
+   实时北京时间时钟（页脚「数据更新」下方的跳动时钟）
+   所有页面都加载 auth.js，这里统一初始化 #liveClock
+   ============================================================ */
+(function () {
+  function pad(n) {
+    return n < 10 ? "0" + n : "" + n;
+  }
+  function tick() {
+    var el = document.getElementById("liveClock");
+    if (!el) return;
+    // 北京时间 = UTC+8（用 getTimezoneOffset 偏移到东八区，跟本机时区无关）
+    var now = new Date(Date.now() + (new Date().getTimezoneOffset() + 480) * 60000);
+    el.textContent =
+      "北京时间 " +
+      now.getFullYear() + "-" + pad(now.getMonth() + 1) + "-" + pad(now.getDate()) +
+      " " + pad(now.getHours()) + ":" + pad(now.getMinutes()) + ":" + pad(now.getSeconds());
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
