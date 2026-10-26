@@ -1,0 +1,4 @@
+# 脚本和 workflow 必须在 Linux runner 上以 LF 行尾执行
+*.sh text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf

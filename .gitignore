@@ -29,3 +29,8 @@ spider/data/proxy_foodie.m3u
 # 系统
 .DS_Store
 Thumbs.db
+
+# 中转地址池与地区表：含全量播放地址/主机信息，只存 state 分支，
+# 不进 main（GitHub Pages 会公开 main 的全部内容）
+data/proxy.json
+data/regions.json
