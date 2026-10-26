@@ -136,8 +136,8 @@
       " 台服务器</span>";
 
     el.side.innerHTML =
-      '<span class="ts-side-tip">喜欢就支持一下 👍</span>' +
-      '<a class="btn btn-primary" href="account.html">喜欢作者，请支持一下</a>';
+      '<span class="ts-side-tip">喜欢就支持一下</span>' +
+      '<a class="btn btn-primary" href="account.html">👍 支持一下作者</a>';
   }
 
   function renderSubscribe() {
@@ -282,7 +282,7 @@
 
   function boot() {
     state.user = window.IVAUTH.user();
-    el.acctLink.textContent = "喜欢作者，请支持一下";
+    el.acctLink.textContent = "👍 支持一下作者";
 
     fetch("data/public/hotel.json", { cache: "no-cache" })
       .then(function (r) {

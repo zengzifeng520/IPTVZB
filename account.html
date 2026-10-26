@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f2f3f5">
-<title>喜欢作者，请支持一下 · IPTV直播源分发系统</title>
+<title>支持一下作者 · IPTV直播源分发系统</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%236366f1'/><stop offset='1' stop-color='%23ec4899'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='url(%23g)'/><rect x='25' y='29' width='50' height='42' rx='8' fill='%231e1b4b'/><path d='M41 40l22 10-22 10z' fill='white'/></svg>">
 <link rel="stylesheet" href="assets/css/app.css?v=20261026an">
 <script src="assets/js/theme.js?v=20261026an"></script>
@@ -38,29 +38,28 @@
   <!-- 打赏卡片 -->
   <section class="panel donate-panel">
     <div class="donate-head">
-      <h1 class="donate-title">赠予作者 <span class="donate-thumb">👍</span></h1>
-      <p class="donate-sub">本站播放地址与订阅<b>全部免费</b>，不设付费墙、不用注册。<br>如果觉得好用，欢迎请作者喝杯咖啡，多少都是心意。</p>
+      <h1 class="donate-title">支持一下作者 <span class="donate-thumb">👍</span></h1>
+      <p class="donate-sub">本站播放地址与订阅<b>全部免费</b>，不设付费墙、不用注册。<br>如果觉得好用，扫码请作者喝杯咖啡，多少都是心意。</p>
     </div>
 
-    <!-- 金额选择（仿微信赞赏） -->
-    <div class="donate-amounts" id="donateAmounts">
-      <button class="amount" type="button" data-amt="5"><i>¥</i>5</button>
-      <button class="amount" type="button" data-amt="20"><i>¥</i>20</button>
-      <button class="amount" type="button" data-amt="50"><i>¥</i>50</button>
-      <button class="amount" type="button" data-amt="80"><i>¥</i>80</button>
-      <button class="amount" type="button" data-amt="100"><i>¥</i>100</button>
-      <button class="amount" type="button" data-amt="200"><i>¥</i>200</button>
-    </div>
-    <button class="donate-other" id="donateOther" type="button">其它金额</button>
-    <div class="donate-custom" id="donateCustom" hidden>
-      <input class="donate-custom-input" id="customAmt" type="number" min="1" step="1" placeholder="其它金额（元）" autocomplete="off">
-      <button class="btn btn-primary btn-sm" id="customOk" type="button">确定</button>
-    </div>
-
-    <!-- 二维码（选定金额后显示） -->
-    <div class="donate-qr" id="donateQr" hidden>
-      <img src="assets/img/wxpay.jpg" alt="微信赞赏码" loading="lazy">
-      <p class="donate-qr-tip">微信扫一扫，支付 <b id="donatePayNum">¥20</b> 支持作者 ☕</p>
+    <!-- 直接展示二维码：微信赞赏 + 抖音关注 -->
+    <div class="donate-codes">
+      <div class="code-card">
+        <div class="code-img code-wx" data-qr="assets/img/wxpay_qr.png" data-title="微信赞赏码">
+          <img src="assets/img/wxpay_qr.png" alt="微信赞赏码" loading="eager">
+        </div>
+        <div class="code-title">微信赞赏</div>
+        <div class="code-tip">微信扫一扫，金额随意</div>
+        <div class="code-hint">点击看大图</div>
+      </div>
+      <div class="code-card">
+        <div class="code-img code-dy" data-qr="assets/img/douyin_qr.png" data-round="1" data-title="抖音码">
+          <img src="assets/img/douyin_qr.png" alt="抖音码" loading="eager">
+        </div>
+        <div class="code-title">抖音关注</div>
+        <div class="code-tip">抖音扫一扫，关注 zifeng</div>
+        <div class="code-hint">点击看大图</div>
+      </div>
     </div>
 
     <p class="donate-thanks">感谢每一位支持的朋友，你的心意是站点持续更新的动力 💪</p>
@@ -85,6 +84,11 @@
     <a href="hotel.html">酒店源</a>
   </p>
 </main>
+
+<div class="qr-lightbox" id="qrLightbox">
+  <img id="qrBigImg" src="" alt="二维码">
+  <div class="qr-lightbox-tip" id="qrBigTip">点击任意处关闭</div>
+</div>
 
 <div class="toast" id="toast"></div>
 

@@ -94,13 +94,13 @@
     var u = state.user;
     if (!u) return;
 
-    el.navAcct.textContent = "喜欢作者，请支持一下 👍";
+    el.navAcct.textContent = "👍 支持一下作者";
     el.navAcct.href = "account.html";
 
     el.cta.innerHTML =
       '<div class="cta-row">' +
       '<div class="cta-text">' +
-      "<h2>喜欢作者，请支持一下 👍</h2>" +
+      "<h2>👍 支持一下作者</h2>" +
       "<p>本站<b>全部免费</b>——播放地址、M3U 订阅都能直接看、直接下，不设付费墙。" +
       "服务器与带宽有成本，如果觉得好用，欢迎<b>请作者喝杯咖啡</b>，多少都是心意。</p>" +
       "</div>" +

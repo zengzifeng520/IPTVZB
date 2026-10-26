@@ -1565,6 +1565,70 @@ input { font-family: inherit; }
 .donate-qr-tip { margin: 12px 0 0; font-size: 13px; color: var(--text-2); }
 .donate-thanks { margin: 18px 0 0; font-size: 12.5px; color: var(--text-3); }
 
+/* 直接展示的双码：微信赞赏 + 抖音关注 */
+.donate-codes {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px; max-width: 360px; margin: 0 auto; align-items: start;
+}
+.code-card {
+  padding: 12px 10px 11px;
+  border-radius: var(--r);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: border-color 0.16s var(--ease);
+}
+.code-card:hover { border-color: var(--border-strong); }
+/* 统一尺寸的方形容器：两张码视觉对称居中 */
+.code-img {
+  width: 128px; height: 128px;
+  margin: 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  cursor: zoom-in;
+  transition: transform 0.16s var(--ease);
+}
+.code-img:hover { transform: scale(1.04); }
+.code-img img {
+  display: block;
+  max-width: 100%; max-height: 100%;
+  width: auto; height: auto;
+  border-radius: 10px;
+  background: #fff;
+}
+.code-dy img { border-radius: 50%; background: transparent; }
+.code-title { margin-top: 9px; font-size: 13px; font-weight: 700; color: var(--text); }
+.code-tip { margin-top: 2px; font-size: 11.5px; color: var(--text-3); line-height: 1.5; }
+.code-hint { margin-top: 6px; font-size: 11px; color: var(--accent); }
+
+@media (max-width: 420px) {
+  .donate-codes { gap: 9px; max-width: 300px; }
+  .code-img { width: 108px; height: 108px; }
+  .code-tip { font-size: 11px; }
+}
+
+/* 二维码大图预览 */
+.qr-lightbox {
+  position: fixed; inset: 0; z-index: 999;
+  display: none; align-items: center; justify-content: center;
+  background: rgba(0, 0, 0, 0.82);
+  padding: 20px; cursor: zoom-out;
+}
+.qr-lightbox.show { display: flex; }
+.qr-lightbox img {
+  max-width: min(84vw, 340px); max-height: 84vh;
+  border-radius: 16px; background: #fff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  animation: qrPop 0.18s var(--ease);
+}
+.qr-lightbox img.is-round { background: transparent; border-radius: 50%; }
+.qr-lightbox-tip {
+  position: absolute; bottom: 26px; left: 0; right: 0;
+  text-align: center; font-size: 12.5px; color: rgba(255, 255, 255, 0.72);
+}
+@keyframes qrPop {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
 /* 金额选择（仿微信赞赏） */
 .donate-amounts {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;

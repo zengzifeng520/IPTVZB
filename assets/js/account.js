@@ -1,17 +1,10 @@
-/* 喜欢作者，请支持一下：打赏入口 + 免费订阅地址 */
+/* 支持一下作者：打赏入口 + 免费订阅地址 */
 (function () {
   "use strict";
 
   var el = {
     subList: document.getElementById("subList"),
     toast: document.getElementById("toast"),
-    donateAmounts: document.getElementById("donateAmounts"),
-    donateOther: document.getElementById("donateOther"),
-    donateCustom: document.getElementById("donateCustom"),
-    customAmt: document.getElementById("customAmt"),
-    customOk: document.getElementById("customOk"),
-    donateQr: document.getElementById("donateQr"),
-    donatePayNum: document.getElementById("donatePayNum"),
   };
 
   var state = {
@@ -66,46 +59,34 @@
     return location.origin + location.pathname.replace(/[^/]*$/, "");
   }
 
-  /* ---------------------------------------------------------- 打赏 */
+  /* ---------------------------------------------------------- 二维码大图 */
 
-  function pickAmount(amt) {
-    var n = Number(amt);
-    if (!n || n <= 0) return;
-    el.donateCustom.hidden = true;
-    el.donateQr.hidden = false;
-    el.donatePayNum.textContent = "¥" + n;
-    // 高亮选中
-    var btns = el.donateAmounts.querySelectorAll(".amount");
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].classList.toggle("active", Number(btns[i].dataset.amt) === n);
-    }
-  }
+  function initQrZoom() {
+    var box = document.getElementById("qrLightbox");
+    var bigImg = document.getElementById("qrBigImg");
+    var bigTip = document.getElementById("qrBigTip");
+    if (!box || !bigImg) return;
 
-  if (el.donateAmounts) {
-    el.donateAmounts.addEventListener("click", function (e) {
-      var btn = e.target.closest("[data-amt]");
-      if (!btn) return;
-      pickAmount(btn.dataset.amt);
+    document.addEventListener("click", function (e) {
+      var node = e.target.closest("[data-qr]");
+      if (!node) return;
+      bigImg.src = node.dataset.qr;
+      bigImg.alt = node.dataset.title || "二维码";
+      bigImg.classList.toggle("is-round", node.dataset.round === "1");
+      if (bigTip) bigTip.textContent = "点击任意处关闭 · 长按可保存图片";
+      box.classList.add("show");
+    });
+
+    box.addEventListener("click", function () {
+      box.classList.remove("show");
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") box.classList.remove("show");
     });
   }
 
-  if (el.donateOther) {
-    el.donateOther.addEventListener("click", function () {
-      el.donateCustom.hidden = false;
-      el.donateQr.hidden = true;
-      if (el.customAmt) el.customAmt.focus();
-    });
-  }
-
-  if (el.customOk) {
-    el.customOk.addEventListener("click", function () {
-      var v = (el.customAmt.value || "").trim();
-      if (!v) return toast("请输入金额");
-      var n = Number(v);
-      if (!n || n <= 0) return toast("金额需大于 0");
-      pickAmount(n);
-    });
-  }
+  initQrZoom();
 
   /* ---------------------------------------------------------- 渲染 */
 
