@@ -40,9 +40,9 @@ OUT_FILE = config.WEB_DATA_DIR / "proxy.json"
 # 限量：同一频道在同一地区最多留几条线路。
 # 不限的话池子一扩大，proxy.json 会到 3 万多条地址，
 # 每人一份订阅文件加起来几百 MB，仓库直接爆掉。
-MAX_PER_REGION = 3
-MAX_PER_CHANNEL = 16
-UNKNOWN_REGION_CAP = 4
+MAX_PER_REGION = 6
+MAX_PER_CHANNEL = 30
+UNKNOWN_REGION_CAP = 8
 
 PROVINCES = [
     "北京", "上海", "天津", "重庆",

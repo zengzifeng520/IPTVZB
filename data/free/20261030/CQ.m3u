@@ -6,7 +6,15 @@ http://106.80.125.59:7788/rtp/235.254.199.52:7980
 #EXTINF:-1 tvg-name="CCTV-2" group-title="央视频道",CCTV-2
 http://106.80.125.59:7788/rtp/235.254.197.2:7980
 #EXTINF:-1 tvg-name="CCTV-2" group-title="央视频道",CCTV-2
+http://106.80.125.59:7788/rtp/235.254.199.2:7980
+#EXTINF:-1 tvg-name="CCTV-2" group-title="央视频道",CCTV-2
+http://113.205.89.156:4000/udp/225.0.4.2:7980
+#EXTINF:-1 tvg-name="CCTV-2" group-title="央视频道",CCTV-2
 http://113.205.89.156:4000/udp/225.0.4.132:7980
+#EXTINF:-1 tvg-name="CCTV-2" group-title="央视频道",CCTV-2
+http://17782331118.top:8188/rtp/235.254.199.52:7980
+#EXTINF:-1 tvg-name="CCTV-2" group-title="央视频道",CCTV-2
+http://17782331118.top:8188/rtp/235.254.197.2:7980
 #EXTINF:-1 tvg-name="CCTV-2" group-title="央视频道",CCTV-2
 http://27.9.38.191:8009/udp/225.0.4.132:7980
 #EXTINF:-1 tvg-name="CCTV-3" group-title="央视频道",CCTV-3
@@ -19,92 +27,252 @@ http://106.80.125.59:7788/rtp/235.254.199.141:7980
 http://113.205.89.156:4000/udp/225.0.4.142:7980
 #EXTINF:-1 tvg-name="CCTV-3" group-title="央视频道",CCTV-3
 http://113.205.89.156:4000/udp/225.0.4.138:7980
+#EXTINF:-1 tvg-name="CCTV-3" group-title="央视频道",CCTV-3
+http://17782331118.top:8188/rtp/235.254.199.53:7980
+#EXTINF:-1 tvg-name="CCTV-3" group-title="央视频道",CCTV-3
+http://27.9.38.191:8009/udp/225.0.4.142:7980
+#EXTINF:-1 tvg-name="CCTV-3" group-title="央视频道",CCTV-3
+http://home.scanflove.com:7788/rtp/235.254.199.53:7980
+#EXTINF:-1 tvg-name="CCTV-4" group-title="央视频道",CCTV-4
+http://106.80.125.59:7788/rtp/235.254.198.183:7980
+#EXTINF:-1 tvg-name="CCTV-4" group-title="央视频道",CCTV-4
+http://106.80.125.59:7788/rtp/235.254.199.78:7980
+#EXTINF:-1 tvg-name="CCTV-4" group-title="央视频道",CCTV-4
+http://106.80.125.59:7788/rtp/235.254.199.183:7980
+#EXTINF:-1 tvg-name="CCTV-4" group-title="央视频道",CCTV-4
+http://106.80.125.59:7788/rtp/235.254.197.3:7980
 #EXTINF:-1 tvg-name="CCTV-4" group-title="央视频道",CCTV-4
 http://113.205.89.156:4000/udp/225.0.4.3:7980
+#EXTINF:-1 tvg-name="CCTV-4" group-title="央视频道",CCTV-4
+http://17782331118.top:8188/rtp/235.254.198.183:7980
+#EXTINF:-1 tvg-name="CCTV-4" group-title="央视频道",CCTV-4
+http://17782331118.top:8188/rtp/235.254.199.183:7980
+#EXTINF:-1 tvg-name="CCTV-4" group-title="央视频道",CCTV-4
+http://17782331118.top:8188/rtp/235.254.197.3:7980
 #EXTINF:-1 tvg-name="CCTV-5" group-title="央视频道",CCTV-5
 http://106.80.125.59:7788/rtp/235.254.199.54:7980
 #EXTINF:-1 tvg-name="CCTV-5" group-title="央视频道",CCTV-5
 http://106.80.125.59:7788/rtp/235.254.199.146:7980
 #EXTINF:-1 tvg-name="CCTV-5" group-title="央视频道",CCTV-5
+http://106.80.125.59:7788/rtp/235.254.199.96:7980
+#EXTINF:-1 tvg-name="CCTV-5" group-title="央视频道",CCTV-5
+http://106.80.125.59:7788/rtp/235.254.199.142:7980
+#EXTINF:-1 tvg-name="CCTV-5" group-title="央视频道",CCTV-5
 http://113.205.89.156:4000/udp/225.0.4.143:7980
 #EXTINF:-1 tvg-name="CCTV-5" group-title="央视频道",CCTV-5
 http://113.205.89.156:4000/udp/225.0.4.139:7980
+#EXTINF:-1 tvg-name="CCTV-5" group-title="央视频道",CCTV-5
+http://17782331118.top:8188/rtp/235.254.199.54:7980
+#EXTINF:-1 tvg-name="CCTV-5" group-title="央视频道",CCTV-5
+http://17782331118.top:8188/rtp/235.254.199.146:7980
+#EXTINF:-1 tvg-name="CCTV-5" group-title="央视频道",CCTV-5
+http://17782331118.top:8188/rtp/235.254.199.142:7980
+#EXTINF:-1 tvg-name="CCTV-5+" group-title="央视频道",CCTV-5+
+http://106.80.125.59:7788/rtp/235.254.199.121:7980
+#EXTINF:-1 tvg-name="CCTV-5+" group-title="央视频道",CCTV-5+
+http://113.205.89.156:4000/udp/225.0.4.73:7980
+#EXTINF:-1 tvg-name="CCTV-5+" group-title="央视频道",CCTV-5+
+http://17782331118.top:8188/rtp/235.254.199.121:7980
 #EXTINF:-1 tvg-name="CCTV-6" group-title="央视频道",CCTV-6
 http://106.80.125.59:7788/rtp/235.254.199.55:7980
 #EXTINF:-1 tvg-name="CCTV-6" group-title="央视频道",CCTV-6
 http://106.80.125.59:7788/rtp/235.254.199.143:7980
 #EXTINF:-1 tvg-name="CCTV-6" group-title="央视频道",CCTV-6
+http://113.205.89.156:4000/udp/225.0.4.140:7980
+#EXTINF:-1 tvg-name="CCTV-6" group-title="央视频道",CCTV-6
 http://113.205.89.156:4000/udp/225.0.4.144:7980
 #EXTINF:-1 tvg-name="CCTV-6" group-title="央视频道",CCTV-6
+http://17782331118.top:8188/rtp/235.254.199.55:7980
+#EXTINF:-1 tvg-name="CCTV-6" group-title="央视频道",CCTV-6
 http://27.9.38.191:8009/udp/225.0.4.144:7980
+#EXTINF:-1 tvg-name="CCTV-6" group-title="央视频道",CCTV-6
+http://home.scanflove.com:7788/rtp/235.254.199.55:7980
+#EXTINF:-1 tvg-name="CCTV-6" group-title="央视频道",CCTV-6
+http://home.scanflove.com:7788/rtp/235.254.199.143:7980
 #EXTINF:-1 tvg-name="CCTV-7" group-title="央视频道",CCTV-7
 http://106.80.125.59:7788/rtp/235.254.199.4:7980
 #EXTINF:-1 tvg-name="CCTV-7" group-title="央视频道",CCTV-7
+http://106.80.125.59:7788/rtp/235.254.197.4:7980
+#EXTINF:-1 tvg-name="CCTV-7" group-title="央视频道",CCTV-7
+http://106.80.125.59:7788/rtp/235.254.199.56:7980
+#EXTINF:-1 tvg-name="CCTV-7" group-title="央视频道",CCTV-7
+http://113.205.89.156:4000/udp/225.0.4.4:7980
+#EXTINF:-1 tvg-name="CCTV-7" group-title="央视频道",CCTV-7
 http://113.205.89.156:4000/udp/225.0.4.127:7980
 #EXTINF:-1 tvg-name="CCTV-7" group-title="央视频道",CCTV-7
+http://17782331118.top:8188/rtp/235.254.199.56:7980
+#EXTINF:-1 tvg-name="CCTV-7" group-title="央视频道",CCTV-7
 http://27.9.38.191:8009/udp/225.0.4.127:7980
+#EXTINF:-1 tvg-name="CCTV-7" group-title="央视频道",CCTV-7
+http://home.scanflove.com:7788/rtp/235.254.199.56:7980
+#EXTINF:-1 tvg-name="CCTV-7" group-title="央视频道",CCTV-7
+http://home.scanflove.com:7788/rtp/235.254.199.4:7980
 #EXTINF:-1 tvg-name="CCTV-8" group-title="央视频道",CCTV-8
 http://106.80.125.59:7788/rtp/235.254.199.57:7980
 #EXTINF:-1 tvg-name="CCTV-8" group-title="央视频道",CCTV-8
 http://106.80.125.59:7788/rtp/235.254.199.144:7980
 #EXTINF:-1 tvg-name="CCTV-8" group-title="央视频道",CCTV-8
+http://113.205.89.156:4000/udp/225.0.4.137:7980
+#EXTINF:-1 tvg-name="CCTV-8" group-title="央视频道",CCTV-8
+http://113.205.89.156:4000/udp/225.0.4.141:7980
+#EXTINF:-1 tvg-name="CCTV-8" group-title="央视频道",CCTV-8
+http://17782331118.top:8188/rtp/235.254.199.144:7980
+#EXTINF:-1 tvg-name="CCTV-8" group-title="央视频道",CCTV-8
 http://27.9.38.191:8009/udp/225.0.4.137:7980
+#EXTINF:-1 tvg-name="CCTV-8" group-title="央视频道",CCTV-8
+http://home.scanflove.com:7788/rtp/235.254.199.57:7980
+#EXTINF:-1 tvg-name="CCTV-8" group-title="央视频道",CCTV-8
+http://home.scanflove.com:7788/rtp/235.254.199.144:7980
+#EXTINF:-1 tvg-name="CCTV-9" group-title="央视频道",CCTV-9
+http://106.80.125.59:7788/rtp/235.254.199.58:7980
+#EXTINF:-1 tvg-name="CCTV-9" group-title="央视频道",CCTV-9
+http://106.80.125.59:7788/rtp/235.254.199.5:7980
 #EXTINF:-1 tvg-name="CCTV-9" group-title="央视频道",CCTV-9
 http://113.205.89.156:4000/udp/225.0.4.131:7980
 #EXTINF:-1 tvg-name="CCTV-9" group-title="央视频道",CCTV-9
 http://113.205.89.156:4000/udp/225.0.4.5:7980
+#EXTINF:-1 tvg-name="CCTV-9" group-title="央视频道",CCTV-9
+http://17782331118.top:8188/rtp/235.254.199.58:7980
+#EXTINF:-1 tvg-name="CCTV-9" group-title="央视频道",CCTV-9
+http://17782331118.top:8188/rtp/235.254.199.5:7980
 #EXTINF:-1 tvg-name="CCTV-10" group-title="央视频道",CCTV-10
 http://106.80.125.59:7788/rtp/235.254.199.82:7980
 #EXTINF:-1 tvg-name="CCTV-10" group-title="央视频道",CCTV-10
 http://106.80.125.59:7788/rtp/235.254.199.59:7980
 #EXTINF:-1 tvg-name="CCTV-10" group-title="央视频道",CCTV-10
+http://106.80.125.59:7788/rtp/235.254.197.6:7980
+#EXTINF:-1 tvg-name="CCTV-10" group-title="央视频道",CCTV-10
+http://106.80.125.59:7788/rtp/235.254.199.6:7980
+#EXTINF:-1 tvg-name="CCTV-10" group-title="央视频道",CCTV-10
+http://113.205.89.156:4000/udp/225.0.4.130:7980
+#EXTINF:-1 tvg-name="CCTV-10" group-title="央视频道",CCTV-10
 http://113.205.89.156:4000/udp/225.0.4.6:7980
+#EXTINF:-1 tvg-name="CCTV-10" group-title="央视频道",CCTV-10
+http://17782331118.top:8188/rtp/235.254.199.82:7980
+#EXTINF:-1 tvg-name="CCTV-10" group-title="央视频道",CCTV-10
+http://17782331118.top:8188/rtp/235.254.197.6:7980
+#EXTINF:-1 tvg-name="CCTV-10" group-title="央视频道",CCTV-10
+http://17782331118.top:8188/rtp/235.254.199.6:7980
 #EXTINF:-1 tvg-name="CCTV-11" group-title="央视频道",CCTV-11
 http://106.80.125.59:7788/rtp/235.254.199.7:7980
 #EXTINF:-1 tvg-name="CCTV-11" group-title="央视频道",CCTV-11
+http://106.80.125.59:7788/rtp/235.254.197.161:7980
+#EXTINF:-1 tvg-name="CCTV-11" group-title="央视频道",CCTV-11
+http://106.80.125.59:7788/rtp/235.254.197.7:7980
+#EXTINF:-1 tvg-name="CCTV-11" group-title="央视频道",CCTV-11
+http://113.205.89.156:4000/udp/225.0.4.218:7980
+#EXTINF:-1 tvg-name="CCTV-11" group-title="央视频道",CCTV-11
 http://17782331118.top:8188/rtp/235.254.197.7:7980
 #EXTINF:-1 tvg-name="CCTV-11" group-title="央视频道",CCTV-11
+http://17782331118.top:8188/rtp/235.254.199.7:7980
+#EXTINF:-1 tvg-name="CCTV-11" group-title="央视频道",CCTV-11
 http://27.9.38.191:8009/udp/225.0.4.7:7980
+#EXTINF:-1 tvg-name="CCTV-11" group-title="央视频道",CCTV-11
+http://home.scanflove.com:7788/rtp/235.254.197.161:7980
+#EXTINF:-1 tvg-name="CCTV-11" group-title="央视频道",CCTV-11
+http://home.scanflove.com:7788/rtp/235.254.197.7:7980
+#EXTINF:-1 tvg-name="CCTV-12" group-title="央视频道",CCTV-12
+http://106.80.125.59:7788/rtp/235.254.199.60:7980
+#EXTINF:-1 tvg-name="CCTV-12" group-title="央视频道",CCTV-12
+http://106.80.125.59:7788/rtp/235.254.199.8:7980
+#EXTINF:-1 tvg-name="CCTV-12" group-title="央视频道",CCTV-12
+http://106.80.125.59:7788/rtp/235.254.197.8:7980
 #EXTINF:-1 tvg-name="CCTV-12" group-title="央视频道",CCTV-12
 http://113.205.89.156:4000/udp/225.0.4.129:7980
 #EXTINF:-1 tvg-name="CCTV-12" group-title="央视频道",CCTV-12
+http://17782331118.top:8188/rtp/235.254.199.60:7980
+#EXTINF:-1 tvg-name="CCTV-12" group-title="央视频道",CCTV-12
 http://27.9.38.191:8009/udp/225.0.4.129:7980
+#EXTINF:-1 tvg-name="CCTV-12" group-title="央视频道",CCTV-12
+http://home.scanflove.com:7788/rtp/235.254.199.60:7980
+#EXTINF:-1 tvg-name="CCTV-12" group-title="央视频道",CCTV-12
+http://home.scanflove.com:7788/rtp/235.254.199.8:7980
 #EXTINF:-1 tvg-name="CCTV-13" group-title="央视频道",CCTV-13
 http://106.80.125.59:7788/rtp/235.254.197.9:7980
+#EXTINF:-1 tvg-name="CCTV-13" group-title="央视频道",CCTV-13
+http://106.80.125.59:7788/rtp/235.254.199.9:7980
+#EXTINF:-1 tvg-name="CCTV-13" group-title="央视频道",CCTV-13
+http://106.80.125.59:7788/rtp/235.254.197.162:7980
 #EXTINF:-1 tvg-name="CCTV-13" group-title="央视频道",CCTV-13
 http://113.205.89.156:4000/udp/225.0.4.219:7980
 #EXTINF:-1 tvg-name="CCTV-13" group-title="央视频道",CCTV-13
 http://113.205.89.156:4000/udp/225.0.4.9:7980
+#EXTINF:-1 tvg-name="CCTV-13" group-title="央视频道",CCTV-13
+http://17782331118.top:8188/rtp/235.254.197.162:7980
+#EXTINF:-1 tvg-name="CCTV-13" group-title="央视频道",CCTV-13
+http://home.scanflove.com:7788/rtp/235.254.197.162:7980
 #EXTINF:-1 tvg-name="CCTV-14" group-title="央视频道",CCTV-14
 http://106.80.125.59:7788/rtp/235.254.197.10:7980
 #EXTINF:-1 tvg-name="CCTV-14" group-title="央视频道",CCTV-14
 http://106.80.125.59:7788/rtp/235.254.199.10:7980
 #EXTINF:-1 tvg-name="CCTV-14" group-title="央视频道",CCTV-14
+http://106.80.125.59:7788/rtp/235.254.199.61:7980
+#EXTINF:-1 tvg-name="CCTV-14" group-title="央视频道",CCTV-14
+http://113.205.89.156:4000/udp/225.0.4.128:7980
+#EXTINF:-1 tvg-name="CCTV-14" group-title="央视频道",CCTV-14
 http://113.205.89.156:4000/udp/225.0.4.10:7980
+#EXTINF:-1 tvg-name="CCTV-14" group-title="央视频道",CCTV-14
+http://17782331118.top:8188/rtp/235.254.199.61:7980
+#EXTINF:-1 tvg-name="CCTV-14" group-title="央视频道",CCTV-14
+http://27.9.38.191:8009/udp/225.0.4.128:7980
+#EXTINF:-1 tvg-name="CCTV-14" group-title="央视频道",CCTV-14
+http://27.9.38.191:8009/udp/225.0.4.10:7980
+#EXTINF:-1 tvg-name="CCTV-15" group-title="央视频道",CCTV-15
+http://106.80.125.59:7788/rtp/235.254.197.11:7980
+#EXTINF:-1 tvg-name="CCTV-15" group-title="央视频道",CCTV-15
+http://106.80.125.59:7788/rtp/235.254.199.11:7980
+#EXTINF:-1 tvg-name="CCTV-15" group-title="央视频道",CCTV-15
+http://106.80.125.59:7788/rtp/235.254.197.163:7980
+#EXTINF:-1 tvg-name="CCTV-15" group-title="央视频道",CCTV-15
+http://113.205.89.156:4000/udp/225.0.4.11:7980
 #EXTINF:-1 tvg-name="CCTV-15" group-title="央视频道",CCTV-15
 http://113.205.89.156:4000/udp/225.0.4.220:7980
 #EXTINF:-1 tvg-name="CCTV-15" group-title="央视频道",CCTV-15
+http://17782331118.top:8188/rtp/235.254.197.163:7980
+#EXTINF:-1 tvg-name="CCTV-15" group-title="央视频道",CCTV-15
 http://27.9.38.191:8009/udp/225.0.4.220:7980
+#EXTINF:-1 tvg-name="CCTV-15" group-title="央视频道",CCTV-15
+http://home.scanflove.com:7788/rtp/235.254.197.163:7980
+#EXTINF:-1 tvg-name="CCTV-15" group-title="央视频道",CCTV-15
+http://home.scanflove.com:7788/rtp/235.254.197.11:7980
 #EXTINF:-1 tvg-name="CCTV-17" group-title="央视频道",CCTV-17
 http://106.80.125.59:7788/rtp/235.254.198.130:7980
 #EXTINF:-1 tvg-name="CCTV-17" group-title="央视频道",CCTV-17
 http://106.80.125.59:7788/rtp/235.254.199.130:7980
 #EXTINF:-1 tvg-name="CCTV-17" group-title="央视频道",CCTV-17
+http://106.80.125.59:7788/rtp/235.254.198.131:7980
+#EXTINF:-1 tvg-name="CCTV-17" group-title="央视频道",CCTV-17
+http://106.80.125.59:7788/rtp/235.254.199.131:7980
+#EXTINF:-1 tvg-name="CCTV-17" group-title="央视频道",CCTV-17
+http://113.205.89.156:4000/udp/225.0.4.180:7980
+#EXTINF:-1 tvg-name="CCTV-17" group-title="央视频道",CCTV-17
 http://113.205.89.156:4000/udp/225.0.4.179:7980
 #EXTINF:-1 tvg-name="CCTV-17" group-title="央视频道",CCTV-17
-http://27.9.38.191:8009/udp/225.0.4.179:7980
+http://17782331118.top:8188/rtp/235.254.198.130:7980
+#EXTINF:-1 tvg-name="CCTV-17" group-title="央视频道",CCTV-17
+http://17782331118.top:8188/rtp/235.254.199.130:7980
+#EXTINF:-1 tvg-name="CCTV-17" group-title="央视频道",CCTV-17
+http://17782331118.top:8188/rtp/235.254.198.131:7980
+#EXTINF:-1 tvg-name="CCTV-17" group-title="央视频道",CCTV-17
+http://17782331118.top:8188/rtp/235.254.199.131:7980
 #EXTINF:-1 tvg-name="CCTV世界地理" group-title="央视频道",CCTV世界地理
 http://106.80.125.59:7788/rtp/235.254.199.194:7980
 #EXTINF:-1 tvg-name="CCTV世界地理" group-title="央视频道",CCTV世界地理
 http://17782331118.top:8188/rtp/235.254.199.194:7980
+#EXTINF:-1 tvg-name="CCTV世界地理" group-title="央视频道",CCTV世界地理
+http://home.scanflove.com:7788/rtp/235.254.199.194:7980
 #EXTINF:-1 tvg-name="CCTV兵器科技" group-title="央视频道",CCTV兵器科技
 http://106.80.125.59:7788/rtp/235.254.199.202:7980
 #EXTINF:-1 tvg-name="CCTV兵器科技" group-title="央视频道",CCTV兵器科技
 http://17782331118.top:8188/rtp/235.254.199.202:7980
+#EXTINF:-1 tvg-name="CCTV兵器科技" group-title="央视频道",CCTV兵器科技
+http://home.scanflove.com:7788/rtp/235.254.199.202:7980
 #EXTINF:-1 tvg-name="CCTV央视台球" group-title="央视频道",CCTV央视台球
 http://106.80.125.59:7788/rtp/235.254.199.193:7980
 #EXTINF:-1 tvg-name="CCTV央视台球" group-title="央视频道",CCTV央视台球
 http://17782331118.top:8188/rtp/235.254.199.193:7980
+#EXTINF:-1 tvg-name="CCTV央视台球" group-title="央视频道",CCTV央视台球
+http://home.scanflove.com:7788/rtp/235.254.199.193:7980
 #EXTINF:-1 tvg-name="CCTV央视精品" group-title="央视频道",CCTV央视精品
 http://106.80.125.59:7788/rtp/235.254.199.210:7980
 #EXTINF:-1 tvg-name="CCTV央视精品" group-title="央视频道",CCTV央视精品
@@ -119,18 +287,30 @@ http://106.80.125.59:7788/rtp/235.254.199.195:7980
 http://17782331118.top:8188/rtp/235.254.199.195:7980
 #EXTINF:-1 tvg-name="CCTV女性时尚" group-title="央视频道",CCTV女性时尚
 http://home.scanflove.com:7788/rtp/235.254.199.195:7980
+#EXTINF:-1 tvg-name="CCTV女性时尚" group-title="央视频道",CCTV女性时尚
+http://www.745612.xyz:7788/rtp/235.254.199.195:7980
 #EXTINF:-1 tvg-name="CCTV怀旧剧场" group-title="央视频道",CCTV怀旧剧场
 http://106.80.125.59:7788/rtp/235.254.199.205:7980
 #EXTINF:-1 tvg-name="CCTV怀旧剧场" group-title="央视频道",CCTV怀旧剧场
 http://17782331118.top:8188/rtp/235.254.199.205:7980
+#EXTINF:-1 tvg-name="CCTV怀旧剧场" group-title="央视频道",CCTV怀旧剧场
+http://home.scanflove.com:7788/rtp/235.254.199.205:7980
 #EXTINF:-1 tvg-name="CCTV电视指南" group-title="央视频道",CCTV电视指南
 http://106.80.125.59:7788/rtp/235.254.199.189:7980
 #EXTINF:-1 tvg-name="CCTV电视指南" group-title="央视频道",CCTV电视指南
 http://17782331118.top:8188/rtp/235.254.199.189:7980
+#EXTINF:-1 tvg-name="CCTV电视指南" group-title="央视频道",CCTV电视指南
+http://home.scanflove.com:7788/rtp/235.254.199.189:7980
 #EXTINF:-1 tvg-name="CCTV第一剧场" group-title="央视频道",CCTV第一剧场
 http://106.80.125.59:7788/rtp/235.254.199.211:7980
+#EXTINF:-1 tvg-name="CCTV第一剧场" group-title="央视频道",CCTV第一剧场
+http://17782331118.top:8188/rtp/235.254.199.211:7980
+#EXTINF:-1 tvg-name="CCTV第一剧场" group-title="央视频道",CCTV第一剧场
+http://home.scanflove.com:7788/rtp/235.254.199.211:7980
 #EXTINF:-1 tvg-name="CCTV风云剧场" group-title="央视频道",CCTV风云剧场
 http://106.80.125.59:7788/rtp/235.254.199.207:7980
+#EXTINF:-1 tvg-name="CCTV风云剧场" group-title="央视频道",CCTV风云剧场
+http://17782331118.top:8188/rtp/235.254.199.207:7980
 #EXTINF:-1 tvg-name="CCTV风云剧场" group-title="央视频道",CCTV风云剧场
 http://home.scanflove.com:7788/rtp/235.254.199.207:7980
 #EXTINF:-1 tvg-name="CCTV风云足球" group-title="央视频道",CCTV风云足球
@@ -144,6 +324,10 @@ http://106.80.125.59:7788/rtp/235.254.199.118:7980
 #EXTINF:-1 tvg-name="CCTV风云音乐" group-title="央视频道",CCTV风云音乐
 http://106.80.125.59:7788/rtp/235.254.199.208:7980
 #EXTINF:-1 tvg-name="CCTV风云音乐" group-title="央视频道",CCTV风云音乐
+http://17782331118.top:8188/rtp/235.254.199.118:7980
+#EXTINF:-1 tvg-name="CCTV风云音乐" group-title="央视频道",CCTV风云音乐
+http://17782331118.top:8188/rtp/235.254.199.208:7980
+#EXTINF:-1 tvg-name="CCTV风云音乐" group-title="央视频道",CCTV风云音乐
 http://home.scanflove.com:7788/rtp/235.254.199.118:7980
 #EXTINF:-1 tvg-name="CCTV风云音乐" group-title="央视频道",CCTV风云音乐
 http://home.scanflove.com:7788/rtp/235.254.199.208:7980
@@ -152,37 +336,105 @@ http://106.80.125.59:7788/rtp/235.254.199.192:7980
 #EXTINF:-1 tvg-name="CCTV高网频道" group-title="央视频道",CCTV高网频道
 http://113.205.89.156:4000/udp/225.0.4.166:7980
 #EXTINF:-1 tvg-name="CCTV高网频道" group-title="央视频道",CCTV高网频道
+http://17782331118.top:8188/rtp/235.254.199.192:7980
+#EXTINF:-1 tvg-name="CCTV高网频道" group-title="央视频道",CCTV高网频道
 http://27.9.38.191:8009/udp/225.0.4.166:7980
+#EXTINF:-1 tvg-name="CCTV高网频道" group-title="央视频道",CCTV高网频道
+http://home.scanflove.com:7788/rtp/235.254.199.192:7980
+#EXTINF:-1 tvg-name="CGTN" group-title="央视频道",CGTN
+http://106.80.125.59:7788/rtp/235.254.197.5:7980
+#EXTINF:-1 tvg-name="CGTN" group-title="央视频道",CGTN
+http://106.80.125.59:7788/rtp/235.254.199.12:7980
 #EXTINF:-1 tvg-name="东南卫视" group-title="卫视频道",东南卫视
 http://106.80.125.59:7788/rtp/235.254.199.35:7980
+#EXTINF:-1 tvg-name="东南卫视" group-title="卫视频道",东南卫视
+http://106.80.125.59:7788/rtp/235.254.198.129:7980
+#EXTINF:-1 tvg-name="东南卫视" group-title="卫视频道",东南卫视
+http://106.80.125.59:7788/rtp/235.254.199.129:7980
+#EXTINF:-1 tvg-name="东南卫视" group-title="卫视频道",东南卫视
+http://106.80.125.59:7788/rtp/235.254.197.24:7980
 #EXTINF:-1 tvg-name="东南卫视" group-title="卫视频道",东南卫视
 http://113.205.89.156:4000/udp/225.0.4.200:7980
 #EXTINF:-1 tvg-name="东南卫视" group-title="卫视频道",东南卫视
 http://113.205.89.156:4000/udp/225.0.4.31:7980
+#EXTINF:-1 tvg-name="东南卫视" group-title="卫视频道",东南卫视
+http://17782331118.top:8188/rtp/235.254.198.129:7980
+#EXTINF:-1 tvg-name="东南卫视" group-title="卫视频道",东南卫视
+http://17782331118.top:8188/rtp/235.254.199.129:7980
 #EXTINF:-1 tvg-name="东方卫视" group-title="卫视频道",东方卫视
 http://113.205.89.156:4000/udp/225.0.4.80:7980
 #EXTINF:-1 tvg-name="东方卫视" group-title="卫视频道",东方卫视
 http://113.205.89.156:4000/udp/225.0.4.29:7980
 #EXTINF:-1 tvg-name="云南卫视" group-title="卫视频道",云南卫视
 http://106.80.125.59:7788/rtp/235.254.197.177:7980
+#EXTINF:-1 tvg-name="云南卫视" group-title="卫视频道",云南卫视
+http://106.80.125.59:7788/rtp/235.254.197.181:7980
+#EXTINF:-1 tvg-name="云南卫视" group-title="卫视频道",云南卫视
+http://106.80.125.59:7788/rtp/235.254.199.25:7980
+#EXTINF:-1 tvg-name="云南卫视" group-title="卫视频道",云南卫视
+http://113.205.89.156:4000/udp/225.0.4.21:7980
+#EXTINF:-1 tvg-name="云南卫视" group-title="卫视频道",云南卫视
+http://17782331118.top:8188/rtp/235.254.197.177:7980
+#EXTINF:-1 tvg-name="云南卫视" group-title="卫视频道",云南卫视
+http://17782331118.top:8188/rtp/235.254.197.181:7980
+#EXTINF:-1 tvg-name="云南卫视" group-title="卫视频道",云南卫视
+http://27.9.38.191:8009/udp/225.0.4.21:7980
 #EXTINF:-1 tvg-name="兵团卫视" group-title="卫视频道",兵团卫视
 http://106.80.125.59:7788/rtp/235.254.197.183:7980
+#EXTINF:-1 tvg-name="兵团卫视" group-title="卫视频道",兵团卫视
+http://106.80.125.59:7788/rtp/235.254.197.171:7980
+#EXTINF:-1 tvg-name="兵团卫视" group-title="卫视频道",兵团卫视
+http://113.205.89.156:4000/udp/225.0.4.72:7980
+#EXTINF:-1 tvg-name="兵团卫视" group-title="卫视频道",兵团卫视
+http://17782331118.top:8188/rtp/235.254.197.183:7980
+#EXTINF:-1 tvg-name="兵团卫视" group-title="卫视频道",兵团卫视
+http://home.scanflove.com:7788/rtp/235.254.197.183:7980
 #EXTINF:-1 tvg-name="内蒙古卫视" group-title="卫视频道",内蒙古卫视
 http://106.80.125.59:7788/rtp/235.254.197.169:7980
 #EXTINF:-1 tvg-name="内蒙古卫视" group-title="卫视频道",内蒙古卫视
+http://106.80.125.59:7788/rtp/235.254.199.42:7980
+#EXTINF:-1 tvg-name="内蒙古卫视" group-title="卫视频道",内蒙古卫视
 http://113.205.89.156:4000/udp/225.0.4.38:7980
+#EXTINF:-1 tvg-name="内蒙古卫视" group-title="卫视频道",内蒙古卫视
+http://home.scanflove.com:7788/rtp/235.254.197.169:7980
+#EXTINF:-1 tvg-name="内蒙古卫视" group-title="卫视频道",内蒙古卫视
+http://home.scanflove.com:7788/rtp/235.254.199.42:7980
+#EXTINF:-1 tvg-name="北京卫视" group-title="卫视频道",北京卫视
+http://106.80.125.59:7788/rtp/235.254.197.14:7980
 #EXTINF:-1 tvg-name="吉林卫视" group-title="卫视频道",吉林卫视
 http://106.80.125.59:7788/rtp/235.254.197.29:7980
 #EXTINF:-1 tvg-name="吉林卫视" group-title="卫视频道",吉林卫视
 http://106.80.125.59:7788/rtp/235.254.199.138:7980
+#EXTINF:-1 tvg-name="吉林卫视" group-title="卫视频道",吉林卫视
+http://106.80.125.59:7788/rtp/235.254.199.39:7980
+#EXTINF:-1 tvg-name="吉林卫视" group-title="卫视频道",吉林卫视
+http://113.205.89.156:4000/udp/225.0.4.35:7980
+#EXTINF:-1 tvg-name="吉林卫视" group-title="卫视频道",吉林卫视
+http://113.205.89.156:4000/udp/225.0.4.225:7980
+#EXTINF:-1 tvg-name="嘉佳卡通" group-title="卫视频道",嘉佳卡通
+http://106.80.125.59:7788/rtp/235.254.197.182:7980
+#EXTINF:-1 tvg-name="嘉佳卡通" group-title="卫视频道",嘉佳卡通
+http://106.80.125.59:7788/rtp/235.254.199.110:7980
+#EXTINF:-1 tvg-name="嘉佳卡通" group-title="卫视频道",嘉佳卡通
+http://113.205.89.156:4000/udp/225.0.4.221:7980
 #EXTINF:-1 tvg-name="嘉佳卡通" group-title="卫视频道",嘉佳卡通
 http://17782331118.top:8188/rtp/235.254.197.182:7980
 #EXTINF:-1 tvg-name="嘉佳卡通" group-title="卫视频道",嘉佳卡通
 http://17782331118.top:8188/rtp/235.254.199.110:7980
+#EXTINF:-1 tvg-name="嘉佳卡通" group-title="卫视频道",嘉佳卡通
+http://home.scanflove.com:7788/rtp/235.254.197.182:7980
+#EXTINF:-1 tvg-name="嘉佳卡通" group-title="卫视频道",嘉佳卡通
+http://home.scanflove.com:7788/rtp/235.254.199.110:7980
 #EXTINF:-1 tvg-name="四川卫视" group-title="卫视频道",四川卫视
 http://113.205.89.156:4000/udp/225.0.4.108:7980
 #EXTINF:-1 tvg-name="四川卫视" group-title="卫视频道",四川卫视
 http://113.205.89.156:4000/udp/225.0.4.24:7980
+#EXTINF:-1 tvg-name="天津卫视" group-title="卫视频道",天津卫视
+http://106.80.125.59:7788/rtp/235.254.197.28:7980
+#EXTINF:-1 tvg-name="天津卫视" group-title="卫视频道",天津卫视
+http://106.80.125.59:7788/rtp/235.254.199.22:7980
+#EXTINF:-1 tvg-name="天津卫视" group-title="卫视频道",天津卫视
+http://106.80.125.59:7788/rtp/235.254.199.67:7980
 #EXTINF:-1 tvg-name="天津卫视" group-title="卫视频道",天津卫视
 http://113.205.89.156:4000/udp/225.0.4.82:7980
 #EXTINF:-1 tvg-name="宁夏卫视" group-title="卫视频道",宁夏卫视
@@ -190,11 +442,21 @@ http://106.80.125.59:7788/rtp/235.254.197.138:7980
 #EXTINF:-1 tvg-name="宁夏卫视" group-title="卫视频道",宁夏卫视
 http://106.80.125.59:7788/rtp/235.254.197.149:7980
 #EXTINF:-1 tvg-name="宁夏卫视" group-title="卫视频道",宁夏卫视
+http://106.80.125.59:7788/rtp/235.254.197.155:7980
+#EXTINF:-1 tvg-name="宁夏卫视" group-title="卫视频道",宁夏卫视
+http://106.80.125.59:7788/rtp/235.254.199.45:7980
+#EXTINF:-1 tvg-name="宁夏卫视" group-title="卫视频道",宁夏卫视
 http://113.205.89.156:4000/udp/225.0.4.41:7980
 #EXTINF:-1 tvg-name="安徽卫视" group-title="卫视频道",安徽卫视
 http://106.80.125.59:7788/rtp/235.254.197.18:7980
 #EXTINF:-1 tvg-name="安徽卫视" group-title="卫视频道",安徽卫视
+http://106.80.125.59:7788/rtp/235.254.199.20:7980
+#EXTINF:-1 tvg-name="安徽卫视" group-title="卫视频道",安徽卫视
+http://106.80.125.59:7788/rtp/235.254.199.65:7980
+#EXTINF:-1 tvg-name="安徽卫视" group-title="卫视频道",安徽卫视
 http://113.205.89.156:4000/udp/225.0.4.133:7980
+#EXTINF:-1 tvg-name="山东卫视" group-title="卫视频道",山东卫视
+http://106.80.125.59:7788/rtp/235.254.199.69:7980
 #EXTINF:-1 tvg-name="山东卫视" group-title="卫视频道",山东卫视
 http://113.205.89.156:4000/udp/225.0.4.106:7980
 #EXTINF:-1 tvg-name="山东卫视" group-title="卫视频道",山东卫视
@@ -203,6 +465,14 @@ http://113.205.89.156:4000/udp/225.0.4.199:7980
 http://106.80.125.59:7788/rtp/235.254.197.31:7980
 #EXTINF:-1 tvg-name="山西卫视" group-title="卫视频道",山西卫视
 http://106.80.125.59:7788/rtp/235.254.199.41:7980
+#EXTINF:-1 tvg-name="山西卫视" group-title="卫视频道",山西卫视
+http://113.205.89.156:4000/udp/225.0.4.37:7980
+#EXTINF:-1 tvg-name="山西卫视" group-title="卫视频道",山西卫视
+http://17782331118.top:8188/rtp/235.254.199.41:7980
+#EXTINF:-1 tvg-name="山西卫视" group-title="卫视频道",山西卫视
+http://home.scanflove.com:7788/rtp/235.254.197.31:7980
+#EXTINF:-1 tvg-name="山西卫视" group-title="卫视频道",山西卫视
+http://home.scanflove.com:7788/rtp/235.254.199.41:7980
 #EXTINF:-1 tvg-name="广东卫视" group-title="卫视频道",广东卫视
 http://113.205.89.156:4000/udp/225.0.4.84:7980
 #EXTINF:-1 tvg-name="广西卫视" group-title="卫视频道",广西卫视
@@ -211,10 +481,26 @@ http://106.80.125.59:7788/rtp/235.254.197.22:7980
 http://106.80.125.59:7788/rtp/235.254.199.38:7980
 #EXTINF:-1 tvg-name="广西卫视" group-title="卫视频道",广西卫视
 http://113.205.89.156:4000/udp/225.0.4.34:7980
+#EXTINF:-1 tvg-name="广西卫视" group-title="卫视频道",广西卫视
+http://17782331118.top:8188/rtp/235.254.199.38:7980
+#EXTINF:-1 tvg-name="广西卫视" group-title="卫视频道",广西卫视
+http://27.9.38.191:8009/udp/225.0.4.34:7980
 #EXTINF:-1 tvg-name="新疆卫视" group-title="卫视频道",新疆卫视
 http://106.80.125.59:7788/rtp/235.254.197.178:7980
 #EXTINF:-1 tvg-name="新疆卫视" group-title="卫视频道",新疆卫视
+http://106.80.125.59:7788/rtp/235.254.197.170:7980
+#EXTINF:-1 tvg-name="新疆卫视" group-title="卫视频道",新疆卫视
+http://106.80.125.59:7788/rtp/235.254.199.47:7980
+#EXTINF:-1 tvg-name="新疆卫视" group-title="卫视频道",新疆卫视
+http://113.205.89.156:4000/udp/225.0.4.60:7980
+#EXTINF:-1 tvg-name="新疆卫视" group-title="卫视频道",新疆卫视
+http://17782331118.top:8188/rtp/235.254.197.178:7980
+#EXTINF:-1 tvg-name="新疆卫视" group-title="卫视频道",新疆卫视
 http://27.9.38.191:8009/udp/225.0.4.60:7980
+#EXTINF:-1 tvg-name="新疆卫视" group-title="卫视频道",新疆卫视
+http://home.scanflove.com:7788/rtp/235.254.197.178:7980
+#EXTINF:-1 tvg-name="江苏卫视" group-title="卫视频道",江苏卫视
+http://106.80.125.59:7788/rtp/235.254.197.191:7980
 #EXTINF:-1 tvg-name="江苏卫视" group-title="卫视频道",江苏卫视
 http://113.205.89.156:4000/udp/225.0.4.79:7980
 #EXTINF:-1 tvg-name="江苏卫视" group-title="卫视频道",江苏卫视
@@ -222,15 +508,43 @@ http://113.205.89.156:4000/udp/225.0.4.15:7980
 #EXTINF:-1 tvg-name="江西卫视" group-title="卫视频道",江西卫视
 http://106.80.125.59:7788/rtp/235.254.197.26:7980
 #EXTINF:-1 tvg-name="江西卫视" group-title="卫视频道",江西卫视
+http://106.80.125.59:7788/rtp/235.254.199.29:7980
+#EXTINF:-1 tvg-name="江西卫视" group-title="卫视频道",江西卫视
+http://106.80.125.59:7788/rtp/235.254.198.190:7980
+#EXTINF:-1 tvg-name="江西卫视" group-title="卫视频道",江西卫视
+http://106.80.125.59:7788/rtp/235.254.199.190:7980
+#EXTINF:-1 tvg-name="江西卫视" group-title="卫视频道",江西卫视
 http://113.205.89.156:4000/udp/225.0.4.203:7980
+#EXTINF:-1 tvg-name="江西卫视" group-title="卫视频道",江西卫视
+http://17782331118.top:8188/rtp/235.254.198.190:7980
 #EXTINF:-1 tvg-name="河北卫视" group-title="卫视频道",河北卫视
 http://106.80.125.59:7788/rtp/235.254.198.184:7980
+#EXTINF:-1 tvg-name="河北卫视" group-title="卫视频道",河北卫视
+http://106.80.125.59:7788/rtp/235.254.199.184:7980
+#EXTINF:-1 tvg-name="河北卫视" group-title="卫视频道",河北卫视
+http://106.80.125.59:7788/rtp/235.254.197.37:7980
+#EXTINF:-1 tvg-name="河北卫视" group-title="卫视频道",河北卫视
+http://106.80.125.59:7788/rtp/235.254.199.36:7980
 #EXTINF:-1 tvg-name="河北卫视" group-title="卫视频道",河北卫视
 http://113.205.89.156:4000/udp/225.0.4.174:7980
 #EXTINF:-1 tvg-name="河北卫视" group-title="卫视频道",河北卫视
 http://113.205.89.156:4000/udp/225.0.4.32:7980
+#EXTINF:-1 tvg-name="河北卫视" group-title="卫视频道",河北卫视
+http://17782331118.top:8188/rtp/235.254.198.184:7980
+#EXTINF:-1 tvg-name="河北卫视" group-title="卫视频道",河北卫视
+http://17782331118.top:8188/rtp/235.254.199.184:7980
+#EXTINF:-1 tvg-name="河南卫视" group-title="卫视频道",河南卫视
+http://106.80.125.59:7788/rtp/235.254.197.27:7980
+#EXTINF:-1 tvg-name="河南卫视" group-title="卫视频道",河南卫视
+http://106.80.125.59:7788/rtp/235.254.198.135:7980
 #EXTINF:-1 tvg-name="河南卫视" group-title="卫视频道",河南卫视
 http://113.205.89.156:4000/udp/225.0.4.22:7980
+#EXTINF:-1 tvg-name="河南卫视" group-title="卫视频道",河南卫视
+http://17782331118.top:8188/rtp/235.254.198.135:7980
+#EXTINF:-1 tvg-name="河南卫视" group-title="卫视频道",河南卫视
+http://17782331118.top:8188/rtp/235.254.199.135:7980
+#EXTINF:-1 tvg-name="河南卫视" group-title="卫视频道",河南卫视
+http://17782331118.top:8188/rtp/235.254.197.27:7980
 #EXTINF:-1 tvg-name="浙江卫视" group-title="卫视频道",浙江卫视
 http://113.205.89.156:4000/udp/225.0.4.105:7980
 #EXTINF:-1 tvg-name="浙江卫视" group-title="卫视频道",浙江卫视
@@ -242,6 +556,12 @@ http://113.205.89.156:4000/udp/225.0.4.27:7980
 #EXTINF:-1 tvg-name="湖北卫视" group-title="卫视频道",湖北卫视
 http://106.80.125.59:7788/rtp/235.254.197.25:7980
 #EXTINF:-1 tvg-name="湖北卫视" group-title="卫视频道",湖北卫视
+http://106.80.125.59:7788/rtp/235.254.199.72:7980
+#EXTINF:-1 tvg-name="湖北卫视" group-title="卫视频道",湖北卫视
+http://106.80.125.59:7788/rtp/235.254.199.32:7980
+#EXTINF:-1 tvg-name="湖北卫视" group-title="卫视频道",湖北卫视
+http://113.205.89.156:4000/udp/225.0.4.217:7980
+#EXTINF:-1 tvg-name="湖北卫视" group-title="卫视频道",湖北卫视
 http://113.205.89.156:4000/udp/225.0.4.28:7980
 #EXTINF:-1 tvg-name="湖南卫视" group-title="卫视频道",湖南卫视
 http://113.205.89.156:4000/udp/225.0.4.107:7980
@@ -252,31 +572,101 @@ http://113.205.89.156:4000/udp/225.0.4.13:7980
 #EXTINF:-1 tvg-name="甘肃卫视" group-title="卫视频道",甘肃卫视
 http://106.80.125.59:7788/rtp/235.254.197.176:7980
 #EXTINF:-1 tvg-name="甘肃卫视" group-title="卫视频道",甘肃卫视
+http://106.80.125.59:7788/rtp/235.254.197.175:7980
+#EXTINF:-1 tvg-name="甘肃卫视" group-title="卫视频道",甘肃卫视
+http://106.80.125.59:7788/rtp/235.254.199.48:7980
+#EXTINF:-1 tvg-name="甘肃卫视" group-title="卫视频道",甘肃卫视
 http://113.205.89.156:4000/udp/225.0.4.181:7980
+#EXTINF:-1 tvg-name="甘肃卫视" group-title="卫视频道",甘肃卫视
+http://17782331118.top:8188/rtp/235.254.197.176:7980
+#EXTINF:-1 tvg-name="甘肃卫视" group-title="卫视频道",甘肃卫视
+http://27.9.38.191:8009/udp/225.0.4.181:7980
+#EXTINF:-1 tvg-name="西藏卫视" group-title="卫视频道",西藏卫视
+http://106.80.125.59:7788/rtp/235.254.197.184:7980
+#EXTINF:-1 tvg-name="西藏卫视" group-title="卫视频道",西藏卫视
+http://106.80.125.59:7788/rtp/235.254.197.168:7980
+#EXTINF:-1 tvg-name="西藏卫视" group-title="卫视频道",西藏卫视
+http://106.80.125.59:7788/rtp/235.254.199.46:7980
 #EXTINF:-1 tvg-name="西藏卫视" group-title="卫视频道",西藏卫视
 http://113.205.89.156:4000/udp/225.0.4.67:7980
+#EXTINF:-1 tvg-name="西藏卫视" group-title="卫视频道",西藏卫视
+http://17782331118.top:8188/rtp/235.254.197.184:7980
+#EXTINF:-1 tvg-name="西藏卫视" group-title="卫视频道",西藏卫视
+http://home.scanflove.com:7788/rtp/235.254.197.184:7980
 #EXTINF:-1 tvg-name="贵州卫视" group-title="卫视频道",贵州卫视
 http://106.80.125.59:7788/rtp/235.254.197.32:7980
+#EXTINF:-1 tvg-name="贵州卫视" group-title="卫视频道",贵州卫视
+http://106.80.125.59:7788/rtp/235.254.199.30:7980
+#EXTINF:-1 tvg-name="贵州卫视" group-title="卫视频道",贵州卫视
+http://106.80.125.59:7788/rtp/235.254.198.185:7980
+#EXTINF:-1 tvg-name="贵州卫视" group-title="卫视频道",贵州卫视
+http://106.80.125.59:7788/rtp/235.254.199.185:7980
 #EXTINF:-1 tvg-name="贵州卫视" group-title="卫视频道",贵州卫视
 http://113.205.89.156:4000/udp/225.0.4.175:7980
 #EXTINF:-1 tvg-name="贵州卫视" group-title="卫视频道",贵州卫视
 http://113.205.89.156:4000/udp/225.0.4.26:7980
+#EXTINF:-1 tvg-name="贵州卫视" group-title="卫视频道",贵州卫视
+http://17782331118.top:8188/rtp/235.254.198.185:7980
+#EXTINF:-1 tvg-name="贵州卫视" group-title="卫视频道",贵州卫视
+http://17782331118.top:8188/rtp/235.254.199.185:7980
+#EXTINF:-1 tvg-name="辽宁卫视" group-title="卫视频道",辽宁卫视
+http://106.80.125.59:7788/rtp/235.254.197.17:7980
 #EXTINF:-1 tvg-name="辽宁卫视" group-title="卫视频道",辽宁卫视
 http://113.205.89.156:4000/udp/225.0.4.98:7980
+#EXTINF:-1 tvg-name="辽宁卫视" group-title="卫视频道",辽宁卫视
+http://17782331118.top:8188/rtp/235.254.199.68:7980
 #EXTINF:-1 tvg-name="重庆卫视" group-title="卫视频道",重庆卫视
 http://106.80.125.59:7788/rtp/235.254.197.103:7980
 #EXTINF:-1 tvg-name="重庆卫视" group-title="卫视频道",重庆卫视
 http://106.80.125.59:7788/rtp/235.254.199.34:7980
+#EXTINF:-1 tvg-name="重庆卫视" group-title="卫视频道",重庆卫视
+http://106.80.125.59:7788/rtp/235.254.197.237:7980
+#EXTINF:-1 tvg-name="重庆卫视" group-title="卫视频道",重庆卫视
+http://113.205.89.156:4000/udp/225.0.4.187:7980
+#EXTINF:-1 tvg-name="重庆卫视" group-title="卫视频道",重庆卫视
+http://17782331118.top:8188/rtp/235.254.197.237:7980
+#EXTINF:-1 tvg-name="重庆卫视" group-title="卫视频道",重庆卫视
+http://17782331118.top:8188/rtp/235.254.197.103:7980
+#EXTINF:-1 tvg-name="重庆卫视" group-title="卫视频道",重庆卫视
+http://17782331118.top:8188/rtp/235.254.199.34:7980
+#EXTINF:-1 tvg-name="金鹰卡通" group-title="卫视频道",金鹰卡通
+http://106.80.125.59:7788/rtp/235.254.199.50:7980
+#EXTINF:-1 tvg-name="金鹰卡通" group-title="卫视频道",金鹰卡通
+http://106.80.125.59:7788/rtp/235.254.197.165:7980
+#EXTINF:-1 tvg-name="金鹰卡通" group-title="卫视频道",金鹰卡通
+http://113.205.89.156:4000/udp/225.0.4.46:7980
+#EXTINF:-1 tvg-name="金鹰卡通" group-title="卫视频道",金鹰卡通
+http://17782331118.top:8188/rtp/235.254.199.50:7980
+#EXTINF:-1 tvg-name="金鹰卡通" group-title="卫视频道",金鹰卡通
+http://17782331118.top:8188/rtp/235.254.197.165:7980
 #EXTINF:-1 tvg-name="陕西卫视" group-title="卫视频道",陕西卫视
 http://106.80.125.59:7788/rtp/235.254.199.40:7980
 #EXTINF:-1 tvg-name="陕西卫视" group-title="卫视频道",陕西卫视
 http://106.80.125.59:7788/rtp/235.254.197.36:7980
+#EXTINF:-1 tvg-name="陕西卫视" group-title="卫视频道",陕西卫视
+http://113.205.89.156:4000/udp/225.0.4.36:7980
+#EXTINF:-1 tvg-name="陕西卫视" group-title="卫视频道",陕西卫视
+http://home.scanflove.com:7788/rtp/235.254.199.40:7980
+#EXTINF:-1 tvg-name="陕西卫视" group-title="卫视频道",陕西卫视
+http://home.scanflove.com:7788/rtp/235.254.197.36:7980
 #EXTINF:-1 tvg-name="青海卫视" group-title="卫视频道",青海卫视
 http://106.80.125.59:7788/rtp/235.254.197.129:7980
 #EXTINF:-1 tvg-name="青海卫视" group-title="卫视频道",青海卫视
+http://106.80.125.59:7788/rtp/235.254.199.43:7980
+#EXTINF:-1 tvg-name="青海卫视" group-title="卫视频道",青海卫视
 http://113.205.89.156:4000/udp/225.0.4.39:7980
+#EXTINF:-1 tvg-name="青海卫视" group-title="卫视频道",青海卫视
+http://27.9.38.191:8009/udp/225.0.4.39:7980
+#EXTINF:-1 tvg-name="青海卫视" group-title="卫视频道",青海卫视
+http://home.scanflove.com:7788/rtp/235.254.197.129:7980
+#EXTINF:-1 tvg-name="黑龙江卫视" group-title="卫视频道",黑龙江卫视
+http://106.80.125.59:7788/rtp/235.254.197.30:7980
+#EXTINF:-1 tvg-name="黑龙江卫视" group-title="卫视频道",黑龙江卫视
+http://106.80.125.59:7788/rtp/235.254.199.27:7980
 #EXTINF:-1 tvg-name="黑龙江卫视" group-title="卫视频道",黑龙江卫视
 http://113.205.89.156:4000/udp/225.0.4.201:7980
+#EXTINF:-1 tvg-name="黑龙江卫视" group-title="卫视频道",黑龙江卫视
+http://17782331118.top:8188/rtp/235.254.197.243:7980
 #EXTINF:-1 tvg-name="军旅剧场" group-title="影视频道",军旅剧场
 http://113.205.89.156:4000/udp/225.0.4.146:7980
 #EXTINF:-1 tvg-name="军旅剧场" group-title="影视频道",军旅剧场
@@ -286,6 +676,8 @@ http://home.660888.xyz:4000/udp/225.0.4.146:7980
 #EXTINF:-1 tvg-name="古装剧场" group-title="影视频道",古装剧场
 http://113.205.89.156:4000/udp/225.0.4.147:7980
 #EXTINF:-1 tvg-name="古装剧场" group-title="影视频道",古装剧场
+http://27.9.38.191:8009/udp/225.0.4.147:7980
+#EXTINF:-1 tvg-name="古装剧场" group-title="影视频道",古装剧场
 http://home.660888.xyz:4000/udp/225.0.4.147:7980
 #EXTINF:-1 tvg-name="都市剧场" group-title="影视频道",都市剧场
 http://106.80.125.59:7788/rtp/235.254.197.151:7980
@@ -293,6 +685,8 @@ http://106.80.125.59:7788/rtp/235.254.197.151:7980
 http://106.80.125.59:7788/rtp/235.254.197.41:7980
 #EXTINF:-1 tvg-name="都市剧场" group-title="影视频道",都市剧场
 http://113.205.89.156:4000/udp/225.0.4.235:7980
+#EXTINF:-1 tvg-name="都市剧场" group-title="影视频道",都市剧场
+http://17782331118.top:8188/rtp/235.254.197.151:7980
 #EXTINF:-1 tvg-name="重庆影视" group-title="影视频道",重庆影视
 http://106.80.125.59:7788/rtp/235.254.198.180:7980
 #EXTINF:-1 tvg-name="重庆影视" group-title="影视频道",重庆影视
@@ -301,6 +695,12 @@ http://106.80.125.59:7788/rtp/235.254.199.180:7980
 http://106.80.125.59:7788/rtp/235.254.197.105:7980
 #EXTINF:-1 tvg-name="重庆影视" group-title="影视频道",重庆影视
 http://113.205.89.156:4000/udp/225.0.4.192:7980
+#EXTINF:-1 tvg-name="重庆影视" group-title="影视频道",重庆影视
+http://17782331118.top:8188/rtp/235.254.198.180:7980
+#EXTINF:-1 tvg-name="重庆影视" group-title="影视频道",重庆影视
+http://17782331118.top:8188/rtp/235.254.199.180:7980
+#EXTINF:-1 tvg-name="重庆影视" group-title="影视频道",重庆影视
+http://27.9.38.191:8009/udp/225.0.4.192:7980
 #EXTINF:-1 tvg-name="CHC动作电影" group-title="电影频道",CHC动作电影
 http://106.80.125.59:7788/rtp/235.254.198.247:7980
 #EXTINF:-1 tvg-name="CHC动作电影" group-title="电影频道",CHC动作电影
@@ -308,7 +708,13 @@ http://106.80.125.59:7788/rtp/235.254.199.247:7980
 #EXTINF:-1 tvg-name="CHC动作电影" group-title="电影频道",CHC动作电影
 http://113.205.89.156:4000/udp/225.0.4.229:7980
 #EXTINF:-1 tvg-name="CHC动作电影" group-title="电影频道",CHC动作电影
+http://17782331118.top:8188/rtp/235.254.198.247:7980
+#EXTINF:-1 tvg-name="CHC动作电影" group-title="电影频道",CHC动作电影
 http://17782331118.top:8188/rtp/235.254.199.247:7980
+#EXTINF:-1 tvg-name="CHC动作电影" group-title="电影频道",CHC动作电影
+http://home.scanflove.com:7788/rtp/235.254.198.247:7980
+#EXTINF:-1 tvg-name="CHC动作电影" group-title="电影频道",CHC动作电影
+http://home.scanflove.com:7788/rtp/235.254.199.247:7980
 #EXTINF:-1 tvg-name="CHC家庭影院" group-title="电影频道",CHC家庭影院
 http://106.80.125.59:7788/rtp/235.254.198.246:7980
 #EXTINF:-1 tvg-name="CHC家庭影院" group-title="电影频道",CHC家庭影院
@@ -319,6 +725,10 @@ http://113.205.89.156:4000/udp/225.0.4.228:7980
 http://17782331118.top:8188/rtp/235.254.198.246:7980
 #EXTINF:-1 tvg-name="CHC家庭影院" group-title="电影频道",CHC家庭影院
 http://17782331118.top:8188/rtp/235.254.199.246:7980
+#EXTINF:-1 tvg-name="CHC家庭影院" group-title="电影频道",CHC家庭影院
+http://home.scanflove.com:7788/rtp/235.254.198.246:7980
+#EXTINF:-1 tvg-name="CHC家庭影院" group-title="电影频道",CHC家庭影院
+http://home.scanflove.com:7788/rtp/235.254.199.246:7980
 #EXTINF:-1 tvg-name="CHC影迷电影" group-title="电影频道",CHC影迷电影
 http://106.80.125.59:7788/rtp/235.254.198.248:7980
 #EXTINF:-1 tvg-name="CHC影迷电影" group-title="电影频道",CHC影迷电影
@@ -326,15 +736,43 @@ http://106.80.125.59:7788/rtp/235.254.199.248:7980
 #EXTINF:-1 tvg-name="CHC影迷电影" group-title="电影频道",CHC影迷电影
 http://113.205.89.156:4000/udp/225.0.4.230:7980
 #EXTINF:-1 tvg-name="CHC影迷电影" group-title="电影频道",CHC影迷电影
+http://17782331118.top:8188/rtp/235.254.198.248:7980
+#EXTINF:-1 tvg-name="CHC影迷电影" group-title="电影频道",CHC影迷电影
 http://17782331118.top:8188/rtp/235.254.199.248:7980
+#EXTINF:-1 tvg-name="CHC影迷电影" group-title="电影频道",CHC影迷电影
+http://27.9.38.191:8009/udp/225.0.4.230:7980
+#EXTINF:-1 tvg-name="CHC影迷电影" group-title="电影频道",CHC影迷电影
+http://home.scanflove.com:7788/rtp/235.254.198.248:7980
+#EXTINF:-1 tvg-name="CHC影迷电影" group-title="电影频道",CHC影迷电影
+http://home.scanflove.com:7788/rtp/235.254.199.248:7980
+#EXTINF:-1 tvg-name="CHC影迷电影" group-title="电影频道",CHC影迷电影
+http://www.745612.xyz:7788/rtp/235.254.198.248:7980
+#EXTINF:-1 tvg-name="动漫秀场" group-title="少儿频道",动漫秀场
+http://106.80.125.59:7788/rtp/235.254.197.152:7980
+#EXTINF:-1 tvg-name="动漫秀场" group-title="少儿频道",动漫秀场
+http://106.80.125.59:7788/rtp/235.254.197.47:7980
 #EXTINF:-1 tvg-name="动漫秀场" group-title="少儿频道",动漫秀场
 http://113.205.89.156:4000/udp/225.0.4.236:7980
 #EXTINF:-1 tvg-name="动漫秀场" group-title="少儿频道",动漫秀场
+http://17782331118.top:8188/rtp/235.254.197.152:7980
+#EXTINF:-1 tvg-name="动漫秀场" group-title="少儿频道",动漫秀场
+http://17782331118.top:8188/rtp/235.254.197.47:7980
+#EXTINF:-1 tvg-name="动漫秀场" group-title="少儿频道",动漫秀场
 http://27.9.38.191:8009/udp/225.0.4.236:7980
+#EXTINF:-1 tvg-name="卡酷少儿" group-title="少儿频道",卡酷少儿
+http://106.80.125.59:7788/rtp/235.254.197.166:7980
+#EXTINF:-1 tvg-name="卡酷少儿" group-title="少儿频道",卡酷少儿
+http://106.80.125.59:7788/rtp/235.254.199.49:7980
 #EXTINF:-1 tvg-name="卡酷少儿" group-title="少儿频道",卡酷少儿
 http://113.205.89.156:4000/udp/225.0.4.45:7980
 #EXTINF:-1 tvg-name="卡酷少儿" group-title="少儿频道",卡酷少儿
+http://17782331118.top:8188/rtp/235.254.197.166:7980
+#EXTINF:-1 tvg-name="卡酷少儿" group-title="少儿频道",卡酷少儿
+http://17782331118.top:8188/rtp/235.254.199.49:7980
+#EXTINF:-1 tvg-name="卡酷少儿" group-title="少儿频道",卡酷少儿
 http://27.9.38.191:8009/udp/225.0.4.45:7980
+#EXTINF:-1 tvg-name="卡酷少儿" group-title="少儿频道",卡酷少儿
+http://home.scanflove.com:7788/rtp/235.254.197.166:7980
 #EXTINF:-1 tvg-name="求索纪录" group-title="纪实频道",求索纪录
 http://106.80.125.59:7788/rtp/235.254.198.251:7980
 #EXTINF:-1 tvg-name="求索纪录" group-title="纪实频道",求索纪录
@@ -347,18 +785,50 @@ http://17782331118.top:8188/rtp/235.254.198.251:7980
 http://17782331118.top:8188/rtp/235.254.199.251:7980
 #EXTINF:-1 tvg-name="求索纪录" group-title="纪实频道",求索纪录
 http://27.9.38.191:8009/udp/225.0.4.232:7980
+#EXTINF:-1 tvg-name="求索纪录" group-title="纪实频道",求索纪录
+http://home.scanflove.com:7788/rtp/235.254.198.251:7980
+#EXTINF:-1 tvg-name="求索纪录" group-title="纪实频道",求索纪录
+http://home.scanflove.com:7788/rtp/235.254.199.251:7980
+#EXTINF:-1 tvg-name="求索纪录" group-title="纪实频道",求索纪录
+http://www.745612.xyz:7788/rtp/235.254.198.251:7980
+#EXTINF:-1 tvg-name="中国教育1" group-title="国教频道",中国教育1
+http://106.80.125.59:7788/rtp/235.254.197.172:7980
+#EXTINF:-1 tvg-name="中国教育1" group-title="国教频道",中国教育1
+http://106.80.125.59:7788/rtp/235.254.199.201:7980
+#EXTINF:-1 tvg-name="中国教育1" group-title="国教频道",中国教育1
+http://106.80.125.59:7788/rtp/235.254.198.196:7980
+#EXTINF:-1 tvg-name="中国教育1" group-title="国教频道",中国教育1
+http://106.80.125.59:7788/rtp/235.254.199.196:7980
+#EXTINF:-1 tvg-name="中国教育1" group-title="国教频道",中国教育1
+http://17782331118.top:8188/rtp/235.254.198.196:7980
+#EXTINF:-1 tvg-name="中国教育1" group-title="国教频道",中国教育1
+http://17782331118.top:8188/rtp/235.254.199.196:7980
+#EXTINF:-1 tvg-name="中国教育1" group-title="国教频道",中国教育1
+http://17782331118.top:8188/rtp/235.254.199.201:7980
+#EXTINF:-1 tvg-name="中国教育1" group-title="国教频道",中国教育1
+http://17782331118.top:8188/rtp/235.254.197.172:7980
 #EXTINF:-1 tvg-name="中国教育4" group-title="国教频道",中国教育4
 http://106.80.125.59:7788/rtp/235.254.197.53:7980
 #EXTINF:-1 tvg-name="中国教育4" group-title="国教频道",中国教育4
 http://106.80.125.59:7788/rtp/235.254.199.197:7980
+#EXTINF:-1 tvg-name="中国教育4" group-title="国教频道",中国教育4
+http://106.80.125.59:7788/rtp/235.254.198.197:7980
+#EXTINF:-1 tvg-name="中国教育4" group-title="国教频道",中国教育4
+http://113.205.89.156:4000/udp/225.0.4.182:7980
 #EXTINF:-1 tvg-name="中国教育4" group-title="国教频道",中国教育4
 http://17782331118.top:8188/rtp/235.254.197.53:7980
 #EXTINF:-1 tvg-name="中国教育4" group-title="国教频道",中国教育4
 http://17782331118.top:8188/rtp/235.254.199.197:7980
 #EXTINF:-1 tvg-name="中国教育4" group-title="国教频道",中国教育4
 http://home.scanflove.com:7788/rtp/235.254.197.53:7980
+#EXTINF:-1 tvg-name="中国教育4" group-title="国教频道",中国教育4
+http://home.scanflove.com:7788/rtp/235.254.198.197:7980
+#EXTINF:-1 tvg-name="中国教育4" group-title="国教频道",中国教育4
+http://home.scanflove.com:7788/rtp/235.254.199.197:7980
 #EXTINF:-1 tvg-name="成龙" group-title="明星频道",成龙
 http://113.205.89.156:4000/udp/225.0.4.170:7980
+#EXTINF:-1 tvg-name="成龙" group-title="明星频道",成龙
+http://27.9.38.191:8009/udp/225.0.4.170:7980
 #EXTINF:-1 tvg-name="成龙" group-title="明星频道",成龙
 http://home.660888.xyz:4000/udp/225.0.4.170:7980
 #EXTINF:-1 tvg-name="东方财经" group-title="主题频道",东方财经
@@ -366,55 +836,127 @@ http://106.80.125.59:7788/rtp/235.254.198.103:7980
 #EXTINF:-1 tvg-name="东方财经" group-title="主题频道",东方财经
 http://106.80.125.59:7788/rtp/235.254.199.103:7980
 #EXTINF:-1 tvg-name="东方财经" group-title="主题频道",东方财经
+http://17782331118.top:8188/rtp/235.254.198.103:7980
+#EXTINF:-1 tvg-name="东方财经" group-title="主题频道",东方财经
+http://17782331118.top:8188/rtp/235.254.199.103:7980
+#EXTINF:-1 tvg-name="东方财经" group-title="主题频道",东方财经
 http://home.scanflove.com:7788/rtp/235.254.198.103:7980
 #EXTINF:-1 tvg-name="东方财经" group-title="主题频道",东方财经
 http://home.scanflove.com:7788/rtp/235.254.199.103:7980
+#EXTINF:-1 tvg-name="东方财经" group-title="主题频道",东方财经
+http://www.745612.xyz:7788/rtp/235.254.198.103:7980
+#EXTINF:-1 tvg-name="东方财经" group-title="主题频道",东方财经
+http://www.745612.xyz:7788/rtp/235.254.199.103:7980
 #EXTINF:-1 tvg-name="法治天地" group-title="主题频道",法治天地
 http://106.80.125.59:7788/rtp/235.254.197.43:7980
 #EXTINF:-1 tvg-name="法治天地" group-title="主题频道",法治天地
+http://106.80.125.59:7788/rtp/235.254.197.154:7980
+#EXTINF:-1 tvg-name="法治天地" group-title="主题频道",法治天地
 http://113.205.89.156:4000/udp/225.0.4.240:7980
 #EXTINF:-1 tvg-name="法治天地" group-title="主题频道",法治天地
+http://17782331118.top:8188/rtp/235.254.197.154:7980
+#EXTINF:-1 tvg-name="法治天地" group-title="主题频道",法治天地
 http://27.9.38.191:8009/udp/225.0.4.240:7980
+#EXTINF:-1 tvg-name="法治天地" group-title="主题频道",法治天地
+http://home.scanflove.com:7788/rtp/235.254.197.154:7980
 #EXTINF:-1 tvg-name="优优宝贝" group-title="数字频道",优优宝贝
 http://106.80.125.59:7788/rtp/235.254.197.137:7980
 #EXTINF:-1 tvg-name="优优宝贝" group-title="数字频道",优优宝贝
 http://113.205.89.156:4000/udp/225.0.4.126:7980
 #EXTINF:-1 tvg-name="优优宝贝" group-title="数字频道",优优宝贝
+http://17782331118.top:8188/rtp/235.254.197.137:7980
+#EXTINF:-1 tvg-name="优优宝贝" group-title="数字频道",优优宝贝
 http://27.9.38.191:8009/udp/225.0.4.126:7980
+#EXTINF:-1 tvg-name="优优宝贝" group-title="数字频道",优优宝贝
+http://home.scanflove.com:7788/rtp/235.254.197.137:7980
 #EXTINF:-1 tvg-name="快乐垂钓" group-title="数字频道",快乐垂钓
 http://106.80.125.59:7788/rtp/235.254.198.191:7980
 #EXTINF:-1 tvg-name="快乐垂钓" group-title="数字频道",快乐垂钓
+http://106.80.125.59:7788/rtp/235.254.199.191:7980
+#EXTINF:-1 tvg-name="快乐垂钓" group-title="数字频道",快乐垂钓
 http://113.205.89.156:4000/udp/225.0.4.213:7980
+#EXTINF:-1 tvg-name="快乐垂钓" group-title="数字频道",快乐垂钓
+http://17782331118.top:8188/rtp/235.254.198.191:7980
+#EXTINF:-1 tvg-name="快乐垂钓" group-title="数字频道",快乐垂钓
+http://17782331118.top:8188/rtp/235.254.199.191:7980
+#EXTINF:-1 tvg-name="快乐垂钓" group-title="数字频道",快乐垂钓
+http://27.9.38.191:8009/udp/225.0.4.213:7980
 #EXTINF:-1 tvg-name="文物宝库" group-title="数字频道",文物宝库
 http://106.80.125.59:7788/rtp/235.254.198.132:7980
 #EXTINF:-1 tvg-name="文物宝库" group-title="数字频道",文物宝库
 http://106.80.125.59:7788/rtp/235.254.199.132:7980
+#EXTINF:-1 tvg-name="文物宝库" group-title="数字频道",文物宝库
+http://17782331118.top:8188/rtp/235.254.198.132:7980
+#EXTINF:-1 tvg-name="文物宝库" group-title="数字频道",文物宝库
+http://17782331118.top:8188/rtp/235.254.199.132:7980
+#EXTINF:-1 tvg-name="文物宝库" group-title="数字频道",文物宝库
+http://home.scanflove.com:7788/rtp/235.254.198.132:7980
+#EXTINF:-1 tvg-name="文物宝库" group-title="数字频道",文物宝库
+http://home.scanflove.com:7788/rtp/235.254.199.132:7980
 #EXTINF:-1 tvg-name="梨园频道" group-title="数字频道",梨园频道
 http://106.80.125.59:7788/rtp/235.254.198.163:7980
 #EXTINF:-1 tvg-name="梨园频道" group-title="数字频道",梨园频道
 http://106.80.125.59:7788/rtp/235.254.199.163:7980
+#EXTINF:-1 tvg-name="梨园频道" group-title="数字频道",梨园频道
+http://17782331118.top:8188/rtp/235.254.198.163:7980
+#EXTINF:-1 tvg-name="梨园频道" group-title="数字频道",梨园频道
+http://17782331118.top:8188/rtp/235.254.199.163:7980
+#EXTINF:-1 tvg-name="梨园频道" group-title="数字频道",梨园频道
+http://home.scanflove.com:7788/rtp/235.254.198.163:7980
+#EXTINF:-1 tvg-name="梨园频道" group-title="数字频道",梨园频道
+http://home.scanflove.com:7788/rtp/235.254.199.163:7980
 #EXTINF:-1 tvg-name="欢笑剧场" group-title="数字频道",欢笑剧场
 http://106.80.125.59:7788/rtp/235.254.197.150:7980
 #EXTINF:-1 tvg-name="欢笑剧场" group-title="数字频道",欢笑剧场
 http://113.205.89.156:4000/udp/225.0.4.234:7980
+#EXTINF:-1 tvg-name="欢笑剧场" group-title="数字频道",欢笑剧场
+http://17782331118.top:8188/rtp/235.254.197.150:7980
 #EXTINF:-1 tvg-name="武术世界" group-title="数字频道",武术世界
 http://106.80.125.59:7788/rtp/235.254.198.107:7980
 #EXTINF:-1 tvg-name="武术世界" group-title="数字频道",武术世界
 http://106.80.125.59:7788/rtp/235.254.199.107:7980
 #EXTINF:-1 tvg-name="武术世界" group-title="数字频道",武术世界
+http://17782331118.top:8188/rtp/235.254.198.107:7980
+#EXTINF:-1 tvg-name="武术世界" group-title="数字频道",武术世界
 http://17782331118.top:8188/rtp/235.254.199.107:7980
+#EXTINF:-1 tvg-name="武术世界" group-title="数字频道",武术世界
+http://home.scanflove.com:7788/rtp/235.254.198.107:7980
+#EXTINF:-1 tvg-name="武术世界" group-title="数字频道",武术世界
+http://home.scanflove.com:7788/rtp/235.254.199.107:7980
 #EXTINF:-1 tvg-name="游戏风云" group-title="数字频道",游戏风云
 http://106.80.125.59:7788/rtp/235.254.197.46:7980
 #EXTINF:-1 tvg-name="游戏风云" group-title="数字频道",游戏风云
 http://106.80.125.59:7788/rtp/235.254.197.159:7980
 #EXTINF:-1 tvg-name="游戏风云" group-title="数字频道",游戏风云
 http://113.205.89.156:4000/udp/225.0.4.237:7980
+#EXTINF:-1 tvg-name="游戏风云" group-title="数字频道",游戏风云
+http://17782331118.top:8188/rtp/235.254.197.46:7980
+#EXTINF:-1 tvg-name="游戏风云" group-title="数字频道",游戏风云
+http://17782331118.top:8188/rtp/235.254.197.159:7980
+#EXTINF:-1 tvg-name="游戏风云" group-title="数字频道",游戏风云
+http://27.9.38.191:8009/udp/225.0.4.237:7980
 #EXTINF:-1 tvg-name="生活时尚" group-title="数字频道",生活时尚
 http://106.80.125.59:7788/rtp/235.254.197.44:7980
+#EXTINF:-1 tvg-name="生活时尚" group-title="数字频道",生活时尚
+http://106.80.125.59:7788/rtp/235.254.197.160:7980
+#EXTINF:-1 tvg-name="生活时尚" group-title="数字频道",生活时尚
+http://113.205.89.156:4000/udp/225.0.4.241:7980
+#EXTINF:-1 tvg-name="生活时尚" group-title="数字频道",生活时尚
+http://17782331118.top:8188/rtp/235.254.197.160:7980
+#EXTINF:-1 tvg-name="生活时尚" group-title="数字频道",生活时尚
+http://home.scanflove.com:7788/rtp/235.254.197.160:7980
+#EXTINF:-1 tvg-name="生活时尚" group-title="数字频道",生活时尚
+http://home.scanflove.com:7788/rtp/235.254.197.44:7980
 #EXTINF:-1 tvg-name="茶频道" group-title="数字频道",茶频道
 http://106.80.125.59:7788/rtp/235.254.199.198:7980
 #EXTINF:-1 tvg-name="茶频道" group-title="数字频道",茶频道
+http://106.80.125.59:7788/rtp/235.254.198.198:7980
+#EXTINF:-1 tvg-name="茶频道" group-title="数字频道",茶频道
 http://113.205.89.156:4000/udp/225.0.4.233:7980
+#EXTINF:-1 tvg-name="茶频道" group-title="数字频道",茶频道
+http://17782331118.top:8188/rtp/235.254.198.198:7980
+#EXTINF:-1 tvg-name="茶频道" group-title="数字频道",茶频道
+http://17782331118.top:8188/rtp/235.254.199.198:7980
 #EXTINF:-1 tvg-name="茶频道" group-title="数字频道",茶频道
 http://27.9.38.191:8009/udp/225.0.4.233:7980
 #EXTINF:-1 tvg-name="财富天下" group-title="数字频道",财富天下
@@ -431,6 +973,12 @@ http://17782331118.top:8188/rtp/235.254.198.221:7980
 http://17782331118.top:8188/rtp/235.254.199.221:7980
 #EXTINF:-1 tvg-name="丰都综合" group-title="地方频道",丰都综合
 http://home.scanflove.com:7788/rtp/235.254.198.221:7980
+#EXTINF:-1 tvg-name="丰都综合" group-title="地方频道",丰都综合
+http://home.scanflove.com:7788/rtp/235.254.199.221:7980
+#EXTINF:-1 tvg-name="丰都综合" group-title="地方频道",丰都综合
+http://www.745612.xyz:7788/rtp/235.254.198.221:7980
+#EXTINF:-1 tvg-name="丰都综合" group-title="地方频道",丰都综合
+http://www.745612.xyz:7788/rtp/235.254.199.221:7980
 #EXTINF:-1 tvg-name="城口综合" group-title="地方频道",城口综合
 http://106.80.125.59:7788/rtp/235.254.198.218:7980
 #EXTINF:-1 tvg-name="城口综合" group-title="地方频道",城口综合
@@ -445,14 +993,22 @@ http://home.scanflove.com:7788/rtp/235.254.198.218:7980
 http://home.scanflove.com:7788/rtp/235.254.199.218:7980
 #EXTINF:-1 tvg-name="城口综合" group-title="地方频道",城口综合
 http://www.745612.xyz:7788/rtp/235.254.198.218:7980
+#EXTINF:-1 tvg-name="城口综合" group-title="地方频道",城口综合
+http://www.745612.xyz:7788/rtp/235.254.199.218:7980
 #EXTINF:-1 tvg-name="山东教育卫视" group-title="地方频道",山东教育卫视
 http://106.80.125.59:7788/rtp/235.254.197.54:7980
 #EXTINF:-1 tvg-name="山东教育卫视" group-title="地方频道",山东教育卫视
 http://106.80.125.59:7788/rtp/235.254.198.153:7980
 #EXTINF:-1 tvg-name="山东教育卫视" group-title="地方频道",山东教育卫视
+http://106.80.125.59:7788/rtp/235.254.199.153:7980
+#EXTINF:-1 tvg-name="山东教育卫视" group-title="地方频道",山东教育卫视
+http://113.205.89.156:4000/udp/225.0.4.183:7980
+#EXTINF:-1 tvg-name="山东教育卫视" group-title="地方频道",山东教育卫视
 http://17782331118.top:8188/rtp/235.254.197.54:7980
 #EXTINF:-1 tvg-name="山东教育卫视" group-title="地方频道",山东教育卫视
 http://27.9.38.191:8009/udp/225.0.4.183:7980
+#EXTINF:-1 tvg-name="山东教育卫视" group-title="地方频道",山东教育卫视
+http://home.scanflove.com:7788/rtp/235.254.197.54:7980
 #EXTINF:-1 tvg-name="巫山综合" group-title="地方频道",巫山综合
 http://106.80.125.59:7788/rtp/235.254.199.212:7980
 #EXTINF:-1 tvg-name="巫山综合" group-title="地方频道",巫山综合
@@ -465,12 +1021,22 @@ http://17782331118.top:8188/rtp/235.254.199.212:7980
 http://home.scanflove.com:7788/rtp/235.254.198.212:7980
 #EXTINF:-1 tvg-name="巫山综合" group-title="地方频道",巫山综合
 http://home.scanflove.com:7788/rtp/235.254.199.212:7980
+#EXTINF:-1 tvg-name="巫山综合" group-title="地方频道",巫山综合
+http://www.745612.xyz:7788/rtp/235.254.198.212:7980
+#EXTINF:-1 tvg-name="巫山综合" group-title="地方频道",巫山综合
+http://www.745612.xyz:7788/rtp/235.254.199.212:7980
 #EXTINF:-1 tvg-name="巫溪综合" group-title="地方频道",巫溪综合
 http://106.80.125.59:7788/rtp/235.254.198.215:7980
 #EXTINF:-1 tvg-name="巫溪综合" group-title="地方频道",巫溪综合
 http://106.80.125.59:7788/rtp/235.254.199.215:7980
 #EXTINF:-1 tvg-name="巫溪综合" group-title="地方频道",巫溪综合
 http://17782331118.top:8188/rtp/235.254.198.215:7980
+#EXTINF:-1 tvg-name="巫溪综合" group-title="地方频道",巫溪综合
+http://17782331118.top:8188/rtp/235.254.199.215:7980
+#EXTINF:-1 tvg-name="巫溪综合" group-title="地方频道",巫溪综合
+http://home.scanflove.com:7788/rtp/235.254.198.215:7980
+#EXTINF:-1 tvg-name="巫溪综合" group-title="地方频道",巫溪综合
+http://home.scanflove.com:7788/rtp/235.254.199.215:7980
 #EXTINF:-1 tvg-name="开州综合" group-title="地方频道",开州综合
 http://106.80.125.59:7788/rtp/235.254.198.203:7980
 #EXTINF:-1 tvg-name="开州综合" group-title="地方频道",开州综合
@@ -481,6 +1047,12 @@ http://106.80.125.59:7788/rtp/235.254.199.145:7980
 http://17782331118.top:8188/rtp/235.254.198.203:7980
 #EXTINF:-1 tvg-name="开州综合" group-title="地方频道",开州综合
 http://17782331118.top:8188/rtp/235.254.199.145:7980
+#EXTINF:-1 tvg-name="开州综合" group-title="地方频道",开州综合
+http://17782331118.top:8188/rtp/235.254.199.203:7980
+#EXTINF:-1 tvg-name="开州综合" group-title="地方频道",开州综合
+http://home.scanflove.com:7788/rtp/235.254.198.203:7980
+#EXTINF:-1 tvg-name="开州综合" group-title="地方频道",开州综合
+http://home.scanflove.com:7788/rtp/235.254.199.203:7980
 #EXTINF:-1 tvg-name="武隆综合" group-title="地方频道",武隆综合
 http://106.80.125.59:7788/rtp/235.254.198.227:7980
 #EXTINF:-1 tvg-name="武隆综合" group-title="地方频道",武隆综合
@@ -495,6 +1067,8 @@ http://home.scanflove.com:7788/rtp/235.254.198.227:7980
 http://home.scanflove.com:7788/rtp/235.254.199.227:7980
 #EXTINF:-1 tvg-name="武隆综合" group-title="地方频道",武隆综合
 http://www.745612.xyz:7788/rtp/235.254.198.227:7980
+#EXTINF:-1 tvg-name="武隆综合" group-title="地方频道",武隆综合
+http://www.745612.xyz:7788/rtp/235.254.199.227:7980
 #EXTINF:-1 tvg-name="石柱综合" group-title="地方频道",石柱综合
 http://106.80.125.59:7788/rtp/235.254.198.224:7980
 #EXTINF:-1 tvg-name="石柱综合" group-title="地方频道",石柱综合
@@ -509,6 +1083,8 @@ http://home.scanflove.com:7788/rtp/235.254.198.224:7980
 http://home.scanflove.com:7788/rtp/235.254.199.224:7980
 #EXTINF:-1 tvg-name="石柱综合" group-title="地方频道",石柱综合
 http://www.745612.xyz:7788/rtp/235.254.198.224:7980
+#EXTINF:-1 tvg-name="石柱综合" group-title="地方频道",石柱综合
+http://www.745612.xyz:7788/rtp/235.254.199.224:7980
 #EXTINF:-1 tvg-name="酉阳综合" group-title="地方频道",酉阳综合
 http://106.80.125.59:7788/rtp/235.254.198.236:7980
 #EXTINF:-1 tvg-name="酉阳综合" group-title="地方频道",酉阳综合
@@ -521,6 +1097,10 @@ http://17782331118.top:8188/rtp/235.254.198.236:7980
 http://home.scanflove.com:7788/rtp/235.254.198.236:7980
 #EXTINF:-1 tvg-name="酉阳综合" group-title="地方频道",酉阳综合
 http://home.scanflove.com:7788/rtp/235.254.199.236:7980
+#EXTINF:-1 tvg-name="酉阳综合" group-title="地方频道",酉阳综合
+http://www.745612.xyz:7788/rtp/235.254.198.236:7980
+#EXTINF:-1 tvg-name="酉阳综合" group-title="地方频道",酉阳综合
+http://www.745612.xyz:7788/rtp/235.254.199.236:7980
 #EXTINF:-1 tvg-name="重庆娱乐" group-title="地方频道",重庆娱乐
 http://113.205.89.156:4000/udp/225.0.4.194:7980
 #EXTINF:-1 tvg-name="重庆娱乐" group-title="地方频道",重庆娱乐
@@ -535,6 +1115,10 @@ http://106.80.125.59:7788/rtp/235.254.199.166:7980
 http://106.80.125.59:7788/rtp/235.254.197.110:7980
 #EXTINF:-1 tvg-name="重庆少儿" group-title="地方频道",重庆少儿
 http://113.205.89.156:4000/udp/225.0.4.191:7980
+#EXTINF:-1 tvg-name="重庆少儿" group-title="地方频道",重庆少儿
+http://17782331118.top:8188/rtp/235.254.198.166:7980
+#EXTINF:-1 tvg-name="重庆少儿" group-title="地方频道",重庆少儿
+http://17782331118.top:8188/rtp/235.254.199.166:7980
 #EXTINF:-1 tvg-name="重庆文体娱乐" group-title="地方频道",重庆文体娱乐
 http://106.80.125.59:7788/rtp/235.254.198.187:7980
 #EXTINF:-1 tvg-name="重庆文体娱乐" group-title="地方频道",重庆文体娱乐
@@ -547,6 +1131,12 @@ http://17782331118.top:8188/rtp/235.254.198.187:7980
 http://17782331118.top:8188/rtp/235.254.199.187:7980
 #EXTINF:-1 tvg-name="重庆文体娱乐" group-title="地方频道",重庆文体娱乐
 http://home.scanflove.com:7788/rtp/235.254.198.187:7980
+#EXTINF:-1 tvg-name="重庆文体娱乐" group-title="地方频道",重庆文体娱乐
+http://home.scanflove.com:7788/rtp/235.254.199.187:7980
+#EXTINF:-1 tvg-name="重庆文体娱乐" group-title="地方频道",重庆文体娱乐
+http://www.745612.xyz:7788/rtp/235.254.198.187:7980
+#EXTINF:-1 tvg-name="重庆文体娱乐" group-title="地方频道",重庆文体娱乐
+http://www.745612.xyz:7788/rtp/235.254.199.187:7980
 #EXTINF:-1 tvg-name="重庆新农村" group-title="地方频道",重庆新农村
 http://106.80.125.59:7788/rtp/235.254.199.186:7980
 #EXTINF:-1 tvg-name="重庆新农村" group-title="地方频道",重庆新农村
@@ -559,6 +1149,12 @@ http://106.80.125.59:7788/rtp/235.254.198.174:7980
 http://106.80.125.59:7788/rtp/235.254.199.174:7980
 #EXTINF:-1 tvg-name="重庆新农村" group-title="地方频道",重庆新农村
 http://113.205.89.156:4000/udp/225.0.4.189:7980
+#EXTINF:-1 tvg-name="重庆新农村" group-title="地方频道",重庆新农村
+http://17782331118.top:8188/rtp/235.254.198.186:7980
+#EXTINF:-1 tvg-name="重庆新农村" group-title="地方频道",重庆新农村
+http://17782331118.top:8188/rtp/235.254.199.186:7980
+#EXTINF:-1 tvg-name="重庆新农村" group-title="地方频道",重庆新农村
+http://27.9.38.191:8009/udp/225.0.4.189:7980
 #EXTINF:-1 tvg-name="重庆新闻" group-title="地方频道",重庆新闻
 http://106.80.125.59:7788/rtp/235.254.197.199:7980
 #EXTINF:-1 tvg-name="重庆新闻" group-title="地方频道",重庆新闻
@@ -567,6 +1163,12 @@ http://106.80.125.59:7788/rtp/235.254.197.104:7980
 http://113.205.89.156:4000/udp/225.0.4.188:7980
 #EXTINF:-1 tvg-name="重庆新闻" group-title="地方频道",重庆新闻
 http://113.205.89.156:4000/udp/225.0.4.59:7980
+#EXTINF:-1 tvg-name="重庆新闻" group-title="地方频道",重庆新闻
+http://17782331118.top:8188/rtp/235.254.197.199:7980
+#EXTINF:-1 tvg-name="重庆新闻" group-title="地方频道",重庆新闻
+http://27.9.38.191:8009/udp/225.0.4.188:7980
+#EXTINF:-1 tvg-name="重庆新闻" group-title="地方频道",重庆新闻
+http://27.9.38.191:8009/udp/225.0.4.59:7980
 #EXTINF:-1 tvg-name="重庆汽摩" group-title="地方频道",重庆汽摩
 http://106.80.125.59:7788/rtp/235.254.198.169:7980
 #EXTINF:-1 tvg-name="重庆汽摩" group-title="地方频道",重庆汽摩
@@ -575,6 +1177,10 @@ http://106.80.125.59:7788/rtp/235.254.199.169:7980
 http://106.80.125.59:7788/rtp/235.254.197.117:7980
 #EXTINF:-1 tvg-name="重庆汽摩" group-title="地方频道",重庆汽摩
 http://113.205.89.156:4000/udp/225.0.4.195:7980
+#EXTINF:-1 tvg-name="重庆汽摩" group-title="地方频道",重庆汽摩
+http://17782331118.top:8188/rtp/235.254.198.169:7980
+#EXTINF:-1 tvg-name="重庆汽摩" group-title="地方频道",重庆汽摩
+http://17782331118.top:8188/rtp/235.254.199.169:7980
 #EXTINF:-1 tvg-name="重庆电信宣传" group-title="地方频道",重庆电信宣传
 http://106.80.125.59:7788/rtp/235.254.198.209:7980
 #EXTINF:-1 tvg-name="重庆电信宣传" group-title="地方频道",重庆电信宣传
@@ -591,6 +1197,12 @@ http://106.80.125.59:7788/rtp/235.254.199.181:7980
 http://106.80.125.59:7788/rtp/235.254.197.106:7980
 #EXTINF:-1 tvg-name="重庆社会与法" group-title="地方频道",重庆社会与法
 http://113.205.89.156:4000/udp/225.0.4.190:7980
+#EXTINF:-1 tvg-name="重庆社会与法" group-title="地方频道",重庆社会与法
+http://17782331118.top:8188/rtp/235.254.198.181:7980
+#EXTINF:-1 tvg-name="重庆社会与法" group-title="地方频道",重庆社会与法
+http://17782331118.top:8188/rtp/235.254.199.181:7980
+#EXTINF:-1 tvg-name="重庆社会与法" group-title="地方频道",重庆社会与法
+http://27.9.38.191:8009/udp/225.0.4.190:7980
 #EXTINF:-1 tvg-name="重庆移动" group-title="地方频道",重庆移动
 http://106.80.125.59:7788/rtp/235.254.198.170:7980
 #EXTINF:-1 tvg-name="重庆移动" group-title="地方频道",重庆移动
@@ -599,6 +1211,10 @@ http://106.80.125.59:7788/rtp/235.254.199.170:7980
 http://106.80.125.59:7788/rtp/235.254.197.113:7980
 #EXTINF:-1 tvg-name="重庆移动" group-title="地方频道",重庆移动
 http://113.205.89.156:4000/udp/225.0.4.215:7980
+#EXTINF:-1 tvg-name="重庆移动" group-title="地方频道",重庆移动
+http://17782331118.top:8188/rtp/235.254.198.170:7980
+#EXTINF:-1 tvg-name="重庆移动" group-title="地方频道",重庆移动
+http://17782331118.top:8188/rtp/235.254.199.170:7980
 #EXTINF:-1 tvg-name="重庆红叶" group-title="地方频道",重庆红叶
 http://106.80.125.59:7788/rtp/235.254.198.188:7980
 #EXTINF:-1 tvg-name="重庆红叶" group-title="地方频道",重庆红叶
@@ -607,6 +1223,12 @@ http://106.80.125.59:7788/rtp/235.254.199.188:7980
 http://106.80.125.59:7788/rtp/235.254.197.111:7980
 #EXTINF:-1 tvg-name="重庆红叶" group-title="地方频道",重庆红叶
 http://113.205.89.156:4000/udp/225.0.4.193:7980
+#EXTINF:-1 tvg-name="重庆红叶" group-title="地方频道",重庆红叶
+http://17782331118.top:8188/rtp/235.254.199.188:7980
+#EXTINF:-1 tvg-name="重庆红叶" group-title="地方频道",重庆红叶
+http://17782331118.top:8188/rtp/235.254.198.188:7980
+#EXTINF:-1 tvg-name="重庆红叶" group-title="地方频道",重庆红叶
+http://27.9.38.191:8009/udp/225.0.4.193:7980
 #EXTINF:-1 tvg-name="重庆红岩文化" group-title="地方频道",重庆红岩文化
 http://106.80.125.59:7788/rtp/235.254.198.182:7980
 #EXTINF:-1 tvg-name="重庆红岩文化" group-title="地方频道",重庆红岩文化
@@ -616,4 +1238,10 @@ http://106.80.125.59:7788/rtp/235.254.197.107:7980
 #EXTINF:-1 tvg-name="重庆红岩文化" group-title="地方频道",重庆红岩文化
 http://113.205.89.156:4000/udp/225.0.4.196:7980
 #EXTINF:-1 tvg-name="重庆红岩文化" group-title="地方频道",重庆红岩文化
+http://17782331118.top:8188/rtp/235.254.199.182:7980
+#EXTINF:-1 tvg-name="重庆红岩文化" group-title="地方频道",重庆红岩文化
+http://17782331118.top:8188/rtp/235.254.198.182:7980
+#EXTINF:-1 tvg-name="重庆红岩文化" group-title="地方频道",重庆红岩文化
 http://27.9.38.191:8009/udp/225.0.4.196:7980
+#EXTINF:-1 tvg-name="重庆红岩文化" group-title="地方频道",重庆红岩文化
+http://home.scanflove.com:7788/rtp/235.254.198.182:7980

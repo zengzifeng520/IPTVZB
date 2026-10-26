@@ -1,14 +1,58 @@
 #EXTM3U
+#EXTINF:-1 tvg-name="CCTV世界地理" group-title="央视频道",CCTV世界地理
+http://j1900.silicaite.top:58888/rtp/239.49.9.8:6000
+#EXTINF:-1 tvg-name="CCTV世界地理" group-title="央视频道",CCTV世界地理
+http://j1900.silicaite.top:58888/rtp/239.49.1.63:6000
+#EXTINF:-1 tvg-name="CCTV兵器科技" group-title="央视频道",CCTV兵器科技
+http://j1900.silicaite.top:58888/rtp/239.49.9.9:6000
+#EXTINF:-1 tvg-name="CCTV兵器科技" group-title="央视频道",CCTV兵器科技
+http://j1900.silicaite.top:58888/rtp/239.49.1.64:6000
+#EXTINF:-1 tvg-name="CCTV央视台球" group-title="央视频道",CCTV央视台球
+http://j1900.silicaite.com:58888/rtp/239.49.9.22:6000
+#EXTINF:-1 tvg-name="CCTV央视台球" group-title="央视频道",CCTV央视台球
+http://j1900.silicaite.top:58888/rtp/239.49.9.22:6000
 #EXTINF:-1 tvg-name="CCTV央视精品" group-title="央视频道",CCTV央视精品
 http://j1900.silicaite.com:58888/rtp/239.49.9.11:6000
+#EXTINF:-1 tvg-name="CCTV央视精品" group-title="央视频道",CCTV央视精品
+http://j1900.silicaite.com:58888/rtp/239.49.1.66:6000
 #EXTINF:-1 tvg-name="CCTV央视精品" group-title="央视频道",CCTV央视精品
 http://j1900.silicaite.top:58888/rtp/239.49.9.11:6000
 #EXTINF:-1 tvg-name="CCTV央视精品" group-title="央视频道",CCTV央视精品
 http://j1900.silicaite.top:58888/rtp/239.49.1.66:6000
 #EXTINF:-1 tvg-name="CCTV女性时尚" group-title="央视频道",CCTV女性时尚
+http://j1900.silicaite.com:58888/rtp/239.49.9.14:6000
+#EXTINF:-1 tvg-name="CCTV女性时尚" group-title="央视频道",CCTV女性时尚
+http://j1900.silicaite.com:58888/rtp/239.49.1.69:6000
+#EXTINF:-1 tvg-name="CCTV女性时尚" group-title="央视频道",CCTV女性时尚
 http://j1900.silicaite.top:58888/rtp/239.49.9.14:6000
+#EXTINF:-1 tvg-name="CCTV女性时尚" group-title="央视频道",CCTV女性时尚
+http://j1900.silicaite.top:58888/rtp/239.49.1.69:6000
+#EXTINF:-1 tvg-name="CCTV电视指南" group-title="央视频道",CCTV电视指南
+http://j1900.silicaite.top:58888/rtp/239.49.9.5:6000
+#EXTINF:-1 tvg-name="CCTV电视指南" group-title="央视频道",CCTV电视指南
+http://j1900.silicaite.top:58888/rtp/239.49.1.60:6000
+#EXTINF:-1 tvg-name="CCTV第一剧场" group-title="央视频道",CCTV第一剧场
+http://j1900.silicaite.top:58888/rtp/239.49.9.15:6000
+#EXTINF:-1 tvg-name="CCTV第一剧场" group-title="央视频道",CCTV第一剧场
+http://j1900.silicaite.top:58888/rtp/239.49.1.226:6000
+#EXTINF:-1 tvg-name="CCTV风云剧场" group-title="央视频道",CCTV风云剧场
+http://j1900.silicaite.com:58888/rtp/239.49.9.10:6000
+#EXTINF:-1 tvg-name="CCTV风云剧场" group-title="央视频道",CCTV风云剧场
+http://j1900.silicaite.top:58888/rtp/239.49.9.10:6000
+#EXTINF:-1 tvg-name="CCTV风云剧场" group-title="央视频道",CCTV风云剧场
+http://j1900.silicaite.top:58888/rtp/239.49.1.65:6000
+#EXTINF:-1 tvg-name="CCTV风云足球" group-title="央视频道",CCTV风云足球
+http://j1900.silicaite.top:58888/rtp/239.49.9.6:6000
+#EXTINF:-1 tvg-name="CCTV风云足球" group-title="央视频道",CCTV风云足球
+http://j1900.silicaite.top:58888/rtp/239.49.1.61:6000
+#EXTINF:-1 tvg-name="CCTV风云音乐" group-title="央视频道",CCTV风云音乐
+http://j1900.silicaite.top:58888/rtp/239.49.9.13:6000
+#EXTINF:-1 tvg-name="CCTV风云音乐" group-title="央视频道",CCTV风云音乐
+http://j1900.silicaite.top:58888/rtp/239.49.1.68:6000
 #EXTINF:-1 tvg-name="CCTV高网频道" group-title="央视频道",CCTV高网频道
 http://j1900.silicaite.com:58888/rtp/239.49.9.7:6000
+#EXTINF:-1 tvg-name="CCTV高网频道" group-title="央视频道",CCTV高网频道
+http://j1900.silicaite.com:58888/rtp/239.49.1.62:6000
 #EXTINF:-1 tvg-name="CCTV高网频道" group-title="央视频道",CCTV高网频道
 http://j1900.silicaite.top:58888/rtp/239.49.9.7:6000
 #EXTINF:-1 tvg-name="CCTV高网频道" group-title="央视频道",CCTV高网频道
@@ -32,11 +76,15 @@ http://j1900.silicaite.top:58888/rtp/239.49.8.202:6000
 #EXTINF:-1 tvg-name="江苏体育" group-title="体育频道",江苏体育
 http://j1900.silicaite.com:58888/rtp/239.49.8.117:8000
 #EXTINF:-1 tvg-name="江苏体育" group-title="体育频道",江苏体育
+http://j1900.silicaite.com:58888/rtp/239.49.1.19:6000
+#EXTINF:-1 tvg-name="江苏体育" group-title="体育频道",江苏体育
 http://j1900.silicaite.top:58888/rtp/239.49.8.117:8000
 #EXTINF:-1 tvg-name="江苏体育" group-title="体育频道",江苏体育
 http://j1900.silicaite.top:58888/rtp/239.49.1.19:6000
 #EXTINF:-1 tvg-name="江苏影视" group-title="影视频道",江苏影视
 http://j1900.silicaite.com:58888/rtp/239.49.8.118:8000
+#EXTINF:-1 tvg-name="江苏影视" group-title="影视频道",江苏影视
+http://j1900.silicaite.com:58888/rtp/239.49.1.20:6000
 #EXTINF:-1 tvg-name="江苏影视" group-title="影视频道",江苏影视
 http://j1900.silicaite.top:58888/rtp/239.49.8.118:8000
 #EXTINF:-1 tvg-name="江苏影视" group-title="影视频道",江苏影视
@@ -58,9 +106,13 @@ http://j1900.silicaite.com:58888/rtp/239.49.1.227:6000
 #EXTINF:-1 tvg-name="书画频道" group-title="数字频道",书画频道
 http://j1900.silicaite.top:58888/rtp/239.49.1.227:6000
 #EXTINF:-1 tvg-name="先锋乒羽" group-title="数字频道",先锋乒羽
+http://j1900.silicaite.com:58888/rtp/239.49.1.233:6000
+#EXTINF:-1 tvg-name="先锋乒羽" group-title="数字频道",先锋乒羽
 http://j1900.silicaite.top:58888/rtp/239.49.1.233:6000
 #EXTINF:-1 tvg-name="东海新闻" group-title="地方频道",东海新闻
 http://j1900.silicaite.com:58888/rtp/239.49.9.48:6000
+#EXTINF:-1 tvg-name="东海新闻" group-title="地方频道",东海新闻
+http://j1900.silicaite.com:58888/rtp/239.49.1.136:6000
 #EXTINF:-1 tvg-name="东海新闻" group-title="地方频道",东海新闻
 http://j1900.silicaite.top:58888/rtp/239.49.9.48:6000
 #EXTINF:-1 tvg-name="东海新闻" group-title="地方频道",东海新闻
@@ -71,6 +123,8 @@ http://j1900.silicaite.com:58888/rtp/239.49.8.223:6000
 http://j1900.silicaite.top:58888/rtp/239.49.8.223:6000
 #EXTINF:-1 tvg-name="南京十八" group-title="地方频道",南京十八
 http://j1900.silicaite.com:58888/rtp/239.49.9.4:6000
+#EXTINF:-1 tvg-name="南京十八" group-title="地方频道",南京十八
+http://j1900.silicaite.com:58888/rtp/239.49.1.157:6000
 #EXTINF:-1 tvg-name="南京十八" group-title="地方频道",南京十八
 http://j1900.silicaite.top:58888/rtp/239.49.9.4:6000
 #EXTINF:-1 tvg-name="南京十八" group-title="地方频道",南京十八
@@ -85,6 +139,8 @@ http://j1900.silicaite.com:58888/rtp/239.49.8.228:6000
 http://j1900.silicaite.top:58888/rtp/239.49.8.228:6000
 #EXTINF:-1 tvg-name="南京新闻" group-title="地方频道",南京新闻
 http://j1900.silicaite.com:58888/rtp/239.49.9.3:6000
+#EXTINF:-1 tvg-name="南京新闻" group-title="地方频道",南京新闻
+http://j1900.silicaite.com:58888/rtp/239.49.1.158:6000
 #EXTINF:-1 tvg-name="南京新闻" group-title="地方频道",南京新闻
 http://j1900.silicaite.top:58888/rtp/239.49.9.3:6000
 #EXTINF:-1 tvg-name="南京新闻" group-title="地方频道",南京新闻
@@ -158,6 +214,12 @@ http://j1900.silicaite.com:58888/rtp/239.49.1.228:6000
 #EXTINF:-1 tvg-name="新沂综合" group-title="地方频道",新沂综合
 http://j1900.silicaite.top:58888/rtp/239.49.1.228:6000
 #EXTINF:-1 tvg-name="水韵江苏" group-title="地方频道",水韵江苏
+http://j1900.silicaite.com:58888/rtp/239.49.8.155:6000
+#EXTINF:-1 tvg-name="水韵江苏" group-title="地方频道",水韵江苏
+http://j1900.silicaite.com:58888/rtp/239.49.8.157:6000
+#EXTINF:-1 tvg-name="水韵江苏" group-title="地方频道",水韵江苏
+http://j1900.silicaite.com:58888/rtp/239.49.8.226:6000
+#EXTINF:-1 tvg-name="水韵江苏" group-title="地方频道",水韵江苏
 http://j1900.silicaite.top:58888/rtp/239.49.8.155:6000
 #EXTINF:-1 tvg-name="水韵江苏" group-title="地方频道",水韵江苏
 http://j1900.silicaite.top:58888/rtp/239.49.8.157:6000
@@ -170,6 +232,8 @@ http://j1900.silicaite.top:58888/rtp/239.49.1.22:6000
 #EXTINF:-1 tvg-name="江苏卡通" group-title="地方频道",江苏卡通
 http://j1900.silicaite.com:58888/rtp/239.49.8.119:8000
 #EXTINF:-1 tvg-name="江苏卡通" group-title="地方频道",江苏卡通
+http://j1900.silicaite.com:58888/rtp/239.49.1.21:6000
+#EXTINF:-1 tvg-name="江苏卡通" group-title="地方频道",江苏卡通
 http://j1900.silicaite.top:58888/rtp/239.49.8.119:8000
 #EXTINF:-1 tvg-name="江苏卡通" group-title="地方频道",江苏卡通
 http://j1900.silicaite.top:58888/rtp/239.49.1.21:6000
@@ -179,6 +243,8 @@ http://j1900.silicaite.com:58888/rtp/239.49.1.23:6000
 http://j1900.silicaite.top:58888/rtp/239.49.1.23:6000
 #EXTINF:-1 tvg-name="江苏城市" group-title="地方频道",江苏城市
 http://j1900.silicaite.com:58888/rtp/239.49.8.107:8000
+#EXTINF:-1 tvg-name="江苏城市" group-title="地方频道",江苏城市
+http://j1900.silicaite.com:58888/rtp/239.49.1.17:6000
 #EXTINF:-1 tvg-name="江苏城市" group-title="地方频道",江苏城市
 http://j1900.silicaite.top:58888/rtp/239.49.8.107:8000
 #EXTINF:-1 tvg-name="江苏城市" group-title="地方频道",江苏城市
@@ -192,6 +258,12 @@ http://j1900.silicaite.com:58888/rtp/239.49.8.150:6000
 #EXTINF:-1 tvg-name="江苏导视" group-title="地方频道",江苏导视
 http://j1900.silicaite.top:58888/rtp/239.49.8.150:6000
 #EXTINF:-1 tvg-name="江苏教育" group-title="地方频道",江苏教育
+http://j1900.silicaite.com:58888/rtp/239.49.8.122:8000
+#EXTINF:-1 tvg-name="江苏教育" group-title="地方频道",江苏教育
+http://j1900.silicaite.com:58888/rtp/239.49.9.42:6000
+#EXTINF:-1 tvg-name="江苏教育" group-title="地方频道",江苏教育
+http://j1900.silicaite.com:58888/rtp/239.49.1.25:6000
+#EXTINF:-1 tvg-name="江苏教育" group-title="地方频道",江苏教育
 http://j1900.silicaite.top:58888/rtp/239.49.8.122:8000
 #EXTINF:-1 tvg-name="江苏教育" group-title="地方频道",江苏教育
 http://j1900.silicaite.top:58888/rtp/239.49.9.42:6000
@@ -203,6 +275,8 @@ http://j1900.silicaite.com:58888/rtp/239.49.8.120:8000
 http://j1900.silicaite.top:58888/rtp/239.49.8.120:8000
 #EXTINF:-1 tvg-name="江苏综艺" group-title="地方频道",江苏综艺
 http://j1900.silicaite.com:58888/rtp/239.49.8.108:8000
+#EXTINF:-1 tvg-name="江苏综艺" group-title="地方频道",江苏综艺
+http://j1900.silicaite.com:58888/rtp/239.49.1.18:6000
 #EXTINF:-1 tvg-name="江苏综艺" group-title="地方频道",江苏综艺
 http://j1900.silicaite.top:58888/rtp/239.49.8.108:8000
 #EXTINF:-1 tvg-name="江苏综艺" group-title="地方频道",江苏综艺
@@ -225,6 +299,8 @@ http://j1900.silicaite.com:58888/rtp/239.49.1.117:6000
 http://j1900.silicaite.top:58888/rtp/239.49.1.117:6000
 #EXTINF:-1 tvg-name="泗洪综合" group-title="地方频道",泗洪综合
 http://j1900.silicaite.com:58888/rtp/239.49.9.47:6000
+#EXTINF:-1 tvg-name="泗洪综合" group-title="地方频道",泗洪综合
+http://j1900.silicaite.com:58888/rtp/239.49.1.125:6000
 #EXTINF:-1 tvg-name="泗洪综合" group-title="地方频道",泗洪综合
 http://j1900.silicaite.top:58888/rtp/239.49.9.47:6000
 #EXTINF:-1 tvg-name="泗洪综合" group-title="地方频道",泗洪综合
@@ -255,6 +331,8 @@ http://j1900.silicaite.com:58888/rtp/239.49.1.95:6000
 http://j1900.silicaite.top:58888/rtp/239.49.1.95:6000
 #EXTINF:-1 tvg-name="淮安综合" group-title="地方频道",淮安综合
 http://j1900.silicaite.com:58888/rtp/239.49.9.46:6000
+#EXTINF:-1 tvg-name="淮安综合" group-title="地方频道",淮安综合
+http://j1900.silicaite.com:58888/rtp/239.49.1.97:6000
 #EXTINF:-1 tvg-name="淮安综合" group-title="地方频道",淮安综合
 http://j1900.silicaite.top:58888/rtp/239.49.9.46:6000
 #EXTINF:-1 tvg-name="淮安综合" group-title="地方频道",淮安综合

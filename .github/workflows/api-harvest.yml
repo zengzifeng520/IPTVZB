@@ -16,8 +16,8 @@ on:
         description: "跳过 foodieguide 滚雪球（更快）"
         required: false
         default: "false"
-      hotel:
-        description: "额外收酒店源里的 udp 中转"
+      no_hotel:
+        description: "跳过酒店源（默认会收其中的 udp/rtp 中转）"
         required: false
         default: "false"
 
@@ -55,8 +55,8 @@ jobs:
           cd spider
           ARGS=""
           [ "${{ github.event.inputs.no_foodie }}" = "true" ] && ARGS="$ARGS --no-foodie"
-          [ "${{ github.event.inputs.hotel }}" = "true" ] && ARGS="$ARGS --hotel"
-          timeout 1500 python api_harvest.py $ARGS || echo "::warning::API 采集未完成，沿用既有池子"
+          [ "${{ github.event.inputs.no_hotel }}" = "true" ] && ARGS="$ARGS --no-hotel"
+          timeout 2400 python api_harvest.py $ARGS || echo "::warning::API 采集未完成，沿用既有池子"
 
       - name: Probe & merge pool
         env:

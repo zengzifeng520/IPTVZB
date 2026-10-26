@@ -1,27 +1,64 @@
 # -*- coding: utf-8 -*-
 """组播中转服务器统一采集器（所有可用 API 集中在这里）。
 
-三个数据源：
+================================================================
+接口清单（2026-10-26 全部实测）
+================================================================
 
-  1. api.809899.xyz/extract_multicast   主源。GET 带 X-App-Auth 头，
-     返回 [{ip, region, channel_count, channels:[{name,url}]}]，
-     单次最多 100 条；用「电信/联通/移动/广电 + 各省」多关键词并集可翻出更多。
+【已接入 · 可用】
+
+  1. api.809899.xyz/extract_multicast?keyword=<省|运营商|省+运营商>
+     GET，需头 X-App-Auth: iptv-tools-official-v1
+     返回 [{ip, region, channel_count, channels:[{name,url}]}]，单次硬上限 100 条。
+     实测：175 个关键词 → 147 台 / 31952 条地址，覆盖 21 个地区。
+     关键：region 字段是「省 + 运营商」格式（如「安徽省 安徽电信」），
+     所以「省+运营商」组合最精准；城市名（广州/成都）返回 0 条，别用。
      来源：IPTV搜索神器源码 iptv_core.py 的 DEFAULT_SETTINGS。
 
-  2. api.809899.xyz/extract_hotel       酒店源。多为 http://ip:port/hls/...，
-     只有少数是 /udp/ 中转，默认只收 udp/rtp 的（本池子是中转服务器池）。
+  2. api.809899.xyz/extract_hotel?keyword=<同上>
+     酒店源。多为 http://ip:port/hls/...，只保留 /udp/ /rtp/ 的中转。
+     实测单关键词多为 0-10 台，是补充源。
 
-  3. foodieguide.com/iptvsearch/getall.php?ip=<host:port>   逐台校验并取频道。
-     302 返回正文，必须禁止跟随跳转；无效 IP 会随机返回 8 个推荐 IP 用于滚雪球。
+  3. foodieguide.com/iptvsearch/getall.php?ip=<host:port>&p=1
+     逐台校验并取频道，302 返回正文，必须禁止跟随跳转。
+     无效 IP 会随机返回 8 个推荐 IP，用它滚雪球扩主机。
+     实测：单次 327 频道，可用。
 
-输出：
+【未接入 · 不可用 / 需账号】
+
+  4. gyssi.link/iptv/jwt.html → /iptv/chinaiptv/<省>.m3u?token=<JWT>
+     按省分类的全国酒店源 m3u（19 个省 + 广东2/3 等）。
+     实测：token 页的 JWT 是 2024-10 写死的，已过期 → 403；
+     不带 token → 401。需要有效账号重新拿 token 才能用。
+     港澳台：该站的省份列表里也没有。
+
+  5. quake.360.net/api/v3/search/quake_service（头 X-QuakeToken）
+     网络空间测绘，搜 Server: udpxy 资产。taoiptv.com 就是这么干的。
+     需要 Quake 账号 token（免费额度够日常用）。
+
+  6. fofa.info/result?qbase64=<查询>（需 FOFA 会员 Cookie）
+     同 Quake，搜 iptv/live/zh_cn.js、/tsfile/live 等指纹。
+
+  7. tonkiang.us — 302 到 verify.html（安全验证），Pass。
+
+  8. api.809899.xyz/search_all — 返回的是 hls 直连，不是组播中转，不收。
+
+  9. IPTV-API-GUI-v3.1.0.exe（Guovin 桌面版）：
+     解包 29MB 代码后，"foodie"/"getall.php"/"open_multicast" 全为 0 次，
+     只有标准库 is_multicast。它靠 api.github.com 下载主程序，
+     本身不含组播接口。
+
+================================================================
+输出
+================================================================
   spider/data/api_hosts.json   {host: {region, isp, src, channels: [[name,url], ...]}}
   spider/data/proxy_api.m3u    给 udpxy.py 合并的标准 m3u
 
 用法：
-  python api_harvest.py                 # 主源全关键词 + 滚雪球
-  python api_harvest.py --no-foodie     # 只跑 809899
-  python api_harvest.py --hotel         # 额外收酒店源里的 udp 中转
+  python api_harvest.py                 # 主源全关键词（省 × 运营商）+ 酒店源 + 滚雪球
+  python api_harvest.py --fast          # 只跑省/运营商基础关键词（更快）
+  python api_harvest.py --no-foodie     # 跳过 foodieguide 滚雪球
+  python api_harvest.py --no-hotel      # 跳过酒店源
   python api_harvest.py --fresh         # 忽略缓存强制重抓
 """
 from __future__ import annotations
@@ -52,20 +89,35 @@ UA = (
     "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 )
 
-# 关键词组合：运营商 + 省份，逐个拉再求并集（接口每次硬上限 100 条）
-KEYWORDS = [
-    "",
-    "电信",
-    "联通",
-    "移动",
-    "广电",
+# 接口返回的 region 字段格式是「省份 运营商」（如「安徽省 安徽电信」），
+# 所以「省 + 运营商」组合最精准，能突破单次 100 条的上限。
+# 实测：城市名（广州/成都/石家庄）返回 0 条，region 里不含城市。
+
+ISPS = ["电信", "联通", "移动", "广电"]
+
+# 全国省级行政区：31 个大陆省级 + 港澳台
+PROVINCES = [
+    # 直辖市
     "北京", "上海", "天津", "重庆",
+    # 省
     "河北", "山西", "辽宁", "吉林", "黑龙江",
     "江苏", "浙江", "安徽", "福建", "江西", "山东",
-    "河南", "湖北", "湖南", "广东", "广西", "海南",
+    "河南", "湖北", "湖南", "广东", "海南",
     "四川", "贵州", "云南", "陕西", "甘肃", "青海",
-    "宁夏", "新疆", "内蒙古",
+    "台湾",
+    # 自治区
+    "内蒙古", "广西", "西藏", "宁夏", "新疆",
+    # 特别行政区
+    "香港", "澳门",
 ]
+
+# 基础关键词：空（兜底全量）+ 运营商（跨省大批量）+ 省份
+KEYWORDS = [""] + ISPS + PROVINCES
+
+
+def combo_keywords() -> list[str]:
+    """省 × 运营商：最精准，能把各省各运营商的服务器都翻出来。"""
+    return [p + i for p in PROVINCES for i in ISPS]
 
 PROXY_RE = re.compile(
     r"^(https?)://([A-Za-z0-9._\-]+):(\d+)/(?:rtp|udp)/(\d{1,3}(?:\.\d{1,3}){3}):(\d{1,5})$"
@@ -133,6 +185,10 @@ def harvest_809899(keywords: list[str], only_proxy: bool = True) -> tuple[dict, 
     seen_urls: set[str] = set()
     for i, kw in enumerate(keywords):
         data, err = api_get("/extract_multicast?keyword=" + urllib.parse.quote(kw))
+        # 关键词多了容易撞上限流/网络抖动，失败先退避重试一次
+        if err or not data:
+            time.sleep(2.0)
+            data, err = api_get("/extract_multicast?keyword=" + urllib.parse.quote(kw))
         stats["requests"] += 1
         if err or not data:
             stats["errors"] += 1
@@ -221,25 +277,30 @@ def harvest_foodie(rounds: int, max_probe: int, timeout: int = 15) -> dict:
     return out
 
 
-def harvest_hotel() -> dict:
-    """酒店源里只取 /udp/ 或 /rtp/ 的中转（hls 直连不属本池子）。"""
-    data, err = api_get("/extract_hotel?keyword=")
+def harvest_hotel(keywords: list[str] | None = None) -> dict:
+    """酒店源里只取 /udp/ 或 /rtp/ 的中转（hls 直连不属本池子）。
+    多关键词求并集：单次上限 100 条，按省拆能翻出更多。"""
+    keywords = keywords or [""]
     out: dict[str, dict] = {}
-    if err or not data:
-        print("  [api] 酒店源失败: %s" % err)
-        return out
-    for it in data.get("results") or []:
-        if not isinstance(it, dict):
+    seen: set[str] = set()
+    for kw in keywords:
+        data, err = api_get("/extract_hotel?keyword=" + urllib.parse.quote(kw))
+        if err or not data:
             continue
-        ip = str(it.get("ip") or "").strip()
-        prov, isp = split_region(str(it.get("region") or ""))
-        for c in it.get("channels") or []:
-            url = str(c.get("url") or "")
-            name = str(c.get("name") or "").strip()
-            if not PROXY_RE.match(url) or not name:
+        for it in data.get("results") or []:
+            if not isinstance(it, dict):
                 continue
-            b = out.setdefault(ip, {"region": prov, "isp": isp, "src": "hotel", "channels": []})
-            b["channels"].append([name, url])
+            ip = str(it.get("ip") or "").strip()
+            prov, isp = split_region(str(it.get("region") or ""))
+            for c in it.get("channels") or []:
+                url = str(c.get("url") or "")
+                name = str(c.get("name") or "").strip()
+                if not PROXY_RE.match(url) or not name or url in seen:
+                    continue
+                seen.add(url)
+                b = out.setdefault(ip, {"region": prov, "isp": isp, "src": "hotel", "channels": []})
+                b["channels"].append([name, url])
+        time.sleep(0.35)
     out = {k: v for k, v in out.items() if v["channels"]}
     print("  [api] 酒店源命中 %d 台带中转的主机" % len(out))
     return out
@@ -265,10 +326,11 @@ def build_m3u(hosts: dict) -> tuple[int, int]:
 def main() -> None:
     ap = argparse.ArgumentParser(description="组播中转 API 统一采集")
     ap.add_argument("--keywords", default="", help="逗号分隔，覆盖默认关键词组")
+    ap.add_argument("--fast", action="store_true", help="只跑基础关键词（省/运营商），跳过省×运营商组合")
     ap.add_argument("--no-foodie", action="store_true", help="跳过 foodieguide")
     ap.add_argument("--foodie-rounds", type=int, default=24, help="滚雪球轮数")
     ap.add_argument("--foodie-probe", type=int, default=60, help="foodie 最多探测多少候选")
-    ap.add_argument("--hotel", action="store_true", help="额外收酒店源里的 udp 中转")
+    ap.add_argument("--no-hotel", action="store_true", help="跳过酒店源（默认会收其中的 udp/rtp 中转）")
     ap.add_argument("--allow-hls", action="store_true", help="保留 hls 直连地址（一般不用）")
     ap.add_argument("--fresh", action="store_true")
     args = ap.parse_args()
@@ -277,7 +339,12 @@ def main() -> None:
     cache = {} if args.fresh else load_json(CACHE_JSON, {})
     now = time.time()
 
-    keywords = [k.strip() for k in args.keywords.split(",")] if args.keywords else KEYWORDS
+    if args.keywords:
+        keywords = [k.strip() for k in args.keywords.split(",") if k.strip()]
+    else:
+        keywords = list(KEYWORDS)
+        if not args.fast:
+            keywords += combo_keywords()
 
     print("[api] 开始采集（%d 个关键词）..." % len(keywords))
     hosts, stats = harvest_809899(keywords, only_proxy=not args.allow_hls)
@@ -292,8 +359,8 @@ def main() -> None:
             else:
                 hosts[h] = info
 
-    if args.hotel:
-        for h, info in harvest_hotel().items():
+    if not args.no_hotel:
+        for h, info in harvest_hotel(KEYWORDS).items():
             cur = hosts.get(h)
             if cur:
                 have = {u for _n, u in cur["channels"]}

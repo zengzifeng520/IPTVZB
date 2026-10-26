@@ -1,12 +1,4 @@
 #EXTM3U
-#EXTINF:-1 tvg-name="CCTV-3" group-title="央视频道",CCTV-3
-http://36.49.50.4:8800/rtp/239.37.0.231:5540
-#EXTINF:-1 tvg-name="CCTV-3" group-title="央视频道",CCTV-3
-http://36.49.50.4:8800/rtp/239.37.0.189:5540
-#EXTINF:-1 tvg-name="CCTV-4" group-title="央视频道",CCTV-4
-http://36.49.50.4:8800/rtp/239.37.0.022:5540
-#EXTINF:-1 tvg-name="CCTV-15" group-title="央视频道",CCTV-15
-http://36.49.50.4:8800/rtp/239.37.0.030:5540
 #EXTINF:-1 tvg-name="CCTV世界地理" group-title="央视频道",CCTV世界地理
 http://36.49.50.4:8800/rtp/239.37.0.079:5540
 #EXTINF:-1 tvg-name="CCTV兵器科技" group-title="央视频道",CCTV兵器科技
@@ -29,12 +21,12 @@ http://36.49.50.4:8800/rtp/239.37.0.081:5540
 http://36.49.50.4:8800/rtp/239.37.0.200:5540
 #EXTINF:-1 tvg-name="三沙卫视" group-title="卫视频道",三沙卫视
 http://36.49.50.4:8800/rtp/239.37.0.201:5540
-#EXTINF:-1 tvg-name="内蒙古卫视" group-title="卫视频道",内蒙古卫视
-http://36.49.50.4:8800/rtp/239.37.0.036:5540
 #EXTINF:-1 tvg-name="哈哈炫动" group-title="卫视频道",哈哈炫动
 http://36.49.50.4:8800/rtp/239.37.0.065:5540
 #EXTINF:-1 tvg-name="延边卫视" group-title="卫视频道",延边卫视
 http://36.49.50.4:8800/rtp/239.37.0.116:5540
+#EXTINF:-1 tvg-name="海南卫视" group-title="卫视频道",海南卫视
+http://36.49.50.4:8800/rtp/239.37.0.035:5540
 #EXTINF:-1 tvg-name="吉林影视" group-title="影视频道",吉林影视
 http://36.49.50.4:8800/rtp/239.37.0.103:5540
 #EXTINF:-1 tvg-name="CHC动作电影" group-title="电影频道",CHC动作电影
@@ -81,6 +73,12 @@ http://36.49.50.4:8800/rtp/239.37.0.108:5540
 http://36.49.50.4:8800/rtp/239.37.0.205:5540
 #EXTINF:-1 tvg-name="吉林篮球" group-title="地方频道",吉林篮球
 http://36.49.50.4:8800/rtp/239.37.0.206:5540
+#EXTINF:-1 tvg-name="吉林篮球" group-title="地方频道",吉林篮球
+http://36.49.50.4:8800/rtp/239.37.0.207:5540
+#EXTINF:-1 tvg-name="吉林篮球" group-title="地方频道",吉林篮球
+http://36.49.50.4:8800/rtp/239.37.0.208:5540
+#EXTINF:-1 tvg-name="吉林篮球" group-title="地方频道",吉林篮球
+http://36.49.50.4:8800/rtp/239.37.0.209:5540
 #EXTINF:-1 tvg-name="吉林都市" group-title="地方频道",吉林都市
 http://36.49.50.4:8800/rtp/239.37.0.102:5540
 #EXTINF:-1 tvg-name="四平1" group-title="地方频道",四平1
@@ -93,6 +91,12 @@ http://36.49.50.4:8800/rtp/239.37.0.127:5540
 http://36.49.50.4:8800/rtp/239.37.0.135:5540
 #EXTINF:-1 tvg-name="新闻综合" group-title="地方频道",新闻综合
 http://36.49.50.4:8800/rtp/239.37.0.174:5540
+#EXTINF:-1 tvg-name="新闻综合" group-title="地方频道",新闻综合
+http://36.49.50.4:8800/rtp/239.37.0.177:5540
+#EXTINF:-1 tvg-name="新闻综合" group-title="地方频道",新闻综合
+http://36.49.50.4:8800/rtp/239.37.0.217:5540
+#EXTINF:-1 tvg-name="新闻综合" group-title="地方频道",新闻综合
+http://36.49.50.4:8800/rtp/239.37.0.250:5540
 #EXTINF:-1 tvg-name="新闻综合1" group-title="地方频道",新闻综合1
 http://36.49.50.4:8800/rtp/239.37.0.137:5540
 #EXTINF:-1 tvg-name="松原" group-title="地方频道",松原
