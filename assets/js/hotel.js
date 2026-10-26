@@ -212,8 +212,8 @@
     if (!freeKey) {
       el.lockBody.innerHTML =
         "<h2>免费版可以先选酒店源试用</h2>" +
-        "<p>不赞助只能看到频道名，<b>拿不到播放地址</b>。可以把酒店源选为免费订阅试用，有效期 <b>7 天</b>，到期自动失效。<br>" +
-        "赞助后可查看全部播放地址，并拿到长期有效的专属订阅。</p>" +
+        "<p>不赞助只能看到频道名，<b>拿不到播放地址</b>。可以把酒店源选为免费订阅试用，有效期 <b>7 天</b>，到期自动失效（<b>免费试用不保证直播源有效性</b>）。<br>" +
+        "赞助后解锁全部播放地址，<b>可正常观看</b>，并拿到长期有效的专属订阅。</p>" +
         '<button class="btn btn-primary btn-lg" type="button" data-act="pick" style="margin-top:6px">免费选酒店源试用</button>' +
         '<a class="btn btn-lg" href="account.html" style="margin-top:8px">直接赞助解锁全部</a>';
       return;
@@ -225,7 +225,7 @@
         "<h2>免费订阅已到期</h2>" +
         "<p>你的酒店源 7 天免费订阅已于 " +
         esc(window.IVAUTH.fmtDate(window.IVAUTH.freeExpire())) +
-        " 到期，链接已失效。<br>赞助后可查看全部播放地址，并拿到长期有效的专属订阅。</p>" +
+        " 到期，链接已失效。<br>赞助后可查看全部播放地址，<b>可正常观看</b>，并拿到长期有效的专属订阅。</p>" +
         '<a class="btn btn-primary btn-lg" href="account.html" style="margin-top:6px">去赞助解锁</a>';
       return;
     }
@@ -234,7 +234,7 @@
     el.lockBody.innerHTML =
       "<h2>你的免费地区不是酒店源</h2>" +
       "<p>你的免费订阅是地区组播（7 天），酒店源需要赞助后使用。<br>" +
-      "酒店源不限地区、全国可播，赞助后即可解锁全部播放地址与专属订阅。</p>" +
+      "酒店源不限地区、全国可播，赞助后即可解锁全部播放地址，<b>可正常观看</b>。</p>" +
       '<a class="btn btn-primary btn-lg" href="account.html" style="margin-top:6px">赞助解锁酒店源</a>' +
       '<a class="btn btn-lg" href="region.html" style="margin-top:8px">去看我的免费地区</a>';
   }

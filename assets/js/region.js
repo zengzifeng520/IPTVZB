@@ -272,8 +272,8 @@
     if (!freeKey) {
       el.lockBody.innerHTML =
         "<h2>免费版可以先选 1 个地区</h2>" +
-        "<p>不赞助只能看到频道名，<b>拿不到播放地址</b>。可以先选 <b>1 个地区</b> 的订阅链接试用，有效期 <b>7 天</b>，到期自动失效。<br>" +
-        "赞助后可查看全部地区地址，并拿到长期有效的专属订阅。</p>" +
+        "<p>不赞助只能看到频道名，<b>拿不到播放地址</b>。可以先选 <b>1 个地区</b> 的订阅链接试用，有效期 <b>7 天</b>，到期自动失效（<b>免费试用不保证直播源有效性</b>）。<br>" +
+        "赞助后解锁全部地区地址，<b>可正常观看</b>，并拿到长期有效的专属订阅。</p>" +
         '<button class="btn btn-primary btn-lg" type="button" data-act="pick" style="margin-top:6px">就选「' +
         esc(name) +
         "」</button>" +
@@ -292,7 +292,7 @@
         esc(fname) +
         "」的 7 天免费订阅已于 " +
         esc(window.IVAUTH.fmtDate(window.IVAUTH.freeExpire())) +
-        " 到期，链接已失效。<br>赞助后可查看全部播放地址，并拿到长期有效的专属订阅。</p>" +
+        " 到期，链接已失效。<br>赞助后可查看全部播放地址，<b>可正常观看</b>，并拿到长期有效的专属订阅。</p>" +
         '<a class="btn btn-primary btn-lg" href="account.html" style="margin-top:6px">去赞助解锁</a>';
       return;
     }
@@ -303,7 +303,7 @@
       "」</h2>" +
       "<p>免费订阅有效期至 <b>" +
       esc(window.IVAUTH.fmtDate(window.IVAUTH.freeExpire())) +
-      "</b>，到期后链接自动失效。<br>播放地址仍需赞助后显示。</p>" +
+      "</b>，到期后链接自动失效（免费试用不保证直播源有效性）。<br>播放地址仍需赞助后显示。</p>" +
       '<a class="btn btn-primary btn-lg" href="region.html?r=' +
       encodeURIComponent(freeKey) +
       '" style="margin-top:6px">去看「' +
