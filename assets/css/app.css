@@ -216,45 +216,57 @@ input { font-family: inherit; }
   .hero-promo img { width: 180px; height: 180px; }
 }
 
-/* ---------------------------------------------------------- 关于本站（项目介绍 + 欢迎语音） */
-.about-panel {
-  margin: 4px 0 18px;
-  padding: 18px 20px;
-  border-radius: 13px;
-  background: var(--surface);
-  border: 1px solid var(--border);
+/* ---------------------------------------------------------- 关于本站（圆形迷你播放器 + 项目介绍，无框） */
+.about-block { margin: 4px 0 18px; }
+.about-player {
+  display: flex; align-items: center; gap: 18px;
+  margin-bottom: 14px;
 }
-.about-head {
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 10px;
+.vinyl-btn {
+  position: relative;
+  flex: none;
+  width: 84px; height: 84px;
+  border: none; background: none; padding: 0;
+  cursor: pointer;
+  border-radius: 50%;
 }
-.about-head h2 { margin: 0; font-size: 17px; font-weight: 800; color: var(--text); letter-spacing: 0.2px; }
+.vinyl-disc {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, #15181d 0 24%, #262b33 24% 100%),
+    repeating-radial-gradient(circle at center, #262b33 0 2px, #1c2026 2px 4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  transition: box-shadow 0.2s var(--ease);
+}
+.vinyl-disc.is-playing { animation: vinyl-spin 3s linear infinite; }
+.play-ico {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: #34d399;
+  color: #052e1f;
+  display: grid; place-items: center;
+  font-size: 14px; font-weight: 800;
+  box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.18), 0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: background 0.2s var(--ease);
+}
+@keyframes vinyl-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.about-head h2 { margin: 0 0 4px; font-size: 17px; font-weight: 800; color: var(--text); letter-spacing: 0.2px; }
+.play-txt { font-size: 12.5px; color: var(--text-3); }
 .about-desc {
   margin: 0;
   font-size: 14px; line-height: 1.85;
   color: var(--text-2);
 }
 .about-desc b { color: var(--text); font-weight: 700; }
-
-.play-btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  height: 38px; padding: 0 16px;
-  border-radius: 10px;
-  border: 1px solid rgba(52, 211, 153, 0.35);
-  background: rgba(52, 211, 153, 0.12);
-  color: #34d399;
-  font-size: 14px; font-weight: 700;
-  cursor: pointer;
-  transition: all 0.16s var(--ease);
-  white-space: nowrap;
-  font-family: inherit;
-}
-.play-btn:hover { background: rgba(52, 211, 153, 0.20); border-color: rgba(52, 211, 153, 0.55); }
-.play-btn .play-ico { font-size: 11px; line-height: 1; }
-.play-btn.is-playing { background: rgba(52, 211, 153, 0.22); border-color: rgba(52, 211, 153, 0.6); }
-[data-theme="light"] .play-btn { color: #059669; background: rgba(5, 150, 105, 0.10); border-color: rgba(5, 150, 105, 0.30); }
-[data-theme="light"] .play-btn:hover { background: rgba(5, 150, 105, 0.18); border-color: rgba(5, 150, 105, 0.5); }
+[data-theme="light"] .play-ico { background: #059669; color: #fff; box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.15), 0 2px 8px rgba(0, 0, 0, 0.2); }
 
 .stats {
   display: flex; flex-wrap: wrap; gap: 10px;

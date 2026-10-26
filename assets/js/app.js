@@ -22,6 +22,7 @@
     playWelcome: document.getElementById("playWelcome"),
     playIco: document.getElementById("playIco"),
     playTxt: document.getElementById("playTxt"),
+    vinylDisc: document.getElementById("vinylDisc"),
     toast: document.getElementById("toast"),
   };
 
@@ -54,9 +55,9 @@
 
     function setState(playing) {
       speaking = playing;
-      el.playWelcome.classList.toggle("is-playing", playing);
+      if (el.vinylDisc) el.vinylDisc.classList.toggle("is-playing", playing);
       el.playIco.textContent = playing ? "■" : "▶";
-      el.playTxt.textContent = playing ? "停止播放" : "播放欢迎语";
+      el.playTxt.textContent = playing ? "正在播放欢迎语…" : "点击黑胶播放欢迎语";
     }
 
     el.playWelcome.addEventListener("click", function () {
