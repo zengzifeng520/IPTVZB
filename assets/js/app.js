@@ -9,9 +9,7 @@
   const state = {
     proxy: null,
     tokens: null,
-    list: [],
-    shown: 0,
-    pageSize: 120,
+    regions: [],
     token: "",
   };
 
@@ -20,7 +18,7 @@
     input: document.getElementById("tokenInput"),
     err: document.getElementById("tokenErr"),
     stats: document.getElementById("stats"),
-    grid: document.getElementById("grid"),
+    grid: document.getElementById("regionGrid"),
     previewSub: document.getElementById("previewSub"),
     toast: document.getElementById("toast"),
     updAt: document.getElementById("updAt"),
@@ -72,36 +70,45 @@
       .join("");
   }
 
-  function cardHTML(ch) {
-    const n = ch.hosts.length;
-    return `<a class="ch" href="#" data-ch="${esc(ch.key)}">
-      <div class="ch-logo" style="--h:${hashHue(ch.key)}">
-        ${logoHTML(ch)}
-        <div class="ch-play"><span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-          </svg>
-        </span></div>
-      </div>
-      <div class="ch-info">
-        <div class="ch-name">${esc(ch.display)}</div>
-        <div class="ch-tags">
-          <span class="tag-n">${n} 台上线</span>
-          <span class="tag-n">${ch.streams.length} 条</span>
-        </div>
+  /* ---------------------------------------------------------- 地区卡片 */
+  /** 找一个覆盖该地区、且地址最多的 Token，用于卡片直达 */
+  function tokenForRegion(code) {
+    const map = state.tokens?.tokens || {};
+    let best = "";
+    let bestN = -1;
+    for (const [tk, info] of Object.entries(map)) {
+      for (const r of info.regions || []) {
+        if (r.k === code && r.streams > bestN) {
+          bestN = r.streams;
+          best = tk;
+        }
+      }
+    }
+    return best;
+  }
+
+  function regionCard(r) {
+    const tk = tokenForRegion(r.key);
+    const isp = r.isp ? `<span class="rc-isp">${esc(r.isp)}</span>` : "";
+    return `<a class="region-card${tk ? "" : " is-off"}" href="#" data-r="${esc(r.key)}" data-t="${esc(tk)}">
+      <div class="rc-head"><span class="rc-name">${esc(r.name)}</span>${isp}</div>
+      <div class="rc-nums"><b>${r.channels}</b> 频道<span class="rc-dot">·</span><b>${r.streams}</b> 条地址</div>
+      <div class="rc-foot">
+        <span>${r.hosts.length} 台服务器</span>
+        <span class="rc-go">${tk ? "查看订阅 →" : "暂无订阅"}</span>
       </div>
     </a>`;
   }
 
-  function renderPreview(reset) {
-    if (reset) {
-      state.shown = 0;
-      el.grid.innerHTML = "";
-      el.previewSub.textContent = `${state.proxy.stats.channels} 个频道，输入 Token 后可查看具体地址`;
+  function renderRegions() {
+    const list = state.regions;
+    if (!list.length) {
+      el.grid.innerHTML = `<div class="empty" style="grid-column:1/-1">
+        <h3>暂无地区数据</h3><p>数据正在更新，稍后再试</p></div>`;
+      return;
     }
-    const next = state.list.slice(state.shown, state.shown + state.pageSize);
-    el.grid.insertAdjacentHTML("beforeend", next.map(cardHTML).join(""));
-    state.shown += next.length;
+    el.grid.innerHTML = list.map(regionCard).join("");
+    el.previewSub.textContent = `${list.length} 个地区 · 每个地区一套独立订阅`;
   }
 
   /* ---------------------------------------------------------- Token */
@@ -116,7 +123,7 @@
     return Object.keys(map).find((k) => k.toUpperCase() === t) || "";
   }
 
-  function gotoToken(raw, chKey) {
+  function gotoToken(raw, chKey, region) {
     const t = findToken(raw);
     if (!t) {
       el.err.textContent = raw ? "Token 无效或已过期，请检查后重试" : "请输入 Token";
@@ -130,6 +137,7 @@
     const url = new URL("token.html", location.href);
     url.searchParams.set("t", t);
     if (chKey) url.searchParams.set("c", chKey);
+    if (region && region !== "all") url.searchParams.set("r", region);
     location.href = url.toString();
   }
 
@@ -150,25 +158,18 @@
   });
 
   el.grid.addEventListener("click", (e) => {
-    const card = e.target.closest("[data-ch]");
+    const card = e.target.closest("[data-r]");
     if (!card) return;
     e.preventDefault();
-    const key = card.dataset.ch;
-    if (state.token) {
-      gotoToken(state.token, key);
-    } else {
+    const token = card.dataset.t || state.token || el.input.value;
+    if (!token) {
       el.input.focus();
-      toast("请先输入 Token 查看地址");
+      toast("请先输入 Token 查看该地区订阅");
       document.querySelector(".token-card").scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
     }
+    gotoToken(token, null, card.dataset.r);
   });
-
-  const io = new IntersectionObserver(
-    (entries) => {
-      if (entries[0].isIntersecting && state.shown < state.list.length) renderPreview(false);
-    },
-    { rootMargin: "500px" }
-  );
 
   /* ---------------------------------------------------------- 启动 */
   async function boot() {
@@ -181,13 +182,15 @@
     }
 
     try {
-      const [pRes, tRes] = await Promise.all([
+      const [pRes, tRes, rRes] = await Promise.all([
         fetch("data/proxy.json", { cache: "no-cache" }),
         fetch("data/tokens.json", { cache: "no-cache" }),
+        fetch("data/regions.json", { cache: "no-cache" }),
       ]);
       if (!pRes.ok) throw new Error("proxy.json HTTP " + pRes.status);
       state.proxy = await pRes.json();
       state.tokens = tRes.ok ? await tRes.json() : { tokens: {} };
+      state.regions = rRes.ok ? (await rRes.json()).regions || [] : [];
     } catch (err) {
       el.grid.innerHTML = `<div class="empty" style="grid-column:1/-1">
         <h3>数据加载失败</h3><p>${esc(err.message)}</p></div>`;
@@ -200,15 +203,8 @@
       if (state.token) el.input.value = state.token;
     } catch (e) {}
 
-    state.list = state.proxy.channels;
     renderStats();
-    renderPreview(true);
-    io.observe(document.querySelector(".preview"));
-    setTimeout(() => {
-      if (state.shown < state.list.length && el.grid.scrollHeight < window.innerHeight * 1.2) {
-        renderPreview(false);
-      }
-    }, 80);
+    renderRegions();
   }
 
   boot();

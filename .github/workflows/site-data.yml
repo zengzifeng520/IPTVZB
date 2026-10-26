@@ -70,6 +70,11 @@ jobs:
             python udpxy.py
           fi
 
+      - name: Group servers by region
+        env:
+          PYTHONIOENCODING: utf-8
+        run: cd spider && python regions.py
+
       - name: Generate token subscriptions
         env:
           PYTHONIOENCODING: utf-8
@@ -79,7 +84,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f data/proxy.json data/tokens.json data/sub
+          git add -f data/proxy.json data/tokens.json data/regions.json data/sub
           git add -f spider/data/shushu_ours.json spider/data/proxy_shushu.m3u 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "数据无变化，跳过提交"

@@ -14,6 +14,7 @@
     hostSet: new Set(),
     channels: [],
     filter: "",
+    region: "all",
   };
 
   const el = {
@@ -29,6 +30,10 @@
     filter: document.getElementById("filter"),
     toast: document.getElementById("toast"),
     updAt: document.getElementById("updAt"),
+    regionChips: document.getElementById("regionChips"),
+    regionSub: document.getElementById("regionSub"),
+    subTitle: document.getElementById("subTitle"),
+    subDesc: document.getElementById("subDesc"),
   };
 
   /* ---------------------------------------------------------- 工具 */
@@ -76,18 +81,65 @@
     ];
     if (info.e) parts.push(`有效期至 ${info.e}`);
     el.meta.innerHTML = parts.map((p) => `<span>${esc(p)}</span>`).join("");
-
-    const sub = baseUrl() + info.sub;
-    el.subUrl.textContent = sub;
-    el.dlSub.href = info.sub;
-
-    el.hostChips.innerHTML = info.hosts
-      .map((h) => `<span class="host-chip" title="${esc(h)}">${esc(hostLabel(h))}</span>`)
-      .join("");
   }
 
-  function buildChannels() {
-    const hostSet = state.hostSet;
+  function regions() {
+    return (state.info && state.info.regions) || [];
+  }
+
+  function currentRegion() {
+    if (state.region === "all") return null;
+    return regions().find((r) => r.k === state.region) || null;
+  }
+
+  function renderRegions() {
+    const list = regions();
+    if (!list.length) {
+      el.regionChips.innerHTML = "";
+      el.regionSub.textContent = "该 Token 暂未分配服务器";
+      return;
+    }
+    const total = `<button class="chip${state.region === "all" ? " active" : ""}" data-r="all">
+        全部<span class="n">${state.info.streams}</span></button>`;
+    const items = list
+      .map(
+        (r) => `<button class="chip${state.region === r.k ? " active" : ""}" data-r="${esc(r.k)}" title="${esc(
+          r.isp || ""
+        )}">
+        ${esc(r.n)}<span class="n">${r.streams}</span></button>`
+      )
+      .join("");
+    el.regionChips.innerHTML = total + items;
+    el.regionSub.textContent = `${list.length} 个地区 · 每个地区一套独立地址`;
+  }
+
+  function renderSub() {
+    const r = currentRegion();
+    if (r) {
+      el.subTitle.textContent = `${r.n} · 专属订阅地址`;
+      el.subDesc.textContent = `这条只含 ${r.n}${r.isp ? "（" + r.isp + "）" : ""} 的 ${r.channels} 个频道、${
+        r.streams
+      } 条地址。同地区网络下用这条最稳。`;
+      el.subUrl.textContent = baseUrl() + r.sub;
+      el.dlSub.href = r.sub;
+      el.copySub.dataset.sub = r.sub;
+      el.hostChips.innerHTML = r.hosts
+        .map((h) => `<span class="host-chip" title="${esc(h)}">${esc(hostLabel(h))}</span>`)
+        .join("");
+    } else {
+      el.subTitle.textContent = "全部地区的合并订阅地址";
+      el.subDesc.textContent =
+        "含所有地区的中转地址。建议按上方地区单独订阅——不同地区的服务器通常只在本地运营商网络内可用。";
+      el.subUrl.textContent = baseUrl() + state.info.sub;
+      el.dlSub.href = state.info.sub;
+      el.copySub.dataset.sub = state.info.sub;
+      el.hostChips.innerHTML = state.info.hosts
+        .map((h) => `<span class="host-chip" title="${esc(h)}">${esc(hostLabel(h))}</span>`)
+        .join("");
+    }
+  }
+
+  function buildChannels(hostSet) {
     const out = [];
     for (const ch of state.proxy.channels) {
       const picked = ch.streams.filter((s) => hostSet.has(s.h));
@@ -99,6 +151,22 @@
     return out;
   }
 
+  function applyRegion(key) {
+    const r = key === "all" ? null : regions().find((x) => x.k === key);
+    state.region = r ? key : "all";
+    const hostSet = new Set(r ? r.hosts : state.info.hosts);
+    state.hostSet = hostSet;
+    state.channels = buildChannels(hostSet);
+    renderRegions();
+    renderSub();
+    renderList();
+
+    const url = new URL(location.href);
+    if (state.region === "all") url.searchParams.delete("r");
+    else url.searchParams.set("r", state.region);
+    history.replaceState(null, "", url);
+  }
+
   function renderList() {
     const q = state.filter.trim().toLowerCase();
     const list = q
@@ -107,9 +175,11 @@
         )
       : state.channels;
 
+    const r = currentRegion();
+    const scope = r ? `${r.n} · ` : "";
     el.addrSub.textContent = q
-      ? `匹配 ${list.length} 个频道`
-      : `${state.channels.length} 个频道`;
+      ? `${scope}匹配 ${list.length} 个频道`
+      : `${scope}${state.channels.length} 个频道 / ${state.channels.reduce((n, c) => n + c.streams.length, 0)} 条地址`;
 
     if (!list.length) {
       el.list.innerHTML = `<div class="empty"><h3>没有匹配的频道</h3><p>换个关键词试试</p></div>`;
@@ -149,7 +219,14 @@
   });
 
   el.copySub.addEventListener("click", () => {
-    copyText(baseUrl() + state.info.sub, "订阅地址已复制");
+    const sub = el.copySub.dataset.sub || state.info.sub;
+    copyText(baseUrl() + sub, "订阅地址已复制");
+  });
+
+  el.regionChips.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-r]");
+    if (!btn) return;
+    applyRegion(btn.dataset.r);
   });
 
   let ft;
@@ -210,8 +287,8 @@
     state.hostSet = new Set(state.info.hosts);
 
     renderSummary();
-    state.channels = buildChannels();
-    renderList();
+    const wantRegion = params.get("r") || "all";
+    applyRegion(wantRegion);
 
     // 从首页点某个频道进来时，自动展开该频道
     const chKey = params.get("c");

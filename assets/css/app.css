@@ -878,6 +878,51 @@ input { font-family: inherit; }
 
 .grid-preview { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
 
+/* ---------------------------------------------------------- 地区卡片 */
+.region-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(212px, 1fr));
+  gap: 12px;
+}
+.region-card {
+  display: block;
+  padding: 14px 15px 12px;
+  border-radius: 13px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: all 0.18s var(--ease);
+}
+.region-card:hover {
+  border-color: rgba(139, 92, 246, 0.5);
+  background: var(--surface-2);
+  transform: translateY(-2px);
+}
+.region-card.is-off { opacity: 0.45; }
+.rc-head { display: flex; align-items: center; gap: 7px; margin-bottom: 9px; }
+.rc-name { font-size: 16px; font-weight: 700; letter-spacing: -0.2px; color: var(--text); }
+.rc-isp {
+  font-size: 10.5px; line-height: 1;
+  padding: 4px 6px; border-radius: 5px;
+  background: rgba(139, 92, 246, 0.15);
+  color: #c4b5fd;
+  border: 1px solid rgba(139, 92, 246, 0.22);
+}
+.rc-nums { font-size: 12px; color: var(--text-2); }
+.rc-nums b { color: var(--text); font-size: 14.5px; font-weight: 650; }
+.rc-dot { margin: 0 6px; color: var(--text-3); }
+.rc-foot {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 11px; padding-top: 9px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 11.5px; color: var(--text-3);
+}
+.rc-go { color: #a78bfa; font-weight: 600; }
+.region-hint {
+  margin: 13px 0 0;
+  font-size: 12px; line-height: 1.75;
+  color: var(--text-3);
+}
+
 /* ============================================================
    Token 地址页
    ============================================================ */
@@ -925,6 +970,12 @@ input { font-family: inherit; }
 }
 
 .host-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+
+/* ---------------------------------------------------------- 地区订阅 */
+.region-sec { margin: 20px 0 6px; }
+.region-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+.region-chips .chip { height: 32px; padding: 0 12px; font-size: 13px; }
+.region-chips .chip .n { font-size: 11px; }
 .host-chip {
   font-family: ui-monospace, monospace;
   font-size: 11px;
