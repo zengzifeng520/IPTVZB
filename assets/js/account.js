@@ -218,7 +218,7 @@
       el.upgradeTitle.textContent = u.expired
         ? "赞助已到期，再次赞助恢复订阅"
         : pend
-          ? "开通申请待站长确认"
+          ? "赞助解锁订阅链接"
           : "赞助解锁订阅链接";
       el.upgradePill.textContent = u.expired ? "已到期" : pend ? "待开通" : "未赞助";
       el.upgradePill.className =
@@ -232,7 +232,7 @@
     }
     if (el.sidText) el.sidText.textContent = u.sidText || "—";
 
-    // 待开通：把赞助码顶到最显眼的位置，方便用户直接发给站长
+    // 兼容旧的「待开通」记录（新流程点按钮即解锁，一般不会走到这里）
     if (el.pendingBox) {
       if (!u.member && pend) {
         el.pendingBox.hidden = false;
@@ -240,7 +240,7 @@
           '<b>已提交开通申请（' +
           esc(pend.planName || "") +
           "）</b>" +
-          "<p>站长核对到账后会为你开通，通常几分钟内生效。还没发赞助码的话，请把下面的赞助码发过去：</p>" +
+          "<p>订阅正在生成，通常 1 分钟内生效，请稍后刷新页面查看。</p>" +
           '<div class="pending-code">' +
           esc(u.sidText || "") +
           "</div>";
@@ -384,27 +384,17 @@
     var r = A.unlock(state.planKey, state.order);
     if (!r.ok) {
       btn.disabled = false;
-      btn.textContent = "我已完成付款，提交开通申请";
+      btn.textContent = "我已完成付款，立即开通";
       return toast(r.msg);
     }
 
     closePay();
-    // 点按钮只提交申请，不直接开通。真正生效要等站长补录（或登记接口写入），
-    // 这里轮询一会儿，开通了就自动刷新。
-    toast(
-      A.remoteEnabled()
-        ? "已提交，正在等待开通…"
-        : "已提交开通申请，请把赞助码发给站长"
-    );
+    // 立即本机解锁，服务端异步生成专属订阅文件
+    toast("已开通！订阅文件正在生成，约 1 分钟后可用");
     renderHead();
-    A.waitForActivation(12, 15000).then(function (ok) {
-      if (ok) {
-        toast("已开通，正在刷新…");
-        setTimeout(function () {
-          location.reload();
-        }, 800);
-      }
-    });
+    setTimeout(function () {
+      location.reload();
+    }, 1000);
   });
 
   /* ------------------------------------------------ 专属订阅就绪检测 */
@@ -422,7 +412,7 @@
           "afterbegin",
           '<div class="empty-inline" style="text-align:left;padding:10px 12px">' +
             "专属订阅正在生成，通常 1 分钟内生效。如果超过 10 分钟仍不可用，" +
-            "请把本页下方的赞助码发给站长补录。" +
+            "请稍后刷新页面重试。" +
             "</div>"
         );
       })

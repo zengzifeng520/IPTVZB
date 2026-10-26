@@ -143,10 +143,16 @@
   }
 
   /**
-   * 开通登记接口（可选）。
-   * 填了就会在赞助后自动把赞助码写进服务端，订阅文件 1 分钟内自动生成；
-   * 留空则只能本机解锁，需要站长凭赞助码手工补录。
-   * 例：https://你的worker.workers.dev/claim
+   * 自动登记接口地址（重要）。
+   *
+   * 点「我已完成付款」后，前端会立即本机解锁，并把赞助码 POST 到这个地址，
+   * 由服务端自动写入 data/users.json、生成专属订阅文件（约 1 分钟）。
+   *
+   * 填法：把 worker/claim.js 部署到 Cloudflare Workers 后，把地址填进来，
+   * 例：https://你的子域.workers.dev/claim
+   *
+   * 留空：用户只能在本机解锁（换设备/清缓存会丢），专属订阅文件不会自动生成，
+   * 需要站长在 admin 后台手工补录。
    */
   var CLAIM_URL = "";
 
@@ -240,33 +246,37 @@
   }
 
   /**
-   * 点「我已完成付款」。
+   * 点「我已完成付款」——立即开通，无需站长确认。
    *
-   * 重要：这里**不会**给本机开通会员。
-   * 个人收款码没有到账回调，前端点一下就当付款成功等于人人可白拿，
-   * 所以只登记一条「待开通」申请，真正的会员状态必须等服务端
-   * data/users/<token>/meta.json 出现（站长补录或登记接口写入）才算。
-   *
-   * 配置了 CLAIM_URL 时，会顺手把申请提交给登记接口，之后自动轮询等它生效。
+   * 本机立刻写入会员记录（乐观解锁），用户马上看到会员态；
+   * 同时把赞助码 POST 到 CLAIM_URL 自动登记，服务端据此生成
+   * 专属订阅文件（约 1 分钟）。个人收款码没有到账回调，这里按
+   * 「信任式」处理——点按钮即视为付款成功，不再等站长核对。
    */
   function unlock(planKey, orderNo) {
     var plan = planByKey(planKey) || planByKey(DEFAULT_PLAN);
     var mySid = sid();
+    var now = Date.now();
+    var exp = now + plan.days * 86400000;
 
     var rec = {
       sid: mySid,
       order: orderNo || "",
-      ts: Date.now(),
+      ts: now,
+      exp: exp,
       plan: plan.key,
       planName: plan.name,
       price: plan.price,
     };
-    if (!writeJSON(K_PENDING, rec)) {
+    if (!writeJSON(K_SPONSOR, rec)) {
       return { ok: false, msg: "浏览器存储不可用，请关闭无痕模式后重试" };
     }
+    clearPending();
 
+    // 登记到服务端，让专属订阅文件自动生成（未配置 CLAIM_URL 则只有本机解锁）
     claimRemote(mySid, plan.key);
-    return { ok: true, pending: true, plan: plan, sid: mySid, order: rec.order };
+
+    return { ok: true, member: true, plan: plan, sid: mySid, order: rec.order };
   }
 
   /** 待开通申请（没有则返回 null） */
@@ -334,7 +344,12 @@
       })
       .then(function (meta) {
         if (meta && meta._missing) {
-          if (record()) {
+          // 服务端还没生成 meta.json：可能是「刚开通还没生成」（约 1 分钟），
+          // 也可能是确实没开通。信任式解锁下，本地有未过期记录就保留，
+          // 不能因为服务端暂未生成就撤销本地解锁。
+          var r = record();
+          if (r && r.exp > Date.now()) return false;
+          if (r) {
             try {
               localStorage.removeItem(K_SPONSOR);
             } catch (e) {}
