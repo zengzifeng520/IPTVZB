@@ -1,6 +1,8 @@
-/* 我的账号 / 扫码开通 */
+/* 我的账号 / 套餐开通 */
 (function () {
   "use strict";
+
+  var A = window.IVAUTH;
 
   var el = {
     phone: document.getElementById("acctPhone"),
@@ -10,11 +12,20 @@
     region: document.getElementById("statRegion"),
     exp: document.getElementById("statExp"),
     upgrade: document.getElementById("upgradePanel"),
+    upgradeTitle: document.getElementById("upgradeTitle"),
+    upgradePill: document.getElementById("upgradePill"),
     member: document.getElementById("memberPanel"),
+    memberPill: document.getElementById("memberPill"),
     lockName: document.getElementById("lockRegionName"),
-    subList: document.getElementById("subList"),
+    planGrid: document.getElementById("planGrid"),
     openPay: document.getElementById("openPay"),
+    renewBtn: document.getElementById("renewBtn"),
+    subList: document.getElementById("subList"),
     payModal: document.getElementById("payModal"),
+    payPlans: document.getElementById("payPlans"),
+    payAmount: document.getElementById("payAmount"),
+    payPlanNote: document.getElementById("payPlanNote"),
+    payStepAmount: document.getElementById("payStepAmount"),
     orderNo: document.getElementById("orderNo"),
     copyOrder: document.getElementById("copyOrder"),
     confirmPay: document.getElementById("confirmPay"),
@@ -22,7 +33,13 @@
     toast: document.getElementById("toast"),
   };
 
-  var state = { user: null, regions: [], subs: null, order: "" };
+  var state = {
+    user: null,
+    regions: [],
+    subs: null,
+    order: "",
+    planKey: A.DEFAULT_PLAN,
+  };
 
   /* ---------------------------------------------------------- 工具 */
 
@@ -68,7 +85,6 @@
     }
   }
 
-  // 站点根路径（兼容部署在子目录）
   function baseUrl() {
     return location.origin + location.pathname.replace(/[^/]*$/, "");
   }
@@ -80,6 +96,82 @@
     return r ? r.name : key || "—";
   }
 
+  function currentPlan() {
+    return A.planByKey(state.planKey) || A.planByKey(A.DEFAULT_PLAN);
+  }
+
+  function money(n) {
+    return "￥" + Number(n).toFixed(2);
+  }
+
+  /* ---------------------------------------------------------- 套餐 */
+
+  function renderPlans() {
+    el.planGrid.innerHTML = A.PLANS.map(function (p) {
+      var active = p.key === state.planKey;
+      return (
+        '<button type="button" class="plan' +
+        (active ? " active" : "") +
+        (p.hot ? " is-hot" : "") +
+        '" data-plan="' +
+        esc(p.key) +
+        '">' +
+        (p.hot ? '<span class="plan-hot">推荐</span>' : "") +
+        '<span class="plan-name">' +
+        esc(p.name) +
+        "</span>" +
+        '<span class="plan-price"><i>￥</i>' +
+        p.price +
+        "</span>" +
+        '<span class="plan-days">' +
+        p.days +
+        " " +
+        esc(p.unit) +
+        "</span>" +
+        '<span class="plan-tag">' +
+        esc(p.tag) +
+        "</span>" +
+        "</button>"
+      );
+    }).join("");
+  }
+
+  function renderPayPlans() {
+    el.payPlans.innerHTML = A.PLANS.map(function (p) {
+      var active = p.key === state.planKey;
+      return (
+        '<button type="button" class="pay-plan' +
+        (active ? " active" : "") +
+        '" data-plan="' +
+        esc(p.key) +
+        '">' +
+        "<b>" +
+        esc(p.name) +
+        "</b>" +
+        "<i>￥" +
+        p.price +
+        "</i></button>"
+      );
+    }).join("");
+  }
+
+  function syncPrice() {
+    var p = currentPlan();
+    el.payAmount.textContent = money(p.price);
+    el.payPlanNote.textContent = p.name + " · " + p.days + " " + p.unit;
+    el.payStepAmount.textContent = money(p.price);
+    if (el.openPay) el.openPay.textContent = "扫码付款 ￥" + p.price + " 立即开通";
+  }
+
+  function setPlan(key) {
+    var p = A.planByKey(key);
+    if (!p) return;
+    state.planKey = key;
+    renderPlans();
+    renderPayPlans();
+    syncPrice();
+  }
+
   /* ---------------------------------------------------------- 渲染 */
 
   function renderHead() {
@@ -88,19 +180,39 @@
     el.avatar.textContent = u.phoneMask.slice(-4, -3) || "光";
     el.badges.innerHTML =
       (u.member
-        ? '<span class="pill pill-ok">会员</span>'
-        : '<span class="pill pill-warn">体验版</span>') +
+        ? '<span class="pill pill-ok">' + esc(u.planName || "会员") + "</span>"
+        : u.expired
+        ? '<span class="pill pill-err">已过期</span>'
+        : '<span class="pill pill-warn">免费版</span>') +
       '<span class="pill">' +
       esc(regionName(u.region)) +
       "</span>";
 
-    el.plan.textContent = u.member ? "会员（全地区）" : "体验版（单地区）";
+    el.plan.textContent = u.member
+      ? u.planName || "会员"
+      : u.expired
+      ? "已过期"
+      : "免费版（单地区）";
     el.region.textContent = u.member ? "全部 " + state.regions.length + " 个地区" : regionName(u.region);
-    el.exp.textContent = u.member ? u.expText : "—";
+    el.exp.textContent = u.member
+      ? u.expText + "（剩 " + u.daysLeft + " 天）"
+      : u.expired
+      ? u.lastExpText + "（已过期）"
+      : "—";
+
+    // 过期后引导续费
+    if (el.upgradeTitle) {
+      el.upgradeTitle.textContent = u.expired ? "会员已过期，续费恢复订阅" : "开通全部地区";
+      el.upgradePill.textContent = u.expired ? "已过期" : "免费版";
+      el.upgradePill.className = "pill " + (u.expired ? "pill-err" : "pill-warn");
+    }
 
     el.upgrade.hidden = !!u.member;
     el.member.hidden = !u.member;
     el.lockName.textContent = regionName(u.region);
+    if (u.member && el.memberPill) {
+      el.memberPill.textContent = "剩 " + u.daysLeft + " 天";
+    }
   }
 
   function renderSubs() {
@@ -136,7 +248,6 @@
       });
     });
 
-    // 本地区排最前
     items.sort(function (a, b) {
       if (a.mine !== b.mine) return a.mine ? -1 : 1;
       if (a.big !== b.big) return a.big ? -1 : 1;
@@ -184,8 +295,10 @@
   /* ---------------------------------------------------------- 付款 */
 
   function openPay() {
-    state.order = window.IVAUTH.makeOrderNo(state.user.phone);
+    state.order = A.makeOrderNo(state.user.phone);
     el.orderNo.textContent = state.order;
+    renderPayPlans();
+    syncPrice();
     el.payModal.hidden = false;
     document.body.style.overflow = "hidden";
   }
@@ -196,6 +309,19 @@
   }
 
   el.openPay.addEventListener("click", openPay);
+  if (el.renewBtn) el.renewBtn.addEventListener("click", openPay);
+
+  el.planGrid.addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-plan]");
+    if (!btn) return;
+    setPlan(btn.dataset.plan);
+  });
+
+  el.payPlans.addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-plan]");
+    if (!btn) return;
+    setPlan(btn.dataset.plan);
+  });
 
   el.payModal.addEventListener("click", function (e) {
     if (e.target.closest("[data-close]")) closePay();
@@ -211,10 +337,11 @@
 
   el.confirmPay.addEventListener("click", function () {
     var btn = el.confirmPay;
+    var plan = currentPlan();
     btn.disabled = true;
     btn.textContent = "正在开通…";
 
-    var r = window.IVAUTH.unlock(state.order);
+    var r = A.unlock(state.planKey, state.order);
     if (!r.ok) {
       btn.disabled = false;
       btn.textContent = "我已完成付款，立即开通";
@@ -222,16 +349,16 @@
     }
 
     closePay();
-    toast("开通成功，已解锁全部地区");
+    toast(plan.name + " 已开通，有效期至 " + A.fmtDate(r.exp));
     setTimeout(function () {
       location.reload();
-    }, 700);
+    }, 900);
   });
 
   /* ---------------------------------------------------------- 退出 */
 
   el.logout.addEventListener("click", function () {
-    window.IVAUTH.logout();
+    A.logout();
     location.href = "index.html";
   });
 
@@ -243,12 +370,14 @@
 
   /* ---------------------------------------------------------- 启动 */
 
-  state.user = window.IVAUTH.user();
+  state.user = A.user();
   if (!state.user) {
     location.replace("login.html?next=account.html");
     return;
   }
 
+  renderPlans();
+  syncPrice();
   renderHead();
 
   fetch("data/regions.json", { cache: "no-cache" })
@@ -276,8 +405,8 @@
       });
   }
 
-  // 支持 ?pay=1 直接展开付款弹层（方便把付款链接直接发给用户）
-  if (new URLSearchParams(location.search).get("pay") === "1" && !state.user.member) {
+  // ?pay=1 直接展开付款弹层
+  if (new URLSearchParams(location.search).get("pay") === "1") {
     openPay();
   }
 })();

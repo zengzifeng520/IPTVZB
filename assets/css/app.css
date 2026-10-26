@@ -1330,13 +1330,14 @@ input { font-family: inherit; }
 .pay-sub b { color: var(--warn); font-size: 15px; }
 
 .pay-qr {
-  width: 232px; margin: 0 auto 16px;
-  padding: 7px;
+  width: 218px; margin: 0 auto 16px;
   border-radius: 14px;
+  overflow: hidden;
   background: #fff;
-  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.5);
+  line-height: 0;
 }
-.pay-qr img { display: block; width: 100%; height: auto; border-radius: 9px; }
+.pay-qr img { display: block; width: 100%; height: auto; }
 
 .pay-order {
   display: flex; align-items: center; gap: 9px;
@@ -1547,3 +1548,98 @@ input { font-family: inherit; }
   .al-acts .btn { flex: 1; justify-content: center; }
   .top-actions .btn span { display: none; }
 }
+
+/* ============================================================
+   套餐选择（v6：体验/月/季/年）
+   ============================================================ */
+
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 0 0 20px;
+}
+
+.plan {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 1px;
+  padding: 15px 8px 12px;
+  border-radius: 13px;
+  background: #0a0a0d;
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  transition: all 0.18s var(--ease);
+}
+.plan:hover { border-color: rgba(255, 255, 255, 0.18); background: #101015; }
+.plan.active {
+  border-color: rgba(139, 92, 246, 0.8);
+  background: linear-gradient(180deg, rgba(139, 92, 246, 0.18), rgba(139, 92, 246, 0.07));
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.13);
+}
+
+.plan-name { font-size: 13px; font-weight: 600; color: var(--text-2); letter-spacing: 0.2px; }
+.plan.active .plan-name { color: var(--text); }
+
+.plan-price {
+  display: flex; align-items: baseline;
+  font-size: 27px; font-weight: 800;
+  letter-spacing: -1.2px; line-height: 1.15;
+  color: var(--text);
+}
+.plan-price i { font-style: normal; font-size: 13px; font-weight: 700; margin-right: 1px; }
+
+.plan-days { font-size: 11.5px; color: var(--text-3); }
+.plan-tag { font-size: 11px; color: var(--text-3); margin-top: 3px; }
+.plan.is-hot .plan-tag { color: var(--warn); font-weight: 600; }
+
+.plan-hot {
+  position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+  height: 17px; padding: 0 7px;
+  display: inline-flex; align-items: center;
+  border-radius: 999px;
+  font-size: 10px; font-weight: 700;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #241a00;
+  white-space: nowrap;
+  box-shadow: 0 3px 10px rgba(251, 191, 36, 0.3);
+}
+
+/* 弹层里的小套餐标签 */
+.pay-plans {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.pay-plan {
+  display: flex; flex-direction: column; align-items: center; gap: 1px;
+  padding: 8px 3px;
+  border-radius: 9px;
+  background: #131316;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: all 0.16s var(--ease);
+}
+.pay-plan:hover { border-color: rgba(255, 255, 255, 0.18); }
+.pay-plan b { font-size: 11.5px; font-weight: 600; color: var(--text-3); }
+.pay-plan i { font-style: normal; font-size: 13.5px; font-weight: 800; color: var(--text-2); }
+.pay-plan.active {
+  background: rgba(139, 92, 246, 0.18);
+  border-color: rgba(139, 92, 246, 0.65);
+}
+.pay-plan.active b { color: var(--text); }
+.pay-plan.active i { color: #fff; }
+
+.head-acts { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+@media (max-width: 640px) {
+  .plan-grid { grid-template-columns: repeat(2, 1fr); gap: 9px; }
+  .plan { padding: 14px 6px 11px; }
+  .plan-price { font-size: 24px; }
+  .pay-qr { width: 196px; }
+  .pay-plans { grid-template-columns: repeat(2, 1fr); }
+  .head-acts { width: 100%; }
+}
+
+/* 过期状态 */
+.pill-err { background: rgba(248, 113, 113, 0.13); border-color: rgba(248, 113, 113, 0.34); color: #fca5a5; }
+.ts-badge.is-expired { background: linear-gradient(135deg, #f87171, #fb923c); }

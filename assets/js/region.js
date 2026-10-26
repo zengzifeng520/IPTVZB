@@ -125,8 +125,12 @@
     }, 0);
     var nHost = r ? (r.hosts || []).length : 0;
 
-    el.badge.textContent = isMember() ? "会员 · 全部地区" : "体验版 · 单地区";
-    el.badge.className = "ts-badge" + (isMember() ? " is-ok" : "");
+    el.badge.textContent = isMember()
+      ? (state.user.planName || "会员") + " · 全部地区"
+      : state.user.expired
+      ? "已过期 · 单地区"
+      : "免费版 · 单地区";
+    el.badge.className = "ts-badge" + (isMember() ? " is-ok" : state.user.expired ? " is-expired" : "");
     el.region.textContent = name;
     el.meta.innerHTML =
       "<span>" +
@@ -144,7 +148,7 @@
     } else {
       el.side.innerHTML =
         '<span class="ts-side-tip">仅可查看 ' + esc(name) + "</span>" +
-        '<a class="btn btn-primary" href="account.html">解锁全部地区 ¥15</a>';
+        '<a class="btn btn-primary" href="account.html">开通会员解锁全部</a>';
     }
   }
 
@@ -177,7 +181,9 @@
     el.chips.innerHTML = html;
     el.regionSub.textContent = member
       ? "全部 " + state.regions.length + " 个地区已解锁"
-      : "体验版仅可查看「" + (regionByKey(locked) || { name: locked }).name + "」，其余需开通";
+      : (state.user.expired ? "会员已到期，订阅地址已停止发放；续费后立即恢复" : "免费版仅可查看")
+        + "「" + (regionByKey(locked) || { name: locked }).name + "」"
+        + (state.user.expired ? "" : "，其余需开通");
   }
 
   function renderSubscribe() {
@@ -424,7 +430,7 @@
 
         if (!state.regions.length) return fail("地区数据为空", "请稍后刷新重试");
 
-        // 会员：优先 URL 指定地区；体验版：强制锁定地区
+        // 会员：优先 URL 指定地区；免费版：强制锁定地区
         var want = params.get("r");
         var target;
         if (isMember()) {

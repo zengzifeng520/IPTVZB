@@ -2,7 +2,7 @@
    账号与套餐状态（纯本地，无后端）
    ------------------------------------------------------------
    - 注册：手机号 + 密码，注册时锁定 1 个地区
-   - 体验版：只能查看锁定的那个地区
+   - 免费版：只能查看锁定的那个地区
    - 会员：扫码付款后自行解锁，查看全部地区
    说明：纯静态站没有服务端，账号数据存在本机浏览器，
         换设备需要重新注册并用同一手机号重新解锁。
@@ -15,8 +15,22 @@
   var K_MEMBER = "iv_member_v1";
   var K_REMEMBER = "iv_remember_v1";
 
-  var PRICE = 15;
-  var MEMBER_DAYS = 365;
+  // 付费套餐（体验版 = 1 天，用于先试后买）
+  var PLANS = [
+    { key: "day", name: "体验版", price: 2, days: 1, unit: "天", tag: "先试一天" },
+    { key: "month", name: "月付", price: 8, days: 30, unit: "天", tag: "最灵活" },
+    { key: "quarter", name: "季付", price: 20, days: 90, unit: "天", tag: "更划算" },
+    { key: "year", name: "年付", price: 80, days: 365, unit: "天", tag: "最超值", hot: true },
+  ];
+
+  var DEFAULT_PLAN = "month";
+
+  function planByKey(key) {
+    for (var i = 0; i < PLANS.length; i++) {
+      if (PLANS[i].key === key) return PLANS[i];
+    }
+    return null;
+  }
 
   /* ---------------------------------------------------------- 工具 */
 
@@ -220,27 +234,33 @@
   }
 
   /**
-   * 扫码后解锁全部地区。
-   * 不校验付款人（个人收款码无到账回调），用户点「我已完成付款」即开通。
+   * 扫码后开通/续费。
+   * 不校验付款人（个人收款码无到账回调），用户点「我已完成付款」即生效。
+   * @param {string} planKey 套餐 key（day / month / quarter / year）
+   * @param {string} orderNo 订单号
    */
-  function unlock(orderNo) {
+  function unlock(planKey, orderNo) {
     var phone = currentPhone();
     if (!phone) return { ok: false, msg: "请先登录" };
     if (!users()[phone]) return { ok: false, msg: "账号不存在，请重新登录" };
 
+    var plan = planByKey(planKey) || planByKey(DEFAULT_PLAN);
     var db = members();
     var now = Date.now();
+    // 未到期则在原有效期上累加，已过期则从现在起算
     var prev = db[phone] && db[phone].exp > now ? db[phone].exp : now;
-    var exp = prev + MEMBER_DAYS * 86400000;
+    var exp = prev + plan.days * 86400000;
 
     db[phone] = {
       exp: exp,
       order: orderNo || "",
       ts: now,
-      price: PRICE,
+      plan: plan.key,
+      planName: plan.name,
+      price: plan.price,
     };
     if (!writeJSON(K_MEMBER, db)) return { ok: false, msg: "浏览器存储不可用，请关闭无痕模式" };
-    return { ok: true, exp: exp };
+    return { ok: true, exp: exp, plan: plan };
   }
 
   function renewCancel() {
@@ -254,16 +274,31 @@
     if (!phone) return null;
     var rec = users()[phone];
     if (!rec) return null;
-    var mem = memberOf(phone);
+
+    var raw = members()[phone] || null;
+    var mem = memberOf(phone); // 仅未过期才返回
+    var now = Date.now();
+    var expired = !mem && !!raw && !!raw.exp && raw.exp <= now;
+    var left = mem ? Math.max(0, Math.ceil((mem.exp - now) / 86400000)) : 0;
+
     return {
       phone: phone,
       phoneMask: phone.slice(0, 3) + "****" + phone.slice(-4),
       region: rec.r,
       created: rec.t,
       member: !!mem,
+      // 曾经开通过但现在已过期
+      expired: expired,
+      lastExp: raw && raw.exp ? raw.exp : 0,
+      lastExpText: raw && raw.exp ? fmtDate(raw.exp) : "",
+      lastPlanName: raw && raw.planName ? raw.planName : "",
       exp: mem ? mem.exp : 0,
       expText: mem ? fmtDate(mem.exp) : "",
       order: mem ? mem.order : "",
+      plan: mem ? mem.plan || "" : "",
+      planName: mem ? mem.planName || "会员" : "",
+      price: mem ? mem.price || 0 : 0,
+      daysLeft: left,
     };
   }
 
@@ -349,8 +384,9 @@
   }
 
   window.IVAUTH = {
-    PRICE: PRICE,
-    MEMBER_DAYS: MEMBER_DAYS,
+    PLANS: PLANS,
+    DEFAULT_PLAN: DEFAULT_PLAN,
+    planByKey: planByKey,
     sha256: sha256,
     validPhone: validPhone,
     register: register,

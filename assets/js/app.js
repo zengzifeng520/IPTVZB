@@ -58,7 +58,7 @@
         '<div class="cta-row">' +
         '<div class="cta-text">' +
         "<h2>用手机号登录，立即查看本省频道</h2>" +
-        "<p>注册即得体验版，可查看 <b>1 个地区</b> 的全部频道地址。想解锁其余 10 个地区，扫码 ¥15 即可。</p>" +
+        "<p>注册即可查看 <b>1 个地区</b> 的全部频道地址。想解锁其余 10 个地区，最低 ￥2 / 天起。</p>" +
         "</div>" +
         '<div class="cta-acts">' +
         '<a class="btn btn-primary btn-lg" href="login.html?tab=register">免费注册</a>' +
@@ -93,17 +93,23 @@
       el.cta.innerHTML =
         '<div class="cta-row">' +
         '<div class="cta-text">' +
-        '<h2><span class="pill pill-warn">体验版</span> ' +
+        '<h2><span class="pill ' +
+        (u.expired ? "pill-err" : "pill-warn") +
+        '">' +
+        (u.expired ? "已过期" : "免费版") +
+        "</span> " +
         esc(u.phoneMask) +
         "</h2>" +
-        "<p>你现在可以查看 <b>" +
-        esc(regionName(u.region)) +
-        "</b> 的全部频道地址。扫码 ¥15 解锁全部 " +
-        state.regions.length +
-        " 个地区与 M3U 订阅。</p>" +
+        "<p>" +
+        (u.expired
+          ? "会员已于 <b>" + esc(u.lastExpText) + "</b> 到期，订阅已暂停。你现在只能查看 <b>" + esc(regionName(u.region)) + "</b>，续费即可恢复全部 " + state.regions.length + " 个地区。"
+          : "你现在可以查看 <b>" + esc(regionName(u.region)) + "</b> 的全部频道地址。开通会员 ￥2 起解锁全部 " + state.regions.length + " 个地区与 M3U 订阅。") +
+        "</p>" +
         "</div>" +
         '<div class="cta-acts">' +
-        '<a class="btn btn-primary btn-lg" href="account.html">扫码解锁全部地区</a>' +
+        '<a class="btn btn-primary btn-lg" href="account.html">' +
+        (u.expired ? "续费恢复订阅" : "开通全部地区") +
+        "</a>" +
         '<a class="btn btn-lg" href="region.html?r=' +
         esc(u.region) +
         '">查看我的地区</a>' +

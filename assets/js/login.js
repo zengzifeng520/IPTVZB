@@ -63,7 +63,7 @@
     el.title.textContent = name === "login" ? "登录账号" : "注册账号";
     el.sub.innerHTML =
       name === "login"
-        ? "体验版可查看 1 个地区的频道，开通后解锁全部地区。"
+        ? "免费版可查看 1 个地区的频道，开通后解锁全部地区。"
         : "注册后立即可以查看 1 个地区的频道地址，随时可升级解锁全部。";
     showErr("");
     var first = name === "login" ? el.loginPhone : el.regPhone;
@@ -174,8 +174,8 @@
     el.logged.hidden = false;
     el.alAvatar.textContent = u.phoneMask.slice(-4, -3) || "光";
     el.alPhone.textContent = u.phoneMask;
-    el.alPlan.textContent = u.member ? "会员" : "体验版";
-    el.alPlan.className = "pill " + (u.member ? "pill-ok" : "pill-warn");
+    el.alPlan.textContent = u.member ? u.planName || "会员" : u.expired ? "已过期" : "免费版";
+    el.alPlan.className = "pill " + (u.member ? "pill-ok" : u.expired ? "pill-err" : "pill-warn");
   }
 
   el.alLogout.addEventListener("click", function () {
