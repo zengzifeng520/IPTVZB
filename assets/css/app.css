@@ -1,5 +1,5 @@
 /* ============================================================
-   光影直播 — 深色影院风样式
+   IPTV直播源分发系统 — 深色影院风样式
    ============================================================ */
 :root {
   --bg: #07080c;
@@ -98,14 +98,14 @@ input { font-family: inherit; }
 .brand-mark {
   width: 32px; height: 32px;
   border-radius: 9px;
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
   display: grid; place-items: center;
-  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.42);
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.42);
   flex-shrink: 0;
 }
 .brand-mark svg { width: 17px; height: 17px; }
 .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
-.brand-name { font-size: 15.5px; font-weight: 700; letter-spacing: 0.4px; }
+.brand-name { font-size: 13.5px; font-weight: 700; letter-spacing: 0.2px; white-space: nowrap; }
 .brand-sub { font-size: 10px; color: var(--text-3); letter-spacing: 1.4px; text-transform: uppercase; }
 
 .search {
@@ -511,6 +511,54 @@ input { font-family: inherit; }
 .foot a { color: var(--text-2); border-bottom: 1px solid transparent; }
 .foot a:hover { color: var(--accent-2); border-color: currentColor; }
 .foot p { margin: 0 0 6px; max-width: 620px; line-height: 1.7; }
+
+/* ---------------------------------------------------------- 免责声明面板 + 数据更新面板 */
+.disclaimer-panel {
+  padding: 22px 24px;
+  margin-bottom: 16px;
+  border-radius: 13px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.disclaimer-panel .dp-title {
+  font-size: 18px; font-weight: 800;
+  margin: 0 0 14px;
+  color: var(--text);
+  display: flex; align-items: center; gap: 9px;
+}
+.disclaimer-panel .dp-title::before {
+  content: "";
+  width: 4px; height: 19px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #6366f1, #ec4899);
+}
+.disclaimer-panel p {
+  margin: 0 0 12px;
+  line-height: 1.9;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-2);
+}
+.disclaimer-panel p:last-child { margin-bottom: 0; }
+
+.update-panel {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  padding: 18px 22px;
+  margin-bottom: 16px;
+  border-radius: 13px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.update-panel .up-label { font-size: 16px; font-weight: 700; color: var(--text-2); }
+.update-panel .up-time { font-size: 23px; font-weight: 800; color: var(--text); letter-spacing: 0.3px; }
+
+.foot-admin-row { text-align: center; padding-bottom: 4px; }
+.foot-admin-row a {
+  font-size: 13px; color: var(--text-3);
+  border-bottom: 1px solid transparent;
+  text-decoration: none;
+}
+.foot-admin-row a:hover { color: var(--accent-2); border-color: currentColor; }
 
 /* ============================================================
    频道详情页（线路列表，不含播放器）
@@ -1904,6 +1952,13 @@ input { font-family: inherit; }
 [data-theme="light"] .btn-danger { color: #b91c1c; background: rgba(220, 38, 38, 0.08); border-color: rgba(220, 38, 38, 0.32); }
 /* 顶部导航栏：深色半透明 → 浅色半透明 */
 [data-theme="light"] .topbar { background: rgba(255, 255, 255, 0.78); }
+/* 浅色主题下订阅卡片：原深色半透明背景换成浅色，避免深色底配深色字看不清 */
+[data-theme="light"] .sub-card { background: #ffffff; border-color: rgba(0, 0, 0, 0.08); }
+[data-theme="light"] .sub-url { background: #f3f4f6; border-color: rgba(0, 0, 0, 0.08); color: var(--text); }
+[data-theme="light"] .sub-tag { background: rgba(0, 0, 0, 0.05); color: var(--text-2); }
+[data-theme="light"] .sub-type { color: #0891b2; }
+[data-theme="light"] .sub-note { color: var(--text-2); }
+[data-theme="light"] .host-chip { color: #047857; background: rgba(5, 150, 105, 0.10); border-color: rgba(5, 150, 105, 0.24); }
 
 /* ---------------------------------------------------------- 主题切换按钮 */
 .theme-toggle {
