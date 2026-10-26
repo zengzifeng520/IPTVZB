@@ -21,6 +21,7 @@
     renewBtn: document.getElementById("renewBtn"),
     subList: document.getElementById("subList"),
     coverNums: document.getElementById("coverNums"),
+    pendingBox: document.getElementById("pendingBox"),
     payModal: document.getElementById("payModal"),
     payPlans: document.getElementById("payPlans"),
     payAmount: document.getElementById("payAmount"),
@@ -180,17 +181,32 @@
 
   function renderHead() {
     var u = state.user;
-    el.phone.textContent = u.member ? "已赞助" : u.expired ? "赞助已到期" : "未赞助";
+    var pend = A.pending();
+    el.phone.textContent = u.member
+      ? "已赞助"
+      : pend
+        ? "待开通"
+        : u.expired
+          ? "赞助已到期"
+          : "未赞助";
     el.avatar.textContent = "光";
     el.badges.innerHTML =
       (u.member
         ? '<span class="pill pill-ok">' + esc(u.planName || "已赞助") + "</span>"
-        : u.expired
-          ? '<span class="pill pill-err">已到期</span>'
-          : '<span class="pill pill-warn">未赞助</span>') +
+        : pend
+          ? '<span class="pill pill-warn">待开通</span>'
+          : u.expired
+            ? '<span class="pill pill-err">已到期</span>'
+            : '<span class="pill pill-warn">未赞助</span>') +
       '<span class="pill">' + state.regions.length + " 个地区</span>";
 
-    el.plan.textContent = u.member ? u.planName || "已赞助" : u.expired ? "已到期" : "未赞助";
+    el.plan.textContent = u.member
+      ? u.planName || "已赞助"
+      : pend
+        ? "待开通（" + (pend.planName || "") + "）"
+        : u.expired
+          ? "已到期"
+          : "未赞助";
     el.region.textContent = "全部 " + state.regions.length + " 个地区免费浏览";
     el.exp.textContent = u.member
       ? u.expText + "（剩 " + u.daysLeft + " 天）"
@@ -199,9 +215,14 @@
         : "—";
 
     if (el.upgradeTitle) {
-      el.upgradeTitle.textContent = u.expired ? "赞助已到期，再次赞助恢复订阅" : "赞助解锁订阅链接";
-      el.upgradePill.textContent = u.expired ? "已到期" : "未赞助";
-      el.upgradePill.className = "pill " + (u.expired ? "pill-err" : "pill-warn");
+      el.upgradeTitle.textContent = u.expired
+        ? "赞助已到期，再次赞助恢复订阅"
+        : pend
+          ? "开通申请待站长确认"
+          : "赞助解锁订阅链接";
+      el.upgradePill.textContent = u.expired ? "已到期" : pend ? "待开通" : "未赞助";
+      el.upgradePill.className =
+        "pill " + (u.expired ? "pill-err" : "pill-warn");
     }
 
     el.upgrade.hidden = !!u.member;
@@ -210,6 +231,23 @@
       el.memberPill.textContent = "剩 " + u.daysLeft + " 天";
     }
     if (el.sidText) el.sidText.textContent = u.sidText || "—";
+
+    // 待开通：把赞助码顶到最显眼的位置，方便用户直接发给站长
+    if (el.pendingBox) {
+      if (!u.member && pend) {
+        el.pendingBox.hidden = false;
+        el.pendingBox.innerHTML =
+          '<b>已提交开通申请（' +
+          esc(pend.planName || "") +
+          "）</b>" +
+          "<p>站长核对到账后会为你开通，通常几分钟内生效。还没发赞助码的话，请把下面的赞助码发过去：</p>" +
+          '<div class="pending-code">' +
+          esc(u.sidText || "") +
+          "</div>";
+      } else {
+        el.pendingBox.hidden = true;
+      }
+    }
   }
 
   function renderSubs() {
@@ -346,19 +384,27 @@
     var r = A.unlock(state.planKey, state.order);
     if (!r.ok) {
       btn.disabled = false;
-      btn.textContent = "我已完成付款，立即解锁";
+      btn.textContent = "我已完成付款，提交开通申请";
       return toast(r.msg);
     }
 
     closePay();
+    // 点按钮只提交申请，不直接开通。真正生效要等站长补录（或登记接口写入），
+    // 这里轮询一会儿，开通了就自动刷新。
     toast(
       A.remoteEnabled()
-        ? plan.name + " 已解锁，有效期至 " + A.fmtDate(r.exp)
-        : "已解锁本机；请把下方赞助码发给站长，即可开通专属订阅"
+        ? "已提交，正在等待开通…"
+        : "已提交开通申请，请把赞助码发给站长"
     );
-    setTimeout(function () {
-      location.reload();
-    }, 1400);
+    renderHead();
+    A.waitForActivation(12, 15000).then(function (ok) {
+      if (ok) {
+        toast("已开通，正在刷新…");
+        setTimeout(function () {
+          location.reload();
+        }, 800);
+      }
+    });
   });
 
   /* ------------------------------------------------ 专属订阅就绪检测 */

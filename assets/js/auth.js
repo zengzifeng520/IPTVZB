@@ -11,6 +11,8 @@
 
   var K_SID = "iv_sid_v1";
   var K_SPONSOR = "iv_sponsor_v1";
+  // 已提交但还没被服务端确认的开通申请
+  var K_PENDING = "iv_pending_v1";
   // 免费版可选的那一个地区，选定后不再更改
   var K_FREE_REGION = "iv_free_region_v1";
   // 免费订阅的到期时间（选地区那天 + FREE_DAYS 天）
@@ -238,34 +240,46 @@
   }
 
   /**
-   * 赞助后解锁。
-   * 不校验付款人（个人收款码没有到账回调），点按钮即生效。
+   * 点「我已完成付款」。
+   *
+   * 重要：这里**不会**给本机开通会员。
+   * 个人收款码没有到账回调，前端点一下就当付款成功等于人人可白拿，
+   * 所以只登记一条「待开通」申请，真正的会员状态必须等服务端
+   * data/users/<token>/meta.json 出现（站长补录或登记接口写入）才算。
+   *
+   * 配置了 CLAIM_URL 时，会顺手把申请提交给登记接口，之后自动轮询等它生效。
    */
   function unlock(planKey, orderNo) {
     var plan = planByKey(planKey) || planByKey(DEFAULT_PLAN);
     var mySid = sid();
 
-    var prev = record();
-    var now = Date.now();
-    // 未到期就顺延，已过期则从现在起算
-    var base = prev && prev.exp > now ? prev.exp : now;
-    var exp = base + plan.days * 86400000;
-
     var rec = {
       sid: mySid,
-      exp: exp,
       order: orderNo || "",
-      ts: now,
+      ts: Date.now(),
       plan: plan.key,
       planName: plan.name,
       price: plan.price,
     };
-    if (!writeJSON(K_SPONSOR, rec)) {
+    if (!writeJSON(K_PENDING, rec)) {
       return { ok: false, msg: "浏览器存储不可用，请关闭无痕模式后重试" };
     }
 
     claimRemote(mySid, plan.key);
-    return { ok: true, exp: exp, plan: plan };
+    return { ok: true, pending: true, plan: plan, sid: mySid, order: rec.order };
+  }
+
+  /** 待开通申请（没有则返回 null） */
+  function pending() {
+    var p = readJSON(K_PENDING, null);
+    if (!p || !p.sid) return null;
+    return p;
+  }
+
+  function clearPending() {
+    try {
+      localStorage.removeItem(K_PENDING);
+    } catch (e) {}
   }
 
   /** 把赞助码登记到服务端（配置了 CLAIM_URL 才生效），失败不影响本地解锁 */
@@ -282,11 +296,13 @@
         })
         .then(function (d) {
           if (!d || !d.ok || !d.ts) return;
-          // 以服务端到期时间为准，避免前后端各算一套
-          var rec = record();
-          if (!rec) return;
+          // 服务端已写入到期时间 → 这才算真正开通
+          var rec = record() || {};
+          rec.sid = mySid;
           rec.exp = Number(d.ts) * 1000;
+          rec.ts = rec.ts || Date.now();
           writeJSON(K_SPONSOR, rec);
+          clearPending();
         })
         .catch(function () {});
     } catch (e) {}
@@ -325,11 +341,39 @@
           planName: prev.planName || "",
           price: prev.price || 0,
         });
+        clearPending();
         return true;
       })
       .catch(function () {
         return false;
       });
+  }
+
+  /**
+   * 申请提交后轮询服务端，直到 meta.json 出现（即站长已补录 / 接口已写入）。
+   * tries 次，每次间隔 gapMs。返回是否开通成功。
+   */
+  function waitForActivation(tries, gapMs) {
+    var left = tries || 0;
+    var gap = gapMs || 15000;
+    if (left <= 0) return Promise.resolve(false);
+    if (activeMember()) return Promise.resolve(true);
+    return syncSponsor().then(function () {
+      if (activeMember()) {
+        clearPending();
+        return true;
+      }
+      return new Promise(function (res) {
+        setTimeout(res, gap);
+      }).then(function () {
+        return waitForActivation(left - 1, gap);
+      });
+    });
+  }
+
+  function activeMember() {
+    var r = record();
+    return !!(r && r.exp > Date.now());
   }
 
   /** 是否已配置自动登记接口（没配就得靠站长手工补录） */
@@ -459,6 +503,9 @@
     setSid: setSid,
     groupSid: groupSid,
     unlock: unlock,
+    pending: pending,
+    clearPending: clearPending,
+    waitForActivation: waitForActivation,
     remoteEnabled: remoteEnabled,
     clearSponsor: clearSponsor,
     freeRegion: freeRegion,
