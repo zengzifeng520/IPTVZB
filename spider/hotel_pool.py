@@ -155,7 +155,8 @@ def build_pool(ok: dict[str, dict]) -> dict:
     """按频道聚合，输出与 proxy.json 同构的结构。"""
     matcher = normalize.load_matcher(config.CATEGORIES_PATH)
 
-    hosts: dict[str, dict] = {}
+    host_meta: dict[str, dict] = {}
+    used = collections.Counter()
     chan_map: dict[str, dict] = {}
     n_skip = 0
 
@@ -173,8 +174,8 @@ def build_pool(ok: dict[str, dict]) -> dict:
         prov = info["region"]
         isp = info["isp"]
 
-        h = hosts.setdefault(host, {"h": host, "rn": prov, "isp": isp, "ch": 0})
-        h["ch"] = h.get("ch", 0) + 1
+        if host not in host_meta:
+            host_meta[host] = {"h": host, "rn": prov, "isp": isp}
 
         ch = chan_map.setdefault(key, {
             "key": key,
@@ -184,10 +185,19 @@ def build_pool(ok: dict[str, dict]) -> dict:
         })
         if len(ch["streams"]) < MAX_PER_CHANNEL:
             ch["streams"].append({"h": host, "u": url})
+            used[host] += 1
 
     channels = [c for c in chan_map.values() if c["streams"]]
     channels.sort(key=lambda c: (-len(c["streams"]), c["key"]))
-    host_list = sorted(hosts.values(), key=lambda x: -x.get("ch", 0))
+
+    # 主机只统计「真正进了 channels 的」（被 MAX_PER_CHANNEL 截掉的不算），
+    # 否则首页显示的台数会虚高
+    host_list = []
+    for h, n in used.items():
+        m = host_meta[h]
+        m["ch"] = n
+        host_list.append(m)
+    host_list.sort(key=lambda x: -x["ch"])
 
     total_streams = sum(len(c["streams"]) for c in channels)
     payload = {
@@ -206,15 +216,103 @@ def build_pool(ok: dict[str, dict]) -> dict:
     return payload
 
 
+def check_only() -> dict[str, dict]:
+    """只验活现有池子里的地址，不重新拉取（巡检用，约 1-2 分钟）。
+
+    读 data/proxy_hotel.json，把里面每条 stream 的 url 拿出来重测一遍，
+    失效的丢掉；不发现新主机（那是全量模式的事）。
+    """
+    if not OUT_JSON.exists():
+        print("  [hotel] 没有现有池子，跳过巡检（需先全量拉取）")
+        return {}
+    cur = json.loads(OUT_JSON.read_text(encoding="utf-8"))
+    host_meta = {h["h"]: h for h in (cur.get("hosts") or []) if h.get("h")}
+
+    items: dict[str, dict] = {}
+    for ch in cur.get("channels") or []:
+        nm = ch.get("display") or ch.get("key") or ""
+        for s in ch.get("streams") or []:
+            u = s.get("u") or ""
+            h = s.get("h") or ""
+            if not u or not h:
+                continue
+            meta = host_meta.get(h) or {}
+            items[u] = {
+                "name": nm,
+                "region": meta.get("rn") or "未知",
+                "isp": meta.get("isp") or "",
+                "host": h,
+            }
+    print("  [hotel] 巡检现有 %d 条地址 ..." % len(items))
+    return items
+
+
+def filter_existing(ok_urls: set[str]) -> dict:
+    """巡检模式：从现有池子里剔除失效地址，**保留原有结构不重新聚合**。
+
+    重新聚合会把 display 名二次归一化，导致频道合并、池子缩水
+    （实测 1115 条会掉到 934 条），所以巡检只做减法。
+    """
+    cur = json.loads(OUT_JSON.read_text(encoding="utf-8"))
+    n_before = sum(len(c.get("streams") or []) for c in cur.get("channels") or [])
+
+    used = collections.Counter()
+    for ch in cur.get("channels") or []:
+        old = ch.get("streams") or []
+        kept = [s for s in old if s.get("u") in ok_urls]
+        ch["streams"] = kept
+        for s in kept:
+            used[s.get("h")] += 1
+    cur["channels"] = [c for c in cur["channels"] if c.get("streams")]
+
+    hosts = []
+    for h in cur.get("hosts") or []:
+        n = used.get(h.get("h"), 0)
+        if n:
+            h["ch"] = n
+            hosts.append(h)
+    cur["hosts"] = hosts
+
+    total = sum(len(c["streams"]) for c in cur["channels"])
+    cur["stats"] = {
+        "hosts_alive": len(hosts),
+        "hosts_total": len(hosts),
+        "channels": len(cur["channels"]),
+        "streams": total,
+    }
+    cur["generated_at"] = time.strftime("%Y-%m-%d %H:%M:%S")
+    print("  [hotel] 巡检剔除：%d -> %d 条（%d 台 / %d 频道）"
+          % (n_before, total, len(hosts), len(cur["channels"])))
+    return cur
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="采集酒店源 HLS 频道")
     ap.add_argument("--no-probe", action="store_true", help="跳过验活")
     ap.add_argument("--reuse", action="store_true", help="复用已验证的 hotel_ok.json")
+    ap.add_argument("--check-only", action="store_true",
+                    help="只巡检现有池子（不重新拉取，1-2 分钟）")
     ap.add_argument("--workers", type=int, default=50)
     args = ap.parse_args()
 
     ok: dict[str, dict] = {}
-    if args.reuse and OK_JSON.exists():
+    if args.check_only:
+        items = check_only()
+        if not items:
+            return
+        ok = probe(items, args.workers)
+        if not ok:
+            print("  [hotel] 巡检后无可用地址，保留原池子不动")
+            return
+        payload = filter_existing(set(ok.keys()))
+        OUT_JSON.write_text(
+            json.dumps(payload, ensure_ascii=False, separators=(",", ":")),
+            encoding="utf-8",
+        )
+        print("  [hotel] -> %s（%.1f MB）"
+              % (OUT_JSON, OUT_JSON.stat().st_size / 1048576))
+        return
+    elif args.reuse and OK_JSON.exists():
         raw = json.loads(OK_JSON.read_text(encoding="utf-8"))
         for x in raw:
             prov, isp = split_region(x.get("region") or "")

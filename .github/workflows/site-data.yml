@@ -6,8 +6,9 @@ name: Update proxy data
 
 on:
   schedule:
-    # UTC 19:20 = 北京时间 03:20
+    # UTC 19:20 = 北京时间 03:20；UTC 07:20 = 北京时间 15:20
     - cron: "20 19 * * *"
+    - cron: "20 7 * * *"
   workflow_dispatch:
     inputs:
       skip_probe:

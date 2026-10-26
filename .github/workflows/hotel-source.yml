@@ -1,14 +1,17 @@
 name: Hotel source refresh
 
-# 酒店源（HLS）每天固定刷新两次：北京 06:00 / 18:00
-#   拉 extract_hotel 全量 -> 逐条验活 -> 归一化聚合 -> 重建订阅
-# 和组播采集解耦：组播走 api-harvest / site-data，酒店源只在这里跑，
-# 时间固定，不再跟着采集任务漂移。
+# 酒店源（HLS）每天巡检三次：北京 06:00 / 12:00 / 18:00
+#   06:00、18:00  全量：重新拉 extract_hotel -> 验活 -> 聚合（能发现新主机，6-8 分钟）
+#   12:00        巡检：只复验现有地址，剔除失效（1-2 分钟，不拉全量）
+# 和组播采集解耦：组播走 api-harvest / site-data，酒店源只在这里跑，时间固定。
 
 on:
   schedule:
-    # UTC 22:00 = 北京次日 06:00；UTC 10:00 = 北京 18:00
+    # UTC 22:00 = 北京次日 06:00（全量）
     - cron: "0 22 * * *"
+    # UTC 04:00 = 北京 12:00（巡检）
+    - cron: "0 4 * * *"
+    # UTC 10:00 = 北京 18:00（全量）
     - cron: "0 10 * * *"
   workflow_dispatch:
 
@@ -38,10 +41,17 @@ jobs:
       - name: Install deps
         run: pip install requests urllib3
 
-      - name: Harvest hotel sources (HLS)
+      - name: Harvest hotel sources (full)
+        if: github.event.schedule != '0 4 * * *'
         env:
           PYTHONIOENCODING: utf-8
         run: cd spider && timeout 1800 python hotel_pool.py
+
+      - name: Patrol hotel sources (existing only)
+        if: github.event.schedule == '0 4 * * *'
+        env:
+          PYTHONIOENCODING: utf-8
+        run: cd spider && timeout 900 python hotel_pool.py --check-only
 
       - name: Rebuild subscriptions
         env:
