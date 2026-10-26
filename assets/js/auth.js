@@ -142,31 +142,6 @@
     return sha256(TOKEN_SALT + "|" + String(id || "").trim().toUpperCase()).slice(0, 16);
   }
 
-  /**
-   * 自动登记接口地址（重要）。
-   *
-   * 点「我已完成付款」后，前端会立即本机解锁，并把赞助码 POST 到这个地址，
-   * 由服务端自动写入 data/users.json、生成专属订阅文件（约 1 分钟）。
-   *
-   * 填法：把 worker/claim.js 部署到 Cloudflare Workers 后，把地址填进来，
-   * 例：https://你的子域.workers.dev/claim
-   *
-   * 留空：用户只能在本机解锁（换设备/清缓存会丢），专属订阅文件不会自动生成，
-   * 需要站长在 admin 后台手工补录。
-   */
-  var CLAIM_URL = "https://iptv-claim.609650909.workers.dev/claim";
-
-  /**
-   * 开通口令（防白拿）。
-   *
-   * 用户付款后点「立即开通」时必须输入这个口令，输对了才解锁。
-   * 站长收款后把口令发给用户即可，不用逐个后台补录。
-   *
-   * 改这里：把口令换成你自己的（建议纯数字/字母，好发给用户）。
-   * 想完全关闭口令校验，把值改成空字符串 ""。
-   */
-  var CLAIM_PASS = "IPTV2026";
-
   function readJSON(key, fallback) {
     try {
       var raw = localStorage.getItem(key);
@@ -257,41 +232,29 @@
   }
 
   /**
-   * 点「我已完成付款」——立即开通（需口令校验）。
+   * 点「我已完成付款」——生成待确认申请。
    *
-   * 先校验开通口令（防没付款的人白拿），口令对了才本机解锁，
-   * 同时把赞助码 POST 到 CLAIM_URL 自动登记，服务端据此生成
-   * 专属订阅文件（约 1 分钟）。
+   * 只记录一条「待开通」申请，不本机解锁。站长收款后在 admin 后台
+   * 确认（写入 users.json），专属订阅文件才生成、订阅链接才有效。
+   * 未确认前，订阅链接是无效的（文件不存在/空）。
    */
-  function unlock(planKey, orderNo, pass) {
-    // 口令校验：站长收款后把口令发给用户，输对了才解锁
-    if (CLAIM_PASS && String(pass || "").trim() !== CLAIM_PASS) {
-      return { ok: false, msg: "开通口令错误，请向站长索取" };
-    }
-
+  function unlock(planKey, orderNo) {
     var plan = planByKey(planKey) || planByKey(DEFAULT_PLAN);
     var mySid = sid();
-    var now = Date.now();
-    var exp = now + plan.days * 86400000;
 
     var rec = {
       sid: mySid,
       order: orderNo || "",
-      ts: now,
-      exp: exp,
+      ts: Date.now(),
       plan: plan.key,
       planName: plan.name,
       price: plan.price,
     };
-    if (!writeJSON(K_SPONSOR, rec)) {
+    if (!writeJSON(K_PENDING, rec)) {
       return { ok: false, msg: "浏览器存储不可用，请关闭无痕模式后重试" };
     }
-    clearPending();
 
-    // 登记到服务端，让专属订阅文件自动生成（未配置 CLAIM_URL 则只有本机解锁）
-    claimRemote(mySid, plan.key);
-
-    return { ok: true, member: true, plan: plan, sid: mySid, order: rec.order };
+    return { ok: true, pending: true, plan: plan, sid: mySid, order: rec.order };
   }
 
   /** 待开通申请（没有则返回 null） */
@@ -304,32 +267,6 @@
   function clearPending() {
     try {
       localStorage.removeItem(K_PENDING);
-    } catch (e) {}
-  }
-
-  /** 把赞助码登记到服务端（配置了 CLAIM_URL 才生效），失败不影响本地解锁 */
-  function claimRemote(mySid, planKey) {
-    if (!CLAIM_URL || typeof fetch !== "function") return;
-    try {
-      fetch(CLAIM_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sid: mySid, plan: planKey }),
-      })
-        .then(function (res) {
-          return res.ok ? res.json() : null;
-        })
-        .then(function (d) {
-          if (!d || !d.ok || !d.ts) return;
-          // 服务端已写入到期时间 → 这才算真正开通
-          var rec = record() || {};
-          rec.sid = mySid;
-          rec.exp = Number(d.ts) * 1000;
-          rec.ts = rec.ts || Date.now();
-          writeJSON(K_SPONSOR, rec);
-          clearPending();
-        })
-        .catch(function () {});
     } catch (e) {}
   }
 
@@ -423,9 +360,9 @@
     return !!(r && r.exp > Date.now());
   }
 
-  /** 是否已配置自动登记接口（没配就得靠站长手工补录） */
+  /** 是否已配置自动登记（改为站长确认制后，不再自动登记，恒为 false） */
   function remoteEnabled() {
-    return !!CLAIM_URL;
+    return false;
   }
 
   /* ---------------------------------------------------------- 免费地区 */

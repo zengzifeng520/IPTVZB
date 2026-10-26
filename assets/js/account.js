@@ -30,7 +30,6 @@
     orderNo: document.getElementById("orderNo"),
     copyOrder: document.getElementById("copyOrder"),
     confirmPay: document.getElementById("confirmPay"),
-    passInput: document.getElementById("passInput"),
     sidText: document.getElementById("sidText"),
     sidInput: document.getElementById("sidInput"),
     sidMsg: document.getElementById("sidMsg"),
@@ -220,7 +219,7 @@
       el.upgradeTitle.textContent = u.expired
         ? "赞助已到期，再次赞助恢复订阅"
         : pend
-          ? "赞助解锁订阅链接"
+          ? "开通申请待站长确认"
           : "赞助解锁订阅链接";
       el.upgradePill.textContent = u.expired ? "已到期" : pend ? "待开通" : "未赞助";
       el.upgradePill.className =
@@ -234,7 +233,7 @@
     }
     if (el.sidText) el.sidText.textContent = u.sidText || "—";
 
-    // 兼容旧的「待开通」记录（新流程点按钮即解锁，一般不会走到这里）
+    // 待确认申请：站长确认后订阅链接才生效
     if (el.pendingBox) {
       if (!u.member && pend) {
         el.pendingBox.hidden = false;
@@ -242,7 +241,7 @@
           '<b>已提交开通申请（' +
           esc(pend.planName || "") +
           "）</b>" +
-          "<p>订阅正在生成，通常 1 分钟内生效，请稍后刷新页面查看。</p>" +
+          "<p>订阅链接需站长确认后才生效。请把下面的赞助码发给站长：</p>" +
           '<div class="pending-code">' +
           esc(u.sidText || "") +
           "</div>";
@@ -383,8 +382,7 @@
     btn.disabled = true;
     btn.textContent = "正在解锁…";
 
-    var pass = el.passInput ? el.passInput.value : "";
-    var r = A.unlock(state.planKey, state.order, pass);
+    var r = A.unlock(state.planKey, state.order);
     if (!r.ok) {
       btn.disabled = false;
       btn.textContent = "我已完成付款，立即开通";
@@ -392,8 +390,8 @@
     }
 
     closePay();
-    // 立即本机解锁，服务端异步生成专属订阅文件
-    toast("已开通！订阅文件正在生成，约 1 分钟后可用");
+    // 本机已解锁，但订阅链接需站长确认后才真正有效
+    toast("已提交！把赞助码发给站长确认后，订阅链接才生效");
     renderHead();
     setTimeout(function () {
       location.reload();
