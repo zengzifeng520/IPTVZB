@@ -1,12 +1,6 @@
 #EXTM3U
-#EXTINF:-1 tvg-name="CCTV4欧洲" group-title="央视频道",CCTV4欧洲
-http://101.wifi98.com:9001/rtp/232.0.0.53:1234
 #EXTINF:-1 tvg-name="CCTV4美洲" group-title="央视频道",CCTV4美洲
 http://101.wifi98.com:9001/rtp/232.0.0.59:1234
-#EXTINF:-1 tvg-name="CCTV世界地理" group-title="央视频道",CCTV世界地理
-http://101.wifi98.com:9001/rtp/232.0.0.63:1234
-#EXTINF:-1 tvg-name="CCTV兵器科技" group-title="央视频道",CCTV兵器科技
-http://101.wifi98.com:9001/rtp/232.0.0.58:1234
 #EXTINF:-1 tvg-name="CCTV央视台球" group-title="央视频道",CCTV央视台球
 http://101.wifi98.com:9001/rtp/232.0.0.60:1234
 #EXTINF:-1 tvg-name="CCTV央视精品" group-title="央视频道",CCTV央视精品
@@ -15,28 +9,16 @@ http://101.wifi98.com:9001/rtp/232.0.0.56:1234
 http://101.wifi98.com:9001/rtp/232.0.0.51:1234
 #EXTINF:-1 tvg-name="CCTV电视指南" group-title="央视频道",CCTV电视指南
 http://101.wifi98.com:9001/rtp/232.0.0.91:1234
-#EXTINF:-1 tvg-name="CCTV风云剧场" group-title="央视频道",CCTV风云剧场
-http://101.wifi98.com:9001/rtp/232.0.0.45:1234
-#EXTINF:-1 tvg-name="CGTN俄语" group-title="央视频道",CGTN俄语
-http://101.wifi98.com:9001/rtp/232.0.0.28:1234
 #EXTINF:-1 tvg-name="CGTN纪录" group-title="央视频道",CGTN纪录
 http://101.wifi98.com:9001/rtp/232.0.0.198:1234
-#EXTINF:-1 tvg-name="CGTN西语" group-title="央视频道",CGTN西语
-http://101.wifi98.com:9001/rtp/232.0.0.6:1234
 #EXTINF:-1 tvg-name="CGTN阿语" group-title="央视频道",CGTN阿语
 http://101.wifi98.com:9001/rtp/232.0.0.43:1234
 #EXTINF:-1 tvg-name="优漫卡通" group-title="卫视频道",优漫卡通
 http://101.wifi98.com:9001/rtp/232.0.0.159:1234
-#EXTINF:-1 tvg-name="内蒙古卫视" group-title="卫视频道",内蒙古卫视
-http://101.wifi98.com:9001/rtp/232.0.0.111:1234
 #EXTINF:-1 tvg-name="厦门卫视" group-title="卫视频道",厦门卫视
 http://101.wifi98.com:9001/rtp/232.0.0.160:1234
-#EXTINF:-1 tvg-name="哈哈炫动" group-title="卫视频道",哈哈炫动
-http://101.wifi98.com:9001/rtp/232.0.0.103:1234
 #EXTINF:-1 tvg-name="延边卫视" group-title="卫视频道",延边卫视
 http://101.wifi98.com:9001/rtp/232.0.0.161:1234
-#EXTINF:-1 tvg-name="海南卫视" group-title="卫视频道",海南卫视
-http://101.wifi98.com:9001/rtp/232.0.0.26:1234
 #EXTINF:-1 tvg-name="北京体育" group-title="体育频道",北京体育
 http://101.wifi98.com:9001/rtp/232.0.0.162:1234
 #EXTINF:-1 tvg-name="辽宁体育" group-title="体育频道",辽宁体育
