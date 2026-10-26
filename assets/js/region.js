@@ -109,6 +109,12 @@
     return null;
   }
 
+  var THUMB =
+    '<svg class="ico-thumb" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
+    '<path d="M2.8 10.4h2.6c.5 0 .9.4.9.9v8.3c0 .5-.4.9-.9.9H2.8c-.5 0-.9-.4-.9-.9v-8.3c0-.5.4-.9.9-.9Z"/>' +
+    '<path d="M7.8 10.1 12 2.1c.2-.4.6-.7 1.1-.7 1.4 0 2.5 1.1 2.5 2.5v4.4h4.2c1.4 0 2.4 1.3 2.1 2.6l-1.3 6.7c-.2 1.1-1.2 1.9-2.3 1.9H7.8V10.1Z"/>' +
+    "</svg>";
+
   /* ---------------------------------------------------------- 渲染 */
 
   /** 公开地址表：data/public/urls/<地区>.json，任何人都能拿 */
@@ -153,7 +159,7 @@
 
     el.side.innerHTML =
       '<span class="ts-side-tip">喜欢就支持一下</span>' +
-      '<a class="btn btn-primary" href="account.html">👍 支持一下作者</a>';
+      '<a class="btn btn-primary" href="account.html">' + THUMB + '支持一下作者</a>';
   }
 
   function renderChips() {
@@ -360,7 +366,7 @@
   function boot() {
     state.user = window.IVAUTH.user();
     var params = new URLSearchParams(location.search);
-    el.acctLink.textContent = "👍 支持一下作者";
+    el.acctLink.innerHTML = THUMB + "支持一下作者";
 
     // 公开目录：含地区与频道统计
     fetch("data/public/channels.json", { cache: "no-cache" })

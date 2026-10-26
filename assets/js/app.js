@@ -88,24 +88,30 @@
     return key || "—";
   }
 
+  var THUMB =
+    '<svg class="ico-thumb" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
+    '<path d="M2.8 10.4h2.6c.5 0 .9.4.9.9v8.3c0 .5-.4.9-.9.9H2.8c-.5 0-.9-.4-.9-.9v-8.3c0-.5.4-.9.9-.9Z"/>' +
+    '<path d="M7.8 10.1 12 2.1c.2-.4.6-.7 1.1-.7 1.4 0 2.5 1.1 2.5 2.5v4.4h4.2c1.4 0 2.4 1.3 2.1 2.6l-1.3 6.7c-.2 1.1-1.2 1.9-2.3 1.9H7.8V10.1Z"/>' +
+    "</svg>";
+
   /* ---------------------------------------------------------- 打赏状态条 */
 
   function renderAccount() {
     var u = state.user;
     if (!u) return;
 
-    el.navAcct.textContent = "👍 支持一下作者";
+    el.navAcct.innerHTML = THUMB + "支持一下作者";
     el.navAcct.href = "account.html";
 
     el.cta.innerHTML =
       '<div class="cta-row">' +
       '<div class="cta-text">' +
-      "<h2>👍 支持一下作者</h2>" +
+      "<h2>" + THUMB + "支持一下作者</h2>" +
       "<p>本站<b>全部免费</b>——播放地址、M3U 订阅都能直接看、直接下，不设付费墙。" +
       "服务器与带宽有成本，如果觉得好用，欢迎<b>请作者喝杯咖啡</b>，多少都是心意。</p>" +
       "</div>" +
       '<div class="cta-acts">' +
-      '<a class="btn btn-primary btn-lg" href="account.html">支持一下作者</a>' +
+      '<a class="btn btn-primary btn-lg" href="account.html">' + THUMB + "支持一下作者</a>" +
       '<a class="btn btn-lg" href="region.html">先看看频道</a>' +
       "</div>" +
       "</div>";
