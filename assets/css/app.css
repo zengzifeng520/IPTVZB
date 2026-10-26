@@ -190,6 +190,46 @@ input { font-family: inherit; }
 }
 .hero p { margin: 0; color: var(--text-2); font-size: 14.5px; max-width: 640px; }
 
+/* ---------------------------------------------------------- 关于本站（项目介绍 + 欢迎语音） */
+.about-panel {
+  margin: 4px 0 18px;
+  padding: 18px 20px;
+  border-radius: 13px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.about-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.about-head h2 { margin: 0; font-size: 17px; font-weight: 800; color: var(--text); letter-spacing: 0.2px; }
+.about-desc {
+  margin: 0;
+  font-size: 14px; line-height: 1.85;
+  color: var(--text-2);
+}
+.about-desc b { color: var(--text); font-weight: 700; }
+
+.play-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 38px; padding: 0 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  background: rgba(52, 211, 153, 0.12);
+  color: #34d399;
+  font-size: 14px; font-weight: 700;
+  cursor: pointer;
+  transition: all 0.16s var(--ease);
+  white-space: nowrap;
+  font-family: inherit;
+}
+.play-btn:hover { background: rgba(52, 211, 153, 0.20); border-color: rgba(52, 211, 153, 0.55); }
+.play-btn .play-ico { font-size: 11px; line-height: 1; }
+.play-btn.is-playing { background: rgba(52, 211, 153, 0.22); border-color: rgba(52, 211, 153, 0.6); }
+[data-theme="light"] .play-btn { color: #059669; background: rgba(5, 150, 105, 0.10); border-color: rgba(5, 150, 105, 0.30); }
+[data-theme="light"] .play-btn:hover { background: rgba(5, 150, 105, 0.18); border-color: rgba(5, 150, 105, 0.5); }
+
 .stats {
   display: flex; flex-wrap: wrap; gap: 10px;
   margin-top: 22px;
@@ -558,7 +598,7 @@ input { font-family: inherit; }
   border-left: 1px solid var(--border);
 }
 .disclaimer-panel .dp-update .up-label { font-size: 14px; font-weight: 700; color: var(--text-3); letter-spacing: 0.5px; }
-.disclaimer-panel .dp-update .up-time { font-size: 22px; font-weight: 800; color: var(--text); letter-spacing: 0.3px; white-space: nowrap; }
+.disclaimer-panel .dp-update .up-time { font-size: 22px; font-weight: 800; color: #34d399; letter-spacing: 0.3px; white-space: nowrap; }
 .disclaimer-panel .dp-update .up-clock {
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   font-size: 13px; font-weight: 600;
@@ -1990,6 +2030,7 @@ input { font-family: inherit; }
 [data-theme="light"] .sub-item-url { color: var(--text-2); }
 [data-theme="light"] .sub-item-meta { color: var(--text-2); }
 [data-theme="light"] .token-field { background: #ffffff; border-color: rgba(0, 0, 0, 0.14); }
+[data-theme="light"] .disclaimer-panel .dp-update .up-time { color: #059669; }
 
 /* ---------------------------------------------------------- 主题切换按钮 */
 .theme-toggle {

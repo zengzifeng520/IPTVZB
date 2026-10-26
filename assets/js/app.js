@@ -19,6 +19,9 @@
     updAt: document.getElementById("updAt"),
     hotelEntry: document.getElementById("hotelEntry"),
     hotelNums: document.getElementById("hotelNums"),
+    playWelcome: document.getElementById("playWelcome"),
+    playIco: document.getElementById("playIco"),
+    playTxt: document.getElementById("playTxt"),
     toast: document.getElementById("toast"),
   };
 
@@ -38,6 +41,43 @@
     toastTimer = setTimeout(function () {
       el.toast.classList.remove("show");
     }, 2400);
+  }
+
+  /* ---------------------------------------------------------- 欢迎语音（Web Speech TTS） */
+  var WELCOME_TEXT =
+    "欢迎订购本站 IPTV 直播源。本站自动采集全国各省市的组播直播源与酒店源，" +
+    "过滤低分辨率、保留高清，每小时自动巡检更新。赞助即可解锁全部播放地址与专属订阅，祝您观看愉快。";
+
+  function initWelcomeVoice() {
+    if (!el.playWelcome) return;
+    var speaking = false;
+
+    function setState(playing) {
+      speaking = playing;
+      el.playWelcome.classList.toggle("is-playing", playing);
+      el.playIco.textContent = playing ? "■" : "▶";
+      el.playTxt.textContent = playing ? "停止播放" : "播放欢迎语";
+    }
+
+    el.playWelcome.addEventListener("click", function () {
+      if (!("speechSynthesis" in window)) {
+        toast("当前浏览器不支持语音播放");
+        return;
+      }
+      if (speaking) {
+        speechSynthesis.cancel();
+        setState(false);
+        return;
+      }
+      var u = new SpeechSynthesisUtterance(WELCOME_TEXT);
+      u.lang = "zh-CN";
+      u.rate = 0.95;
+      u.onstart = function () { setState(true); };
+      u.onend = function () { setState(false); };
+      u.onerror = function () { setState(false); };
+      speechSynthesis.cancel();
+      speechSynthesis.speak(u);
+    });
   }
 
   function regionName(key) {
@@ -176,6 +216,7 @@
   function boot() {
     state.user = window.IVAUTH.user();
     renderAccount();
+    initWelcomeVoice();
 
     // 先从服务端同步赞助状态（换设备 / 站长补录后自动恢复）
     window.IVAUTH.syncSponsor().then(function (changed) {
