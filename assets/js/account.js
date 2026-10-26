@@ -361,6 +361,27 @@
     }, 900);
   });
 
+  /* ------------------------------------------------ 专属订阅就绪检测 */
+
+  // 付款后订阅文件由服务端生成，首次开通通常 1 分钟内可用。
+  // 这里在账号页显示一条状态条，避免用户看到地址却打不开以为出错。
+  function checkSubReady() {
+    var u = A.user();
+    if (!u || !u.member || !el.subList) return;
+    var tok = A.tokenOf(u.phone);
+    fetch("data/users/" + tok + "/meta.json", { cache: "no-store" })
+      .then(function (res) {
+        if (res.ok) return;
+        el.subList.insertAdjacentHTML(
+          "afterbegin",
+          '<div class="empty-inline" style="text-align:left;padding:10px 12px">' +
+            "专属订阅正在生成，通常 1 分钟内生效。如果超过 10 分钟仍不可用，请退出后重新登录再试。" +
+            "</div>"
+        );
+      })
+      .catch(function () {});
+  }
+
   /* ---------------------------------------------------------- 退出 */
 
   el.logout.addEventListener("click", function () {
@@ -405,9 +426,11 @@
       .then(function (d) {
         state.subs = d;
         renderSubs();
+        checkSubReady();
       })
       .catch(function () {
         renderSubs();
+        checkSubReady();
       });
   }
 

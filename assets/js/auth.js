@@ -133,6 +133,14 @@
   var TOKEN_SALT = "zzf-sub-2026";
 
   /**
+   * 开通登记接口地址（可选）。
+   * 填了就会在付款后自动把账号写进服务端用户表，专属订阅 1 分钟内自动生成；
+   * 留空则只有本地解锁，需要管理员手工在 data/users.json 里加一行。
+   * 例：https://你的worker.workers.dev/claim
+   */
+  var CLAIM_URL = "";
+
+  /**
    * 手机号 -> 16 位订阅 token。
    * 与后端 sha256(TOKEN_SALT + "|" + 手机号)[:16] 保持同一算法，
    * 这样服务端只拿到手机号就能推出订阅目录，前端只拿到手机号就能拼出地址。
@@ -272,6 +280,32 @@
       price: plan.price,
     };
     if (!writeJSON(K_MEMBER, db)) return { ok: false, msg: "浏览器存储不可用，请关闭无痕模式" };
+
+    // 自动登记到服务端（配置了 CLAIM_URL 才启用）。
+    // 不阻塞、不校验结果：失败也只是订阅文件晚一点生成，不影响本地解锁。
+    if (CLAIM_URL && typeof fetch === "function") {
+      try {
+        fetch(CLAIM_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ phone: phone, plan: plan.key }),
+        })
+          .then(function (res) {
+            return res.ok ? res.json() : null;
+          })
+          .then(function (d) {
+            if (!d || !d.ok || !d.ts) return;
+            // 以服务端到期时间为准，避免前后端各算一套
+            var m = members();
+            if (m[phone]) {
+              m[phone].exp = Number(d.ts) * 1000;
+              writeJSON(K_MEMBER, m);
+            }
+          })
+          .catch(function () {});
+      } catch (e) {}
+    }
+
     return { ok: true, exp: exp, plan: plan };
   }
 

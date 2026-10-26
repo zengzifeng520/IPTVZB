@@ -129,6 +129,64 @@ var DEFAULT_PLAN = "month";   // 默认选中的档位
 
 替换 `assets/img/wxpay.jpg` 即可，页面上按 232px 宽展示。
 
+## 会员订阅与到期
+
+每个账号有自己的一份订阅，地址里带一个由手机号推导的 token：
+
+```
+https://zzf.new.tg/data/users/<token>/all.m3u     全量
+https://zzf.new.tg/data/users/<token>/SX.m3u      单地区（key 见 data/sub/index.json）
+```
+
+`token = sha256("zzf-sub-2026|手机号")` 的前 16 位，前端 `auth.js` 与后端 `subs.py` 用同一算法，所以**只要在用户表里写手机号和到期日期就够了**，不用手算 token 和时间戳。
+
+### 用户表 `data/users.json`
+
+```json
+{
+  "13800138000": { "expire": "2026-11-25" },
+  "13900139000": { "expire": "2027-03-01", "created": "2026-10-26" }
+}
+```
+
+`expire` 按北京时间当天 23:59:59 生效，用户能用满最后一天。
+
+### 加用户（两种方式，任选）
+
+**方式一：网页改（最简单，手机也能操作）**
+
+打开仓库里的 `data/users.json` → 点编辑 → 加一行 `"手机号": { "expire": "到期日期" },` → Commit。
+提交后会自动触发 Actions 重建，约 1 分钟生效。
+
+**方式二：本地命令**
+
+```bash
+cd spider
+python users_cli.py add 13800138000 --days 30     # 或 --expire 2026-11-25
+python users_cli.py list                          # 查看全部用户和剩余天数
+python users_cli.py remove 13800138000            # 删除
+```
+
+跑完推送 `data/users.json` 即可。
+
+**方式三：全自动（可选）**
+
+部署 `worker/claim.js` 到 Cloudflare Worker（需要配一个 `GH_TOKEN` 环境变量，只授权本仓库 Contents 读写），
+然后把 Worker 地址填进 `assets/js/auth.js` 顶部的 `CLAIM_URL`。
+之后用户点「我已完成付款」会自动写入用户表，不再需要人工加人。
+
+### 到期后会发生什么
+
+每日任务会把该用户目录下所有 m3u **改写为空列表**：
+
+```
+#EXTM3U
+# 会员已到期，订阅已停止更新，续费后立即恢复
+```
+
+订阅 URL 保持不变、不返回 404（避免播放器报错），播放器下次刷新就拉到 0 个频道，
+因此本地不会留下可以继续使用的旧列表。续费后第二天（或提交用户表后 1 分钟）自动恢复。
+
 ## 免责声明
 
 本站不存储、不制作、不转播任何视频内容。播放地址由第三方中转服务器提供，仅做地址汇聚与可用性检测，版权归原权利人所有。
