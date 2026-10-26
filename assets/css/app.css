@@ -512,14 +512,18 @@ input { font-family: inherit; }
 .foot a:hover { color: var(--accent-2); border-color: currentColor; }
 .foot p { margin: 0 0 6px; max-width: 620px; line-height: 1.7; }
 
-/* ---------------------------------------------------------- 免责声明面板 + 数据更新面板 */
+/* ---------------------------------------------------------- 免责声明面板（左）+ 数据更新（右）共用面板 */
 .disclaimer-panel {
+  display: flex;
+  align-items: center;
+  gap: 28px;
   padding: 22px 24px;
   margin-bottom: 16px;
   border-radius: 13px;
   background: var(--surface);
   border: 1px solid var(--border);
 }
+.disclaimer-panel .dp-left { flex: 1; min-width: 0; }
 .disclaimer-panel .dp-title {
   font-size: 18px; font-weight: 800;
   margin: 0 0 14px;
@@ -532,25 +536,39 @@ input { font-family: inherit; }
   border-radius: 2px;
   background: linear-gradient(180deg, #6366f1, #ec4899);
 }
-.disclaimer-panel p {
+.disclaimer-panel .dp-left p {
   margin: 0 0 12px;
   line-height: 1.9;
   font-size: 16px;
   font-weight: 600;
   color: var(--text-2);
 }
-.disclaimer-panel p:last-child { margin-bottom: 0; }
+.disclaimer-panel .dp-left p:last-child { margin-bottom: 0; }
 
-.update-panel {
-  display: flex; align-items: center; justify-content: center; gap: 12px;
-  padding: 18px 22px;
-  margin-bottom: 16px;
-  border-radius: 13px;
-  background: var(--surface);
-  border: 1px solid var(--border);
+.disclaimer-panel .dp-update {
+  flex: none;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 168px;
+  padding: 8px 8px 8px 28px;
+  border-left: 1px solid var(--border);
 }
-.update-panel .up-label { font-size: 16px; font-weight: 700; color: var(--text-2); }
-.update-panel .up-time { font-size: 23px; font-weight: 800; color: var(--text); letter-spacing: 0.3px; }
+.disclaimer-panel .dp-update .up-label { font-size: 14px; font-weight: 700; color: var(--text-3); letter-spacing: 0.5px; }
+.disclaimer-panel .dp-update .up-time { font-size: 22px; font-weight: 800; color: var(--text); letter-spacing: 0.3px; white-space: nowrap; }
+
+@media (max-width: 720px) {
+  .disclaimer-panel { flex-direction: column; align-items: stretch; gap: 18px; }
+  .disclaimer-panel .dp-update {
+    border-left: none;
+    border-top: 1px solid var(--border);
+    padding: 16px 0 0;
+    min-width: 0;
+  }
+}
 
 .foot-admin-row { text-align: center; padding-bottom: 4px; }
 .foot-admin-row a {
@@ -1959,6 +1977,12 @@ input { font-family: inherit; }
 [data-theme="light"] .sub-type { color: #0891b2; }
 [data-theme="light"] .sub-note { color: var(--text-2); }
 [data-theme="light"] .host-chip { color: #047857; background: rgba(5, 150, 105, 0.10); border-color: rgba(5, 150, 105, 0.24); }
+/* 浅色主题下订阅列表卡片（account.html「我的订阅地址」）：原深色背景换成浅色 */
+[data-theme="light"] .sub-item { background: #ffffff; border-color: rgba(0, 0, 0, 0.08); }
+[data-theme="light"] .sub-item.is-mine { background: rgba(5, 150, 105, 0.06); border-color: rgba(5, 150, 105, 0.28); }
+[data-theme="light"] .sub-item-url { color: var(--text-2); }
+[data-theme="light"] .sub-item-meta { color: var(--text-2); }
+[data-theme="light"] .token-field { background: #ffffff; border-color: rgba(0, 0, 0, 0.14); }
 
 /* ---------------------------------------------------------- 主题切换按钮 */
 .theme-toggle {
