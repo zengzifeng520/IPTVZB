@@ -36,6 +36,7 @@
     sidMsg: document.getElementById("sidMsg"),
     copySid: document.getElementById("copySid"),
     restoreBtn: document.getElementById("restoreBtn"),
+    resetBtn: document.getElementById("resetBtn"),
     toast: document.getElementById("toast"),
   };
 
@@ -444,6 +445,24 @@
           location.reload();
         }, 700);
       });
+    });
+  }
+
+  // 清除本机赞助记录（站长测试后一键重置）
+  if (el.resetBtn) {
+    el.resetBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (!window.confirm("确定清除本机赞助记录吗？\n\n清除后将回到未赞助状态，赞助码也会重新生成。")) return;
+      var keys = ["iv_sid_v1", "iv_sponsor_v1", "iv_pending_v1", "iv_free_region_v1", "iv_free_expire_v1"];
+      keys.forEach(function (k) {
+        try {
+          localStorage.removeItem(k);
+        } catch (err) {}
+      });
+      toast("已清除本机记录");
+      setTimeout(function () {
+        location.reload();
+      }, 800);
     });
   }
 
