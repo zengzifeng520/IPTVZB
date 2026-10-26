@@ -13,6 +13,9 @@
   var K_SPONSOR = "iv_sponsor_v1";
   // 免费版可选的那一个地区，选定后不再更改
   var K_FREE_REGION = "iv_free_region_v1";
+  // 免费订阅的到期时间（选地区那天 + FREE_DAYS 天）
+  var K_FREE_EXPIRE = "iv_free_expire_v1";
+  var FREE_DAYS = 7;
 
   // 赞助档位
   var PLANS = [
@@ -345,19 +348,46 @@
     }
   }
 
+  /** 免费订阅的到期时间戳（毫秒），没选过返回 0 */
+  function freeExpire() {
+    try {
+      return Number(localStorage.getItem(K_FREE_EXPIRE) || 0);
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  /** 免费订阅是否仍在有效期内 */
+  function freeValid() {
+    var exp = freeExpire();
+    return exp > Date.now();
+  }
+
+  /** 到期日 -> YYYYMMDD，用于拼免费订阅目录（与 subs.py 的目录名一致） */
+  function freeDir() {
+    var exp = freeExpire();
+    if (!exp) return "";
+    var d = new Date(exp);
+    function p(n) {
+      return n < 10 ? "0" + n : "" + n;
+    }
+    return d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate());
+  }
+
   /**
    * 选定免费地区。每个设备只能选一次，选定后不可更改；
-   * 想随时切换全部地区需要赞助。
+   * 同时记下 FREE_DAYS 天后的到期时间，到期后免费订阅自动失效。
    */
   function setFreeRegion(key) {
     var cur = freeRegion();
     if (cur) return { ok: false, msg: "免费地区已选定，赞助后可随时切换", key: cur };
     try {
       localStorage.setItem(K_FREE_REGION, String(key));
+      localStorage.setItem(K_FREE_EXPIRE, String(Date.now() + FREE_DAYS * 86400000));
     } catch (e) {
       return { ok: false, msg: "浏览器存储不可用" };
     }
-    return { ok: true, key: String(key) };
+    return { ok: true, key: String(key), expire: freeExpire() };
   }
 
   /* ---------------------------------------------------------- 视图 */
@@ -433,6 +463,10 @@
     clearSponsor: clearSponsor,
     freeRegion: freeRegion,
     setFreeRegion: setFreeRegion,
+    freeExpire: freeExpire,
+    freeValid: freeValid,
+    freeDir: freeDir,
+    FREE_DAYS: FREE_DAYS,
     user: user,
     syncSponsor: syncSponsor,
     makeOrderNo: makeOrderNo,

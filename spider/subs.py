@@ -39,6 +39,10 @@ INDEX_JSON = SUB_DIR / "index.json"
 USERS_JSON = config.WEB_DATA_DIR / "users.json"
 USERS_DIR = config.WEB_DATA_DIR / "users"
 
+# 免费订阅：按「到期日」分目录，滚动保留未来 7 天，过期目录直接删掉
+FREE_DIR = config.WEB_DATA_DIR / "free"
+FREE_DAYS = 7
+
 # token 盐值：前端 assets/js/auth.js 里的 TOKEN_SALT 必须与此一致
 TOKEN_SALT = "zzf-sub-2026"
 
@@ -76,6 +80,39 @@ def _write(path: Path, channels: list[dict], host_set: set[str] | None = None) -
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
     return n_chan, n_stream
+
+
+def build_free(channels: list[dict], regions: list[dict]) -> None:
+    """免费订阅：按「到期日」分目录，只保留未来 FREE_DAYS 天。
+
+    目录名就是到期日期（YYYYMMDD），前端按「选地区当天 + 7 天」拼地址。
+    过了那一天目录被删除 -> 播放器 404 / 空列表，免费订阅自然失效。
+    8 个目录内容完全相同，Git 只存一份 blob，仓库不会被撑大。
+    """
+    today = datetime.now(CST).date()
+    keep: set[str] = set()
+
+    for i in range(FREE_DAYS + 1):
+        key = (today + timedelta(days=i)).strftime("%Y%m%d")
+        keep.add(key)
+        d = FREE_DIR / key
+        d.mkdir(parents=True, exist_ok=True)
+        for r in regions:
+            host_set = set(r.get("hosts") or [])
+            target = d / f"{r['key']}.m3u"
+            if not host_set:
+                target.write_text(EMPTY_SUB, encoding="utf-8")
+                continue
+            c, _s = _write(target, channels, host_set)
+            if not c:
+                target.write_text(EMPTY_SUB, encoding="utf-8")
+
+    if FREE_DIR.exists():
+        for p in FREE_DIR.iterdir():
+            if p.is_dir() and p.name not in keep:
+                shutil.rmtree(p, ignore_errors=True)
+
+    print(f"  [subs] 免费订阅目录 {len(keep)} 天（{min(keep)} ~ {max(keep)}）")
 
 
 def build_users(channels: list[dict], regions: list[dict]) -> dict:
@@ -235,7 +272,8 @@ def build() -> dict:
     )
     print(f"  [subs] 索引 {len(index_regions)} 个地区 -> {INDEX_JSON.name}")
 
-    # 传原始 regions（含频道为 0 的地区），保证用户目录下每个地区都有文件
+    # 传原始 regions（含频道为 0 的地区），保证每个目录下每个地区都有文件
+    build_free(channels, regions)
     build_users(channels, regions)
     return payload
 

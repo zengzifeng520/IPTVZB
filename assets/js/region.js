@@ -183,14 +183,15 @@
     var member = isMember();
     var key = state.regionKey;
     var freeKey = window.IVAUTH.freeRegion();
-    // 赞助用户可用全部地区；免费用户只能用已选定的那一个
-    var canUse = member || freeKey === key;
+    var freeOk = window.IVAUTH.freeValid();
+    // 赞助用户可用全部地区；免费用户只能用已选定且未过期的那一个
+    var canUse = member || (freeKey === key && freeOk);
 
     el.subSec.hidden = !canUse;
     el.lockSec.hidden = canUse;
 
     if (!canUse) {
-      renderLock(key, freeKey);
+      renderLock(key, freeKey, freeOk);
       return;
     }
 
@@ -208,11 +209,14 @@
         el.subDesc.textContent =
           "这是你专属的订阅地址，请勿分享。赞助到期后该地址会自动停止更新，播放器刷新后频道将为空。";
       } else {
-        // 免费额度：一个地区，用公共文件
-        state.subPath = mine.sub;
-        el.subTitle.textContent = (r ? r.name : "") + " 订阅地址（免费）";
+        // 免费额度：公共目录，选地区当天 + 7 天后目录被删，链接自动失效
+        var dir = window.IVAUTH.freeDir();
+        state.subPath = "data/free/" + dir + "/" + key + ".m3u";
+        el.subTitle.textContent = (r ? r.name : "") + " 免费订阅（7 天）";
         el.subDesc.textContent =
-          "免费订阅是公共线路，不保证有效性和稳定性；页面上的播放地址需赞助后显示。想要稳定观看全部频道，赞助后可获得专属订阅与全部地址。";
+          "免费订阅有效期至 " +
+          window.IVAUTH.fmtDate(window.IVAUTH.freeExpire()) +
+          "，到期后这条链接自动失效。免费为公共线路，不保证稳定性；赞助后可拿专属订阅并查看全部播放地址。";
       }
       el.subTag.textContent = (r ? r.name : "") + " · " + mine.channels + " 频道 / " + mine.streams + " 条";
       el.subUrl.textContent = baseUrl() + state.subPath;
@@ -240,15 +244,15 @@
   }
 
   /** 未赞助时：没选过地区就让他选，选过了就引导回去或去赞助 */
-  function renderLock(key, freeKey) {
+  function renderLock(key, freeKey, freeOk) {
     var r = regionByKey(key);
     var name = r ? r.name : key;
 
     if (!freeKey) {
       el.lockBody.innerHTML =
         "<h2>免费版可以先选 1 个地区</h2>" +
-        "<p>不赞助只能看到频道名，<b>拿不到播放地址</b>。可以先选 <b>1 个地区</b> 的订阅链接试试，但免费订阅是公共线路、不保证有效性。<br>" +
-        "赞助后可查看全部地区地址，并稳定观看所有频道。</p>" +
+        "<p>不赞助只能看到频道名，<b>拿不到播放地址</b>。可以先选 <b>1 个地区</b> 的订阅链接试用，有效期 <b>7 天</b>，到期自动失效。<br>" +
+        "赞助后可查看全部地区地址，并拿到长期有效的专属订阅。</p>" +
         '<button class="btn btn-primary btn-lg" type="button" data-act="pick" style="margin-top:6px">就选「' +
         esc(name) +
         "」</button>" +
@@ -258,12 +262,27 @@
 
     var fr = regionByKey(freeKey);
     var fname = fr ? fr.name : freeKey;
+
+    // 选过但 7 天免费期已经结束
+    if (!freeOk) {
+      el.lockBody.innerHTML =
+        "<h2>免费订阅已到期</h2>" +
+        "<p>你在「" +
+        esc(fname) +
+        "」的 7 天免费订阅已于 " +
+        esc(window.IVAUTH.fmtDate(window.IVAUTH.freeExpire())) +
+        " 到期，链接已失效。<br>赞助后可查看全部播放地址，并拿到长期有效的专属订阅。</p>" +
+        '<a class="btn btn-primary btn-lg" href="account.html" style="margin-top:6px">去赞助解锁</a>';
+      return;
+    }
+
     el.lockBody.innerHTML =
       "<h2>你的免费地区是「" +
       esc(fname) +
       "」</h2>" +
-      "<p>这个地区可以拿到 1 条订阅链接，但<b>播放地址仍需赞助后显示</b>。<br>" +
-      "免费订阅为公共线路，不保证有效性。</p>" +
+      "<p>免费订阅有效期至 <b>" +
+      esc(window.IVAUTH.fmtDate(window.IVAUTH.freeExpire())) +
+      "</b>，到期后链接自动失效。<br>播放地址仍需赞助后显示。</p>" +
       '<a class="btn btn-primary btn-lg" href="region.html?r=' +
       encodeURIComponent(freeKey) +
       '" style="margin-top:6px">去看「' +
