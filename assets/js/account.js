@@ -133,11 +133,11 @@
       "data/public/sub/" + String(expire).replace(/-/g, "") + "/";
     if (!expire) subPrefix = "data/public/";
 
-    // 全量订阅（公开）：只含全部地区，不含酒店源
+    // 全量订阅（公开）：只含全部地区，不含酒店源/港澳台
     items.push({
       key: "ALL",
       name: "全量订阅",
-      isp: "全部地区合并（不含酒店源）",
+      isp: "全部地区合并（不含酒店源/港澳台）",
       path: subPrefix + "all.m3u",
       channels: all.channels || 0,
       streams: all.streams || 0,
@@ -165,6 +165,18 @@
         path: subPrefix + "hotel.m3u",
         channels: all.hotelChannels || 0,
         streams: all.hotelStreams || 0,
+      });
+    }
+
+    // 港澳台订阅（公开）
+    if (all.gangaotaiStreams) {
+      items.push({
+        key: "gangaotai",
+        name: "港澳台",
+        isp: "HLS 直连 · 大陆可播",
+        path: subPrefix + "gangaotai.m3u",
+        channels: all.gangaotaiChannels || 0,
+        streams: all.gangaotaiStreams || 0,
       });
     }
 
