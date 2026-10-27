@@ -307,10 +307,6 @@ http://www.3872327.top:1225/rtp/239.254.96.182:9172
 http://www.ct123.online:8188/rtp/239.69.1.204:10866
 #EXTINF:-1 tvg-name="湖北影视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E5%BD%B1%E8%A7%86.png" group-title="影视频道",湖北影视
 http://www.ct123.online:8188/rtp/239.254.96.182:9172
-#EXTINF:-1 tvg-name="湖北影视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E5%BD%B1%E8%A7%86.png" group-title="影视频道",湖北影视
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.204:10866
-#EXTINF:-1 tvg-name="湖北影视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E5%BD%B1%E8%A7%86.png" group-title="影视频道",湖北影视
-http://yy15238.netyiyang.com:8800/rtp/239.254.96.182:9172
 #EXTINF:-1 tvg-id="都市剧场" tvg-name="都市剧场" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E9%83%BD%E5%B8%82%E5%89%A7%E5%9C%BA.png" group-title="影视频道",都市剧场
 http://hiliu.myds.me:18088/rtp/239.69.2.4:11178
 #EXTINF:-1 tvg-id="CHC动作电影" tvg-name="CHC动作电影" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/CHC%E5%8A%A8%E4%BD%9C%E7%94%B5%E5%BD%B1.png" group-title="电影频道",CHC动作电影
@@ -495,8 +491,6 @@ http://hiliu.myds.me:18088/rtp/239.69.1.192:10794
 http://www.3872327.top:1225/rtp/239.69.1.192:10794
 #EXTINF:-1 tvg-name="房县综合" tvg-logo="https://zzf.new.tg/data/logos/d450cf9b4386.png" group-title="地方频道",房县综合
 http://www.ct123.online:8188/rtp/239.69.1.192:10794
-#EXTINF:-1 tvg-name="房县综合" tvg-logo="https://zzf.new.tg/data/logos/d450cf9b4386.png" group-title="地方频道",房县综合
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.192:10794
 #EXTINF:-1 tvg-name="武汉教育" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%AD%A6%E6%B1%89%E6%95%99%E8%82%B2.png" group-title="地方频道",武汉教育
 http://219.140.4.5:8888/rtp/239.69.1.60:9994
 #EXTINF:-1 tvg-name="武汉教育" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%AD%A6%E6%B1%89%E6%95%99%E8%82%B2.png" group-title="地方频道",武汉教育
@@ -509,8 +503,6 @@ http://hiliu.myds.me:18088/rtp/239.69.1.60:9994
 http://www.3872327.top:1225/rtp/239.69.1.60:9994
 #EXTINF:-1 tvg-name="武汉教育" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%AD%A6%E6%B1%89%E6%95%99%E8%82%B2.png" group-title="地方频道",武汉教育
 http://www.ct123.online:8188/rtp/239.69.1.60:9994
-#EXTINF:-1 tvg-name="武汉教育" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%AD%A6%E6%B1%89%E6%95%99%E8%82%B2.png" group-title="地方频道",武汉教育
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.60:9994
 #EXTINF:-1 tvg-name="武汉文体" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%AD%A6%E6%B1%89%E6%96%87%E4%BD%93.png" group-title="地方频道",武汉文体
 http://219.140.4.5:8888/rtp/239.69.1.147:10518
 #EXTINF:-1 tvg-name="武汉文体" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%AD%A6%E6%B1%89%E6%96%87%E4%BD%93.png" group-title="地方频道",武汉文体
@@ -531,10 +523,6 @@ http://www.3872327.top:1225/rtp/239.69.1.4:9664
 http://www.ct123.online:8188/rtp/239.69.1.147:10518
 #EXTINF:-1 tvg-name="武汉文体" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%AD%A6%E6%B1%89%E6%96%87%E4%BD%93.png" group-title="地方频道",武汉文体
 http://www.ct123.online:8188/rtp/239.69.1.4:9664
-#EXTINF:-1 tvg-name="武汉文体" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%AD%A6%E6%B1%89%E6%96%87%E4%BD%93.png" group-title="地方频道",武汉文体
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.147:10518
-#EXTINF:-1 tvg-name="武汉文体" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%AD%A6%E6%B1%89%E6%96%87%E4%BD%93.png" group-title="地方频道",武汉文体
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.4:9664
 #EXTINF:-1 tvg-name="武汉电视剧" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%AD%A6%E6%B1%89%E7%94%B5%E8%A7%86%E5%89%A7.png" group-title="地方频道",武汉电视剧
 http://219.140.4.5:8888/rtp/239.69.1.146:10512
 #EXTINF:-1 tvg-name="武汉电视剧" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%AD%A6%E6%B1%89%E7%94%B5%E8%A7%86%E5%89%A7.png" group-title="地方频道",武汉电视剧
@@ -555,10 +543,6 @@ http://www.3872327.top:1225/rtp/239.254.96.229:9454
 http://www.ct123.online:8188/rtp/239.69.1.146:10512
 #EXTINF:-1 tvg-name="武汉电视剧" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%AD%A6%E6%B1%89%E7%94%B5%E8%A7%86%E5%89%A7.png" group-title="地方频道",武汉电视剧
 http://www.ct123.online:8188/rtp/239.254.96.229:9454
-#EXTINF:-1 tvg-name="武汉电视剧" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%AD%A6%E6%B1%89%E7%94%B5%E8%A7%86%E5%89%A7.png" group-title="地方频道",武汉电视剧
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.146:10512
-#EXTINF:-1 tvg-name="武汉电视剧" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%AD%A6%E6%B1%89%E7%94%B5%E8%A7%86%E5%89%A7.png" group-title="地方频道",武汉电视剧
-http://yy15238.netyiyang.com:8800/rtp/239.254.96.229:9454
 #EXTINF:-1 tvg-name="武汉科技生活" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%AD%A6%E6%B1%89%E7%A7%91%E6%8A%80%E7%94%9F%E6%B4%BB.png" group-title="地方频道",武汉科技生活
 http://219.140.4.5:8888/rtp/239.69.1.251:11148
 #EXTINF:-1 tvg-name="武汉科技生活" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%AD%A6%E6%B1%89%E7%A7%91%E6%8A%80%E7%94%9F%E6%B4%BB.png" group-title="地方频道",武汉科技生活
@@ -577,10 +561,6 @@ http://www.3872327.top:1225/rtp/239.69.1.251:11148
 http://www.3872327.top:1225/rtp/239.69.1.2:9652
 #EXTINF:-1 tvg-name="武汉科技生活" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%AD%A6%E6%B1%89%E7%A7%91%E6%8A%80%E7%94%9F%E6%B4%BB.png" group-title="地方频道",武汉科技生活
 http://www.ct123.online:8188/rtp/239.69.1.251:11148
-#EXTINF:-1 tvg-name="武汉科技生活" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%AD%A6%E6%B1%89%E7%A7%91%E6%8A%80%E7%94%9F%E6%B4%BB.png" group-title="地方频道",武汉科技生活
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.251:11148
-#EXTINF:-1 tvg-name="武汉科技生活" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%AD%A6%E6%B1%89%E7%A7%91%E6%8A%80%E7%94%9F%E6%B4%BB.png" group-title="地方频道",武汉科技生活
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.2:9652
 #EXTINF:-1 tvg-name="武汉综合" tvg-logo="https://zzf.new.tg/data/logos/d882fc6bdb84.png" group-title="地方频道",武汉综合
 http://219.140.4.5:8888/rtp/239.254.96.228:9448
 #EXTINF:-1 tvg-name="武汉综合" tvg-logo="https://zzf.new.tg/data/logos/d882fc6bdb84.png" group-title="地方频道",武汉综合
@@ -599,10 +579,6 @@ http://www.3872327.top:1225/rtp/239.69.1.145:10506
 http://www.3872327.top:1225/rtp/239.254.96.228:9448
 #EXTINF:-1 tvg-name="武汉综合" tvg-logo="https://zzf.new.tg/data/logos/d882fc6bdb84.png" group-title="地方频道",武汉综合
 http://www.ct123.online:8188/rtp/239.69.1.145:10506
-#EXTINF:-1 tvg-name="武汉综合" tvg-logo="https://zzf.new.tg/data/logos/d882fc6bdb84.png" group-title="地方频道",武汉综合
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.145:10506
-#EXTINF:-1 tvg-name="武汉综合" tvg-logo="https://zzf.new.tg/data/logos/d882fc6bdb84.png" group-title="地方频道",武汉综合
-http://yy15238.netyiyang.com:8800/rtp/239.254.96.228:9448
 #EXTINF:-1 tvg-name="湖北公共新闻" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E5%85%AC%E5%85%B1%E6%96%B0%E9%97%BB.png" group-title="地方频道",湖北公共新闻
 http://219.140.4.5:8888/rtp/239.69.1.40:9880
 #EXTINF:-1 tvg-name="湖北公共新闻" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E5%85%AC%E5%85%B1%E6%96%B0%E9%97%BB.png" group-title="地方频道",湖北公共新闻
@@ -623,10 +599,6 @@ http://www.3872327.top:1225/rtp/239.254.96.179:9154
 http://www.ct123.online:8188/rtp/239.69.1.40:9880
 #EXTINF:-1 tvg-name="湖北公共新闻" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E5%85%AC%E5%85%B1%E6%96%B0%E9%97%BB.png" group-title="地方频道",湖北公共新闻
 http://www.ct123.online:8188/rtp/239.254.96.179:9154
-#EXTINF:-1 tvg-name="湖北公共新闻" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E5%85%AC%E5%85%B1%E6%96%B0%E9%97%BB.png" group-title="地方频道",湖北公共新闻
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.40:9880
-#EXTINF:-1 tvg-name="湖北公共新闻" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E5%85%AC%E5%85%B1%E6%96%B0%E9%97%BB.png" group-title="地方频道",湖北公共新闻
-http://yy15238.netyiyang.com:8800/rtp/239.254.96.179:9154
 #EXTINF:-1 tvg-name="湖北垄上" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E5%9E%84%E4%B8%8A.png" group-title="地方频道",湖北垄上
 http://219.140.4.5:8888/rtp/239.69.1.43:9898
 #EXTINF:-1 tvg-name="湖北垄上" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E5%9E%84%E4%B8%8A.png" group-title="地方频道",湖北垄上
@@ -647,10 +619,6 @@ http://www.3872327.top:1225/rtp/239.254.96.184:9184
 http://www.ct123.online:8188/rtp/239.69.1.43:9898
 #EXTINF:-1 tvg-name="湖北垄上" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E5%9E%84%E4%B8%8A.png" group-title="地方频道",湖北垄上
 http://www.ct123.online:8188/rtp/239.254.96.184:9184
-#EXTINF:-1 tvg-name="湖北垄上" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E5%9E%84%E4%B8%8A.png" group-title="地方频道",湖北垄上
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.43:9898
-#EXTINF:-1 tvg-name="湖北垄上" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E5%9E%84%E4%B8%8A.png" group-title="地方频道",湖北垄上
-http://yy15238.netyiyang.com:8800/rtp/239.254.96.184:9184
 #EXTINF:-1 tvg-name="湖北教育" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E6%95%99%E8%82%B2.png" group-title="地方频道",湖北教育
 http://219.140.4.5:8888/rtp/239.69.1.206:10878
 #EXTINF:-1 tvg-name="湖北教育" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E6%95%99%E8%82%B2.png" group-title="地方频道",湖北教育
@@ -671,10 +639,6 @@ http://www.3872327.top:1225/rtp/239.254.96.180:9160
 http://www.ct123.online:8188/rtp/239.69.1.206:10878
 #EXTINF:-1 tvg-name="湖北教育" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E6%95%99%E8%82%B2.png" group-title="地方频道",湖北教育
 http://www.ct123.online:8188/rtp/239.254.96.180:9160
-#EXTINF:-1 tvg-name="湖北教育" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E6%95%99%E8%82%B2.png" group-title="地方频道",湖北教育
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.206:10878
-#EXTINF:-1 tvg-name="湖北教育" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E6%95%99%E8%82%B2.png" group-title="地方频道",湖北教育
-http://yy15238.netyiyang.com:8800/rtp/239.254.96.180:9160
 #EXTINF:-1 tvg-name="湖北生活" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E7%94%9F%E6%B4%BB.png" group-title="地方频道",湖北生活
 http://219.140.4.5:8888/rtp/239.69.1.205:10872
 #EXTINF:-1 tvg-name="湖北生活" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E7%94%9F%E6%B4%BB.png" group-title="地方频道",湖北生活
@@ -695,10 +659,6 @@ http://www.3872327.top:1225/rtp/239.254.96.181:9166
 http://www.ct123.online:8188/rtp/239.69.1.205:10872
 #EXTINF:-1 tvg-name="湖北生活" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E7%94%9F%E6%B4%BB.png" group-title="地方频道",湖北生活
 http://www.ct123.online:8188/rtp/239.254.96.181:9166
-#EXTINF:-1 tvg-name="湖北生活" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E7%94%9F%E6%B4%BB.png" group-title="地方频道",湖北生活
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.205:10872
-#EXTINF:-1 tvg-name="湖北生活" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E7%94%9F%E6%B4%BB.png" group-title="地方频道",湖北生活
-http://yy15238.netyiyang.com:8800/rtp/239.254.96.181:9166
 #EXTINF:-1 tvg-name="湖北经视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E7%BB%8F%E8%A7%86.png" group-title="地方频道",湖北经视
 http://219.140.4.5:8888/rtp/239.69.1.41:9886
 #EXTINF:-1 tvg-name="湖北经视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E7%BB%8F%E8%A7%86.png" group-title="地方频道",湖北经视
@@ -719,10 +679,6 @@ http://www.3872327.top:1225/rtp/239.254.96.178:9148
 http://www.ct123.online:8188/rtp/239.69.1.41:9886
 #EXTINF:-1 tvg-name="湖北经视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E7%BB%8F%E8%A7%86.png" group-title="地方频道",湖北经视
 http://www.ct123.online:8188/rtp/239.254.96.178:9148
-#EXTINF:-1 tvg-name="湖北经视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E7%BB%8F%E8%A7%86.png" group-title="地方频道",湖北经视
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.41:9886
-#EXTINF:-1 tvg-name="湖北经视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E7%BB%8F%E8%A7%86.png" group-title="地方频道",湖北经视
-http://yy15238.netyiyang.com:8800/rtp/239.254.96.178:9148
 #EXTINF:-1 tvg-name="湖北综合" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E7%BB%BC%E5%90%88.png" group-title="地方频道",湖北综合
 http://219.140.4.5:8888/rtp/239.69.1.42:9892
 #EXTINF:-1 tvg-name="湖北综合" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E7%BB%BC%E5%90%88.png" group-title="地方频道",湖北综合
@@ -743,10 +699,6 @@ http://www.3872327.top:1225/rtp/239.254.96.177:9142
 http://www.ct123.online:8188/rtp/239.69.1.42:9892
 #EXTINF:-1 tvg-name="湖北综合" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E7%BB%BC%E5%90%88.png" group-title="地方频道",湖北综合
 http://www.ct123.online:8188/rtp/239.254.96.177:9142
-#EXTINF:-1 tvg-name="湖北综合" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E7%BB%BC%E5%90%88.png" group-title="地方频道",湖北综合
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.42:9892
-#EXTINF:-1 tvg-name="湖北综合" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B9%96%E5%8C%97%E7%BB%BC%E5%90%88.png" group-title="地方频道",湖北综合
-http://yy15238.netyiyang.com:8800/rtp/239.254.96.177:9142
 #EXTINF:-1 tvg-name="蔡甸综合" tvg-logo="https://zzf.new.tg/data/logos/52fa6bc45398.png" group-title="地方频道",蔡甸综合
 http://219.140.4.5:8888/rtp/239.69.1.245:11112
 #EXTINF:-1 tvg-name="蔡甸综合" tvg-logo="https://zzf.new.tg/data/logos/52fa6bc45398.png" group-title="地方频道",蔡甸综合
@@ -759,8 +711,6 @@ http://hiliu.myds.me:18088/rtp/239.69.1.245:11112
 http://www.3872327.top:1225/rtp/239.69.1.245:11112
 #EXTINF:-1 tvg-name="蔡甸综合" tvg-logo="https://zzf.new.tg/data/logos/52fa6bc45398.png" group-title="地方频道",蔡甸综合
 http://www.ct123.online:8188/rtp/239.69.1.245:11112
-#EXTINF:-1 tvg-name="蔡甸综合" tvg-logo="https://zzf.new.tg/data/logos/52fa6bc45398.png" group-title="地方频道",蔡甸综合
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.245:11112
 #EXTINF:-1 tvg-name="重庆汽摩" tvg-logo="https://zzf.new.tg/data/logos/0f3e9be36150.png" group-title="地方频道",重庆汽摩
 http://219.140.4.5:8888/rtp/239.69.1.84:10144
 #EXTINF:-1 tvg-name="重庆汽摩" tvg-logo="https://zzf.new.tg/data/logos/0f3e9be36150.png" group-title="地方频道",重庆汽摩
@@ -785,5 +735,3 @@ http://hiliu.myds.me:18088/rtp/239.69.1.34:9844
 http://www.3872327.top:1225/rtp/239.69.1.34:9844
 #EXTINF:-1 tvg-name="阳新综合" tvg-logo="https://zzf.new.tg/data/logos/e5b56701112c.png" group-title="地方频道",阳新综合
 http://www.ct123.online:8188/rtp/239.69.1.34:9844
-#EXTINF:-1 tvg-name="阳新综合" tvg-logo="https://zzf.new.tg/data/logos/e5b56701112c.png" group-title="地方频道",阳新综合
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.34:9844
