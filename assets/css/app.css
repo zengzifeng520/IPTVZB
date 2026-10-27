@@ -2292,3 +2292,86 @@ h2 .ico-thumb { width: 19px; height: 19px; margin-right: 3px; vertical-align: -3
 }
 .theme-toggle:hover { color: var(--text); background: var(--surface-2); border-color: var(--accent); }
 .theme-toggle svg { width: 17px; height: 17px; }
+
+/* ============================================================
+   可读性增强：整体字号上调（2026-10-27）
+   目的：手机上（含部分以桌面宽度渲染的内置浏览器）也能看清
+   放在文件末尾，同权重下覆盖前面偏小的旧字号
+   ============================================================ */
+body { font-size: 15px; line-height: 1.65; }
+.brand-name { font-size: 15px; }
+.brand-sub { font-size: 10.5px; }
+.top-actions .btn { font-size: 14px; }
+.btn { font-size: 14px; }
+.hero p { font-size: 15.5px; line-height: 1.8; }
+.about-desc { font-size: 15.5px; }
+.about-title { font-size: 21px; }
+.play-txt { font-size: 14px; }
+.cta-text h2 { font-size: 21px; }
+.cta-text p { font-size: 15.5px; }
+
+.stat { padding: 9px 15px; }
+.stat b { font-size: 19px; }
+.stat span { font-size: 13px; }
+
+.section-head h2 { font-size: 18px; }
+.section-head .sub { font-size: 13.5px; }
+.rc-name { font-size: 17.5px; }
+.rc-isp { font-size: 11.5px; }
+.rc-nums { font-size: 13.5px; }
+.rc-nums b { font-size: 16px; }
+.rc-foot { font-size: 12.5px; }
+.region-hint { font-size: 13px; line-height: 1.85; }
+.subs-tip { font-size: 14px; }
+.subs-tip-link { font-size: 14px; }
+.subs-tip-link .ico-thumb { width: 15px; height: 15px; }
+
+.disclaimer-panel .dp-title { font-size: 19px; }
+.disclaimer-panel .dp-left p { font-size: 17px; line-height: 1.95; }
+.disclaimer-panel .dp-update .up-label { font-size: 15px; }
+.disclaimer-panel .dp-update .up-time { font-size: 23px; }
+.disclaimer-panel .dp-update .up-clock { font-size: 14px; }
+.foot-admin-row a { font-size: 14px; }
+
+@media (max-width: 720px) {
+  .wrap { padding: 0 14px; }
+  .hero { padding: 26px 0 18px; }
+  .hero h1 { font-size: 30px; letter-spacing: -0.4px; }
+  .hero p { font-size: 16px; }
+  .about-title { font-size: 19px; }
+  .about-desc { font-size: 16.5px; line-height: 1.95; }
+  .play-txt { font-size: 14.5px; }
+  .cta-text h2 { font-size: 19.5px; }
+  .cta-text p { font-size: 16.5px; }
+  .cta-text { min-width: 0; }
+  .stats { gap: 8px; }
+  .stat { padding: 8px 13px; }
+  .stat b { font-size: 18px; }
+  .stat span { font-size: 13.5px; }
+  .section-head h2 { font-size: 18px; }
+  .section-head { flex-wrap: wrap; gap: 4px 10px; }
+  .section-head .sub { font-size: 13px; }
+  .region-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .region-card { padding: 13px 13px 11px; }
+  .rc-name { font-size: 17px; }
+  .rc-isp { font-size: 11px; }
+  .rc-nums { font-size: 13px; }
+  .rc-nums b { font-size: 15.5px; }
+  .rc-foot { font-size: 12px; }
+  .region-hint { font-size: 13.5px; }
+  .subs-tip { font-size: 14.5px; line-height: 1.8; }
+  .disclaimer-panel .dp-title { font-size: 18px; }
+  .disclaimer-panel .dp-left p { font-size: 16px; }
+  .disclaimer-panel .dp-update .up-time { font-size: 20px; }
+  .brand-name { font-size: 14.5px; }
+}
+
+/* 手机竖屏（真机 390-430px）：再放大一档 */
+@media (max-width: 430px) {
+  .hero h1 { font-size: 28px; }
+  .region-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rc-name { font-size: 17px; }
+  .rc-nums { font-size: 13px; }
+  .rc-foot { font-size: 11.5px; }
+  .about-desc { font-size: 16px; }
+}
