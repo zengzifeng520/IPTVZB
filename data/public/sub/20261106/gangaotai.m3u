@@ -27,8 +27,6 @@ http://111.59.139.85:11888/tsfile/live/1222_1.m3u8?key=txiptv
 http://111.59.139.85:11888/tsfile/live/1202_1.m3u8?key=txiptv
 #EXTINF:-1 tvg-name="凤凰电影" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E5%87%A4%E5%87%B0%E7%94%B5%E5%BD%B1.png" group-title="港澳台",凤凰电影
 http://111.59.139.85:11888/tsfile/live/1218_1.m3u8?key=txiptv
-#EXTINF:-1 tvg-name="凤凰香港" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E5%87%A4%E5%87%B0%E9%A6%99%E6%B8%AF.png" group-title="港澳台",凤凰香港
-https://epg.pw/stream/5f16dc7fc8aaaed3205516c63e4a8c24bca9dbba1181684244729cf574505b0e.m3u8
 #EXTINF:-1 tvg-name="创世电视" tvg-logo="https://zzf.new.tg/data/logos/396e8b2cf9c7.png" group-title="港澳台",创世电视
 http://103.172.187.30:12000/stream/mytv/null-4/master.m3u8
 #EXTINF:-1 tvg-name="动物星球" tvg-logo="https://gcore.jsdelivr.net/gh/wanglindl/TVlogo@main/img/animalplanet.png" group-title="港澳台",动物星球

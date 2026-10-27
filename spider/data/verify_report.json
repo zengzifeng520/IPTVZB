@@ -1,5 +1,5 @@
 {
-"generated_at": "2026-10-27 16:04:42",
+"generated_at": "2026-10-27 16:42:30",
 "urls": {
 "http://111.59.139.85:11888/tsfile/live/1203_1.m3u8?key=txiptv": {
 "grade": "A",
@@ -7,7 +7,8 @@
 "vcodec": "h264",
 "acodec": "mp2",
 "res": "1920x1080",
-"drop": 0.092,
+"drop": 0.103,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://111.59.139.85:11888/tsfile/live/1201_1.m3u8?key=txiptv": {
@@ -16,7 +17,8 @@
 "vcodec": "h264",
 "acodec": "mp2",
 "res": "1920x1080",
-"drop": 0.06,
+"drop": 0.068,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://61.221.215.25:8800/hls/9/index.m3u8": {
@@ -25,7 +27,8 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.027,
+"drop": 0.032,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://61.221.215.25:8800/hls/41/index.m3u8": {
@@ -34,7 +37,8 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.06,
+"drop": 0.072,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://111.59.139.85:11888/tsfile/live/1217_1.m3u8?key=txiptv": {
@@ -43,16 +47,18 @@
 "vcodec": "h264",
 "acodec": "mp2",
 "res": "1920x1080",
-"drop": 0.083,
+"drop": 0.107,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://38.64.72.148/hls/modn/list/4005/chunklist1.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "B",
+"why": "丢帧19%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.127,
+"drop": 0.186,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://111.59.139.85:11888/tsfile/live/1221_1.m3u8?key=txiptv": {
@@ -61,7 +67,8 @@
 "vcodec": "h264",
 "acodec": "mp2",
 "res": "1920x1080",
-"drop": 0.073,
+"drop": 0.08,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://103.172.187.30:12000/stream/mytv/null-11/master.m3u8": {
@@ -70,7 +77,8 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.007,
+"drop": 0.008,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://61.216.67.119:1935/bltvhd/bltv1/chunklist_w1266569526.m3u8": {
@@ -79,7 +87,8 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.0,
+"drop": 0.002,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://111.59.139.85:11888/tsfile/live/1220_1.m3u8?key=txiptv": {
@@ -88,7 +97,8 @@
 "vcodec": "h264",
 "acodec": "mp2",
 "res": "1920x1080",
-"drop": 0.075,
+"drop": 0.087,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://111.59.139.85:11888/tsfile/live/1223_1.m3u8?key=txiptv": {
@@ -97,7 +107,8 @@
 "vcodec": "h264",
 "acodec": "mp2",
 "res": "1920x1080",
-"drop": 0.036,
+"drop": 0.04,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://111.59.139.85:11888/tsfile/live/1222_1.m3u8?key=txiptv": {
@@ -106,7 +117,8 @@
 "vcodec": "h264",
 "acodec": "mp2",
 "res": "1920x1080",
-"drop": 0.092,
+"drop": 0.107,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://111.59.139.85:11888/tsfile/live/1202_1.m3u8?key=txiptv": {
@@ -115,7 +127,8 @@
 "vcodec": "h264",
 "acodec": "mp2",
 "res": "1920x1080",
-"drop": 0.047,
+"drop": 0.06,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://111.59.139.85:11888/tsfile/live/1218_1.m3u8?key=txiptv": {
@@ -125,15 +138,17 @@
 "acodec": "mp2",
 "res": "1920x1080",
 "drop": 0.04,
+"by": "local",
 "at": "2026-10-27"
 },
 "https://epg.pw/stream/5f16dc7fc8aaaed3205516c63e4a8c24bca9dbba1181684244729cf574505b0e.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "C",
+"why": "VOD回看(ENDLIST)",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.003,
+"drop": 0.004,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://38.64.72.148/hls/modn/list/4005/playlist.m3u8": {
@@ -151,7 +166,8 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.007,
+"drop": 0.008,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://61.221.215.25:8800/hls/57/index.m3u8": {
@@ -160,7 +176,8 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.033,
+"drop": 0.04,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://38.64.72.148/hls/modn/list/2013/chunklist1.m3u8": {
@@ -187,7 +204,8 @@
 "vcodec": "h264",
 "acodec": "mp3",
 "res": "854x480",
-"drop": 0.0,
+"drop": 0.002,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://111.59.139.85:11888/tsfile/live/1214_1.m3u8?key=txiptv": {
@@ -196,7 +214,8 @@
 "vcodec": "h264",
 "acodec": "mp2",
 "res": "1920x1080",
-"drop": 0.087,
+"drop": 0.092,
+"by": "local",
 "at": "2026-10-27"
 },
 "https://streamipcfapp.akamaized.net/live/_definst_/live_720/key_b1500.m3u8": {
@@ -214,7 +233,8 @@
 "vcodec": "h264",
 "acodec": "mp2",
 "res": "1920x1080",
-"drop": 0.05,
+"drop": 0.06,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://111.59.139.85:11888/tsfile/live/1207_1.m3u8?key=txiptv": {
@@ -223,7 +243,8 @@
 "vcodec": "h264",
 "acodec": "mp2",
 "res": "1920x1080",
-"drop": 0.061,
+"drop": 0.067,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://111.59.139.85:11888/tsfile/live/1206_1.m3u8?key=txiptv": {
@@ -232,7 +253,8 @@
 "vcodec": "h264",
 "acodec": "mp2",
 "res": "1920x1080",
-"drop": 0.093,
+"drop": 0.108,
+"by": "local",
 "at": "2026-10-27"
 },
 "https://epg.pw/stream/4f18dfe0593db5c686eb64ae8edaf2a9202d4d46bdc9bbde2cee27708e12ea01.m3u8": {
@@ -259,7 +281,8 @@
 "vcodec": "h264",
 "acodec": "mp2",
 "res": "1920x1080",
-"drop": 0.033,
+"drop": 0.043,
+"by": "local",
 "at": "2026-10-27"
 },
 "https://epg.pw/stream/ab6df63b64d0cc44a1f4f029ed847a26fa54a7aebd455578fb05a63f02c22f4b.m3u8": {
@@ -277,7 +300,8 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.057,
+"drop": 0.068,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://103.172.187.30:12000/stream/mytv/null-9/master.m3u8": {
@@ -286,7 +310,8 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.007,
+"drop": 0.008,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://utv1.hqtvzb.com:9999/hls/world.m3u8": {
@@ -295,7 +320,8 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.016,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://103.172.187.30:12000/stream/mytv/null-1/master.m3u8": {
@@ -304,7 +330,8 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.007,
+"drop": 0.008,
+"by": "local",
 "at": "2026-10-27"
 },
 "https://5ddce30eb4b55.streamlock.net/bltvhd/bltv1/playlist.m3u8": {
@@ -314,6 +341,7 @@
 "acodec": "aac",
 "res": "1280x720",
 "drop": 0.0,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://ottproxy2.ist.ooo/livehls/MOB-U1-NO/03.m3u8": {
@@ -323,6 +351,7 @@
 "acodec": "aac",
 "res": "1920x1080",
 "drop": 0.0,
+"by": "local",
 "at": "2026-10-27"
 },
 "https://v3.mediacast.hk/webcast/bshdlive-pc/chunklist_w99771165.m3u8": {
@@ -331,7 +360,8 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1024x576",
-"drop": 0.003,
+"drop": 0.004,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://111.59.139.85:11888/tsfile/live/1205_1.m3u8?key=txiptv": {
@@ -340,7 +370,8 @@
 "vcodec": "h264",
 "acodec": "mp2",
 "res": "1920x1080",
-"drop": 0.075,
+"drop": 0.093,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://webcast.hkstv.tv/livestream/mutfysrq/playlist.m3u8": {
@@ -349,7 +380,8 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.003,
+"drop": 0.004,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://61.221.215.25:8800/hls/49/index.m3u8": {
@@ -358,16 +390,18 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.04,
+"drop": 0.048,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://38.64.72.148/hls/modn/list/4013/chunklist1.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "B",
+"why": "丢帧17%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.119,
+"drop": 0.173,
+"by": "local",
 "at": "2026-10-27"
 },
 "http://103.172.187.30:12000/stream/mytv/null-12/master.m3u8": {
@@ -376,7 +410,8 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.007,
+"drop": 0.008,
+"by": "local",
 "at": "2026-10-27"
 }
 }

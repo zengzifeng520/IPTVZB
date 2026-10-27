@@ -100,6 +100,36 @@ def inspect_playlist(url: str) -> dict:
     return info
 
 
+def _run_ffmpeg(cmd: list[str], timeout: int) -> str:
+    """跑 ffmpeg 并**硬超时**。
+
+    为什么不用 subprocess.run(timeout=)：
+    Windows 上它超时后只 kill 顶层进程，ffmpeg 有时不响应，run() 会一直卡在
+    communicate() 里死等 —— 实测 867 条跑到 50 分钟收不了尾，两个 ffmpeg
+    从 16:40 挂到 16:47 还活着，主进程完全不动。
+    所以自己管进程：超时后 Windows 用 taskkill /F /T 杀进程树，Linux 用 kill。
+    """
+    p = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE,
+                         errors="ignore")
+    try:
+        _, err = p.communicate(timeout=timeout)
+        return err or ""
+    except subprocess.TimeoutExpired:
+        try:
+            if os.name == "nt":
+                subprocess.run(["taskkill", "/F", "/T", "/PID", str(p.pid)],
+                               capture_output=True)
+            else:
+                p.kill()
+        except Exception:  # noqa: BLE001
+            pass
+        try:
+            _, err = p.communicate(timeout=5)
+            return err or ""
+        except Exception:  # noqa: BLE001
+            return ""
+
+
 def verify(url: str, secs: int = 20) -> dict:
     """真正拉 secs 秒，统计帧数/编码/首帧耗时"""
     pl = inspect_playlist(url)
@@ -114,9 +144,7 @@ def verify(url: str, secs: int = 20) -> dict:
     frames = 0
     vcodec = acodec = res = fps = ""
     try:
-        # 必须给总超时：卡住的源会让 ffmpeg 一直挂着（之前就是这里跑不完）
-        r = subprocess.run(cmd, capture_output=True, timeout=secs + 22, errors="ignore")
-        err = r.stderr or ""
+        err = _run_ffmpeg(cmd, secs + 20)
         # 最后一个 frame= 是最终值
         for m in re.finditer(r"frame=\s*(\d+)", err):
             frames = max(frames, int(m.group(1)))
@@ -135,8 +163,6 @@ def verify(url: str, secs: int = 20) -> dict:
         m = re.search(r"(\d+(?:\.\d+)?)\s*fps", err)
         if m:
             fps = m.group(1)
-    except subprocess.TimeoutExpired:
-        frames = 0
     except Exception:  # noqa: BLE001
         frames = 0
 
