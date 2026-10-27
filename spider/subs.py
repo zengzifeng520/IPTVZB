@@ -27,9 +27,14 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import config
+import logos
 
 # 到期时间按北京时间当天 23:59:59 算（Actions 跑在 UTC，必须显式指定时区）
 CST = timezone(timedelta(hours=8))
+
+# 台标解析缓存：同一个频道名一次运行里只算一遍（一次生成要写几十个 m3u）
+_MISS = object()
+_logo_cache: dict[str, str | None | object] = {}
 
 PROXY_JSON = config.WEB_DATA_DIR / "proxy.json"
 # 酒店源：HLS 直连（/hls/x/index.m3u8、/tsfile/live/x.m3u8?key=txiptv），
@@ -75,8 +80,17 @@ def token_of(sid: str) -> str:
 
 
 def _extinf(ch: dict) -> str:
+    """EXTINF 行。台标能找到就加 tvg-logo，找不到就不加——
+    只往属性里加东西，播放地址（下一行）一个字符都不改。"""
+    name = ch["display"]
+    logo = _logo_cache.get(name, _MISS)
+    if logo is _MISS:
+        logo = logos.resolve(name)
+        _logo_cache[name] = logo
+    logo_attr = f' tvg-logo="{logo}"' if logo else ""
     return (
-        f'#EXTINF:-1 tvg-name="{ch["display"]}" group-title="{ch["type"]}",{ch["display"]}'
+        f'#EXTINF:-1 tvg-name="{name}"{logo_attr} '
+        f'group-title="{ch["type"]}",{name}'
     )
 
 
