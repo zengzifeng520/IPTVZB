@@ -1,4 +1,4 @@
-#EXTM3U x-tvg-url="https://gcore.jsdelivr.net/gh/zengzifeng520/IPTV@gh-pages/e_all.xml"
+#EXTM3U x-tvg-url="https://gcore.jsdelivr.net/gh/zengzifeng520/IPTV@gh-pages/e_all.xml" url-tvg="https://gcore.jsdelivr.net/gh/zengzifeng520/IPTV@gh-pages/e_all.xml"
 #EXTINF:-1 tvg-id="CCTV2" tvg-name="CCTV-2" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/CCTV2.png" group-title="央视频道",CCTV-2
 http://111.197.231.173:4022/rtp/239.3.1.60:8084
 #EXTINF:-1 tvg-id="CCTV2" tvg-name="CCTV-2" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/CCTV2.png" group-title="央视频道",CCTV-2

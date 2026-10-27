@@ -175,7 +175,7 @@ def _extinf(ch: dict) -> str:
 
 def _write(path: Path, channels: list[dict], host_set: set[str] | None = None) -> tuple[int, int]:
     """写一个 m3u，返回 (频道数, 地址数)。host_set 为空表示不限服务器。"""
-    lines = [f'#EXTM3U x-tvg-url="{EPG_URL}"']
+    lines = [f'#EXTM3U x-tvg-url="{EPG_URL}" url-tvg="{EPG_URL}"']
     n_chan = 0
     n_stream = 0
     for ch in channels:
@@ -592,7 +592,7 @@ def _write_urls(path: Path, channels: list[dict], host_set: set[str] | None = No
 
 def _m3u_text(channels: list[dict], host_set: set[str] | None = None) -> str:
     """把频道列表拼成 m3u 文本（同一份内容要写进多个有效期的目录，先算一次）。"""
-    lines = [f'#EXTM3U x-tvg-url="{EPG_URL}"']
+    lines = [f'#EXTM3U x-tvg-url="{EPG_URL}" url-tvg="{EPG_URL}"']
     for ch in channels:
         picked = ch["streams"] if host_set is None else [s for s in ch["streams"] if s["h"] in host_set]
         if not picked:

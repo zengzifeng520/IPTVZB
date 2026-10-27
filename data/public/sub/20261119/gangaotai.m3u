@@ -1,4 +1,4 @@
-#EXTM3U x-tvg-url="https://gcore.jsdelivr.net/gh/zengzifeng520/IPTV@gh-pages/e_all.xml"
+#EXTM3U x-tvg-url="https://gcore.jsdelivr.net/gh/zengzifeng520/IPTV@gh-pages/e_all.xml" url-tvg="https://gcore.jsdelivr.net/gh/zengzifeng520/IPTV@gh-pages/e_all.xml"
 #EXTINF:-1 tvg-id="410287" tvg-name="ANIMAX" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/Animax.png" group-title="港澳台",ANIMAX
 http://111.59.139.85:11888/tsfile/live/1203_1.m3u8?key=txiptv
 #EXTINF:-1 tvg-name="KXI" tvg-logo="https://zzf.new.tg/data/logos/9e4a2bfb1bd7.png" group-title="港澳台",KXI
