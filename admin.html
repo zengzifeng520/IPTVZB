@@ -71,7 +71,7 @@
       </div>
 
       <div class="admin-toolbar">
-        <input type="text" id="searchInput" placeholder="搜索赞助码 / 订阅标识" spellcheck="false">
+        <input type="text" id="searchInput" placeholder="搜索用户标识 / 订阅标识" spellcheck="false">
         <button class="btn btn-sm" id="addBtn" type="button">+ 新增用户</button>
         <button class="btn btn-sm" id="reloadBtn" type="button">重新读取</button>
         <span class="admin-grow"></span>
@@ -82,7 +82,7 @@
         <table class="admin-table">
           <thead>
             <tr>
-              <th>赞助码</th>
+              <th>用户标识</th>
               <th>订阅标识</th>
               <th>到期日</th>
               <th>剩余</th>
@@ -106,16 +106,44 @@
         <li><b>改到期日</b>：直接改日期框，或点「+30 天 / +90 天」在原到期日上顺延。</li>
         <li><b>删除</b>：用户从订阅名单移除，他的专属链接会被删除，变成 404。</li>
         <li><b>到期</b>：文件不会被删除，而是改写成空列表，播放器刷新后就是 0 个频道。</li>
-        <li>赞助码是用户在本机自动生成的 12 位码，必须由用户提供给你后才能加进来。</li>
+        <li><b>新增用户</b>：标识随便填（中文、昵称、手机尾号都行），不填会自动生成一个；到期日可以直接选任意日期，或点「+7/+30/+90/+1 年」快捷按钮。</li>
+        <li>不再需要用户提供 12 位赞助码，加进来就能用；标识只是后台自己认人的名字。</li>
       </ul>
     </section>
   </div>
 
 </main>
 
+<!-- 新增用户弹窗 -->
+<div class="admin-modal" id="addModal" hidden>
+  <div class="admin-modal-box">
+    <h3>新增订阅用户</h3>
+    <label class="am-field">
+      <span>用户标识 / 备注</span>
+      <input type="text" id="addName" placeholder="随便填，如：张三、老同学、VIP001（留空自动生成）" maxlength="24" spellcheck="false">
+    </label>
+    <label class="am-field">
+      <span>到期日（可任意设置）</span>
+      <input type="date" id="addExpire">
+    </label>
+    <div class="am-quick">
+      <button class="btn btn-sm" type="button" data-quick="7">+7 天</button>
+      <button class="btn btn-sm" type="button" data-quick="30">+30 天</button>
+      <button class="btn btn-sm" type="button" data-quick="90">+90 天</button>
+      <button class="btn btn-sm" type="button" data-quick="365">+1 年</button>
+      <button class="btn btn-sm" type="button" data-quick="3650">+10 年</button>
+    </div>
+    <p class="am-tip" id="addTip">日期可以改到任意一天；到期后订阅会自动变成 0 个频道。</p>
+    <div class="am-acts">
+      <button class="btn btn-primary" id="addOk" type="button">确定添加</button>
+      <button class="btn" id="addCancel" type="button">取消</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
-<script src="assets/js/auth.js?v=20261027g"></script>
-<script src="assets/js/admin.js?v=20261027g"></script>
+<script src="assets/js/auth.js?v=20261027x"></script>
+<script src="assets/js/admin.js?v=20261027x"></script>
 </body>
 </html>

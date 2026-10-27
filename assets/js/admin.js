@@ -45,6 +45,12 @@
     saveBtn: document.getElementById("saveBtn"),
     saveHint: document.getElementById("saveHint"),
     toast: document.getElementById("toast"),
+    addModal: document.getElementById("addModal"),
+    addName: document.getElementById("addName"),
+    addExpire: document.getElementById("addExpire"),
+    addOk: document.getElementById("addOk"),
+    addCancel: document.getElementById("addCancel"),
+    addTip: document.getElementById("addTip"),
   };
 
   /* ---------------------------------------------------------- 小工具 */
@@ -401,24 +407,64 @@
       });
   });
 
-  el.addBtn.addEventListener("click", function () {
-    var sid = (window.prompt("新增用户\n请输入用户的 12 位赞助码（用户可在赞助页底部看到）") || "")
-      .toUpperCase()
-      .replace(/[^A-Z0-9]/g, "");
-    if (!sid) return;
-    if (sid.length < 6) return toast("赞助码太短");
-    if (state.users[sid] || findRow(sid)) return toast("这个赞助码已经存在");
+  /* ---- 新增用户弹窗：不用赞助码，标识随便填，到期日任意选 ---- */
+  function openAdd() {
+    if (!el.addModal) return;
+    el.addName.value = "";
+    el.addExpire.value = ymd(new Date(Date.now() + 30 * DAY));
+    if (el.addTip) el.addTip.textContent = "日期可以改到任意一天；到期后订阅会自动变成 0 个频道。";
+    el.addModal.hidden = false;
+    setTimeout(function () {
+      el.addName.focus();
+    }, 30);
+  }
 
-    var days = window.prompt("有效天数（例如 30 / 90 / 365）", "30");
-    if (days == null) return;
-    var n = parseInt(days, 10);
-    if (!n || n <= 0) return toast("天数不正确");
+  function closeAdd() {
+    if (el.addModal) el.addModal.hidden = true;
+  }
 
-    state.rows.unshift({ sid: sid, expire: ymd(new Date(Date.now() + n * DAY)), deleted: false });
-    state.dirty = true;
-    updateDirty();
-    render();
-    toast("已添加，别忘了点「保存并发布」");
+  function fillExpire(days) {
+    var base = expTs(el.addExpire.value);
+    if (!base || base < Date.now()) base = Date.now();
+    el.addExpire.value = ymd(new Date(base + days * DAY));
+  }
+
+  el.addBtn.addEventListener("click", openAdd);
+  if (el.addCancel) el.addCancel.addEventListener("click", closeAdd);
+  if (el.addModal) {
+    el.addModal.addEventListener("click", function (e) {
+      if (e.target === el.addModal) closeAdd();
+    });
+    var quickBtns = el.addModal.querySelectorAll("[data-quick]");
+    for (var qi = 0; qi < quickBtns.length; qi++) {
+      quickBtns[qi].addEventListener("click", function (e) {
+        fillExpire(parseInt(e.currentTarget.getAttribute("data-quick"), 10));
+      });
+    }
+  }
+
+  if (el.addOk) {
+    el.addOk.addEventListener("click", function () {
+      // 标识随便填：中文/昵称都行；留空自动生成一个
+      var raw = (el.addName.value || "").trim().replace(/\s+/g, "-");
+      var sid = raw ? raw.toUpperCase() : "VIP" + Date.now().toString(36).toUpperCase();
+      if (state.users[sid] || findRow(sid)) return toast("这个标识已经存在了，换一个");
+
+      var expire = el.addExpire.value;
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(expire)) return toast("请选择到期日");
+      if (expTs(expire) < Date.now()) return toast("到期日不能早于今天");
+
+      state.rows.unshift({ sid: sid, expire: expire, deleted: false });
+      state.dirty = true;
+      updateDirty();
+      render();
+      closeAdd();
+      toast("已添加「" + sid + "」，别忘了点「保存并发布」", 3200);
+    });
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeAdd();
   });
 
   el.body.addEventListener("click", function (e) {
