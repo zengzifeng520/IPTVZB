@@ -2413,9 +2413,31 @@ body { font-size: 15px; line-height: 1.65; }
   text-align: center;
   color: var(--text);
 }
-.pay-help-box h3 { margin: 0 0 10px; font-size: 18px; font-weight: 800; }
+.pay-help-box { max-height: 88vh; overflow-y: auto; }
+.pay-help-box h3 { margin: 0 0 12px; font-size: 18px; font-weight: 800; }
 .pay-help-box p { margin: 0 0 16px; font-size: 14px; line-height: 1.85; color: var(--text-2); }
 .pay-help-box p b { color: var(--text); }
+
+/* 弹层里的二维码：本身就是可长按保存的图，省得用户退出去找 */
+.pay-qr {
+  display: block;
+  width: 170px; height: 170px;
+  margin: 0 auto 6px;
+  padding: 6px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  -webkit-touch-callout: default;
+  object-fit: contain;
+}
+.pay-qr.is-round { border-radius: 50%; padding: 4px; }
+.pay-qr-tip { margin: 0 0 12px; font-size: 12.5px; color: var(--text-3); }
+.pay-steps {
+  margin: 0 0 12px; padding-left: 20px;
+  text-align: left; font-size: 14px; line-height: 1.85; color: var(--text-2);
+}
+.pay-steps li { margin-bottom: 4px; }
+.pay-note { margin: 0 0 14px; font-size: 12.5px; line-height: 1.7; color: var(--text-3); }
 .pay-help-acts { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
 .pay-help-acts .btn { height: 38px; padding: 0 16px; font-size: 14px; }
 [data-theme="light"] .code-pay { color: #6d28d9; background: rgba(124, 58, 237, 0.10); border-color: rgba(124, 58, 237, 0.28); }
