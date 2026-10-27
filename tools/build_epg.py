@@ -143,6 +143,125 @@ def fetch(url: str, timeout: int = 180) -> bytes:
         return r.read()
 
 
+# ---------------------------------------------------------------- 时区归一 + 去重
+# 用户反馈「有些台的节目单对不上现在播的节目」，排查出两个坑：
+#
+# 坑一：时区标错。epg.pw 的港澳台、以及国内 e.xml 里一部分上游，节目时间写的
+#   其实是**当地钟点**（翡翠台 06:00 香港早晨 / 13:00 午间新闻 / 23:15 晚间新闻，
+#   CCTV-1 12:00 新闻30分、19:00 新闻联播），但 offset 字段却写成 +0000。
+#   播放器按 +0000 解析再换算成北京时间，整张表往后挪 8 小时 ——
+#   晚上 8 点看到的是中午的节目名，自然全对不上。
+#   处理：数值一个不动，offset 统一改写成 +0800。
+#
+# 坑二：同一个频道挂了几套节目。国内 e.xml 是多个上游合并出来的，像东方卫视
+#   同时有一份正常节目单（东方新闻 18:00 / 转播中央台新闻联播 19:00 / 画梦录 19:30）
+#   和一份粗糙节目单（「电视剧：xxx」，时间还歪 2 分钟），两套在时间上互相重叠。
+#   播放器先撞到哪套全看运气，重叠处就显示错的节目。
+#   处理：同一频道的节目按「时间不重叠」切分成若干套，只留一套
+#   （窗口内覆盖时长最长，一样长时挑节目名信息量大的），再用其它套补 60 分钟以上的空洞。
+_GENERIC = {
+    "电视剧", "电影", "剧场", "动画片", "纪录片", "广告", "节目预告",
+    "电视台无节目", "精彩看点", "栏目", "节目", "上午剧场", "下午剧场",
+    "晚间剧场", "午夜剧场", "周末剧场", "黄金剧场", "电视剧场",
+}
+_GENERIC_PREFIX = ("电视剧：", "电视剧:", "电影：", "电影:")
+
+
+def _wall(s: str) -> tuple[str, "object"]:
+    """'20261027193000 +0000' -> (数值字符串, 当作北京时间解析的 datetime)"""
+    from datetime import datetime as _dt
+    num = (s or "").strip().split(" ")[0]
+    return num, _dt.strptime(num, "%Y%m%d%H%M%S")
+
+
+def _quality(title: str) -> int:
+    t = (title or "").strip()
+    if not t or t in _GENERIC or t.startswith(_GENERIC_PREFIX):
+        return 0
+    return 1
+
+
+def _normalize_and_dedupe(tv: ET.Element) -> None:
+    from datetime import datetime as _dt, timedelta as _td, timezone as _tz
+    cst = _tz(_td(hours=8))
+    today = _dt.now(cst).replace(tzinfo=None, hour=0, minute=0, second=0, microsecond=0)
+    win_s, win_e = today - _td(days=1), today + _td(days=3)
+
+    by_ch: dict[str, list[tuple]] = {}
+    fixed = bad = 0
+    for pr in list(tv.findall("programme")):
+        try:
+            st, a = _wall(pr.get("start") or "")
+            _, b = _wall(pr.get("stop") or "")
+        except ValueError:
+            tv.remove(pr)
+            bad += 1
+            continue
+        if b <= a:
+            tv.remove(pr)
+            bad += 1
+            continue
+        if (pr.get("start") or "").strip() != f"{st} +0800":
+            fixed += 1
+        pr.set("start", f"{st} +0800")
+        pr.set("stop", f"{b:%Y%m%d%H%M%S} +0800")
+        by_ch.setdefault(pr.get("channel") or "", []).append(
+            (a, b, (pr.findtext("title") or "").strip(), pr))
+
+    drop: list[ET.Element] = []
+    kept = 0
+    for items in by_ch.values():
+        items.sort(key=lambda x: (x[0], x[1]))
+        # 1) 区间着色：同一套里的节目时间互不重叠
+        sets: list[dict] = []
+        for it in items:
+            for s in sets:
+                if s["end"] <= it[0]:
+                    s["items"].append(it)
+                    s["end"] = it[1]
+                    break
+            else:
+                sets.append({"items": [it], "end": it[1]})
+
+        # 2) 选一套：输出窗口内覆盖时长 → 节目名信息量 → 条数
+        def score(s):
+            mins = q = n = 0
+            for a, b, t, _ in s["items"]:
+                lo, hi = max(a, win_s), min(b, win_e)
+                if hi > lo:
+                    mins += (hi - lo).total_seconds() / 60
+                    q += _quality(t)
+                    n += 1
+            return (round(mins / 60), round(q / n, 2) if n else 0.0, n)
+
+        sets.sort(key=score, reverse=True)
+        keep = list(sets[0]["items"])
+
+        # 3) 其它套补空洞（只补 60 分钟以上的空档，避免又混进另一套的时间线）
+        def gaps(occ):
+            return [(occ[i - 1][1], occ[i][0])
+                    for i in range(1, len(occ))
+                    if (occ[i][0] - occ[i - 1][1]).total_seconds() > 3600]
+
+        for s in sets[1:]:
+            occ = sorted((a, b) for a, b, _, _ in keep)
+            for g_lo, g_hi in gaps(occ):
+                for it in s["items"]:
+                    if it[0] >= g_lo and it[1] <= g_hi:
+                        keep.append(it)
+
+        keep_ids = {id(it[3]) for it in keep}
+        for it in items:
+            if id(it[3]) not in keep_ids:
+                drop.append(it[3])
+        kept += len(keep)
+
+    for el in drop:
+        tv.remove(el)
+    print(f"  时区归一 {fixed} 条（→ +0800），去掉重复/过期节目 {len(drop)} 条，"
+          f"保留 {kept} 条" + (f"，异常节目 {bad} 条" if bad else ""))
+
+
 def build(days: int = 7, base_file: str = "", out_base: str = "") -> None:
     if not MAP_JSON.exists():
         print(f"  缺少映射表 {MAP_JSON}")
@@ -341,6 +460,9 @@ def build(days: int = 7, base_file: str = "", out_base: str = "") -> None:
             tv.append(pr)
     for pr in alias_pr:
         tv.append(pr)
+
+    # ---- 时区归一 + 每频道只留一套节目 ----
+    _normalize_and_dedupe(tv)
 
     # ---- 瘦身：播放器解析 13.5MB XML 很慢（实测要几十秒）----
     # 体积构成：<desc>（节目简介）占 9.3MB / 13.5MB = 69%，但对播放器列表毫无用处
