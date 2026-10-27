@@ -6,7 +6,13 @@ http://182.143.112.7:40000/udp/239.94.0.2:5140
 #EXTINF:-1 tvg-name="CCTV-2" group-title="央视频道",CCTV-2
 http://182.143.112.7:40000/udp/239.94.2.35:5140
 #EXTINF:-1 tvg-name="CCTV-4K" group-title="央视频道",CCTV-4K
+http://182.143.112.7:40000/udp/239.94.0.20:5140
+#EXTINF:-1 tvg-name="CCTV-4K" group-title="央视频道",CCTV-4K
 http://182.143.112.7:40000/udp/239.94.2.163:5140
+#EXTINF:-1 tvg-name="CCTV-4K" group-title="央视频道",CCTV-4K
+http://yaofuming.top:8188/udp/239.94.0.20:5140
+#EXTINF:-1 tvg-name="CCTV-4K" group-title="央视频道",CCTV-4K
+http://yaofuming.top:8188/udp/239.94.2.163:5140
 #EXTINF:-1 tvg-name="CCTV-5" group-title="央视频道",CCTV-5
 http://182.143.112.7:40000/udp/239.94.0.33:5140
 #EXTINF:-1 tvg-name="CCTV-5" group-title="央视频道",CCTV-5
@@ -57,6 +63,12 @@ http://182.143.112.7:40000/udp/239.94.0.37:5140
 http://182.143.112.7:40000/udp/239.94.0.14:5140
 #EXTINF:-1 tvg-name="CCTV-15" group-title="央视频道",CCTV-15
 http://182.143.112.7:40000/udp/239.94.0.15:5140
+#EXTINF:-1 tvg-name="CCTV-15" group-title="央视频道",CCTV-15
+http://yaofuming.top:8188/udp/239.94.0.15:5140
+#EXTINF:-1 tvg-name="CCTV-15" group-title="央视频道",CCTV-15
+http://yaofuming.top:8188/udp/239.94.0.38:5140
+#EXTINF:-1 tvg-name="CCTV-15" group-title="央视频道",CCTV-15
+http://yaofuming.top:8188/udp/239.94.2.160:5140
 #EXTINF:-1 tvg-name="CCTV-17" group-title="央视频道",CCTV-17
 http://182.143.112.7:40000/udp/239.94.0.39:5140
 #EXTINF:-1 tvg-name="CCTV-17" group-title="央视频道",CCTV-17
@@ -65,36 +77,50 @@ http://182.143.112.7:40000/udp/239.94.0.17:5140
 http://182.143.112.7:40000/udp/239.94.2.161:5140
 #EXTINF:-1 tvg-name="CGTN" group-title="央视频道",CGTN
 http://182.143.112.7:40000/udp/239.94.0.22:5140
-#EXTINF:-1 tvg-name="CGTN" group-title="央视频道",CGTN
-http://182.143.112.7:40000/udp/239.94.2.164:5140
 #EXTINF:-1 tvg-name="CGTN法语" group-title="央视频道",CGTN法语
 http://182.143.112.7:40000/udp/239.94.2.238:5140
 #EXTINF:-1 tvg-name="CGTN法语" group-title="央视频道",CGTN法语
 http://182.143.112.7:40000/udp/239.94.1.62:5140
 #EXTINF:-1 tvg-name="CGTN法语" group-title="央视频道",CGTN法语
 http://182.143.112.7:40000/udp/239.94.1.66:5140
+#EXTINF:-1 tvg-name="CGTN法语" group-title="央视频道",CGTN法语
+http://yaofuming.top:8188/udp/239.94.1.62:5140
+#EXTINF:-1 tvg-name="CGTN法语" group-title="央视频道",CGTN法语
+http://yaofuming.top:8188/udp/239.94.1.66:5140
+#EXTINF:-1 tvg-name="CGTN法语" group-title="央视频道",CGTN法语
+http://yaofuming.top:8188/udp/239.94.2.238:5140
 #EXTINF:-1 tvg-name="CGTN西语" group-title="央视频道",CGTN西语
 http://182.143.112.7:40000/udp/239.94.1.61:5140
 #EXTINF:-1 tvg-name="CGTN西语" group-title="央视频道",CGTN西语
 http://182.143.112.7:40000/udp/239.94.1.65:5140
+#EXTINF:-1 tvg-name="CGTN西语" group-title="央视频道",CGTN西语
+http://yaofuming.top:8188/udp/239.94.1.61:5140
+#EXTINF:-1 tvg-name="CGTN西语" group-title="央视频道",CGTN西语
+http://yaofuming.top:8188/udp/239.94.1.65:5140
+#EXTINF:-1 tvg-name="CGTN西语" group-title="央视频道",CGTN西语
+http://yaofuming.top:8188/udp/239.94.2.237:5140
+#EXTINF:-1 tvg-name="三沙卫视" group-title="卫视频道",三沙卫视
+http://182.143.112.7:40000/udp/239.94.2.211:5140
+#EXTINF:-1 tvg-name="三沙卫视" group-title="卫视频道",三沙卫视
+http://182.143.112.7:40000/udp/239.94.0.105:5140
+#EXTINF:-1 tvg-name="三沙卫视" group-title="卫视频道",三沙卫视
+http://yaofuming.top:8188/udp/239.94.0.105:5140
+#EXTINF:-1 tvg-name="三沙卫视" group-title="卫视频道",三沙卫视
+http://yaofuming.top:8188/udp/239.94.2.211:5140
 #EXTINF:-1 tvg-name="东南卫视" group-title="卫视频道",东南卫视
 http://182.143.112.7:40000/udp/239.94.0.80:5140
 #EXTINF:-1 tvg-name="云南卫视" group-title="卫视频道",云南卫视
 http://182.143.112.7:40000/udp/239.94.0.90:5140
 #EXTINF:-1 tvg-name="优漫卡通" group-title="卫视频道",优漫卡通
-http://182.143.112.7:40000/rtp/239.94.1.31:5140
-#EXTINF:-1 tvg-name="优漫卡通" group-title="卫视频道",优漫卡通
-http://182.143.112.7:40000/rtp/239.94.2.232:5140
-#EXTINF:-1 tvg-name="优漫卡通" group-title="卫视频道",优漫卡通
 http://nas.201606.xyz:4022/udp/239.11.0.63:5140
 #EXTINF:-1 tvg-name="兵团卫视" group-title="卫视频道",兵团卫视
 http://182.143.112.7:40000/udp/239.94.0.102:5140
+#EXTINF:-1 tvg-name="内蒙古卫视" group-title="卫视频道",内蒙古卫视
+http://yaofuming.top:8188/udp/239.94.0.94:5140
+#EXTINF:-1 tvg-name="内蒙古卫视" group-title="卫视频道",内蒙古卫视
+http://yaofuming.top:8188/udp/239.94.2.200:5140
 #EXTINF:-1 tvg-name="厦门卫视" group-title="卫视频道",厦门卫视
 http://182.143.112.7:40000/udp/239.94.0.104:5140
-#EXTINF:-1 tvg-name="厦门卫视" group-title="卫视频道",厦门卫视
-http://182.143.112.7:40000/rtp/239.94.0.104:5140
-#EXTINF:-1 tvg-name="厦门卫视" group-title="卫视频道",厦门卫视
-http://182.143.112.7:40000/rtp/239.94.2.210:5140
 #EXTINF:-1 tvg-name="厦门卫视" group-title="卫视频道",厦门卫视
 http://182.143.112.7:40000/udp/239.94.2.210:5140
 #EXTINF:-1 tvg-name="厦门卫视" group-title="卫视频道",厦门卫视
@@ -103,6 +129,10 @@ http://www.893224162.xyz:8188/udp/239.94.0.104:5140
 http://xmzj.f3322.net:8188/udp/239.94.0.104:5140
 #EXTINF:-1 tvg-name="厦门卫视" group-title="卫视频道",厦门卫视
 http://xmzj.f3322.net:8188/udp/239.94.2.210:5140
+#EXTINF:-1 tvg-name="厦门卫视" group-title="卫视频道",厦门卫视
+http://yaofuming.top:8188/udp/239.94.0.104:5140
+#EXTINF:-1 tvg-name="厦门卫视" group-title="卫视频道",厦门卫视
+http://yaofuming.top:8188/udp/239.94.2.210:5140
 #EXTINF:-1 tvg-name="吉林卫视" group-title="卫视频道",吉林卫视
 http://182.143.112.7:40000/udp/239.94.0.91:5140
 #EXTINF:-1 tvg-name="吉林卫视" group-title="卫视频道",吉林卫视
@@ -111,24 +141,22 @@ http://182.143.112.7:40000/udp/239.94.2.197:5140
 http://182.143.112.7:40000/udp/239.94.1.10:5140
 #EXTINF:-1 tvg-name="嘉佳卡通" group-title="卫视频道",嘉佳卡通
 http://182.143.112.7:40000/udp/239.94.2.226:5140
+#EXTINF:-1 tvg-name="嘉佳卡通" group-title="卫视频道",嘉佳卡通
+http://yaofuming.top:8188/udp/239.94.1.10:5140
 #EXTINF:-1 tvg-name="宁夏卫视" group-title="卫视频道",宁夏卫视
 http://182.143.112.7:40000/udp/239.94.0.96:5140
-#EXTINF:-1 tvg-name="安多卫视" group-title="卫视频道",安多卫视
-http://182.143.112.7:40000/rtp/239.94.0.110:5140
-#EXTINF:-1 tvg-name="安多卫视" group-title="卫视频道",安多卫视
-http://182.143.112.7:40000/rtp/239.94.2.216:5140
 #EXTINF:-1 tvg-name="安多卫视" group-title="卫视频道",安多卫视
 http://182.143.112.7:40000/udp/239.94.0.110:5140
 #EXTINF:-1 tvg-name="安多卫视" group-title="卫视频道",安多卫视
 http://182.143.112.7:40000/udp/239.94.2.216:5140
 #EXTINF:-1 tvg-name="安多卫视" group-title="卫视频道",安多卫视
-http://nas.201606.xyz:4022/udp/239.11.0.124:5140
-#EXTINF:-1 tvg-name="安多卫视" group-title="卫视频道",安多卫视
-http://www.893224162.xyz:8188/udp/239.94.0.110:5140
-#EXTINF:-1 tvg-name="安多卫视" group-title="卫视频道",安多卫视
 http://xmzj.f3322.net:8188/udp/239.94.0.110:5140
 #EXTINF:-1 tvg-name="安多卫视" group-title="卫视频道",安多卫视
 http://xmzj.f3322.net:8188/udp/239.94.2.216:5140
+#EXTINF:-1 tvg-name="安多卫视" group-title="卫视频道",安多卫视
+http://yaofuming.top:8188/udp/239.94.0.110:5140
+#EXTINF:-1 tvg-name="安多卫视" group-title="卫视频道",安多卫视
+http://yaofuming.top:8188/udp/239.94.2.216:5140
 #EXTINF:-1 tvg-name="山西卫视" group-title="卫视频道",山西卫视
 http://182.143.112.7:40000/udp/239.94.0.93:5140
 #EXTINF:-1 tvg-name="广西卫视" group-title="卫视频道",广西卫视
@@ -138,37 +166,25 @@ http://182.143.112.7:40000/udp/239.94.0.78:5140
 #EXTINF:-1 tvg-name="康巴卫视" group-title="卫视频道",康巴卫视
 http://182.143.112.7:40000/udp/239.94.2.184:5140
 #EXTINF:-1 tvg-name="康巴卫视" group-title="卫视频道",康巴卫视
-http://182.143.112.7:40000/rtp/239.94.0.78:5140
-#EXTINF:-1 tvg-name="康巴卫视" group-title="卫视频道",康巴卫视
-http://182.143.112.7:40000/rtp/239.94.2.184:5140
-#EXTINF:-1 tvg-name="康巴卫视" group-title="卫视频道",康巴卫视
-http://nas.201606.xyz:4022/udp/239.11.0.10:5140
-#EXTINF:-1 tvg-name="康巴卫视" group-title="卫视频道",康巴卫视
-http://nas.201606.xyz:4022/udp/239.10.0.161:5140
-#EXTINF:-1 tvg-name="康巴卫视" group-title="卫视频道",康巴卫视
-http://nas.201606.xyz:4022/udp/239.10.0.162:5140
-#EXTINF:-1 tvg-name="康巴卫视" group-title="卫视频道",康巴卫视
-http://www.893224162.xyz:8188/udp/239.94.0.78:5140
-#EXTINF:-1 tvg-name="康巴卫视" group-title="卫视频道",康巴卫视
 http://xmzj.f3322.net:8188/udp/239.94.0.78:5140
 #EXTINF:-1 tvg-name="康巴卫视" group-title="卫视频道",康巴卫视
 http://xmzj.f3322.net:8188/udp/239.94.2.184:5140
-#EXTINF:-1 tvg-name="延边卫视" group-title="卫视频道",延边卫视
-http://182.143.112.7:40000/rtp/239.94.0.107:5140
-#EXTINF:-1 tvg-name="延边卫视" group-title="卫视频道",延边卫视
-http://182.143.112.7:40000/rtp/239.94.2.213:5140
+#EXTINF:-1 tvg-name="康巴卫视" group-title="卫视频道",康巴卫视
+http://yaofuming.top:8188/udp/239.94.0.78:5140
+#EXTINF:-1 tvg-name="康巴卫视" group-title="卫视频道",康巴卫视
+http://yaofuming.top:8188/udp/239.94.2.184:5140
 #EXTINF:-1 tvg-name="延边卫视" group-title="卫视频道",延边卫视
 http://182.143.112.7:40000/udp/239.94.0.107:5140
 #EXTINF:-1 tvg-name="延边卫视" group-title="卫视频道",延边卫视
 http://182.143.112.7:40000/udp/239.94.2.213:5140
 #EXTINF:-1 tvg-name="延边卫视" group-title="卫视频道",延边卫视
-http://nas.201606.xyz:4022/udp/239.11.0.206:5140
-#EXTINF:-1 tvg-name="延边卫视" group-title="卫视频道",延边卫视
-http://www.893224162.xyz:8188/udp/239.94.0.107:5140
-#EXTINF:-1 tvg-name="延边卫视" group-title="卫视频道",延边卫视
 http://xmzj.f3322.net:8188/udp/239.94.0.107:5140
 #EXTINF:-1 tvg-name="延边卫视" group-title="卫视频道",延边卫视
 http://xmzj.f3322.net:8188/udp/239.94.2.213:5140
+#EXTINF:-1 tvg-name="延边卫视" group-title="卫视频道",延边卫视
+http://yaofuming.top:8188/udp/239.94.0.107:5140
+#EXTINF:-1 tvg-name="延边卫视" group-title="卫视频道",延边卫视
+http://yaofuming.top:8188/udp/239.94.2.213:5140
 #EXTINF:-1 tvg-name="河南卫视" group-title="卫视频道",河南卫视
 http://182.143.112.7:40000/udp/239.94.0.88:5140
 #EXTINF:-1 tvg-name="河南卫视" group-title="卫视频道",河南卫视
@@ -196,10 +212,6 @@ http://nas.201606.xyz:4022/udp/239.10.0.126:5140
 #EXTINF:-1 tvg-name="四川影视" group-title="影视频道",四川影视
 http://182.143.112.7:40000/udp/239.94.0.73:5140
 #EXTINF:-1 tvg-name="四川影视" group-title="影视频道",四川影视
-http://182.143.112.7:40000/rtp/239.94.0.73:5140
-#EXTINF:-1 tvg-name="四川影视" group-title="影视频道",四川影视
-http://182.143.112.7:40000/rtp/239.94.2.179:5140
-#EXTINF:-1 tvg-name="四川影视" group-title="影视频道",四川影视
 http://nas.201606.xyz:4022/udp/239.11.0.77:5140
 #EXTINF:-1 tvg-name="四川影视" group-title="影视频道",四川影视
 http://www.893224162.xyz:8188/udp/239.94.0.73:5140
@@ -208,13 +220,15 @@ http://xmzj.f3322.net:8188/udp/239.94.0.73:5140
 #EXTINF:-1 tvg-name="四川影视" group-title="影视频道",四川影视
 http://yaofuming.top:8188/udp/239.94.0.73:5140
 #EXTINF:-1 tvg-name="都市剧场" group-title="影视频道",都市剧场
-http://182.143.112.7:40000/rtp/239.94.1.133:5140
-#EXTINF:-1 tvg-name="都市剧场" group-title="影视频道",都市剧场
 http://182.143.112.7:40000/udp/239.94.1.133:5140
+#EXTINF:-1 tvg-name="CHC动作电影" group-title="电影频道",CHC动作电影
+http://182.143.112.7:40000/udp/239.94.1.175:5140
+#EXTINF:-1 tvg-name="CHC动作电影" group-title="电影频道",CHC动作电影
+http://yaofuming.top:8188/udp/239.94.1.175:5140
 #EXTINF:-1 tvg-name="CHC家庭影院" group-title="电影频道",CHC家庭影院
 http://182.143.112.7:40000/udp/239.94.1.173:5140
-#EXTINF:-1 tvg-name="CHC影迷电影" group-title="电影频道",CHC影迷电影
-http://182.143.112.7:40000/rtp/239.94.1.174:5140
+#EXTINF:-1 tvg-name="CHC家庭影院" group-title="电影频道",CHC家庭影院
+http://yaofuming.top:8188/udp/239.94.1.173:5140
 #EXTINF:-1 tvg-name="CHC影迷电影" group-title="电影频道",CHC影迷电影
 http://182.143.112.7:40000/udp/239.94.1.174:5140
 #EXTINF:-1 tvg-name="CHC影迷电影" group-title="电影频道",CHC影迷电影
@@ -224,8 +238,6 @@ http://xmzj.f3322.net:8188/udp/239.94.1.174:5140
 #EXTINF:-1 tvg-name="CHC影迷电影" group-title="电影频道",CHC影迷电影
 http://yaofuming.top:8188/udp/239.94.1.174:5140
 #EXTINF:-1 tvg-name="华语影院" group-title="电影频道",华语影院
-http://182.143.112.7:40000/rtp/239.94.1.22:5140
-#EXTINF:-1 tvg-name="华语影院" group-title="电影频道",华语影院
 http://182.143.112.7:40000/udp/239.94.1.22:5140
 #EXTINF:-1 tvg-name="华语影院" group-title="电影频道",华语影院
 http://www.893224162.xyz:8188/udp/239.94.1.22:5140
@@ -233,10 +245,6 @@ http://www.893224162.xyz:8188/udp/239.94.1.22:5140
 http://xmzj.f3322.net:8188/udp/239.94.1.22:5140
 #EXTINF:-1 tvg-name="华语影院" group-title="电影频道",华语影院
 http://yaofuming.top:8188/udp/239.94.1.22:5140
-#EXTINF:-1 tvg-name="星空卫视" group-title="电影频道",星空卫视
-http://182.143.112.7:40000/rtp/239.94.2.54:5140
-#EXTINF:-1 tvg-name="星空卫视" group-title="电影频道",星空卫视
-http://182.143.112.7:40000/rtp/239.94.2.53:5140
 #EXTINF:-1 tvg-name="星空卫视" group-title="电影频道",星空卫视
 http://182.143.112.7:40000/udp/239.94.2.54:5140
 #EXTINF:-1 tvg-name="星空卫视" group-title="电影频道",星空卫视
@@ -247,8 +255,6 @@ http://xmzj.f3322.net:8188/udp/239.94.2.54:5140
 http://yaofuming.top:8188/udp/239.94.2.54:5140
 #EXTINF:-1 tvg-name="科幻电影" group-title="电影频道",科幻电影
 http://182.143.112.7:40000/udp/239.94.1.131:5140
-#EXTINF:-1 tvg-name="科幻电影" group-title="电影频道",科幻电影
-http://182.143.112.7:40000/rtp/239.94.1.131:5140
 #EXTINF:-1 tvg-name="科幻电影" group-title="电影频道",科幻电影
 http://www.893224162.xyz:8188/udp/239.94.1.131:5140
 #EXTINF:-1 tvg-name="科幻电影" group-title="电影频道",科幻电影
@@ -264,8 +270,6 @@ http://182.143.112.7:40000/udp/239.94.2.230:5140
 #EXTINF:-1 tvg-name="上海纪实人文" group-title="纪实频道",上海纪实人文
 http://nas.201606.xyz:4022/udp/239.10.0.192:5140
 #EXTINF:-1 tvg-name="求索纪录" group-title="纪实频道",求索纪录
-http://182.143.112.7:40000/rtp/239.94.1.142:5140
-#EXTINF:-1 tvg-name="求索纪录" group-title="纪实频道",求索纪录
 http://182.143.112.7:40000/udp/239.94.1.142:5140
 #EXTINF:-1 tvg-name="求索纪录" group-title="纪实频道",求索纪录
 http://nas.201606.xyz:4022/udp/239.10.0.221:5140
@@ -276,37 +280,41 @@ http://xmzj.f3322.net:8188/udp/239.94.1.142:5140
 #EXTINF:-1 tvg-name="求索纪录" group-title="纪实频道",求索纪录
 http://yaofuming.top:8188/udp/239.94.1.142:5140
 #EXTINF:-1 tvg-name="金鹰纪实" group-title="纪实频道",金鹰纪实
+http://182.143.112.7:40000/udp/239.94.2.223:5140
+#EXTINF:-1 tvg-name="金鹰纪实" group-title="纪实频道",金鹰纪实
 http://182.143.112.7:40000/udp/239.94.1.1:5140
+#EXTINF:-1 tvg-name="金鹰纪实" group-title="纪实频道",金鹰纪实
+http://yaofuming.top:8188/udp/239.94.1.1:5140
+#EXTINF:-1 tvg-name="金鹰纪实" group-title="纪实频道",金鹰纪实
+http://yaofuming.top:8188/udp/239.94.2.223:5140
 #EXTINF:-1 tvg-name="凤凰中文" group-title="港澳频道",凤凰中文
 http://182.143.112.7:40000/udp/239.94.2.51:5140
 #EXTINF:-1 tvg-name="凤凰中文" group-title="港澳频道",凤凰中文
 http://182.143.112.7:40000/udp/239.94.2.52:5140
 #EXTINF:-1 tvg-name="凤凰中文" group-title="港澳频道",凤凰中文
-http://182.143.112.7:40000/rtp/239.94.2.51:5140
-#EXTINF:-1 tvg-name="凤凰中文" group-title="港澳频道",凤凰中文
-http://182.143.112.7:40000/rtp/239.94.2.52:5140
-#EXTINF:-1 tvg-name="凤凰中文" group-title="港澳频道",凤凰中文
-http://www.893224162.xyz:8188/udp/239.94.2.51:5140
-#EXTINF:-1 tvg-name="凤凰中文" group-title="港澳频道",凤凰中文
 http://xmzj.f3322.net:8188/udp/239.94.2.51:5140
 #EXTINF:-1 tvg-name="凤凰中文" group-title="港澳频道",凤凰中文
 http://xmzj.f3322.net:8188/udp/239.94.2.52:5140
+#EXTINF:-1 tvg-name="凤凰中文" group-title="港澳频道",凤凰中文
+http://yaofuming.top:8188/udp/239.94.2.51:5140
+#EXTINF:-1 tvg-name="凤凰中文" group-title="港澳频道",凤凰中文
+http://yaofuming.top:8188/udp/239.94.2.52:5140
 #EXTINF:-1 tvg-name="凤凰资讯" group-title="港澳频道",凤凰资讯
 http://182.143.112.7:40000/udp/239.94.2.49:5140
 #EXTINF:-1 tvg-name="凤凰资讯" group-title="港澳频道",凤凰资讯
 http://182.143.112.7:40000/udp/239.94.2.50:5140
 #EXTINF:-1 tvg-name="凤凰资讯" group-title="港澳频道",凤凰资讯
-http://182.143.112.7:40000/rtp/239.94.2.49:5140
-#EXTINF:-1 tvg-name="凤凰资讯" group-title="港澳频道",凤凰资讯
-http://182.143.112.7:40000/rtp/239.94.2.50:5140
-#EXTINF:-1 tvg-name="凤凰资讯" group-title="港澳频道",凤凰资讯
-http://www.893224162.xyz:8188/udp/239.94.2.49:5140
-#EXTINF:-1 tvg-name="凤凰资讯" group-title="港澳频道",凤凰资讯
 http://xmzj.f3322.net:8188/udp/239.94.2.49:5140
 #EXTINF:-1 tvg-name="凤凰资讯" group-title="港澳频道",凤凰资讯
 http://xmzj.f3322.net:8188/udp/239.94.2.50:5140
+#EXTINF:-1 tvg-name="凤凰资讯" group-title="港澳频道",凤凰资讯
+http://yaofuming.top:8188/udp/239.94.2.49:5140
+#EXTINF:-1 tvg-name="凤凰资讯" group-title="港澳频道",凤凰资讯
+http://yaofuming.top:8188/udp/239.94.2.50:5140
 #EXTINF:-1 tvg-name="中国教育1" group-title="国教频道",中国教育1
 http://182.143.112.7:40000/udp/239.94.1.2:5140
+#EXTINF:-1 tvg-name="中国教育2" group-title="国教频道",中国教育2
+http://182.143.112.7:40000/udp/239.94.2.228:5140
 #EXTINF:-1 tvg-name="中国教育2" group-title="国教频道",中国教育2
 http://182.143.112.7:40000/udp/239.94.1.19:5140
 #EXTINF:-1 tvg-name="中国教育2" group-title="国教频道",中国教育2
@@ -315,16 +323,18 @@ http://nas.201606.xyz:4022/udp/239.11.0.246:5140
 http://xmzj.f3322.net:8188/udp/239.94.1.19:5140
 #EXTINF:-1 tvg-name="中国教育2" group-title="国教频道",中国教育2
 http://xmzj.f3322.net:8188/udp/239.94.2.228:5140
+#EXTINF:-1 tvg-name="中国教育2" group-title="国教频道",中国教育2
+http://yaofuming.top:8188/udp/239.94.1.19:5140
+#EXTINF:-1 tvg-name="中国教育2" group-title="国教频道",中国教育2
+http://yaofuming.top:8188/udp/239.94.2.228:5140
 #EXTINF:-1 tvg-name="中国教育3" group-title="国教频道",中国教育3
 http://nas.201606.xyz:4022/udp/239.11.0.247:5140
+#EXTINF:-1 tvg-name="中国教育4" group-title="国教频道",中国教育4
+http://yaofuming.top:8188/udp/239.94.1.20:5140
+#EXTINF:-1 tvg-name="中国教育4" group-title="国教频道",中国教育4
+http://yaofuming.top:8188/udp/239.94.2.229:5140
 #EXTINF:-1 tvg-name="成龙" group-title="明星频道",成龙
 http://nas.201606.xyz:4022/udp/239.11.0.142:5140
-#EXTINF:-1 tvg-name="东方财经" group-title="主题频道",东方财经
-http://182.143.112.7:40000/udp/239.94.1.59:5140
-#EXTINF:-1 tvg-name="东方财经" group-title="主题频道",东方财经
-http://182.143.112.7:40000/rtp/239.94.1.59:5140
-#EXTINF:-1 tvg-name="东方财经" group-title="主题频道",东方财经
-http://182.143.112.7:40000/rtp/239.94.2.236:5140
 #EXTINF:-1 tvg-name="东方财经" group-title="主题频道",东方财经
 http://nas.201606.xyz:4022/udp/239.10.0.178:5140
 #EXTINF:-1 tvg-name="东方财经" group-title="主题频道",东方财经
@@ -338,8 +348,6 @@ http://182.143.112.7:40000/udp/239.94.1.166:5140
 #EXTINF:-1 tvg-name="中国天气" group-title="数字频道",中国天气
 http://182.143.112.7:40000/udp/239.94.1.167:5140
 #EXTINF:-1 tvg-name="中国天气" group-title="数字频道",中国天气
-http://182.143.112.7:40000/rtp/239.94.1.167:5140
-#EXTINF:-1 tvg-name="中国天气" group-title="数字频道",中国天气
 http://nas.201606.xyz:4022/udp/239.10.0.177:5140
 #EXTINF:-1 tvg-name="中国天气" group-title="数字频道",中国天气
 http://www.893224162.xyz:8188/udp/239.94.1.167:5140
@@ -350,8 +358,6 @@ http://yaofuming.top:8188/udp/239.94.1.167:5140
 #EXTINF:-1 tvg-name="四海钓鱼" group-title="数字频道",四海钓鱼
 http://182.143.112.7:40000/udp/239.94.1.168:5140
 #EXTINF:-1 tvg-name="四海钓鱼" group-title="数字频道",四海钓鱼
-http://182.143.112.7:40000/rtp/239.94.1.168:5140
-#EXTINF:-1 tvg-name="四海钓鱼" group-title="数字频道",四海钓鱼
 http://www.893224162.xyz:8188/udp/239.94.1.168:5140
 #EXTINF:-1 tvg-name="四海钓鱼" group-title="数字频道",四海钓鱼
 http://xmzj.f3322.net:8188/udp/239.94.1.168:5140
@@ -359,8 +365,6 @@ http://xmzj.f3322.net:8188/udp/239.94.1.168:5140
 http://yaofuming.top:8188/udp/239.94.1.168:5140
 #EXTINF:-1 tvg-name="天元围棋" group-title="数字频道",天元围棋
 http://182.143.112.7:40000/udp/239.94.1.152:5140
-#EXTINF:-1 tvg-name="天元围棋" group-title="数字频道",天元围棋
-http://182.143.112.7:40000/rtp/239.94.1.152:5140
 #EXTINF:-1 tvg-name="天元围棋" group-title="数字频道",天元围棋
 http://www.893224162.xyz:8188/udp/239.94.1.152:5140
 #EXTINF:-1 tvg-name="天元围棋" group-title="数字频道",天元围棋
@@ -370,11 +374,11 @@ http://yaofuming.top:8188/udp/239.94.1.152:5140
 #EXTINF:-1 tvg-name="梨园频道" group-title="数字频道",梨园频道
 http://182.143.112.7:40000/udp/239.94.1.16:5140
 #EXTINF:-1 tvg-name="梨园频道" group-title="数字频道",梨园频道
-http://182.143.112.7:40000/rtp/239.94.1.16:5140
-#EXTINF:-1 tvg-name="梨园频道" group-title="数字频道",梨园频道
 http://182.143.112.7:40000/udp/239.94.2.227:5140
-#EXTINF:-1 tvg-name="欢笑剧场" group-title="数字频道",欢笑剧场
-http://182.143.112.7:40000/rtp/239.94.1.176:5140
+#EXTINF:-1 tvg-name="梨园频道" group-title="数字频道",梨园频道
+http://yaofuming.top:8188/udp/239.94.1.16:5140
+#EXTINF:-1 tvg-name="梨园频道" group-title="数字频道",梨园频道
+http://yaofuming.top:8188/udp/239.94.2.227:5140
 #EXTINF:-1 tvg-name="欢笑剧场" group-title="数字频道",欢笑剧场
 http://182.143.112.7:40000/udp/239.94.1.176:5140
 #EXTINF:-1 tvg-name="游戏风云" group-title="数字频道",游戏风云
@@ -383,8 +387,6 @@ http://182.143.112.7:40000/udp/239.94.1.46:5140
 http://182.143.112.7:40000/udp/239.94.2.235:5140
 #EXTINF:-1 tvg-name="环球旅游" group-title="数字频道",环球旅游
 http://182.143.112.7:40000/udp/239.94.1.147:5140
-#EXTINF:-1 tvg-name="环球旅游" group-title="数字频道",环球旅游
-http://182.143.112.7:40000/rtp/239.94.1.147:5140
 #EXTINF:-1 tvg-name="环球旅游" group-title="数字频道",环球旅游
 http://www.893224162.xyz:8188/udp/239.94.1.147:5140
 #EXTINF:-1 tvg-name="环球旅游" group-title="数字频道",环球旅游
@@ -396,8 +398,6 @@ http://182.143.112.7:40000/udp/239.94.1.146:5140
 #EXTINF:-1 tvg-name="电竞天堂" group-title="数字频道",电竞天堂
 http://182.143.112.7:40000/udp/239.94.1.45:5140
 #EXTINF:-1 tvg-name="电竞天堂" group-title="数字频道",电竞天堂
-http://182.143.112.7:40000/rtp/239.94.1.45:5140
-#EXTINF:-1 tvg-name="电竞天堂" group-title="数字频道",电竞天堂
 http://www.893224162.xyz:8188/udp/239.94.1.45:5140
 #EXTINF:-1 tvg-name="电竞天堂" group-title="数字频道",电竞天堂
 http://xmzj.f3322.net:8188/udp/239.94.1.45:5140
@@ -408,15 +408,9 @@ http://182.143.112.7:40000/udp/239.94.1.154:5140
 #EXTINF:-1 tvg-name="财富天下" group-title="数字频道",财富天下
 http://182.143.112.7:40000/udp/239.94.1.67:5140
 #EXTINF:-1 tvg-name="财富天下" group-title="数字频道",财富天下
-http://182.143.112.7:40000/rtp/239.94.1.67:5140
-#EXTINF:-1 tvg-name="财富天下" group-title="数字频道",财富天下
-http://182.143.112.7:40000/rtp/239.94.1.42:5140
-#EXTINF:-1 tvg-name="财富天下" group-title="数字频道",财富天下
-http://182.143.112.7:40000/rtp/239.94.2.234:5140
+http://182.143.112.7:40000/udp/239.94.1.42:5140
 #EXTINF:-1 tvg-name="i成都" group-title="地方频道",i成都
 http://182.143.112.7:40000/udp/239.94.2.1:5140
-#EXTINF:-1 tvg-name="i成都" group-title="地方频道",i成都
-http://182.143.112.7:40000/rtp/239.94.2.1:5140
 #EXTINF:-1 tvg-name="i成都" group-title="地方频道",i成都
 http://www.893224162.xyz:8188/udp/239.94.2.1:5140
 #EXTINF:-1 tvg-name="i成都" group-title="地方频道",i成都
@@ -425,8 +419,6 @@ http://xmzj.f3322.net:8188/udp/239.94.2.1:5140
 http://yaofuming.top:8188/udp/239.94.2.1:5140
 #EXTINF:-1 tvg-name="乐山文旅" group-title="地方频道",乐山文旅
 http://nas.201606.xyz:4022/udp/239.10.0.63:5140
-#EXTINF:-1 tvg-name="乐山文旅生活" group-title="地方频道",乐山文旅生活
-http://182.143.112.7:40000/rtp/239.94.0.173:5140
 #EXTINF:-1 tvg-name="乐山文旅生活" group-title="地方频道",乐山文旅生活
 http://182.143.112.7:40000/udp/239.94.0.173:5140
 #EXTINF:-1 tvg-name="乐山文旅生活" group-title="地方频道",乐山文旅生活
@@ -440,15 +432,11 @@ http://nas.201606.xyz:4022/udp/239.10.0.62:5140
 #EXTINF:-1 tvg-name="乐山综合" group-title="地方频道",乐山综合
 http://182.143.112.7:40000/udp/239.94.0.162:5140
 #EXTINF:-1 tvg-name="乐山综合" group-title="地方频道",乐山综合
-http://182.143.112.7:40000/rtp/239.94.0.162:5140
-#EXTINF:-1 tvg-name="乐山综合" group-title="地方频道",乐山综合
 http://www.893224162.xyz:8188/udp/239.94.0.162:5140
 #EXTINF:-1 tvg-name="乐山综合" group-title="地方频道",乐山综合
 http://xmzj.f3322.net:8188/udp/239.94.0.162:5140
 #EXTINF:-1 tvg-name="乐山综合" group-title="地方频道",乐山综合
 http://yaofuming.top:8188/udp/239.94.0.162:5140
-#EXTINF:-1 tvg-name="九画面四川1" group-title="地方频道",九画面四川1
-http://182.143.112.7:40000/rtp/239.94.2.131:5140
 #EXTINF:-1 tvg-name="九画面四川1" group-title="地方频道",九画面四川1
 http://182.143.112.7:40000/udp/239.94.2.131:5140
 #EXTINF:-1 tvg-name="九画面四川1" group-title="地方频道",九画面四川1
@@ -457,8 +445,6 @@ http://www.893224162.xyz:8188/udp/239.94.2.131:5140
 http://xmzj.f3322.net:8188/udp/239.94.2.131:5140
 #EXTINF:-1 tvg-name="九画面四川1" group-title="地方频道",九画面四川1
 http://yaofuming.top:8188/udp/239.94.2.131:5140
-#EXTINF:-1 tvg-name="九画面四川2" group-title="地方频道",九画面四川2
-http://182.143.112.7:40000/rtp/239.94.2.130:5140
 #EXTINF:-1 tvg-name="九画面四川2" group-title="地方频道",九画面四川2
 http://182.143.112.7:40000/udp/239.94.2.130:5140
 #EXTINF:-1 tvg-name="九画面四川2" group-title="地方频道",九画面四川2
@@ -470,8 +456,6 @@ http://yaofuming.top:8188/udp/239.94.2.130:5140
 #EXTINF:-1 tvg-name="内江科教" group-title="地方频道",内江科教
 http://nas.201606.xyz:4022/udp/239.10.0.73:5140
 #EXTINF:-1 tvg-name="内江科教生活" group-title="地方频道",内江科教生活
-http://182.143.112.7:40000/rtp/239.94.0.181:5140
-#EXTINF:-1 tvg-name="内江科教生活" group-title="地方频道",内江科教生活
 http://182.143.112.7:40000/udp/239.94.0.181:5140
 #EXTINF:-1 tvg-name="内江科教生活" group-title="地方频道",内江科教生活
 http://www.893224162.xyz:8188/udp/239.94.0.181:5140
@@ -481,8 +465,6 @@ http://xmzj.f3322.net:8188/udp/239.94.0.181:5140
 http://yaofuming.top:8188/udp/239.94.0.181:5140
 #EXTINF:-1 tvg-name="内江综合" group-title="地方频道",内江综合
 http://182.143.112.7:40000/udp/239.94.0.164:5140
-#EXTINF:-1 tvg-name="内江综合" group-title="地方频道",内江综合
-http://182.143.112.7:40000/rtp/239.94.0.164:5140
 #EXTINF:-1 tvg-name="内江综合" group-title="地方频道",内江综合
 http://nas.201606.xyz:4022/udp/239.10.0.71:5140
 #EXTINF:-1 tvg-name="内江综合" group-title="地方频道",内江综合
@@ -494,15 +476,11 @@ http://yaofuming.top:8188/udp/239.94.0.164:5140
 #EXTINF:-1 tvg-name="凉山彝语综合" group-title="地方频道",凉山彝语综合
 http://182.143.112.7:40000/udp/239.94.0.175:5140
 #EXTINF:-1 tvg-name="凉山彝语综合" group-title="地方频道",凉山彝语综合
-http://182.143.112.7:40000/rtp/239.94.0.175:5140
-#EXTINF:-1 tvg-name="凉山彝语综合" group-title="地方频道",凉山彝语综合
 http://www.893224162.xyz:8188/udp/239.94.0.175:5140
 #EXTINF:-1 tvg-name="凉山彝语综合" group-title="地方频道",凉山彝语综合
 http://xmzj.f3322.net:8188/udp/239.94.0.175:5140
 #EXTINF:-1 tvg-name="凉山彝语综合" group-title="地方频道",凉山彝语综合
 http://yaofuming.top:8188/udp/239.94.0.175:5140
-#EXTINF:-1 tvg-name="凉山综合" group-title="地方频道",凉山综合
-http://182.143.112.7:40000/rtp/239.94.0.171:5140
 #EXTINF:-1 tvg-name="凉山综合" group-title="地方频道",凉山综合
 http://182.143.112.7:40000/udp/239.94.0.171:5140
 #EXTINF:-1 tvg-name="凉山综合" group-title="地方频道",凉山综合
@@ -511,10 +489,6 @@ http://www.893224162.xyz:8188/udp/239.94.0.171:5140
 http://xmzj.f3322.net:8188/udp/239.94.0.171:5140
 #EXTINF:-1 tvg-name="凉山综合" group-title="地方频道",凉山综合
 http://yaofuming.top:8188/udp/239.94.0.171:5140
-#EXTINF:-1 tvg-name="北京纪实科教" group-title="地方频道",北京纪实科教
-http://182.143.112.7:40000/rtp/239.94.0.109:5140
-#EXTINF:-1 tvg-name="北京纪实科教" group-title="地方频道",北京纪实科教
-http://182.143.112.7:40000/rtp/239.94.2.215:5140
 #EXTINF:-1 tvg-name="北京纪实科教" group-title="地方频道",北京纪实科教
 http://182.143.112.7:40000/udp/239.94.0.109:5140
 #EXTINF:-1 tvg-name="北京纪实科教" group-title="地方频道",北京纪实科教
@@ -534,29 +508,17 @@ http://182.143.112.7:40000/udp/239.94.1.4:5140
 #EXTINF:-1 tvg-name="四川乡村" group-title="地方频道",四川乡村
 http://182.143.112.7:40000/udp/239.94.0.77:5140
 #EXTINF:-1 tvg-name="四川乡村" group-title="地方频道",四川乡村
-http://182.143.112.7:40000/rtp/239.94.0.77:5140
+http://yaofuming.top:8188/udp/239.94.0.77:5140
 #EXTINF:-1 tvg-name="四川乡村" group-title="地方频道",四川乡村
-http://182.143.112.7:40000/rtp/239.94.1.4:5140
+http://yaofuming.top:8188/udp/239.94.1.4:5140
 #EXTINF:-1 tvg-name="四川乡村" group-title="地方频道",四川乡村
-http://182.143.112.7:40000/rtp/239.94.1.8:5140
-#EXTINF:-1 tvg-name="四川乡村" group-title="地方频道",四川乡村
-http://182.143.112.7:40000/rtp/239.94.2.183:5140
-#EXTINF:-1 tvg-name="四川乡村" group-title="地方频道",四川乡村
-http://xmzj.f3322.net:8188/udp/239.94.0.77:5140
-#EXTINF:-1 tvg-name="四川乡村" group-title="地方频道",四川乡村
-http://xmzj.f3322.net:8188/udp/239.94.1.4:5140
-#EXTINF:-1 tvg-name="四川乡村" group-title="地方频道",四川乡村
-http://xmzj.f3322.net:8188/udp/239.94.1.8:5140
+http://yaofuming.top:8188/udp/239.94.1.8:5140
 #EXTINF:-1 tvg-name="四川公共" group-title="地方频道",四川公共
 http://nas.201606.xyz:4022/udp/239.11.0.4:5140
 #EXTINF:-1 tvg-name="四川妇女" group-title="地方频道",四川妇女
 http://nas.201606.xyz:4022/udp/239.11.0.8:5140
 #EXTINF:-1 tvg-name="四川妇女儿童" group-title="地方频道",四川妇女儿童
 http://182.143.112.7:40000/udp/239.94.0.75:5140
-#EXTINF:-1 tvg-name="四川妇女儿童" group-title="地方频道",四川妇女儿童
-http://182.143.112.7:40000/rtp/239.94.0.75:5140
-#EXTINF:-1 tvg-name="四川妇女儿童" group-title="地方频道",四川妇女儿童
-http://182.143.112.7:40000/rtp/239.94.2.181:5140
 #EXTINF:-1 tvg-name="四川妇女儿童" group-title="地方频道",四川妇女儿童
 http://www.893224162.xyz:8188/udp/239.94.0.75:5140
 #EXTINF:-1 tvg-name="四川妇女儿童" group-title="地方频道",四川妇女儿童
@@ -574,19 +536,9 @@ http://182.143.112.7:40000/udp/239.94.1.5:5140
 #EXTINF:-1 tvg-name="四川文化旅游" group-title="地方频道",四川文化旅游
 http://182.143.112.7:40000/udp/239.94.1.6:5140
 #EXTINF:-1 tvg-name="四川文化旅游" group-title="地方频道",四川文化旅游
-http://182.143.112.7:40000/rtp/239.94.0.71:5140
+http://yaofuming.top:8188/udp/239.94.0.71:5140
 #EXTINF:-1 tvg-name="四川文化旅游" group-title="地方频道",四川文化旅游
-http://182.143.112.7:40000/rtp/239.94.1.11:5140
-#EXTINF:-1 tvg-name="四川文化旅游" group-title="地方频道",四川文化旅游
-http://182.143.112.7:40000/rtp/239.94.1.5:5140
-#EXTINF:-1 tvg-name="四川文化旅游" group-title="地方频道",四川文化旅游
-http://182.143.112.7:40000/rtp/239.94.1.6:5140
-#EXTINF:-1 tvg-name="四川文化旅游" group-title="地方频道",四川文化旅游
-http://182.143.112.7:40000/rtp/239.94.2.177:5140
-#EXTINF:-1 tvg-name="四川文化旅游" group-title="地方频道",四川文化旅游
-http://xmzj.f3322.net:8188/udp/239.94.0.71:5140
-#EXTINF:-1 tvg-name="四川文化旅游" group-title="地方频道",四川文化旅游
-http://xmzj.f3322.net:8188/udp/239.94.1.11:5140
+http://yaofuming.top:8188/udp/239.94.1.11:5140
 #EXTINF:-1 tvg-name="四川新闻" group-title="地方频道",四川新闻
 http://182.143.112.7:40000/udp/239.94.0.72:5140
 #EXTINF:-1 tvg-name="四川新闻" group-title="地方频道",四川新闻
@@ -594,25 +546,11 @@ http://182.143.112.7:40000/udp/239.94.1.3:5140
 #EXTINF:-1 tvg-name="四川新闻" group-title="地方频道",四川新闻
 http://182.143.112.7:40000/udp/239.94.2.26:5140
 #EXTINF:-1 tvg-name="四川新闻" group-title="地方频道",四川新闻
-http://182.143.112.7:40000/rtp/239.94.0.72:5140
+http://yaofuming.top:8188/udp/239.94.0.72:5140
 #EXTINF:-1 tvg-name="四川新闻" group-title="地方频道",四川新闻
-http://182.143.112.7:40000/rtp/239.94.1.3:5140
-#EXTINF:-1 tvg-name="四川新闻" group-title="地方频道",四川新闻
-http://182.143.112.7:40000/rtp/239.94.2.26:5140
-#EXTINF:-1 tvg-name="四川新闻" group-title="地方频道",四川新闻
-http://182.143.112.7:40000/rtp/239.94.2.178:5140
-#EXTINF:-1 tvg-name="四川新闻" group-title="地方频道",四川新闻
-http://xmzj.f3322.net:8188/udp/239.94.0.72:5140
-#EXTINF:-1 tvg-name="四川新闻" group-title="地方频道",四川新闻
-http://xmzj.f3322.net:8188/udp/239.94.1.3:5140
-#EXTINF:-1 tvg-name="四川新闻" group-title="地方频道",四川新闻
-http://xmzj.f3322.net:8188/udp/239.94.2.26:5140
+http://yaofuming.top:8188/udp/239.94.1.3:5140
 #EXTINF:-1 tvg-name="四川星空购物" group-title="地方频道",四川星空购物
 http://182.143.112.7:40000/udp/239.94.0.74:5140
-#EXTINF:-1 tvg-name="四川星空购物" group-title="地方频道",四川星空购物
-http://182.143.112.7:40000/rtp/239.94.0.74:5140
-#EXTINF:-1 tvg-name="四川星空购物" group-title="地方频道",四川星空购物
-http://182.143.112.7:40000/rtp/239.94.2.180:5140
 #EXTINF:-1 tvg-name="四川星空购物" group-title="地方频道",四川星空购物
 http://nas.201606.xyz:4022/udp/239.11.0.125:5140
 #EXTINF:-1 tvg-name="四川星空购物" group-title="地方频道",四川星空购物
@@ -624,10 +562,6 @@ http://yaofuming.top:8188/udp/239.94.0.74:5140
 #EXTINF:-1 tvg-name="四川科教" group-title="地方频道",四川科教
 http://182.143.112.7:40000/udp/239.94.0.76:5140
 #EXTINF:-1 tvg-name="四川科教" group-title="地方频道",四川科教
-http://182.143.112.7:40000/rtp/239.94.0.76:5140
-#EXTINF:-1 tvg-name="四川科教" group-title="地方频道",四川科教
-http://182.143.112.7:40000/rtp/239.94.2.182:5140
-#EXTINF:-1 tvg-name="四川科教" group-title="地方频道",四川科教
 http://nas.201606.xyz:4022/udp/239.11.0.194:5140
 #EXTINF:-1 tvg-name="四川科教" group-title="地方频道",四川科教
 http://www.893224162.xyz:8188/udp/239.94.0.76:5140
@@ -637,10 +571,6 @@ http://xmzj.f3322.net:8188/udp/239.94.0.76:5140
 http://yaofuming.top:8188/udp/239.94.0.76:5140
 #EXTINF:-1 tvg-name="四川经济" group-title="地方频道",四川经济
 http://182.143.112.7:40000/udp/239.94.0.70:5140
-#EXTINF:-1 tvg-name="四川经济" group-title="地方频道",四川经济
-http://182.143.112.7:40000/rtp/239.94.0.70:5140
-#EXTINF:-1 tvg-name="四川经济" group-title="地方频道",四川经济
-http://182.143.112.7:40000/rtp/239.94.2.176:5140
 #EXTINF:-1 tvg-name="四川经济" group-title="地方频道",四川经济
 http://nas.201606.xyz:4022/udp/239.11.0.2:5140
 #EXTINF:-1 tvg-name="四川经济" group-title="地方频道",四川经济
@@ -652,23 +582,17 @@ http://yaofuming.top:8188/udp/239.94.0.70:5140
 #EXTINF:-1 tvg-name="大爱四川专区" group-title="地方频道",大爱四川专区
 http://182.143.112.7:40000/udp/239.94.1.12:5140
 #EXTINF:-1 tvg-name="大爱四川专区" group-title="地方频道",大爱四川专区
-http://182.143.112.7:40000/rtp/239.94.1.12:5140
-#EXTINF:-1 tvg-name="大爱四川专区" group-title="地方频道",大爱四川专区
-http://182.143.112.7:40000/rtp/239.94.1.13:5140
-#EXTINF:-1 tvg-name="大爱四川专区" group-title="地方频道",大爱四川专区
-http://182.143.112.7:40000/rtp/239.94.1.14:5140
-#EXTINF:-1 tvg-name="大爱四川专区" group-title="地方频道",大爱四川专区
 http://182.143.112.7:40000/udp/239.94.1.13:5140
 #EXTINF:-1 tvg-name="大爱四川专区" group-title="地方频道",大爱四川专区
 http://182.143.112.7:40000/udp/239.94.1.14:5140
 #EXTINF:-1 tvg-name="大爱四川专区" group-title="地方频道",大爱四川专区
-http://www.893224162.xyz:8188/udp/239.94.1.12:5140
-#EXTINF:-1 tvg-name="大爱四川专区" group-title="地方频道",大爱四川专区
 http://xmzj.f3322.net:8188/udp/239.94.1.12:5140
 #EXTINF:-1 tvg-name="大爱四川专区" group-title="地方频道",大爱四川专区
-http://xmzj.f3322.net:8188/udp/239.94.1.13:5140
+http://yaofuming.top:8188/udp/239.94.1.12:5140
 #EXTINF:-1 tvg-name="大爱四川专区" group-title="地方频道",大爱四川专区
-http://xmzj.f3322.net:8188/udp/239.94.1.14:5140
+http://yaofuming.top:8188/udp/239.94.1.13:5140
+#EXTINF:-1 tvg-name="大爱四川专区" group-title="地方频道",大爱四川专区
+http://yaofuming.top:8188/udp/239.94.1.14:5140
 #EXTINF:-1 tvg-name="天府乐趣综合" group-title="地方频道",天府乐趣综合
 http://nas.201606.xyz:4022/udp/239.10.0.195:5140
 #EXTINF:-1 tvg-name="天府健康生活" group-title="地方频道",天府健康生活
@@ -682,8 +606,6 @@ http://nas.201606.xyz:4022/udp/239.10.0.189:5140
 #EXTINF:-1 tvg-name="宜宾公共" group-title="地方频道",宜宾公共
 http://182.143.112.7:40000/udp/239.94.0.172:5140
 #EXTINF:-1 tvg-name="宜宾公共" group-title="地方频道",宜宾公共
-http://182.143.112.7:40000/rtp/239.94.0.172:5140
-#EXTINF:-1 tvg-name="宜宾公共" group-title="地方频道",宜宾公共
 http://nas.201606.xyz:4022/udp/239.10.0.81:5140
 #EXTINF:-1 tvg-name="宜宾公共" group-title="地方频道",宜宾公共
 http://www.893224162.xyz:8188/udp/239.94.0.172:5140
@@ -696,8 +618,6 @@ http://nas.201606.xyz:4022/udp/239.10.0.80:5140
 #EXTINF:-1 tvg-name="宜宾综合" group-title="地方频道",宜宾综合
 http://182.143.112.7:40000/udp/239.94.0.161:5140
 #EXTINF:-1 tvg-name="宜宾综合" group-title="地方频道",宜宾综合
-http://182.143.112.7:40000/rtp/239.94.0.161:5140
-#EXTINF:-1 tvg-name="宜宾综合" group-title="地方频道",宜宾综合
 http://www.893224162.xyz:8188/udp/239.94.0.161:5140
 #EXTINF:-1 tvg-name="宜宾综合" group-title="地方频道",宜宾综合
 http://xmzj.f3322.net:8188/udp/239.94.0.161:5140
@@ -708,19 +628,21 @@ http://nas.201606.xyz:4022/udp/239.11.0.140:5140
 #EXTINF:-1 tvg-name="山东教育卫视" group-title="地方频道",山东教育卫视
 http://www.893224162.xyz:8188/udp/239.94.0.106:5140
 #EXTINF:-1 tvg-name="山东教育卫视" group-title="地方频道",山东教育卫视
+http://www.893224162.xyz:8188/udp/239.94.2.212:5140
+#EXTINF:-1 tvg-name="山东教育卫视" group-title="地方频道",山东教育卫视
 http://xmzj.f3322.net:8188/udp/239.94.0.106:5140
 #EXTINF:-1 tvg-name="山东教育卫视" group-title="地方频道",山东教育卫视
 http://xmzj.f3322.net:8188/udp/239.94.2.212:5140
 #EXTINF:-1 tvg-name="山东教育卫视" group-title="地方频道",山东教育卫视
 http://yaofuming.top:8188/udp/239.94.0.106:5140
+#EXTINF:-1 tvg-name="山东教育卫视" group-title="地方频道",山东教育卫视
+http://yaofuming.top:8188/udp/239.94.2.212:5140
 #EXTINF:-1 tvg-name="巴中文旅" group-title="地方频道",巴中文旅
 http://nas.201606.xyz:4022/udp/239.10.0.53:5140
 #EXTINF:-1 tvg-name="巴中综合" group-title="地方频道",巴中综合
 http://nas.201606.xyz:4022/udp/239.10.0.52:5140
 #EXTINF:-1 tvg-name="广元文化" group-title="地方频道",广元文化
 http://nas.201606.xyz:4022/udp/239.10.0.61:5140
-#EXTINF:-1 tvg-name="广元文化生活" group-title="地方频道",广元文化生活
-http://182.143.112.7:40000/rtp/239.94.0.179:5140
 #EXTINF:-1 tvg-name="广元文化生活" group-title="地方频道",广元文化生活
 http://182.143.112.7:40000/udp/239.94.0.179:5140
 #EXTINF:-1 tvg-name="广元文化生活" group-title="地方频道",广元文化生活
@@ -729,8 +651,6 @@ http://www.893224162.xyz:8188/udp/239.94.0.179:5140
 http://xmzj.f3322.net:8188/udp/239.94.0.179:5140
 #EXTINF:-1 tvg-name="广元文化生活" group-title="地方频道",广元文化生活
 http://yaofuming.top:8188/udp/239.94.0.179:5140
-#EXTINF:-1 tvg-name="广元综合" group-title="地方频道",广元综合
-http://182.143.112.7:40000/rtp/239.94.0.167:5140
 #EXTINF:-1 tvg-name="广元综合" group-title="地方频道",广元综合
 http://182.143.112.7:40000/udp/239.94.0.167:5140
 #EXTINF:-1 tvg-name="广元综合" group-title="地方频道",广元综合
@@ -752,8 +672,6 @@ http://nas.201606.xyz:4022/udp/239.10.0.57:5140
 #EXTINF:-1 tvg-name="德阳文旅科教" group-title="地方频道",德阳文旅科教
 http://182.143.112.7:40000/udp/239.94.0.165:5140
 #EXTINF:-1 tvg-name="德阳文旅科教" group-title="地方频道",德阳文旅科教
-http://182.143.112.7:40000/rtp/239.94.0.165:5140
-#EXTINF:-1 tvg-name="德阳文旅科教" group-title="地方频道",德阳文旅科教
 http://www.893224162.xyz:8188/udp/239.94.0.165:5140
 #EXTINF:-1 tvg-name="德阳文旅科教" group-title="地方频道",德阳文旅科教
 http://xmzj.f3322.net:8188/udp/239.94.0.165:5140
@@ -762,17 +680,11 @@ http://yaofuming.top:8188/udp/239.94.0.165:5140
 #EXTINF:-1 tvg-name="德阳新闻综合" group-title="地方频道",德阳新闻综合
 http://182.143.112.7:40000/udp/239.94.0.176:5140
 #EXTINF:-1 tvg-name="德阳新闻综合" group-title="地方频道",德阳新闻综合
-http://182.143.112.7:40000/rtp/239.94.0.176:5140
-#EXTINF:-1 tvg-name="德阳新闻综合" group-title="地方频道",德阳新闻综合
 http://www.893224162.xyz:8188/udp/239.94.0.176:5140
 #EXTINF:-1 tvg-name="德阳新闻综合" group-title="地方频道",德阳新闻综合
 http://xmzj.f3322.net:8188/udp/239.94.0.176:5140
 #EXTINF:-1 tvg-name="德阳新闻综合" group-title="地方频道",德阳新闻综合
 http://yaofuming.top:8188/udp/239.94.0.176:5140
-#EXTINF:-1 tvg-name="成都公共" group-title="地方频道",成都公共
-http://182.143.112.7:40000/rtp/239.94.0.158:5140
-#EXTINF:-1 tvg-name="成都公共" group-title="地方频道",成都公共
-http://182.143.112.7:40000/rtp/239.94.2.220:5140
 #EXTINF:-1 tvg-name="成都公共" group-title="地方频道",成都公共
 http://182.143.112.7:40000/udp/239.94.0.158:5140
 #EXTINF:-1 tvg-name="成都公共" group-title="地方频道",成都公共
@@ -784,10 +696,6 @@ http://yaofuming.top:8188/udp/239.94.0.158:5140
 #EXTINF:-1 tvg-name="成都少儿" group-title="地方频道",成都少儿
 http://182.143.112.7:40000/udp/239.94.0.159:5140
 #EXTINF:-1 tvg-name="成都少儿" group-title="地方频道",成都少儿
-http://182.143.112.7:40000/rtp/239.94.0.159:5140
-#EXTINF:-1 tvg-name="成都少儿" group-title="地方频道",成都少儿
-http://182.143.112.7:40000/rtp/239.94.2.221:5140
-#EXTINF:-1 tvg-name="成都少儿" group-title="地方频道",成都少儿
 http://www.893224162.xyz:8188/udp/239.94.0.159:5140
 #EXTINF:-1 tvg-name="成都少儿" group-title="地方频道",成都少儿
 http://xmzj.f3322.net:8188/udp/239.94.0.159:5140
@@ -796,19 +704,11 @@ http://yaofuming.top:8188/udp/239.94.0.159:5140
 #EXTINF:-1 tvg-name="成都影视" group-title="地方频道",成都影视
 http://182.143.112.7:40000/udp/239.94.0.157:5140
 #EXTINF:-1 tvg-name="成都影视" group-title="地方频道",成都影视
-http://182.143.112.7:40000/rtp/239.94.0.157:5140
-#EXTINF:-1 tvg-name="成都影视" group-title="地方频道",成都影视
-http://182.143.112.7:40000/rtp/239.94.2.219:5140
-#EXTINF:-1 tvg-name="成都影视" group-title="地方频道",成都影视
 http://www.893224162.xyz:8188/udp/239.94.0.157:5140
 #EXTINF:-1 tvg-name="成都影视" group-title="地方频道",成都影视
 http://xmzj.f3322.net:8188/udp/239.94.0.157:5140
 #EXTINF:-1 tvg-name="成都影视" group-title="地方频道",成都影视
 http://yaofuming.top:8188/udp/239.94.0.157:5140
-#EXTINF:-1 tvg-name="成都经济" group-title="地方频道",成都经济
-http://182.143.112.7:40000/rtp/239.94.0.155:5140
-#EXTINF:-1 tvg-name="成都经济" group-title="地方频道",成都经济
-http://182.143.112.7:40000/rtp/239.94.2.217:5140
 #EXTINF:-1 tvg-name="成都经济" group-title="地方频道",成都经济
 http://182.143.112.7:40000/udp/239.94.0.155:5140
 #EXTINF:-1 tvg-name="成都经济" group-title="地方频道",成都经济
@@ -817,10 +717,6 @@ http://www.893224162.xyz:8188/udp/239.94.0.155:5140
 http://xmzj.f3322.net:8188/udp/239.94.0.155:5140
 #EXTINF:-1 tvg-name="成都经济" group-title="地方频道",成都经济
 http://yaofuming.top:8188/udp/239.94.0.155:5140
-#EXTINF:-1 tvg-name="成都综合" group-title="地方频道",成都综合
-http://182.143.112.7:40000/rtp/239.94.0.154:5140
-#EXTINF:-1 tvg-name="成都综合" group-title="地方频道",成都综合
-http://182.143.112.7:40000/rtp/239.94.2.166:5140
 #EXTINF:-1 tvg-name="成都综合" group-title="地方频道",成都综合
 http://182.143.112.7:40000/udp/239.94.0.154:5140
 #EXTINF:-1 tvg-name="成都综合" group-title="地方频道",成都综合
@@ -834,12 +730,6 @@ http://182.143.112.7:40000/udp/239.94.0.160:5140
 #EXTINF:-1 tvg-name="成都蓉城先锋" group-title="地方频道",成都蓉城先锋
 http://182.143.112.7:40000/udp/239.94.1.57:5140
 #EXTINF:-1 tvg-name="成都蓉城先锋" group-title="地方频道",成都蓉城先锋
-http://182.143.112.7:40000/rtp/239.94.0.160:5140
-#EXTINF:-1 tvg-name="成都蓉城先锋" group-title="地方频道",成都蓉城先锋
-http://182.143.112.7:40000/rtp/239.94.1.57:5140
-#EXTINF:-1 tvg-name="成都蓉城先锋" group-title="地方频道",成都蓉城先锋
-http://182.143.112.7:40000/rtp/239.94.2.222:5140
-#EXTINF:-1 tvg-name="成都蓉城先锋" group-title="地方频道",成都蓉城先锋
 http://www.893224162.xyz:8188/udp/239.94.0.160:5140
 #EXTINF:-1 tvg-name="成都蓉城先锋" group-title="地方频道",成都蓉城先锋
 http://www.893224162.xyz:8188/udp/239.94.1.57:5140
@@ -851,10 +741,6 @@ http://xmzj.f3322.net:8188/udp/239.94.1.57:5140
 http://yaofuming.top:8188/udp/239.94.0.160:5140
 #EXTINF:-1 tvg-name="成都蓉城先锋" group-title="地方频道",成都蓉城先锋
 http://yaofuming.top:8188/udp/239.94.1.57:5140
-#EXTINF:-1 tvg-name="成都都市" group-title="地方频道",成都都市
-http://182.143.112.7:40000/rtp/239.94.0.156:5140
-#EXTINF:-1 tvg-name="成都都市" group-title="地方频道",成都都市
-http://182.143.112.7:40000/rtp/239.94.2.218:5140
 #EXTINF:-1 tvg-name="成都都市" group-title="地方频道",成都都市
 http://182.143.112.7:40000/udp/239.94.0.156:5140
 #EXTINF:-1 tvg-name="成都都市" group-title="地方频道",成都都市
@@ -870,8 +756,6 @@ http://nas.201606.xyz:4022/udp/239.10.0.74:5140
 #EXTINF:-1 tvg-name="攀枝花综合" group-title="地方频道",攀枝花综合
 http://182.143.112.7:40000/udp/239.94.0.168:5140
 #EXTINF:-1 tvg-name="攀枝花综合" group-title="地方频道",攀枝花综合
-http://182.143.112.7:40000/rtp/239.94.0.168:5140
-#EXTINF:-1 tvg-name="攀枝花综合" group-title="地方频道",攀枝花综合
 http://www.893224162.xyz:8188/udp/239.94.0.168:5140
 #EXTINF:-1 tvg-name="攀枝花综合" group-title="地方频道",攀枝花综合
 http://xmzj.f3322.net:8188/udp/239.94.0.168:5140
@@ -882,8 +766,6 @@ http://nas.201606.xyz:4022/udp/239.10.0.46:5140
 #EXTINF:-1 tvg-name="泸州科教" group-title="地方频道",泸州科教
 http://nas.201606.xyz:4022/udp/239.10.0.48:5140
 #EXTINF:-1 tvg-name="泸州科教生活" group-title="地方频道",泸州科教生活
-http://182.143.112.7:40000/rtp/239.94.0.182:5140
-#EXTINF:-1 tvg-name="泸州科教生活" group-title="地方频道",泸州科教生活
 http://182.143.112.7:40000/udp/239.94.0.182:5140
 #EXTINF:-1 tvg-name="泸州科教生活" group-title="地方频道",泸州科教生活
 http://www.893224162.xyz:8188/udp/239.94.0.182:5140
@@ -891,8 +773,6 @@ http://www.893224162.xyz:8188/udp/239.94.0.182:5140
 http://xmzj.f3322.net:8188/udp/239.94.0.182:5140
 #EXTINF:-1 tvg-name="泸州科教生活" group-title="地方频道",泸州科教生活
 http://yaofuming.top:8188/udp/239.94.0.182:5140
-#EXTINF:-1 tvg-name="泸州综合" group-title="地方频道",泸州综合
-http://182.143.112.7:40000/rtp/239.94.0.163:5140
 #EXTINF:-1 tvg-name="泸州综合" group-title="地方频道",泸州综合
 http://182.143.112.7:40000/udp/239.94.0.163:5140
 #EXTINF:-1 tvg-name="泸州综合" group-title="地方频道",泸州综合
@@ -902,8 +782,6 @@ http://xmzj.f3322.net:8188/udp/239.94.0.163:5140
 #EXTINF:-1 tvg-name="泸州综合" group-title="地方频道",泸州综合
 http://yaofuming.top:8188/udp/239.94.0.163:5140
 #EXTINF:-1 tvg-name="爱乐山" group-title="地方频道",爱乐山
-http://182.143.112.7:40000/rtp/239.94.2.2:5140
-#EXTINF:-1 tvg-name="爱乐山" group-title="地方频道",爱乐山
 http://182.143.112.7:40000/udp/239.94.2.2:5140
 #EXTINF:-1 tvg-name="爱乐山" group-title="地方频道",爱乐山
 http://www.893224162.xyz:8188/udp/239.94.2.2:5140
@@ -911,8 +789,6 @@ http://www.893224162.xyz:8188/udp/239.94.2.2:5140
 http://xmzj.f3322.net:8188/udp/239.94.2.2:5140
 #EXTINF:-1 tvg-name="爱乐山" group-title="地方频道",爱乐山
 http://yaofuming.top:8188/udp/239.94.2.2:5140
-#EXTINF:-1 tvg-name="爱生活" group-title="地方频道",爱生活
-http://182.143.112.7:40000/rtp/239.94.1.41:5140
 #EXTINF:-1 tvg-name="爱生活" group-title="地方频道",爱生活
 http://182.143.112.7:40000/udp/239.94.1.41:5140
 #EXTINF:-1 tvg-name="爱生活" group-title="地方频道",爱生活
@@ -928,15 +804,11 @@ http://nas.201606.xyz:4022/udp/239.10.0.67:5140
 #EXTINF:-1 tvg-name="眉山文旅乡村" group-title="地方频道",眉山文旅乡村
 http://182.143.112.7:40000/udp/239.94.0.174:5140
 #EXTINF:-1 tvg-name="眉山文旅乡村" group-title="地方频道",眉山文旅乡村
-http://182.143.112.7:40000/rtp/239.94.0.174:5140
-#EXTINF:-1 tvg-name="眉山文旅乡村" group-title="地方频道",眉山文旅乡村
 http://www.893224162.xyz:8188/udp/239.94.0.174:5140
 #EXTINF:-1 tvg-name="眉山文旅乡村" group-title="地方频道",眉山文旅乡村
 http://xmzj.f3322.net:8188/udp/239.94.0.174:5140
 #EXTINF:-1 tvg-name="眉山文旅乡村" group-title="地方频道",眉山文旅乡村
 http://yaofuming.top:8188/udp/239.94.0.174:5140
-#EXTINF:-1 tvg-name="眉山综合" group-title="地方频道",眉山综合
-http://182.143.112.7:40000/rtp/239.94.0.170:5140
 #EXTINF:-1 tvg-name="眉山综合" group-title="地方频道",眉山综合
 http://182.143.112.7:40000/udp/239.94.0.170:5140
 #EXTINF:-1 tvg-name="眉山综合" group-title="地方频道",眉山综合
@@ -956,8 +828,6 @@ http://nas.201606.xyz:4022/udp/239.10.0.84:5140
 #EXTINF:-1 tvg-name="自贡文化生活" group-title="地方频道",自贡文化生活
 http://182.143.112.7:40000/udp/239.94.0.178:5140
 #EXTINF:-1 tvg-name="自贡文化生活" group-title="地方频道",自贡文化生活
-http://182.143.112.7:40000/rtp/239.94.0.178:5140
-#EXTINF:-1 tvg-name="自贡文化生活" group-title="地方频道",自贡文化生活
 http://www.893224162.xyz:8188/udp/239.94.0.178:5140
 #EXTINF:-1 tvg-name="自贡文化生活" group-title="地方频道",自贡文化生活
 http://xmzj.f3322.net:8188/udp/239.94.0.178:5140
@@ -965,8 +835,6 @@ http://xmzj.f3322.net:8188/udp/239.94.0.178:5140
 http://yaofuming.top:8188/udp/239.94.0.178:5140
 #EXTINF:-1 tvg-name="自贡综合" group-title="地方频道",自贡综合
 http://182.143.112.7:40000/udp/239.94.0.169:5140
-#EXTINF:-1 tvg-name="自贡综合" group-title="地方频道",自贡综合
-http://182.143.112.7:40000/rtp/239.94.0.169:5140
 #EXTINF:-1 tvg-name="自贡综合" group-title="地方频道",自贡综合
 http://nas.201606.xyz:4022/udp/239.10.0.83:5140
 #EXTINF:-1 tvg-name="自贡综合" group-title="地方频道",自贡综合
@@ -979,8 +847,6 @@ http://yaofuming.top:8188/udp/239.94.0.169:5140
 http://nas.201606.xyz:4022/udp/239.10.0.82:5140
 #EXTINF:-1 tvg-name="资阳综合" group-title="地方频道",资阳综合
 http://182.143.112.7:40000/udp/239.94.0.183:5140
-#EXTINF:-1 tvg-name="资阳综合" group-title="地方频道",资阳综合
-http://182.143.112.7:40000/rtp/239.94.0.183:5140
 #EXTINF:-1 tvg-name="资阳综合" group-title="地方频道",资阳综合
 http://www.893224162.xyz:8188/udp/239.94.0.183:5140
 #EXTINF:-1 tvg-name="资阳综合" group-title="地方频道",资阳综合
@@ -1004,8 +870,6 @@ http://nas.201606.xyz:4022/udp/239.10.0.79:5140
 #EXTINF:-1 tvg-name="雅安文化生活" group-title="地方频道",雅安文化生活
 http://182.143.112.7:40000/udp/239.94.0.180:5140
 #EXTINF:-1 tvg-name="雅安文化生活" group-title="地方频道",雅安文化生活
-http://182.143.112.7:40000/rtp/239.94.0.180:5140
-#EXTINF:-1 tvg-name="雅安文化生活" group-title="地方频道",雅安文化生活
 http://www.893224162.xyz:8188/udp/239.94.0.180:5140
 #EXTINF:-1 tvg-name="雅安文化生活" group-title="地方频道",雅安文化生活
 http://xmzj.f3322.net:8188/udp/239.94.0.180:5140
@@ -1013,8 +877,6 @@ http://xmzj.f3322.net:8188/udp/239.94.0.180:5140
 http://yaofuming.top:8188/udp/239.94.0.180:5140
 #EXTINF:-1 tvg-name="雅安新闻" group-title="地方频道",雅安新闻
 http://nas.201606.xyz:4022/udp/239.10.0.78:5140
-#EXTINF:-1 tvg-name="雅安综合" group-title="地方频道",雅安综合
-http://182.143.112.7:40000/rtp/239.94.0.166:5140
 #EXTINF:-1 tvg-name="雅安综合" group-title="地方频道",雅安综合
 http://182.143.112.7:40000/udp/239.94.0.166:5140
 #EXTINF:-1 tvg-name="雅安综合" group-title="地方频道",雅安综合
