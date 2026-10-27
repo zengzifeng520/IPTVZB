@@ -2670,3 +2670,32 @@ body { font-size: 15px; line-height: 1.65; }
   .copy-bar { font-size: 12.5px; padding: 8px 8px 8px 14px; bottom: 18px; }
   .copy-bar-btn { height: 29px; padding: 0 11px; }
 }
+
+/* ----------------------------------------------------------
+   后台访问统计：整体收紧，避免占掉半屏
+   ---------------------------------------------------------- */
+.visit-panel .panel-head { padding: 10px 14px; }
+
+.visit-cards { gap: 10px; margin: 12px 14px 14px; }
+.visit-card {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 10px 13px;
+}
+.visit-card b { display: inline; font-size: 20px; line-height: 1.2; }
+.visit-card span { font-size: 11.5px; }
+
+.visit-chart-head { margin: 0 14px 6px; font-size: 12px; font-weight: 500; color: var(--text-3); }
+.visit-chart-max { font-size: 11px; }
+.visit-chart { height: 84px; margin: 0 14px; padding: 4px 2px 0; gap: 6px; }
+.vb-num { font-size: 10.5px; }
+.vb-bar { max-width: 30px; border-radius: 5px 5px 2px 2px; }
+.vb-day { font-size: 10px; margin-top: 1px; }
+.visit-note { margin: 10px 14px 12px; font-size: 11.5px; line-height: 1.65; }
+
+@media (max-width: 720px) {
+  .visit-cards { gap: 8px; margin: 10px 12px 12px; }
+  .visit-card { padding: 9px 11px; gap: 6px; }
+  .visit-card b { font-size: 18px; }
+  .visit-card span { font-size: 11px; }
+  .visit-chart { height: 74px; gap: 4px; }
+}
