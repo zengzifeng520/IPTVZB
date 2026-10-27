@@ -2707,3 +2707,16 @@ body { font-size: 15px; line-height: 1.65; }
 .admin-main .admin-stats { gap: 10px; }
 .admin-main .admin-stat { padding: 13px 15px; }
 .admin-main .admin-stat b { font-size: 22px; }
+
+/* 订阅地址改成真实输入框后，去掉输入框的原生外观，保持原来的代码块观感 */
+input.sub-item-url {
+  width: 100%;
+  padding: 0; border: 0; outline: none; border-radius: 0;
+  background: transparent;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color: var(--text-3);
+  cursor: text;
+  text-overflow: ellipsis;
+}
+input.sub-item-url:focus { outline: none; box-shadow: none; }
+[data-theme="light"] input.sub-item-url { color: var(--text-2); }

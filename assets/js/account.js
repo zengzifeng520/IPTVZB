@@ -191,11 +191,11 @@
           " 条" +
           (expire ? '<span class="sub-valid">有效期至 ' + esc(expire) + "</span>" : "") +
           "</div>" +
-          '<code class="sub-item-url" data-copy-url="' +
+          '<input class="sub-item-url" type="text" readonly value="' +
           esc(url) +
-          '" title="点击复制">' +
+          '" data-copy-url="' +
           esc(url) +
-          "</code>" +
+          '" title="点一下复制，长按也可选中">' +
           "</div>" +
           '<div class="sub-item-act">' +
           '<button class="btn btn-sm btn-primary" data-copy-url="' +
@@ -218,7 +218,7 @@
     if (!node) return;
     var url = node.dataset.copyUrl;
     var item = node.closest(".sub-item");
-    var codeEl = node.tagName === "CODE" ? node : item && item.querySelector(".sub-item-url");
+    var urlInput = item && item.querySelector(".sub-item-url");
     var isBtn = node.tagName === "BUTTON";
     var oldTxt = isBtn ? node.textContent : "";
     function flash(txt) {
@@ -229,13 +229,15 @@
       }, 1500);
     }
     window.zzfCopy(url, {
-      anchor: codeEl,
+      input: urlInput,
+      anchor: urlInput,
       ok: function () {
         flash("已复制");
         window.zzfCopyBar("订阅地址已复制", url);
       },
       fail: function () {
-        window.zzfCopySheet(url);
+        // 不再弹面板打断：只提示，地址就在上面，长按即可复制
+        window.zzfCopyBar("没复制上，长按地址手动复制", url);
       },
     });
   });

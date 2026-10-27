@@ -94,7 +94,26 @@
 
   /* ---------------------------------------------------------- 复制实现 */
 
-  // 方式一：临时 textarea + execCommand（必须同步调用）
+  // 方式一：直接选中页面上那个真实的 readonly 输入框再复制
+  // （很多手机浏览器只允许「对可见输入框」执行复制，隐藏 textarea 会被拒）
+  function copyViaInput(input) {
+    if (!input || !input.select) return false;
+    var ok = false;
+    try {
+      input.focus();
+      input.select();
+      input.setSelectionRange(0, String(input.value || "").length);
+      ok = document.execCommand("copy");
+    } catch (e) {
+      ok = false;
+    }
+    try {
+      input.blur();
+    } catch (e) {}
+    return ok;
+  }
+
+  // 方式二：临时 textarea + execCommand（必须同步调用）
   function copyViaTextarea(text) {
     var ta = document.createElement("textarea");
     ta.value = text;
@@ -117,7 +136,7 @@
     return ok;
   }
 
-  // 方式二：选中页面上真实显示的文字再复制（部分 WebView 只认这种）
+  // 方式三：选中页面上真实显示的文字再复制（部分 WebView 只认这种）
   function copyViaSelection(node) {
     if (!node || !document.createRange || !window.getSelection) return false;
     var sel = window.getSelection();
@@ -143,22 +162,24 @@
       showBar("地址已复制", text);
     };
     var fail = opts.fail || function () {
-      showSheet(text);
+      // 不弹面板打断用户：只提示，地址本身可长按复制
+      showBar("没复制上？长按地址手动复制", text);
     };
 
     if (!text) return fail();
 
-    // 1) 同步复制：在点击事件里直接执行，成功率高
+    // 1) 直接从页面上那个真实输入框复制（手机成功率最高）
+    if (copyViaInput(opts.input)) return done();
+
+    // 2) 临时 textarea 同步复制
     if (copyViaTextarea(text)) return done();
 
-    // 2) 选中页面上显示的那段地址再复制
+    // 3) 选中页面上的可见文字再复制
     if (copyViaSelection(opts.anchor)) return done();
 
-    // 3) 最后才用异步 Clipboard API
+    // 4) 最后才用异步 Clipboard API
     if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
-      navigator.clipboard.writeText(text).then(done, function () {
-        fail();
-      });
+      navigator.clipboard.writeText(text).then(done, fail);
       return;
     }
 
