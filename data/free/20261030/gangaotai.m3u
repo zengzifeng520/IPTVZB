@@ -1,4 +1,4 @@
-#EXTM3U x-tvg-url="https://zzf.new.tg/epg.xml.gz" url-tvg="https://zzf.new.tg/epg.xml.gz"
+#EXTM3U x-tvg-url="https://zzf.new.tg/epg.xml" url-tvg="https://zzf.new.tg/epg.xml"
 #EXTINF:-1 tvg-id="ANIMAX" tvg-name="ANIMAX" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/Animax.png" group-title="港澳台",ANIMAX
 http://111.59.139.85:11888/tsfile/live/1203_1.m3u8?key=txiptv
 #EXTINF:-1 tvg-id="KXI" tvg-name="KXI" tvg-logo="https://zzf.new.tg/data/logos/9e4a2bfb1bd7.png" group-title="港澳台",KXI

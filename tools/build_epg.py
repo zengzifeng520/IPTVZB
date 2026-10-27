@@ -342,6 +342,37 @@ def build(days: int = 7, base_file: str = "", out_base: str = "") -> None:
     for pr in alias_pr:
         tv.append(pr)
 
+    # ---- 瘦身：播放器解析 13.5MB XML 很慢（实测要几十秒）----
+    # 体积构成：<desc>（节目简介）占 9.3MB / 13.5MB = 69%，但对播放器列表毫无用处
+    # （只显示节目名+时间）。删掉它，文件直接砍到 4MB 左右。
+    # 同时只保留 [今天-1天, 今天+2天] 的节目，7 天改 4 天。
+    from datetime import datetime as _dt, timedelta as _td, timezone as _tz
+    _cst = _tz(_td(hours=8))
+    _today = _dt.now(_cst).date()
+    allowed_dates = {(_today + _td(days=d)).strftime("%Y%m%d") for d in (-1, 0, 1, 2)}
+
+    dropped_desc = dropped_pr = 0
+    keep_ids: set[str] = set()
+    for pr in list(tv.findall("programme")):
+        st = pr.get("start") or ""
+        if st[:8] and st[:8] not in allowed_dates:
+            tv.remove(pr)
+            dropped_pr += 1
+            continue
+        keep_ids.add(pr.get("channel") or "")
+        for child in list(pr):
+            if child.tag != "title":
+                pr.remove(child)
+                dropped_desc += 1
+    # 没有任何节目的 channel 也删掉（播放器不用为空台保留槽位）
+    dropped_ch = 0
+    for ch in list(tv.findall("channel")):
+        if (ch.get("id") or "") not in keep_ids:
+            tv.remove(ch)
+            dropped_ch += 1
+    print(f"  瘦身：删节目 {dropped_pr} 条（超出日期窗口）、"
+          f"删子元素 {dropped_desc} 个（desc 等）、删空频道 {dropped_ch} 个")
+
     xml = ET.tostring(tv, encoding="utf-8", xml_declaration=True)
     out_gz = Path(out_base + ".gz") if out_base else OUT_GZ
     out_gz.parent.mkdir(parents=True, exist_ok=True)

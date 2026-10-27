@@ -41,7 +41,10 @@ CST = timezone(timedelta(hours=8))
 # jsdelivr 对 @分支 的文件有最长 7 天缓存，实测推新版后 4 个节点全部还在返回旧文件
 # （旧版缺港澳台别名，播放器会显示不出节目单）。本站 GitHub Pages 1 分钟内就更新。
 # 内容仍然是 IPTV 仓库那份（build_epg.py 生成后同时推 IPTV 仓库和本站）。
-EPG_URL = "https://zzf.new.tg/epg.xml.gz"
+# ★ 必须用未压缩的 .xml：实测酷9 只解析纯 XML，.gz 一律当成无数据
+# （用户导入 .gz 地址全部显示「精彩节目」占位，换 .xml 立刻正常）。
+# 代价是 16.8MB vs 1.2MB，但兼容性优先。
+EPG_URL = "https://zzf.new.tg/epg.xml"
 # 港澳台频道名 -> epg.pw 的 channel id（数字）。没映射的就不加 tvg-id，
 # 播放器显示「无节目信息」——epg.pw 确实没有那些台的节目单，不硬凑。
 _EPG_MAP: dict[str, str] | None = None
