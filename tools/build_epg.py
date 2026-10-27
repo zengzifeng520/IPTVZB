@@ -360,6 +360,15 @@ def build(days: int = 7, base_file: str = "", out_base: str = "") -> None:
     except Exception as e:  # noqa: BLE001
         print(f"  短地址写入失败：{e}")
 
+    # 再给一份**未压缩**的 epg.xml：部分播放器/电视盒子不认 .gz
+    #   短地址 https://zzf.new.tg/epg.xml
+    try:
+        plain = ROOT / "epg.xml"
+        plain.write_bytes(xml)
+        print(f"  短地址 -> {plain.name}  {plain.stat().st_size/1024/1024:.1f}MB（未压缩）")
+    except Exception as e:  # noqa: BLE001
+        print(f"  epg.xml 写入失败：{e}")
+
     miss = want - got
     total_ch = len(channels) + len([c for c in base_ch if c not in got])
     print(f"  合并后 {total_ch} 频道，港澳台 {len(channels)} 个 / {len(programmes)} 条节目"
