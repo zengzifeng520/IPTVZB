@@ -261,6 +261,31 @@ def _normalize_and_dedupe(tv: ET.Element) -> None:
     print(f"  时区归一 {fixed} 条（→ +0800），去掉重复/过期节目 {len(drop)} 条，"
           f"保留 {kept} 条" + (f"，异常节目 {bad} 条" if bad else ""))
 
+    # 自检：以后有人改这段代码、或者上游又换格式，这里会在 Actions 日志里报警，
+    # 而不是又变成「有些台对不上」让用户在播放器里发现。
+    left_tz = sum(1 for pr in tv.findall("programme")
+                  if (pr.get("start") or "").strip().split()[-1] != "+0800")
+    left_ov = 0
+    per: dict[str, list] = {}
+    for pr in tv.findall("programme"):
+        try:
+            _, a = _wall(pr.get("start") or "")
+            _, b = _wall(pr.get("stop") or "")
+        except ValueError:
+            continue
+        per.setdefault(pr.get("channel") or "", []).append((a, b))
+    for v in per.values():
+        v.sort()
+        end = None
+        for a, b in v:
+            if end and a < end - _td(minutes=1):
+                left_ov += 1
+            end = max(end, b) if end else b
+    if left_tz or left_ov:
+        print(f"  ⚠ 自检未通过：非 +0800 残留 {left_tz} 条 / 重叠 {left_ov} 处")
+    else:
+        print("  自检通过：时区全部 +0800，同频道无重叠节目")
+
 
 def build(days: int = 7, base_file: str = "", out_base: str = "") -> None:
     if not MAP_JSON.exists():
