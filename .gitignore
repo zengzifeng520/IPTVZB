@@ -41,3 +41,6 @@ data/proxy_hotel.json
 spider/data/hotel_ok.json
 spider/data/hotel_hosts.json
 spider/data/proxy_hotel.m3u
+
+# Cloudflare Pages 构建产物（不入库）
+dist/

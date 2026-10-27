@@ -10,7 +10,7 @@
  *
  * 需要配置的环境变量（Cloudflare → Worker → 设置 → 变量和机密）：
  *   GH_TOKEN  必填  GitHub 细粒度 PAT，只需勾选 ZZF 仓库的 Contents: Read and write
- *   GH_REPO   选填  默认 zengzifeng520/ZZF
+ *   GH_REPO   必填  <你的 GitHub 用户名>/<仓库名>（故意不写默认值，避免源码泄露账号）
  *   ALLOW_ORIGIN 选填 默认 https://zzf.new.tg
  *
  * 接口：
@@ -70,7 +70,8 @@ function json(data, status, env) {
 }
 
 async function gh(env, method, path, body) {
-  const repo = env.GH_REPO || "zengzifeng520/ZZF";
+  const repo = env.GH_REPO;
+  if (!repo) return json({ ok: false, error: "GH_REPO 未配置" }, 500, env);
   const res = await fetch(`https://api.github.com/repos/${repo}${path}`, {
     method,
     headers: {
