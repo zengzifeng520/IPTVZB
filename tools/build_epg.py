@@ -102,6 +102,28 @@ def build(days: int = 7, base_file: str = "", out_base: str = "") -> None:
         print("  一个频道都没匹配到，放弃生成")
         return
 
+    # 关键：给每个 channel 补上我们 m3u 里用的**简体频道名**。
+    # epg.pw 的 display-name 是繁体（亞洲劇台 / 民視 / 大愛電視），
+    # 而我们 m3u 是简体。播放器（酷9 这类）如果按频道名匹配而不是 tvg-id，
+    # 简体频道就会全部匹配不上 —— 实测用户反馈「只有一部分频道有节目单」。
+    # XMLTV 允许一个 channel 挂多个 display-name，所以把简体名追加进去，
+    # 按 id 匹配和按名字匹配都能命中。
+    rev: dict[str, list[str]] = {}
+    for our_name, cid in ch_map.items():
+        rev.setdefault(cid, []).append(our_name)
+    added = 0
+    for ch in channels:
+        cid = ch.get("id") or ""
+        exist = {(d.text or "").strip() for d in ch.findall("display-name")}
+        for nm in rev.get(cid, []):
+            if nm and nm not in exist:
+                ET.SubElement(ch, "display-name").text = nm
+                added += 1
+        # channel 一般还带 icon 子元素，SubElement 会把 display-name 放到
+        # icon 后面；XMLTV 对顺序无要求，播放器都能解析
+    if added:
+        print(f"  追加简体名 {added} 个")
+
     # 先并入已有的国内节目单：优先用本地文件（--base），没有再走网络
     base_ch: dict[str, ET.Element] = {}
     base_pr: list[ET.Element] = []
