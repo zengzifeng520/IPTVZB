@@ -2406,9 +2406,10 @@ body { font-size: 15px; line-height: 1.65; }
   width: min(430px, 100%);
   padding: 24px 22px 18px;
   border-radius: 18px;
-  background: var(--surface);
+  /* 必须是不透明背景：背后是半透明遮罩，太透会糊成一团 */
+  background: linear-gradient(180deg, #171a24, #0d0f16);
   border: 1px solid var(--border-strong);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.72);
   text-align: center;
   color: var(--text);
 }
@@ -2418,3 +2419,6 @@ body { font-size: 15px; line-height: 1.65; }
 .pay-help-acts { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
 .pay-help-acts .btn { height: 38px; padding: 0 16px; font-size: 14px; }
 [data-theme="light"] .code-pay { color: #6d28d9; background: rgba(124, 58, 237, 0.10); border-color: rgba(124, 58, 237, 0.28); }
+[data-theme="light"] .pay-help-box { background: #ffffff; border-color: rgba(0, 0, 0, 0.12); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28); }
+[data-theme="light"] .pay-help-box p { color: #4b5563; }
+[data-theme="light"] .pay-help-box p b { color: #111827; }
