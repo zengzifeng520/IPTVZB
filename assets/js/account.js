@@ -137,11 +137,12 @@
     items.push({
       key: "ALL",
       name: "全量订阅",
-      isp: "全部地区合并（不含酒店源/港澳台）",
+      isp: "全部地区合并（不含酒店源/港澳台/国外）",
       path: subPrefix + "all.m3u",
       channels: all.channels || 0,
       streams: all.streams || 0,
       big: true,
+      rank: 1,
     });
 
     // 分地区订阅（公开）
@@ -153,6 +154,7 @@
         path: subPrefix + r.key + ".m3u",
         channels: r.channels,
         streams: r.streams,
+        rank: 9,
       });
     });
 
@@ -165,6 +167,7 @@
         path: subPrefix + "hotel.m3u",
         channels: all.hotelChannels || 0,
         streams: all.hotelStreams || 0,
+        rank: 4,
       });
     }
 
@@ -177,6 +180,7 @@
         path: subPrefix + "gangaotai.m3u",
         channels: all.gangaotaiChannels || 0,
         streams: all.gangaotaiStreams || 0,
+        rank: 2,
       });
     }
 
@@ -192,11 +196,16 @@
         path: subPrefix + "intl.m3u",
         channels: all.intlChannels || 0,
         streams: all.intlStreams || 0,
+        rank: 3,
       });
     }
 
+    // 排序：全量(1) → 港澳台(2) → 国外(3) → 酒店源(4) → 各省(9)
+    // 独立分类是全国通用的，各省订阅只对本省有用，所以排后面
     items.sort(function (a, b) {
-      if (a.big !== b.big) return a.big ? -1 : 1;
+      var ra = a.rank || 9;
+      var rb = b.rank || 9;
+      if (ra !== rb) return ra - rb;
       return b.streams - a.streams;
     });
 
