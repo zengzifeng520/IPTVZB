@@ -81,7 +81,7 @@
 
   function showBar(msg, text) {
     if (!bar) buildBar();
-    bar.querySelector(".copy-bar-txt").textContent = msg + "，粘贴不出来就点右边";
+    bar.querySelector(".copy-bar-txt").textContent = msg;
     bar.setAttribute("data-text", text);
     bar.classList.add("show");
     clearTimeout(showBar._t);
@@ -99,9 +99,10 @@
     var ta = document.createElement("textarea");
     ta.value = text;
     ta.setAttribute("readonly", "");
+    // 必须落在视口内、参与布局：部分 WebView 会跳过 display:none / 视口外的元素
     ta.style.cssText =
-      "position:fixed;top:0;left:0;width:1px;height:1px;padding:0;border:0;outline:none;" +
-      "opacity:0.01;font-size:16px;z-index:-1;";
+      "position:fixed;left:8px;bottom:8px;width:2em;height:2em;padding:0;margin:0;" +
+      "border:0;outline:none;opacity:0.01;font-size:16px;";
     document.body.appendChild(ta);
     var ok = false;
     try {
