@@ -59,135 +59,73 @@
     return location.origin + location.pathname.replace(/[^/]*$/, "");
   }
 
-  /* ---------------------------------------------------------- 二维码大图 + 支付宝直付 + 抖音引导 */
+  /* ---------------------------------------------------------- 二维码大图 + 支付宝/抖音一键跳转 */
 
-  // 支付宝个人收款码里的真实链接：点一下就能打开收钱页（不需要扫码）
+  // 支付宝收款码里的真实链接、抖音主页分享链接：点一下就能打开对应 App
   var ALI_PAY_URI = "https://qr.alipay.com/fkx14447du0gjilqkkmaqdd";
+  var DY_URI = "https://v.douyin.com/l-aU7jABkEs/";
   var UA = navigator.userAgent || "";
   var IS_MOBILE =
     /Android|iPhone|iPad|iPod|HarmonyOS|Windows Phone|Mobile/i.test(UA) ||
     (navigator.maxTouchPoints > 1 && /Mac/.test(UA));
-  var IN_WECHAT = /MicroMessenger/i.test(UA);
 
-  var pay = {
-    box: document.getElementById("payHelp"),
-    qr: document.getElementById("payQr"),
-    retry: document.getElementById("payRetry"),
-    copy: document.getElementById("payCopy"),
-    close: document.getElementById("payClose"),
-  };
-
-  function hidePayHelp() {
-    if (pay.box) pay.box.hidden = true;
-  }
-
-  function showDyHelp() {
-    if (!pay.box) {
-      toast("长按二维码保存图片，再用抖音扫一扫 → 相册");
-      return;
-    }
-    pay.box.hidden = false;
-  }
-
-  // 支付宝：手机关掉当前页跳过去（会唤起 App），桌面开新标签
-  function openAliPay(e) {
+  // 手机直接在当前标签跳（交给系统唤起 App），桌面开新标签
+  function openExternal(url, e) {
     if (e) e.preventDefault();
-    if (IS_MOBILE) location.href = ALI_PAY_URI;
-    else window.open(ALI_PAY_URI, "_blank", "noopener");
-  }
-
-  function wakeDouyin() {
-    try {
-      window.location.href = /Android/i.test(UA)
-        ? "intent://#Intent;scheme=snssdk1128;package=com.ss.android.ugc.aweme;end"
-        : "snssdk1128://";
-    } catch (err) {
-      /* 打不开就让用户按上面的相册识别步骤来 */
-    }
-  }
-
-  function copySiteLink() {
-    copyText(baseUrl() + "account.html", "链接已复制，粘贴到微信/抖音里打开即可");
+    if (IS_MOBILE) location.href = url;
+    else window.open(url, "_blank", "noopener");
   }
 
   function initQrZoom() {
     var box = document.getElementById("qrLightbox");
     var bigImg = document.getElementById("qrBigImg");
     var bigTip = document.getElementById("qrBigTip");
-    if (!box || !bigImg) return;
 
-    function openBig(node, tip) {
+    function openBig(node) {
+      if (!box || !bigImg) return;
       bigImg.src = node.dataset.qr;
       bigImg.alt = node.dataset.title || "二维码";
       bigImg.classList.toggle("is-round", node.dataset.round === "1");
-      if (bigTip) bigTip.textContent = tip || "点击任意处关闭 · 长按可保存图片";
+      if (bigTip) bigTip.textContent = "点击任意处关闭 · 长按可保存图片";
       box.classList.add("show");
     }
 
     document.addEventListener("click", function (e) {
-      // 支付宝「点我付款」按钮
+      // 两个打赏按钮
       if (e.target.closest("#aliPay")) {
-        openAliPay(e);
+        openExternal(ALI_PAY_URI, e);
         return;
       }
-      // 抖音关注引导
       if (e.target.closest("#dyOpen")) {
-        e.preventDefault();
-        showDyHelp();
+        openExternal(DY_URI, e);
         return;
       }
 
       var node = e.target.closest("[data-qr]");
       if (!node) return;
 
-      // 支付宝码：点图等于点按钮，直接进收钱页
+      // 点二维码图 = 点按钮：支付宝进收钱页，抖音进主页
       if (node.classList.contains("code-ali")) {
-        openAliPay(e);
+        openExternal(ALI_PAY_URI, e);
+        return;
+      }
+      if (node.classList.contains("code-dy")) {
+        openExternal(DY_URI, e);
         return;
       }
 
-      // 抖音码：手机先给「保存图片 + 相册识别」的引导
-      if (IS_MOBILE && !IN_WECHAT && node.classList.contains("code-dy")) {
-        e.preventDefault();
-        showDyHelp();
-        return;
-      }
-
-      openBig(
-        node,
-        IN_WECHAT
-          ? "长按图片 → 识别图中二维码"
-          : "点击任意处关闭 · 长按可保存图片"
-      );
+      openBig(node);
     });
 
-    box.addEventListener("click", function () {
-      box.classList.remove("show");
-    });
-
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") {
+    if (box) {
+      box.addEventListener("click", function () {
         box.classList.remove("show");
-        hidePayHelp();
-      }
-    });
-
-    if (pay.box) {
-      pay.box.addEventListener("click", function (e) {
-        if (e.target === pay.box) hidePayHelp();
       });
     }
-    if (pay.close) pay.close.addEventListener("click", hidePayHelp);
-    if (pay.copy) pay.copy.addEventListener("click", copySiteLink);
-    if (pay.retry) pay.retry.addEventListener("click", wakeDouyin);
 
-    if (IS_MOBILE) {
-      var dyBtn = document.getElementById("dyOpen");
-      if (dyBtn) {
-        dyBtn.textContent = "手机怎么关注 →";
-        dyBtn.hidden = false;
-      }
-    }
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && box) box.classList.remove("show");
+    });
   }
 
   initQrZoom();
