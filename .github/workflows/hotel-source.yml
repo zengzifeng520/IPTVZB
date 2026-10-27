@@ -65,6 +65,15 @@ jobs:
         # 地域结论相反，真验活会误杀大陆能通的源
         run: cd spider && python intl_pool.py --no-probe
 
+      - name: Build EPG
+        # 生成节目单（国内 615 台 + 港澳台 50 台）。continue-on-error：
+        # epg.pw 是境外站，Actions 偶尔拉不到，失败就沿用上一版 EPG，不阻塞整个任务。
+        # 只保留 [今天-1, 今天+2] 的节目，所以必须每天重建，否则 4 天后就空了。
+        continue-on-error: true
+        env:
+          PYTHONIOENCODING: utf-8
+        run: cd .. && python tools/build_epg.py
+
       - name: Rebuild subscriptions
         env:
           PYTHONIOENCODING: utf-8
