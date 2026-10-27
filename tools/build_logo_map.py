@@ -139,6 +139,24 @@ def collect() -> dict[str, str]:
 def main() -> None:
     t0 = time.time()
     logos = collect()
+
+    # 外站图片换成本站镜像（tools/mirror_logos.py 会把图片下载到 data/logos/lib/）。
+    # 目的：订阅里的 tvg-logo 全部走自己的域名，不再依赖 jsdelivr —— 那边
+    # 对 @分支 有最长 7 天缓存，EPG 之前就吃过这个亏。
+    mirror_fp = ROOT / "spider" / "data" / "logo_mirror.json"
+    if mirror_fp.exists():
+        try:
+            mirror = json.loads(mirror_fp.read_text(encoding="utf-8"))
+            n = 0
+            for k, v in list(logos.items()):
+                m = mirror.get(v)
+                if m:
+                    logos[k] = m
+                    n += 1
+            print(f"[logo] 外站图片换本站镜像 {n} 个键")
+        except Exception as e:  # noqa: BLE001
+            print(f"[logo] 镜像表读取失败：{e}")
+
     payload = {
         "updated": time.strftime("%Y-%m-%d %H:%M:%S"),
         "count": len(logos),
