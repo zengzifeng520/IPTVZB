@@ -2688,7 +2688,7 @@ body { font-size: 15px; line-height: 1.65; }
 .visit-chart-max { font-size: 11px; }
 .visit-chart { height: 84px; margin: 0 14px; padding: 4px 2px 0; gap: 6px; }
 .vb-num { font-size: 10.5px; }
-.vb-bar { max-width: 30px; border-radius: 5px 5px 2px 2px; }
+.vb-bar { max-width: 48px; border-radius: 5px 5px 2px 2px; }
 .vb-day { font-size: 10px; margin-top: 1px; }
 .visit-note { margin: 10px 14px 12px; font-size: 11.5px; line-height: 1.65; }
 
@@ -2699,3 +2699,11 @@ body { font-size: 15px; line-height: 1.65; }
   .visit-card span { font-size: 11px; }
   .visit-chart { height: 74px; gap: 4px; }
 }
+
+/* ----------------------------------------------------------
+   后台：内容列收窄居中，桌面上不再横铺满屏
+   ---------------------------------------------------------- */
+.wrap.admin-main { max-width: 860px; }
+.admin-main .admin-stats { gap: 10px; }
+.admin-main .admin-stat { padding: 13px 15px; }
+.admin-main .admin-stat b { font-size: 22px; }
