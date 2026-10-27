@@ -53,6 +53,11 @@ jobs:
           PYTHONIOENCODING: utf-8
         run: cd spider && timeout 900 python hotel_pool.py --check-only
 
+      - name: Harvest gangaotai sources
+        env:
+          PYTHONIOENCODING: utf-8
+        run: cd spider && python gangaotai_pool.py
+
       - name: Rebuild subscriptions
         env:
           PYTHONIOENCODING: utf-8

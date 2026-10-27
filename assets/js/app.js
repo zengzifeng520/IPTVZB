@@ -157,10 +157,11 @@
 
   function renderStats() {
     var s = (state.proxy && state.proxy.stats) || {};
-    // 组播中转与酒店源分开显示：前者挑地区，后者全国通用
+    // 组播中转、酒店源、港澳台分开显示：前者挑地区，后两者不限地区
     var items = [
       { n: s.relayHosts || 0, t: "台组播中转", accent: true },
       { n: s.hotelHosts || 0, t: "台酒店源", accent: false },
+      { n: s.gangaotaiChannels || 0, t: "个港澳台频道", accent: false },
       { n: s.channelsTotal || s.channels || 0, t: "个频道", accent: false },
       { n: s.streamsTotal || s.streams || 0, t: "条播放地址", accent: false },
     ];
@@ -221,6 +222,24 @@
     );
   }
 
+  // 港澳台单独一张卡，排在酒店源后面
+  function gangaotaiCard(s) {
+    return (
+      '<a class="region-card is-hotel" href="gangaotai.html">' +
+      '<div class="rc-head"><span class="rc-name">港澳台</span>' +
+      '<span class="rc-isp is-cyan">大陆直连</span></div>' +
+      '<div class="rc-nums"><b>' +
+      (s.gangaotaiChannels || 0) +
+      "</b> 频道<span class=\"rc-dot\">·</span><b>" +
+      (s.gangaotaiStreams || 0) +
+      "</b> 条地址</div>" +
+      '<div class="rc-foot"><span>' +
+      (s.gangaotaiHosts || 0) +
+      ' 台源 · HLS 直连</span><span class="rc-go">查看频道 →</span></div>' +
+      "</a>"
+    );
+  }
+
   function renderRegions() {
     if (!state.regions.length) {
       el.grid.innerHTML =
@@ -229,7 +248,9 @@
     }
     var hs = (state.pub && state.pub.stats) || {};
     el.grid.innerHTML =
-      state.regions.map(regionCard).join("") + (hs.hotelStreams ? hotelCard(hs) : "");
+      state.regions.map(regionCard).join("") +
+      (hs.hotelStreams ? hotelCard(hs) : "") +
+      (hs.gangaotaiStreams ? gangaotaiCard(hs) : "");
     el.previewSub.textContent =
       state.regions.length + " 个地区 · 每个地区一套独立的频道与订阅";
   }

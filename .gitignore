@@ -36,6 +36,7 @@ data/proxy.json
 data/regions.json
 # 酒店源地址池（同样含全量播放地址，只存 state 分支）
 data/proxy_hotel.json
+data/proxy_gangaotai.json
 
 # 酒店源采集中间态（每轮重建，不入库；成品是 data/proxy_hotel.json）
 spider/data/hotel_ok.json

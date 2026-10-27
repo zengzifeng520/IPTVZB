@@ -11,7 +11,8 @@ if git rev-parse --verify origin/state >/dev/null 2>&1; then
   git show origin/state:data/proxy.json > data/proxy.json 2>/dev/null || true
   git show origin/state:data/regions.json > data/regions.json 2>/dev/null || true
   git show origin/state:data/proxy_hotel.json > data/proxy_hotel.json 2>/dev/null || true
-  echo "已从 state 分支恢复延续源（proxy.json / regions.json / proxy_hotel.json）"
+  git show origin/state:data/proxy_gangaotai.json > data/proxy_gangaotai.json 2>/dev/null || true
+  echo "已从 state 分支恢复延续源（proxy.json / regions.json / proxy_hotel.json / proxy_gangaotai.json）"
 else
   echo "state 分支不存在，本次从头采集"
 fi
