@@ -59,104 +59,55 @@
     return location.origin + location.pathname.replace(/[^/]*$/, "");
   }
 
-  /* ---------------------------------------------------------- 二维码大图 + 手机付款引导 */
+  /* ---------------------------------------------------------- 二维码大图 + 支付宝直付 + 抖音引导 */
 
-  // 微信赞赏码的内容（wxp:// 是微信私有协议，只能由微信自己打开）
-  var WX_PAY_URI =
-    "wxp://f2f0jWzDSWSV5tk1GJm8fYvN5gTe8Dodid2XZC3uQdLAIPK4OPS3ZpvVFxsBhdAyzlkZ";
-  var WX_HOST = WX_PAY_URI.slice("wxp://".length);
+  // 支付宝个人收款码里的真实链接：点一下就能打开收钱页（不需要扫码）
+  var ALI_PAY_URI = "https://qr.alipay.com/fkx14447du0gjilqkkmaqdd";
   var UA = navigator.userAgent || "";
-  var IS_ANDROID = /Android/i.test(UA);
-  var IS_IOS = /iPhone|iPad|iPod/i.test(UA);
   var IS_MOBILE =
-    IS_ANDROID ||
-    IS_IOS ||
-    /HarmonyOS|Windows Phone|Mobile/i.test(UA) ||
+    /Android|iPhone|iPad|iPod|HarmonyOS|Windows Phone|Mobile/i.test(UA) ||
     (navigator.maxTouchPoints > 1 && /Mac/.test(UA));
   var IN_WECHAT = /MicroMessenger/i.test(UA);
 
   var pay = {
     box: document.getElementById("payHelp"),
-    title: document.getElementById("payHelpTitle"),
     qr: document.getElementById("payQr"),
-    steps: document.getElementById("paySteps"),
-    note: document.getElementById("payHelpText"),
     retry: document.getElementById("payRetry"),
     copy: document.getElementById("payCopy"),
     close: document.getElementById("payClose"),
-    mode: "wx",
   };
 
   function hidePayHelp() {
     if (pay.box) pay.box.hidden = true;
   }
 
-  function showPayHelp(mode) {
+  function showDyHelp() {
     if (!pay.box) {
-      toast("长按二维码保存图片，再用微信扫一扫 → 相册");
+      toast("长按二维码保存图片，再用抖音扫一扫 → 相册");
       return;
-    }
-    pay.mode = mode;
-    if (mode === "wx") {
-      pay.title.textContent = "手机上这样付款";
-      if (pay.qr) {
-        pay.qr.src = "assets/img/wxpay_qr.png";
-        pay.qr.classList.remove("is-round");
-      }
-      pay.steps.innerHTML =
-        "<li>长按上面这张赞赏码 →「保存图片」</li>" +
-        "<li>打开微信 → 右上角「+」→ 扫一扫 → 右下角「相册」→ 选这张图</li>" +
-        "<li>金额随意，直接赞赏</li>";
-      pay.note.textContent =
-        "微信不允许网页直接跳进收款页，点一下就跳过去是做不到的，按上面三步最快。";
-      if (pay.retry) pay.retry.textContent = "试着直接唤起微信";
-    } else {
-      pay.title.textContent = "手机上这样关注";
-      if (pay.qr) {
-        pay.qr.src = "assets/img/douyin_qr.png";
-        pay.qr.classList.add("is-round");
-      }
-      pay.steps.innerHTML =
-        "<li>长按上面这张抖音码 →「保存图片」</li>" +
-        "<li>打开抖音 → 右上角「扫一扫」→ 右下角「相册」→ 选这张图</li>" +
-        "<li>点「关注」即可</li>";
-      pay.note.textContent = "抖音码不是普通网址，网页没法直接跳转，只能这样关注。";
-      if (pay.retry) pay.retry.textContent = "试着直接打开抖音";
     }
     pay.box.hidden = false;
   }
 
-  // Android：用 intent:// 让系统去分发，浏览器不认 scheme 时会自动回退到本站
-  function wakeWeChat() {
-    if (IS_ANDROID) {
-      var fb = encodeURIComponent(baseUrl() + "account.html");
-      window.location.href =
-        "intent://" + WX_HOST +
-        "#Intent;scheme=wxp;package=com.tencent.mm;S.browser_fallback_url=" + fb + ";end";
-      return;
-    }
-    try {
-      window.location.href = WX_PAY_URI;
-    } catch (err) {
-      /* iOS 等会被拦，上面的三步引导已经够用 */
-    }
+  // 支付宝：手机关掉当前页跳过去（会唤起 App），桌面开新标签
+  function openAliPay(e) {
+    if (e) e.preventDefault();
+    if (IS_MOBILE) location.href = ALI_PAY_URI;
+    else window.open(ALI_PAY_URI, "_blank", "noopener");
   }
 
   function wakeDouyin() {
-    if (IS_ANDROID) {
-      window.location.href =
-        "intent://#Intent;scheme=snssdk1128;package=com.ss.android.ugc.aweme;end";
-      return;
-    }
     try {
-      window.location.href = "snssdk1128://";
+      window.location.href = /Android/i.test(UA)
+        ? "intent://#Intent;scheme=snssdk1128;package=com.ss.android.ugc.aweme;end"
+        : "snssdk1128://";
     } catch (err) {
-      /* ignore */
+      /* 打不开就让用户按上面的相册识别步骤来 */
     }
   }
 
   function copySiteLink() {
-    copyText(baseUrl() + "account.html", "链接已复制，粘贴到微信里打开即可");
+    copyText(baseUrl() + "account.html", "链接已复制，粘贴到微信/抖音里打开即可");
   }
 
   function initQrZoom() {
@@ -174,29 +125,38 @@
     }
 
     document.addEventListener("click", function (e) {
-      var btn = e.target.closest("#wxPay, #dyOpen");
-      if (btn) {
+      // 支付宝「点我付款」按钮
+      if (e.target.closest("#aliPay")) {
+        openAliPay(e);
+        return;
+      }
+      // 抖音关注引导
+      if (e.target.closest("#dyOpen")) {
         e.preventDefault();
-        showPayHelp(btn.id === "wxPay" ? "wx" : "dy");
+        showDyHelp();
         return;
       }
 
       var node = e.target.closest("[data-qr]");
       if (!node) return;
-      var isWx = node.classList.contains("code-wx");
 
-      // 手机点二维码：直接给「保存图片 + 相册识别」的引导（只有这条路真能走通）
-      if (IS_MOBILE && !IN_WECHAT) {
-        e.preventDefault();
-        showPayHelp(isWx ? "wx" : "dy");
+      // 支付宝码：点图等于点按钮，直接进收钱页
+      if (node.classList.contains("code-ali")) {
+        openAliPay(e);
         return;
       }
 
-      // 微信内置浏览器：长按识别是官方放行的路径
+      // 抖音码：手机先给「保存图片 + 相册识别」的引导
+      if (IS_MOBILE && !IN_WECHAT && node.classList.contains("code-dy")) {
+        e.preventDefault();
+        showDyHelp();
+        return;
+      }
+
       openBig(
         node,
         IN_WECHAT
-          ? "长按图片 → 识别图中二维码，即可直接打开"
+          ? "长按图片 → 识别图中二维码"
           : "点击任意处关闭 · 长按可保存图片"
       );
     });
@@ -219,30 +179,13 @@
     }
     if (pay.close) pay.close.addEventListener("click", hidePayHelp);
     if (pay.copy) pay.copy.addEventListener("click", copySiteLink);
-    if (pay.retry) {
-      pay.retry.addEventListener("click", function () {
-        if (pay.mode === "dy") wakeDouyin();
-        else wakeWeChat();
-      });
-    }
+    if (pay.retry) pay.retry.addEventListener("click", wakeDouyin);
 
-    // 手机上才显示这些入口，桌面端保持看大图
     if (IS_MOBILE) {
-      var wxBtn = document.getElementById("wxPay");
-      if (wxBtn) {
-        wxBtn.textContent = "手机怎么付款 →";
-        wxBtn.hidden = false;
-      }
       var dyBtn = document.getElementById("dyOpen");
       if (dyBtn) {
         dyBtn.textContent = "手机怎么关注 →";
         dyBtn.hidden = false;
-      }
-      var wxHint = document.querySelector(".code-wx")
-        ? document.querySelector(".code-wx").parentNode.querySelector(".code-hint")
-        : null;
-      if (wxHint) {
-        wxHint.textContent = IN_WECHAT ? "长按二维码识别即可付款" : "点击查看手机付款方法";
       }
     }
   }

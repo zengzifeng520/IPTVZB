@@ -2444,3 +2444,20 @@ body { font-size: 15px; line-height: 1.65; }
 [data-theme="light"] .pay-help-box { background: #ffffff; border-color: rgba(0, 0, 0, 0.12); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28); }
 [data-theme="light"] .pay-help-box p { color: #4b5563; }
 [data-theme="light"] .pay-help-box p b { color: #111827; }
+
+/* 支付宝主按钮：打赏区的主行动召唤 */
+.code-pay.code-pay-main {
+  height: 38px; padding: 0 20px;
+  font-size: 14.5px; font-weight: 700;
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 10px 24px -10px rgba(139, 92, 246, 0.85);
+}
+.code-pay.code-pay-main:hover {
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  border-color: transparent;
+  color: #fff;
+}
+.code-ali img { border-radius: 8px; }
+.code-ali { cursor: pointer; }
