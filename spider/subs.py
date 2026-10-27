@@ -40,6 +40,11 @@ EPG_URL = "https://gcore.jsdelivr.net/gh/zengzifeng520/IPTV@gh-pages/e_all.xml"
 # 播放器显示「无节目信息」——epg.pw 确实没有那些台的节目单，不硬凑。
 _EPG_MAP: dict[str, str] | None = None
 
+# EPG 里实际存在的 channel id（启动时从 data/public/epg.xml.gz 读一次）。
+# 组播源的频道名和 EPG 的 id 对不齐（我们是 CCTV-1，EPG 里是「CCTV-1 综合」），
+# 所以 tvg-id 不能直接写频道名，要按候选列表去撞，撞上哪个用哪个。
+_EPG_IDS: set[str] | None = None
+
 # 台标解析缓存：同一个频道名一次运行里只算一遍（一次生成要写几十个 m3u）
 _MISS = object()
 _logo_cache: dict[str, str | None | object] = {}
@@ -91,6 +96,47 @@ def token_of(sid: str) -> str:
     return hashlib.sha256(raw).hexdigest()[:16]
 
 
+def _epg_ids() -> set[str]:
+    """读 EPG 里所有 channel id（只读一次）"""
+    global _EPG_IDS
+    if _EPG_IDS is None:
+        _EPG_IDS = set()
+        f = PUBLIC_DIR / "epg.xml.gz"
+        if f.exists():
+            try:
+                import gzip
+                import re as _re
+                raw = gzip.open(f, "rb").read(60_000_000).decode("utf-8", "ignore")
+                _EPG_IDS = set(_re.findall(r'<channel id="([^"]+)"', raw))
+                print(f"  [subs] EPG 载入 {len(_EPG_IDS)} 个 channel id")
+            except Exception as e:  # noqa: BLE001
+                print(f"  [subs] EPG 读取失败：{e}")
+    return _EPG_IDS
+
+
+def _resolve_epg_id(name: str) -> str | None:
+    """频道名 -> EPG 里真实存在的 id；撞不上返回 None（不加 tvg-id，不硬凑）"""
+    ids = _epg_ids()
+    if not ids:
+        return None
+    if name in ids:
+        return name
+    # 变体：去空格、去横线、繁转简后的写法
+    cands = [
+        name.replace(" ", ""), name.replace("-", ""), name.replace("·", ""),
+        name.replace("-", "").replace(" ", ""),
+    ]
+    for c in cands:
+        if c in ids:
+            return c
+    # 前缀匹配：「CCTV-1」-> 「CCTV-1 综合」；只认 "名字 + 空格" 开头，避免
+    # CCTV-1 误配到 CCTV-10
+    for eid in ids:
+        if eid.startswith(name + " ") or eid.startswith(name + "(") or eid == name + "HD":
+            return eid
+    return None
+
+
 def _epg_map() -> dict:
     global _EPG_MAP
     if _EPG_MAP is None:
@@ -119,7 +165,7 @@ def _extinf(ch: dict) -> str:
     if ch.get("type") == "港澳台":
         eid = _epg_map().get(name)
     else:
-        eid = name
+        eid = _resolve_epg_id(name)
     id_attr = f' tvg-id="{eid}"' if eid else ""
     return (
         f'#EXTINF:-1{id_attr} tvg-name="{name}"{logo_attr} '

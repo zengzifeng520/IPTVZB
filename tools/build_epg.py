@@ -65,7 +65,7 @@ def fetch(url: str, timeout: int = 180) -> bytes:
         return r.read()
 
 
-def build(days: int = 7) -> None:
+def build(days: int = 7, base_file: str = "", out_base: str = "") -> None:
     if not MAP_JSON.exists():
         print(f"  缺少映射表 {MAP_JSON}")
         return
@@ -102,14 +102,21 @@ def build(days: int = 7) -> None:
         print("  一个频道都没匹配到，放弃生成")
         return
 
-    # 先并入用户自己的 EPG（国内频道），港澳台的同 id 会被后面覆盖
+    # 先并入已有的国内节目单：优先用本地文件（--base），没有再走网络
     base_ch: dict[str, ET.Element] = {}
     base_pr: list[ET.Element] = []
     try:
-        raw = fetch(BASE_EPG, timeout=120)
-        import gzip as _gz
-        if BASE_EPG.endswith(".gz"):
-            raw = _gz.decompress(raw)
+        if base_file and Path(base_file).exists():
+            raw = Path(base_file).read_bytes()
+            if base_file.endswith(".gz"):
+                import gzip as _gz
+                raw = _gz.decompress(raw)
+            print(f"  读本地国内节目单 {base_file}  {len(raw)/1024/1024:.1f}MB")
+        else:
+            raw = fetch(BASE_EPG, timeout=120)
+            import gzip as _gz
+            if BASE_EPG.endswith(".gz"):
+                raw = _gz.decompress(raw)
         broot = ET.fromstring(raw)
         for ch in broot.findall("channel"):
             base_ch[ch.get("id") or ""] = ch
@@ -134,14 +141,18 @@ def build(days: int = 7) -> None:
     for pr in programmes:
         tv.append(pr)
 
-    OUT_GZ.parent.mkdir(parents=True, exist_ok=True)
     xml = ET.tostring(tv, encoding="utf-8", xml_declaration=True)
-    with gzip.open(OUT_GZ, "wb", compresslevel=9) as f:
+    out_gz = Path(out_base + ".gz") if out_base else OUT_GZ
+    out_gz.parent.mkdir(parents=True, exist_ok=True)
+    with gzip.open(out_gz, "wb", compresslevel=9) as f:
         f.write(xml)
+    if out_base:
+        Path(out_base).write_bytes(xml)
 
     miss = want - got
-    print(f"  生成 {len(channels)} 频道 / {len(programmes)} 条节目"
-          f"  -> {OUT_GZ.name}  {OUT_GZ.stat().st_size/1024:.0f}KB")
+    total_ch = len(channels) + len([c for c in base_ch if c not in got])
+    print(f"  合并后 {total_ch} 频道，港澳台 {len(channels)} 个 / {len(programmes)} 条节目"
+          f"  -> {out_gz.name}  {out_gz.stat().st_size/1024:.0f}KB")
     if miss:
         print(f"  未取到节目单的 id：{','.join(sorted(miss))}")
 
@@ -149,10 +160,12 @@ def build(days: int = 7) -> None:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--days", type=int, default=7)
+    ap.add_argument("--base", default="", help="已有的国内节目单文件（.xml/.xml.gz）")
+    ap.add_argument("--out", default="", help="输出路径前缀（不带后缀），留空写到本站 public")
     args = ap.parse_args()
     t0 = time.time()
     print("[epg] 开始生成节目单")
-    build(args.days)
+    build(args.days, args.base, args.out)
     print(f"[epg] 用时 {time.time()-t0:.0f}s")
 
 
