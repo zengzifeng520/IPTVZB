@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>后台管理 · IPTV直播源分发系统</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%236366f1'/><stop offset='1' stop-color='%23ec4899'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='url(%23g)'/><rect x='25' y='29' width='50' height='42' rx='8' fill='%231e1b4b'/><path d='M41 40l22 10-22 10z' fill='white'/></svg>">
+<link rel="stylesheet" href="assets/css/app.css?v=20261027I">
+<script src="assets/js/theme.js?v=20261027I"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 18v3"/></svg>
+      </span>
+      <span class="brand-text">
+        <b>IPTV直播源分发系统</b>
+        <i>后台管理</i>
+      </span>
+    </a>
+    <div class="top-actions">
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换主题"></button>
+      <a class="btn" href="index.html">回首页</a>
+      <button class="btn" id="logoutBtn" type="button" hidden>退出</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap admin-main">
+
+  <!-- 登录 -->
+  <section class="panel admin-login" id="loginPanel">
+    <div class="panel-head">
+      <h2>管理员登录</h2>
+      <span class="pill pill-warn">仅站长使用</span>
+    </div>
+    <p class="admin-tip">
+      登录后可查看订阅人数与状态、修改会员到期时间、删除用户。
+      改动保存后约 1 分钟生效。
+    </p>
+    <label class="admin-field">
+      <span>管理员账号</span>
+      <input type="text" id="userInput" value="admin" autocomplete="username" spellcheck="false">
+    </label>
+    <label class="admin-field">
+      <span>密码</span>
+      <input type="password" id="passInput" placeholder="请输入密码" autocomplete="current-password">
+    </label>
+    <label class="admin-check">
+      <input type="checkbox" id="rememberChk" checked>
+      <span>在本机记住登录状态</span>
+    </label>
+    <button class="btn btn-primary btn-block btn-lg" id="loginBtn" type="button">登录后台</button>
+    <p class="admin-tip admin-tip-sm" id="loginMsg">
+      首次「保存」时会让你填一次管理密钥，用来取得写入权限，只存在本机，不会上传。
+    </p>
+  </section>
+
+  <!-- 后台主体 -->
+  <div id="dash" hidden>
+    <div class="admin-stats" id="adminStats"></div>
+
+    <!-- 访问统计 -->
+    <section class="panel visit-panel">
+      <div class="panel-head">
+        <h2>访问统计</h2>
+        <span class="hint" id="visitHint">正在读取…</span>
+        <span class="admin-grow"></span>
+        <button class="btn btn-sm" id="visitReload" type="button">刷新</button>
+      </div>
+
+      <div class="visit-cards" id="visitCards">
+        <div class="visit-card"><b>—</b><span>累计访客</span></div>
+        <div class="visit-card"><b>—</b><span>总访问量</span></div>
+        <div class="visit-card"><b>—</b><span>今日访客</span></div>
+        <div class="visit-card"><b>—</b><span>今日访问</span></div>
+      </div>
+
+      <div class="visit-chart-head">
+        <span>最近 7 天访问量</span>
+        <span class="visit-chart-max" id="visitChartMax"></span>
+      </div>
+      <div class="visit-chart" id="visitChart"></div>
+
+      <p class="visit-note">
+        统计覆盖首页、地区页、酒店源页、支持作者页，后台本身不计入；
+        总访问量记在服务端并每天存档进仓库，换设备、清缓存、重装浏览器都不会清零；同一浏览器只算一位访客，按北京时间自然日切换。
+      </p>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>订阅用户</h2>
+        <span class="hint" id="saveHint">改动后点右侧「保存并发布」</span>
+      </div>
+
+      <div class="admin-toolbar">
+        <input type="text" id="searchInput" placeholder="搜索用户标识 / 订阅标识" spellcheck="false">
+        <button class="btn btn-sm" id="addBtn" type="button">+ 新增用户</button>
+        <button class="btn btn-sm" id="reloadBtn" type="button">重新读取</button>
+        <span class="admin-grow"></span>
+        <button class="btn btn-primary btn-sm" id="saveBtn" type="button" disabled>保存并发布</button>
+      </div>
+
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>用户标识</th>
+              <th>订阅标识</th>
+              <th>到期日</th>
+              <th>剩余</th>
+              <th>状态</th>
+              <th class="ta-right">操作</th>
+            </tr>
+          </thead>
+          <tbody id="userBody">
+            <tr><td colspan="6" class="empty-inline">正在读取…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>说明</h2>
+      </div>
+      <ul class="admin-note">
+        <li>保存后会自动重建订阅，<b>约 1 分钟</b>生效，用户刷新页面即可看到新状态。</li>
+        <li><b>改到期日</b>：直接改日期框，或点「+30 天 / +90 天」在原到期日上顺延。</li>
+        <li><b>删除</b>：用户从订阅名单移除，他的专属链接会被删除，变成 404。</li>
+        <li><b>到期</b>：文件不会被删除，而是改写成空列表，播放器刷新后就是 0 个频道。</li>
+        <li><b>新增用户</b>：标识随便填（中文、昵称、手机尾号都行），不填会自动生成一个；到期日可以直接选任意日期，或点「+7/+30/+90/+1 年」快捷按钮。</li>
+        <li>不再需要用户提供 12 位赞助码，加进来就能用；标识只是后台自己认人的名字。</li>
+      </ul>
+    </section>
+  </div>
+
+</main>
+
+<!-- 新增用户弹窗 -->
+<div class="admin-modal" id="addModal" hidden>
+  <div class="admin-modal-box">
+    <h3>新增订阅用户</h3>
+    <label class="am-field">
+      <span>用户标识 / 备注</span>
+      <input type="text" id="addName" placeholder="随便填，如：张三、老同学、VIP001（留空自动生成）" maxlength="24" spellcheck="false">
+    </label>
+    <label class="am-field">
+      <span>到期日（可任意设置）</span>
+      <input type="date" id="addExpire">
+    </label>
+    <div class="am-quick">
+      <button class="btn btn-sm" type="button" data-quick="7">+7 天</button>
+      <button class="btn btn-sm" type="button" data-quick="30">+30 天</button>
+      <button class="btn btn-sm" type="button" data-quick="90">+90 天</button>
+      <button class="btn btn-sm" type="button" data-quick="365">+1 年</button>
+      <button class="btn btn-sm" type="button" data-quick="3650">+10 年</button>
+    </div>
+    <p class="am-tip" id="addTip">日期可以改到任意一天；到期后订阅会自动变成 0 个频道。</p>
+    <div class="am-acts">
+      <button class="btn btn-primary" id="addOk" type="button">确定添加</button>
+      <button class="btn" id="addCancel" type="button">取消</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/js/auth.js?v=20261027I"></script>
+<script src="assets/js/admin.js?v=20261027I"></script>
+</body>
+</html>
