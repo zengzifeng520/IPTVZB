@@ -1,0 +1,382 @@
+{
+ "channels": [
+  {
+   "key": "ALLCHANNEL/doc",
+   "display": "doc",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/allchannel/doc/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "ALLCHANNEL/novo19",
+   "display": "novo19",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/allchannel/novo19/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "ALLCHANNEL/tv5asie",
+   "display": "tv5asie",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/allchannel/tv5asie/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "ALLCHANNEL/tv5info",
+   "display": "tv5info",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/allchannel/tv5info/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "ALLCHANNEL/tv5style",
+   "display": "tv5style",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/allchannel/tv5style/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/kxi",
+   "display": "KXI",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/kxi/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/lovenature4k",
+   "display": "Love Nature 4K",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/lovenature4k/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/rockaction",
+   "display": "ROCK Action",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/rockaction/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/supereyt",
+   "display": "SUPER EYT",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/supereyt/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/supermusic",
+   "display": "SUPER Music",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/supermusic/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/supersports",
+   "display": "SUPER Sports",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/supersports/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/super-5",
+   "display": "SUPER劇場",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/super-5/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/super-4",
+   "display": "SUPER煲劇",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/super-4/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/super",
+   "display": "SUPER獎門人",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/super/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/super-6",
+   "display": "SUPER話當年",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/super-6/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/super-2",
+   "display": "SUPER識嘆",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/super-2/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/super-1",
+   "display": "SUPER識食",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/super-1/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/super-3",
+   "display": "SUPER金曲",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/super-3/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/tvb",
+   "display": "TVB 儿童台",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/tvb/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/tvbplus",
+   "display": "TVBPLUS",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/tvbplus/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/thrill",
+   "display": "Thrill",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/thrill/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/zoomoo",
+   "display": "ZooMOO",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/zoomoo/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/mytvsuper18",
+   "display": "myTV SUPER 18台",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/mytvsuper18/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/mytvsuper2",
+   "display": "myTV SUPER直播足球2台",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/mytvsuper2/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/mytvsuper3",
+   "display": "myTV SUPER直播足球3台",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/mytvsuper3/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/mytvsuper4",
+   "display": "myTV SUPER直播足球4台",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/mytvsuper4/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/mytvsuper5",
+   "display": "myTV SUPER直播足球5台",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/mytvsuper5/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/mytvsuper6",
+   "display": "myTV SUPER直播足球6台",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/mytvsuper6/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/mytvsuper7",
+   "display": "myTV SUPER直播足球7台",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/mytvsuper7/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/tvnhk",
+   "display": "tvN  HK",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/tvnhk/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/null-3",
+   "display": "中国电影频道",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/null-3/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/null-11",
+   "display": "亞洲劇台",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/null-11/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/null-4",
+   "display": "创世电视",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/null-4/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/hk",
+   "display": "天映经典HK",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/hk/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/null",
+   "display": "无线新闻",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/null/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/tv",
+   "display": "红牛TV",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/tv/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/null-2",
+   "display": "美亚电影台",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/null-2/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/null-9",
+   "display": "美亚电影台原声",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/null-9/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/null-10",
+   "display": "美亚电影台国语",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/null-10/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/null-1",
+   "display": "翡翠台",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/null-1/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/null-12",
+   "display": "黃金翡翠台",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/null-12/master.m3u8"
+    }
+   ]
+  },
+  {
+   "key": "mytv/null-8",
+   "display": "黃金華劇台",
+   "streams": [
+    {
+     "u": "http://103.172.187.30:12000/stream/mytv/null-8/master.m3u8"
+    }
+   ]
+  }
+ ]
+}

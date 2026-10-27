@@ -63,12 +63,25 @@ CHANNELS: list[tuple[str, str, str, str, str]] = [
     ("CTiNews", "中天新闻", "http://111.59.139.85:11888/tsfile/live/1221_1.m3u8?key=txiptv", "111.59.139.85:11888", "台湾"),
     ("PTS3", "公视3台", "http://111.59.139.85:11888/tsfile/live/1222_1.m3u8?key=txiptv", "111.59.139.85:11888", "台湾"),
     ("PTS", "公视", "http://111.59.139.85:11888/tsfile/live/1223_1.m3u8?key=txiptv", "111.59.139.85:11888", "台湾"),
-    # ---- 香港 myTV 服务器（iptv-org 收录）----
+    # ---- 香港 myTV 服务器（103.172.187.30:12000）----
+    # 2026-10-27 枚举 null-1..60（正确格式是 null-{n}/master.m3u8），
+    # 9 个能播，逐个 ffmpeg 抓帧 + 截图识别台标，结果如下：
+    #   null-1 翡翠台 / null-2,9,10 美亚电影台（三路同源）
+    #   null-3 中国电影频道 / null-4 创世电视 / null-8 黄金华剧台
+    #   null-11 myTV SUPER(剧集) / null-12 myTV SUPER(综艺)
+    # 注意：null-11 / null-12 以前被标成「亚洲剧台」「黄金翡翠台」是错的，
+    # 画面右上角台标就是 myTV SUPER，按实测改名。
     ("TVBJade", "翡翠台", "http://103.172.187.30:12000/stream/mytv/null-1/master.m3u8", "103.172.187.30:12000", "香港"),
-    ("GoldenJade", "黄金翡翠台", "http://103.172.187.30:12000/stream/mytv/null-12/master.m3u8", "103.172.187.30:12000", "香港"),
-    ("AsianDrama", "亚洲剧台", "http://103.172.187.30:12000/stream/mytv/null-11/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MyTVSuperDrama", "myTV SUPER剧集", "http://103.172.187.30:12000/stream/mytv/null-11/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MyTVSuperShow", "myTV SUPER综艺", "http://103.172.187.30:12000/stream/mytv/null-12/master.m3u8", "103.172.187.30:12000", "香港"),
+    # 美亚电影台：null-2 / null-9 / null-10 是同一频道的三个入口，做多线路
     ("MeiAhMovie", "美亚电影台", "http://103.172.187.30:12000/stream/mytv/null-9/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MeiAhMovie", "美亚电影台", "http://103.172.187.30:12000/stream/mytv/null-2/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MeiAhMovie", "美亚电影台", "http://103.172.187.30:12000/stream/mytv/null-10/master.m3u8", "103.172.187.30:12000", "香港"),
     ("CreationTV", "创世电视", "http://103.172.187.30:12000/stream/mytv/null-4/master.m3u8", "103.172.187.30:12000", "香港"),
+    # 新增（截图识别确认）
+    ("ChinaMovie", "中国电影频道", "http://103.172.187.30:12000/stream/mytv/null-3/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("GoldenDrama", "黄金华剧台", "http://103.172.187.30:12000/stream/mytv/null-8/master.m3u8", "103.172.187.30:12000", "香港"),
     # ---- 台湾各台直连源（iptv-org 收录）----
     ("TVBSAsia", "TVBS亚洲", "http://38.64.72.148/hls/modn/list/4005/chunklist1.m3u8", "38.64.72.148", "台湾"),
     ("TVBSAsia", "TVBS亚洲", "http://38.64.72.148/hls/modn/list/4005/playlist.m3u8", "38.64.72.148", "台湾"),
