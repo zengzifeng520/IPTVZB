@@ -38,6 +38,7 @@ import copy
 import gzip
 import json
 import re
+import shutil
 import sys
 import time
 import urllib.request
@@ -348,6 +349,16 @@ def build(days: int = 7, base_file: str = "", out_base: str = "") -> None:
         f.write(xml)
     if out_base:
         Path(out_base).write_bytes(xml)
+
+    # 再写一份到站点根目录，给播放器用的**短地址**：
+    #   https://zzf.new.tg/epg.xml.gz
+    # data/public/epg.xml.gz 那边保留（路径稳定，历史订阅可能引用）
+    short = ROOT / "epg.xml.gz"
+    try:
+        shutil.copyfile(out_gz, short)
+        print(f"  短地址 -> {short.name}  {short.stat().st_size/1024:.0f}KB")
+    except Exception as e:  # noqa: BLE001
+        print(f"  短地址写入失败：{e}")
 
     miss = want - got
     total_ch = len(channels) + len([c for c in base_ch if c not in got])

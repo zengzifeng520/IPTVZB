@@ -1,4 +1,4 @@
-#EXTM3U x-tvg-url="https://zzf.new.tg/data/public/epg.xml.gz" url-tvg="https://zzf.new.tg/data/public/epg.xml.gz"
+#EXTM3U x-tvg-url="https://zzf.new.tg/epg.xml.gz" url-tvg="https://zzf.new.tg/epg.xml.gz"
 #EXTINF:-1 tvg-name="CGNTV Japan" tvg-logo="https://i.imgur.com/5LNZeVq.png" group-title="国外·日本",CGNTV Japan
 https://d2p4mrcwl6ly4.cloudfront.net/out/v1/8d50f69fdbbf411a8d302743e4263716/CGNWebLiveJP.m3u8
 #EXTINF:-1 tvg-name="NHK World-Japan" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/NHK_World-Japan_TV.svg/960px-NHK_World-Japan_TV.svg.png" group-title="国外·日本",NHK World-Japan
