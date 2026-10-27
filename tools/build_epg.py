@@ -1,0 +1,160 @@
+# -*- coding: utf-8 -*-
+"""给港澳台频道生成 EPG（电视节目单）。
+
+数据来源
+--------
+epg.pw（就是我们港澳台部分源站用的那个站），提供分地区 XMLTV：
+  https://epg.pw/xmltv/epg_HK.xml   香港 230 个频道
+  https://epg.pw/xmltv/epg_TW.xml   台湾 519 个频道
+实测 2026-10-27 可用，节目覆盖 7 天。
+
+为什么自己生成而不是直接用 epg.pw 地址
+----------------------------------
+1. 播放器只吃一个 EPG 地址，而我们需要 HK + TW 两份
+2. epg.pw 原文件带 749 个频道、几十 MB，我们只要其中 38 个
+3. 放自己站上不受第三方可用性影响
+
+流程
+----
+拉 HK + TW XML（流式解析，不吃内存）
+  -> 只保留 CH_MAP 里映射到的频道（channel + 对应 programme）
+  -> 输出 data/public/epg.xml.gz
+
+频道映射（CH_MAP）
+----------------
+是我们频道名 -> epg.pw channel id 的手工对照表，见 spider/data/epg_map.json。
+没映射到的频道就是 epg.pw 确实没有节目单，m3u 里不加 tvg-id，
+播放器显示「无节目信息」——这是正常情况，不要硬凑。
+
+用法
+----
+  python tools/build_epg.py
+  python tools/build_epg.py --days 7
+"""
+from __future__ import annotations
+
+import argparse
+import gzip
+import json
+import re
+import sys
+import time
+import urllib.request
+import xml.etree.ElementTree as ET
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent          # site_repo
+MAP_JSON = ROOT / "spider" / "data" / "epg_map.json"
+OUT_GZ = ROOT / "data" / "public" / "epg.xml.gz"
+
+SOURCES = [
+    "https://epg.pw/xmltv/epg_HK.xml",
+    "https://epg.pw/xmltv/epg_TW.xml",
+]
+
+# 用户自己的 EPG（国内频道为主，615 个频道，港澳台只有 3 个）
+# 仓库 zengzifeng520/IPTV 的 gh-pages 分支。raw.githubusercontent 国内不通，
+# 走 jsdelivr（实测 200 / 702KB）。
+BASE_EPG = "https://gcore.jsdelivr.net/gh/zengzifeng520/IPTV@gh-pages/e.xml.gz"
+UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+
+
+def fetch(url: str, timeout: int = 180) -> bytes:
+    req = urllib.request.Request(url, headers=UA)
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        return r.read()
+
+
+def build(days: int = 7) -> None:
+    if not MAP_JSON.exists():
+        print(f"  缺少映射表 {MAP_JSON}")
+        return
+    ch_map = json.loads(MAP_JSON.read_text(encoding="utf-8"))
+    want = set(ch_map.values())
+    print(f"  需要 {len(want)} 个频道（来自 {len(ch_map)} 条映射）")
+
+    channels: list[ET.Element] = []
+    programmes: list[ET.Element] = []
+    got: set[str] = set()
+
+    for url in SOURCES:
+        try:
+            raw = fetch(url)
+        except Exception as e:  # noqa: BLE001
+            print(f"  {url.split('/')[-1]} 拉取失败：{type(e).__name__}")
+            continue
+        print(f"  {url.split('/')[-1]}  {len(raw)/1024/1024:.1f}MB")
+        try:
+            root = ET.fromstring(raw)
+        except Exception as e:  # noqa: BLE001
+            print(f"    解析失败：{e}")
+            continue
+        for ch in root.findall("channel"):
+            cid = ch.get("id")
+            if cid in want:
+                channels.append(ch)
+                got.add(cid)
+        for pr in root.findall("programme"):
+            if pr.get("channel") in want:
+                programmes.append(pr)
+
+    if not channels:
+        print("  一个频道都没匹配到，放弃生成")
+        return
+
+    # 先并入用户自己的 EPG（国内频道），港澳台的同 id 会被后面覆盖
+    base_ch: dict[str, ET.Element] = {}
+    base_pr: list[ET.Element] = []
+    try:
+        raw = fetch(BASE_EPG, timeout=120)
+        import gzip as _gz
+        if BASE_EPG.endswith(".gz"):
+            raw = _gz.decompress(raw)
+        broot = ET.fromstring(raw)
+        for ch in broot.findall("channel"):
+            base_ch[ch.get("id") or ""] = ch
+        base_pr = list(broot.findall("programme"))
+        print(f"  并入用户 EPG：{len(base_ch)} 频道 / {len(base_pr)} 条节目")
+    except Exception as e:  # noqa: BLE001
+        print(f"  用户 EPG 拉取失败（{type(e).__name__}），只输出港澳台部分")
+
+    tv = ET.Element("tv", {
+        "generator-info-name": "zzf.new.tg",
+        "generator-info-url": "https://zzf.new.tg/",
+    })
+    # 用户频道在前，港澳台同名 id 覆盖
+    for cid, ch in base_ch.items():
+        if cid not in got:
+            tv.append(ch)
+    for ch in channels:
+        tv.append(ch)
+    for pr in base_pr:
+        if pr.get("channel") not in got:
+            tv.append(pr)
+    for pr in programmes:
+        tv.append(pr)
+
+    OUT_GZ.parent.mkdir(parents=True, exist_ok=True)
+    xml = ET.tostring(tv, encoding="utf-8", xml_declaration=True)
+    with gzip.open(OUT_GZ, "wb", compresslevel=9) as f:
+        f.write(xml)
+
+    miss = want - got
+    print(f"  生成 {len(channels)} 频道 / {len(programmes)} 条节目"
+          f"  -> {OUT_GZ.name}  {OUT_GZ.stat().st_size/1024:.0f}KB")
+    if miss:
+        print(f"  未取到节目单的 id：{','.join(sorted(miss))}")
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--days", type=int, default=7)
+    args = ap.parse_args()
+    t0 = time.time()
+    print("[epg] 开始生成节目单")
+    build(args.days)
+    print(f"[epg] 用时 {time.time()-t0:.0f}s")
+
+
+if __name__ == "__main__":
+    main()

@@ -32,6 +32,14 @@ import logos
 # 到期时间按北京时间当天 23:59:59 算（Actions 跑在 UTC，必须显式指定时区）
 CST = timezone(timedelta(hours=8))
 
+# EPG（节目单）：统一由 zengzifeng520/IPTV 仓库的 gh-pages 提供。
+# 该文件 = 用户原有的国内节目单 + 我们用 tools/build_epg.py 并入的港澳台节目单。
+# raw.githubusercontent 国内不通，走 jsdelivr（实测 200 / 15MB）。
+EPG_URL = "https://gcore.jsdelivr.net/gh/zengzifeng520/IPTV@gh-pages/e_all.xml"
+# 港澳台频道名 -> epg.pw 的 channel id（数字）。没映射的就不加 tvg-id，
+# 播放器显示「无节目信息」——epg.pw 确实没有那些台的节目单，不硬凑。
+_EPG_MAP: dict[str, str] | None = None
+
 # 台标解析缓存：同一个频道名一次运行里只算一遍（一次生成要写几十个 m3u）
 _MISS = object()
 _logo_cache: dict[str, str | None | object] = {}
@@ -83,6 +91,17 @@ def token_of(sid: str) -> str:
     return hashlib.sha256(raw).hexdigest()[:16]
 
 
+def _epg_map() -> dict:
+    global _EPG_MAP
+    if _EPG_MAP is None:
+        f = Path(__file__).parent / "data" / "epg_map.json"
+        try:
+            _EPG_MAP = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+        except Exception:  # noqa: BLE001
+            _EPG_MAP = {}
+    return _EPG_MAP
+
+
 def _extinf(ch: dict) -> str:
     """EXTINF 行。台标能找到就加 tvg-logo，找不到就不加——
     只往属性里加东西，播放地址（下一行）一个字符都不改。"""
@@ -95,15 +114,22 @@ def _extinf(ch: dict) -> str:
         logo = logos.resolve(name, strict=strict)
         _logo_cache[ck] = logo
     logo_attr = f' tvg-logo="{logo}"' if logo else ""
+    # tvg-id 用于匹配 EPG：港澳台走 epg.pw 的数字 id，其余分类用频道名本身
+    # （用户那份国内节目单的 id 就是频道名）
+    if ch.get("type") == "港澳台":
+        eid = _epg_map().get(name)
+    else:
+        eid = name
+    id_attr = f' tvg-id="{eid}"' if eid else ""
     return (
-        f'#EXTINF:-1 tvg-name="{name}"{logo_attr} '
+        f'#EXTINF:-1{id_attr} tvg-name="{name}"{logo_attr} '
         f'group-title="{ch["type"]}",{name}'
     )
 
 
 def _write(path: Path, channels: list[dict], host_set: set[str] | None = None) -> tuple[int, int]:
     """写一个 m3u，返回 (频道数, 地址数)。host_set 为空表示不限服务器。"""
-    lines = ["#EXTM3U"]
+    lines = [f'#EXTM3U x-tvg-url="{EPG_URL}"']
     n_chan = 0
     n_stream = 0
     for ch in channels:
@@ -520,7 +546,7 @@ def _write_urls(path: Path, channels: list[dict], host_set: set[str] | None = No
 
 def _m3u_text(channels: list[dict], host_set: set[str] | None = None) -> str:
     """把频道列表拼成 m3u 文本（同一份内容要写进多个有效期的目录，先算一次）。"""
-    lines = ["#EXTM3U"]
+    lines = [f'#EXTM3U x-tvg-url="{EPG_URL}"']
     for ch in channels:
         picked = ch["streams"] if host_set is None else [s for s in ch["streams"] if s["h"] in host_set]
         if not picked:
