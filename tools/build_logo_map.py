@@ -36,6 +36,7 @@ from __future__ import annotations
 import json
 import re
 import time
+import urllib.parse
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -86,6 +87,20 @@ def variants(name: str) -> list[str]:
     return [x for x in dict.fromkeys(out) if x]
 
 
+def _host(url: str) -> str:
+    try:
+        return urllib.parse.urlparse(url).netloc.lower()
+    except Exception:  # noqa: BLE001
+        return ""
+
+
+# 国内基本访问不了的图床：这些地址在播放器里等于没有台标
+FOREIGN_HOSTS = {
+    "i.imgur.com", "imgur.com", "upload.wikimedia.org",
+    "static.wikia.nocookie.net", "i.ibb.co",
+}
+
+
 def collect() -> dict[str, str]:
     logos: dict[str, str] = {}
     src: dict[str, str] = {}
@@ -107,12 +122,18 @@ def collect() -> dict[str, str]:
             if name in src:
                 continue
             src[name] = url
-    # 自制台标单独再兜一遍（有些台只在 JSON 里，m3u 里没写）
+    # 自制台标单独再兜一遍（有些台只在 JSON 里，m3u 里没写）。
+    # 另外：m3u 里指向境外图床（imgur / wikimedia 等）的，用自制台标覆盖 ——
+    # 那些图在国内基本打不开，还不如一张能显示的卡片。
     comp = ROOT / "spider" / "data" / "composed_logos.json"
     if comp.exists():
         try:
             for name, url in json.loads(comp.read_text(encoding="utf-8")).items():
-                src.setdefault(name, url)
+                cur = src.get(name)
+                if not cur or _host(cur) in FOREIGN_HOSTS:
+                    src[name] = url
+                else:
+                    src.setdefault(name, url)
         except Exception:  # noqa: BLE001
             pass
 
