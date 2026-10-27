@@ -56,43 +56,7 @@
     </label>
     <button class="btn btn-primary btn-block btn-lg" id="loginBtn" type="button">登录后台</button>
     <p class="admin-tip admin-tip-sm" id="loginMsg">
-      密码只在本机校验，网页代码里没有任何账号、密钥或仓库地址。
-    </p>
-    <p class="admin-tip admin-tip-sm">
-      换了电脑、或首次使用？
-      <button class="btn btn-sm" id="resetBtn" type="button">清除本机配置并重新设置</button>
-    </p>
-  </section>
-
-  <!-- 首次配置：不预置任何账号信息，全部由站长填写并只存本机 -->
-  <section class="panel admin-login" id="initPanel" hidden>
-    <div class="panel-head">
-      <h2>首次配置</h2>
-      <span class="pill pill-warn">只存本机</span>
-    </div>
-    <p class="admin-tip">
-      下面三样东西<b>只保存在这台电脑的浏览器里</b>，不会写进网页代码，也不会上传。
-      配置一次之后，以后打开只需要输密码。
-    </p>
-    <label class="admin-field">
-      <span>管理密钥（GitHub Token，需对仓库有 Contents 读写权限）</span>
-      <input type="password" id="initKey" placeholder="github_pat_… 或 ghp_…" autocomplete="off" spellcheck="false">
-    </label>
-    <label class="admin-field">
-      <span>仓库（留空默认当前项目；可填 owner/repo，也可以只填仓库名）</span>
-      <input type="text" id="initRepo" placeholder="例如 ZZF" autocomplete="off" spellcheck="false">
-    </label>
-    <label class="admin-field">
-      <span>设置本机登录密码（至少 6 位）</span>
-      <input type="password" id="initPass" placeholder="只在本机校验，不会上传" autocomplete="new-password">
-    </label>
-    <label class="admin-field">
-      <span>再输一次密码</span>
-      <input type="password" id="initPass2" placeholder="确认密码" autocomplete="new-password">
-    </label>
-    <button class="btn btn-primary btn-block btn-lg" id="initBtn" type="button">完成配置</button>
-    <p class="admin-tip admin-tip-sm" id="initMsg">
-      配置时会用密钥调一次 GitHub 接口，确认身份和仓库权限；通过后本机只保存密码哈希。
+      首次「保存」时会让你填一次管理密钥，用来取得写入权限，只存在本机，不会上传。
     </p>
   </section>
 

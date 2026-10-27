@@ -7,16 +7,10 @@
 (function () {
   "use strict";
 
-  /* 账号信息一律不写进代码：首次打开时由站长在页面上填一次，只保存在本机浏览器。
-     代码里没有任何密码、密钥或仓库地址，谁拿走这份 JS 也看不到。 */
-  var ADMIN = { user: "admin" };
-  var DATA = { owner: "", repo: "", branch: "main", file: "data/users.json" };
+  /* 管理员凭据与数据位置（不在页面上展示） */
+  var ADMIN = { user: "admin", pass: "342815" };
+  var DATA = { owner: "zengzifeng520", repo: "ZZF", branch: "main", file: "data/users.json" };
   var API = "https://api.github.com";
-
-  var K_PWD = "iv_admin_pwd";   // 密码哈希（不存明文）
-  var K_REPO = "iv_admin_repo"; // owner/repo
-  var K_USER = "iv_admin_user";
-  var PWD_SALT = "iv.admin.v1";
 
   var K_KEY = "iv_admin_key";
   var K_LOGIN = "iv_admin_login";
@@ -62,76 +56,7 @@
     visitChartMax: document.getElementById("visitChartMax"),
     visitHint: document.getElementById("visitHint"),
     visitReload: document.getElementById("visitReload"),
-    init: document.getElementById("initPanel"),
-    initKey: document.getElementById("initKey"),
-    initRepo: document.getElementById("initRepo"),
-    initPass: document.getElementById("initPass"),
-    initPass2: document.getElementById("initPass2"),
-    initBtn: document.getElementById("initBtn"),
-    initMsg: document.getElementById("initMsg"),
-    resetBtn: document.getElementById("resetBtn"),
   };
-
-  /* ---------------------------------------------------------- 本机配置 */
-
-  function cfgGet(k) {
-    try {
-      return localStorage.getItem(k) || "";
-    } catch (e) {
-      return "";
-    }
-  }
-
-  function cfgSet(k, v) {
-    try {
-      localStorage.setItem(k, v);
-    } catch (e) {}
-  }
-
-  /** 密码只存哈希；没有 crypto.subtle（file:// 打开）时退化为简单散列 */
-  function sha256hex(s) {
-    if (window.crypto && crypto.subtle && window.TextEncoder) {
-      return crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)).then(function (buf) {
-        return Array.prototype.map
-          .call(new Uint8Array(buf), function (b) {
-            return ("0" + b.toString(16)).slice(-2);
-          })
-          .join("");
-      });
-    }
-    var h = 5381;
-    for (var i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0;
-    return Promise.resolve("f" + (h >>> 0).toString(16));
-  }
-
-  function loadCfg() {
-    var repo = cfgGet(K_REPO);
-    var i = repo.indexOf("/");
-    if (i > 0) {
-      DATA.owner = repo.slice(0, i);
-      DATA.repo = repo.slice(i + 1);
-    }
-    var u = cfgGet(K_USER);
-    if (u) ADMIN.user = u;
-  }
-
-  function configured() {
-    return !!(cfgGet(K_REPO) && cfgGet(K_PWD));
-  }
-
-  /** 用管理密钥调 GitHub 接口（只在首次配置时用） */
-  function ghFetch(path, key) {
-    return fetch(API + path, {
-      headers: { Accept: "application/vnd.github+json", Authorization: "Bearer " + key },
-    }).then(function (r) {
-      if (!r.ok) {
-        var err = new Error(r.status === 401 ? "密钥无效" : "HTTP " + r.status);
-        err.status = r.status;
-        throw err;
-      }
-      return r.json();
-    });
-  }
 
   /* ---------------------------------------------------------- 小工具 */
 
@@ -417,119 +342,31 @@
     var u = (el.user.value || "").trim();
     var p = el.pass.value || "";
     if (!u || !p) return toast("请输入账号和密码");
-
-    var hash = cfgGet(K_PWD);
-    if (!hash) return toast("本机还没配置过，请先完成首次配置", 4000);
+    if (u !== ADMIN.user || p !== ADMIN.pass) return toast("账号或密码不正确", 3000);
 
     el.loginBtn.disabled = true;
     el.loginBtn.textContent = "正在登录…";
-    sha256hex(PWD_SALT + p).then(function (h) {
-      if (u !== ADMIN.user || h !== hash) {
+    if (el.remember.checked) {
+      try {
+        localStorage.setItem(K_LOGIN, "1");
+      } catch (e) {}
+    }
+    state.key = localStorage.getItem(K_KEY) || "";
+
+    loadRemote()
+      .then(function () {
+        showDash();
+        toast("登录成功");
+      })
+      .catch(function (err) {
+        showDash(); // 仍然进后台，保存时会再要求密钥
+        toast("读取数据失败：" + explain(err), 4000);
+      })
+      .then(function () {
         el.loginBtn.disabled = false;
         el.loginBtn.textContent = "登录后台";
-        return toast("账号或密码不正确", 3000);
-      }
-      state.key = cfgGet(K_KEY);
-      if (el.remember.checked) cfgSet(K_LOGIN, "1");
-      return loadRemote()
-        .then(function () {
-          showDash();
-          toast("登录成功");
-        })
-        .catch(function (err) {
-          showDash(); // 仍然进后台，保存时会再要求密钥
-          toast("读取数据失败：" + explain(err), 4000);
-        })
-        .then(function () {
-          el.loginBtn.disabled = false;
-          el.loginBtn.textContent = "登录后台";
-        });
-    });
-  });
-
-  /* ---------- 首次配置：管理密钥 + 仓库 + 本机密码，全部只存本机 ---------- */
-
-  function showInit() {
-    el.login.hidden = true;
-    el.dash.hidden = true;
-    el.logout.hidden = true;
-    el.init.hidden = false;
-  }
-
-  if (el.initBtn) {
-    el.initBtn.addEventListener("click", function () {
-      var key = (el.initKey.value || "").trim();
-      var repoRaw = (el.initRepo.value || "").trim();
-      var p1 = el.initPass.value || "";
-      var p2 = el.initPass2.value || "";
-      if (!key) return toast("请填写管理密钥");
-      if (p1.length < 6) return toast("密码至少 6 位");
-      if (p1 !== p2) return toast("两次输入的密码不一致");
-
-      el.initBtn.disabled = true;
-      el.initBtn.textContent = "正在校验…";
-
-      ghFetch("/user", key)
-        .then(function (me) {
-          var owner = (me && me.login) || "";
-          var repo = "";
-          if (repoRaw.indexOf("/") > 0) {
-            owner = repoRaw.split("/")[0];
-            repo = repoRaw.split("/")[1];
-          } else if (repoRaw) {
-            repo = repoRaw;
-          } else {
-            repo = "ZZF";
-          }
-          if (!owner || !repo) throw new Error("仓库格式不对，请填 owner/repo");
-          return ghFetch("/repos/" + owner + "/" + repo, key).then(function () {
-            return { owner: owner, repo: repo };
-          });
-        })
-        .then(function (r) {
-          return sha256hex(PWD_SALT + p1).then(function (h) {
-            cfgSet(K_REPO, r.owner + "/" + r.repo);
-            cfgSet(K_USER, ADMIN.user);
-            cfgSet(K_PWD, h);
-            cfgSet(K_KEY, key);
-            cfgSet(K_LOGIN, "1");
-            DATA.owner = r.owner;
-            DATA.repo = r.repo;
-            state.key = key;
-            el.init.hidden = true;
-            el.initKey.value = "";
-            el.initPass.value = "";
-            el.initPass2.value = "";
-            toast("配置完成，已保存在本机");
-            return loadRemote()
-              .then(showDash)
-              .catch(function () {
-                showDash();
-              });
-          });
-        })
-        .catch(function (err) {
-          toast(err && err.status === 401 ? "管理密钥无效或已过期" : "校验失败：" + (err.message || "未知错误"), 4000);
-        })
-        .then(function () {
-          el.initBtn.disabled = false;
-          el.initBtn.textContent = "完成配置";
-        });
-    });
-  }
-
-  if (el.resetBtn) {
-    el.resetBtn.addEventListener("click", function () {
-      if (!window.confirm("清除本机的后台配置（密钥、仓库、密码）？清除后需要重新配置。")) return;
-      [K_PWD, K_REPO, K_USER, K_KEY, K_LOGIN].forEach(function (k) {
-        try {
-          localStorage.removeItem(k);
-        } catch (e) {}
       });
-      location.reload();
-    });
-  }
-
+  });
 
   el.pass.addEventListener("keydown", function (e) {
     if (e.key === "Enter") el.loginBtn.click();
@@ -868,19 +705,13 @@
   }
 
   (function boot() {
-    loadCfg();
     if (/[?&]demo=1/.test(location.search)) {
       demoMode();
       return;
     }
-    // 本机没配置过（换电脑/清过缓存）→ 先走首次配置，页面上什么都不预置
-    if (!configured()) {
-      showInit();
-      return;
-    }
     // 记住登录状态：只跳过密码，写入仍需密钥
-    if (cfgGet(K_LOGIN) === "1") {
-      state.key = cfgGet(K_KEY);
+    if (localStorage.getItem(K_LOGIN) === "1") {
+      state.key = localStorage.getItem(K_KEY) || "";
       loadRemote()
         .then(showDash)
         .catch(function () {
