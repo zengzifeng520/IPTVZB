@@ -514,18 +514,34 @@
    所有页面都加载 auth.js，这里统一初始化 #liveClock
    ============================================================ */
 (function () {
+  // 站点上线日（北京时间 2026-10-25），「已运行 N 天」从这天开始算
+  var SITE_START = Date.UTC(2026, 9, 25);
+
   function pad(n) {
     return n < 10 ? "0" + n : "" + n;
   }
+
+  // 北京时间 = UTC_now + 8 小时，再用 UTC 取值，跟本机时区无关
+  function bjNow() {
+    return new Date(Date.now() + 8 * 3600 * 1000);
+  }
+
   function tick() {
     var el = document.getElementById("liveClock");
-    if (!el) return;
-    // 北京时间 = UTC+8（用 getTimezoneOffset 偏移到东八区，跟本机时区无关）
-    var now = new Date(Date.now() + (new Date().getTimezoneOffset() + 480) * 60000);
-    el.textContent =
-      "北京时间 " +
-      now.getFullYear() + "-" + pad(now.getMonth() + 1) + "-" + pad(now.getDate()) +
-      " " + pad(now.getHours()) + ":" + pad(now.getMinutes()) + ":" + pad(now.getSeconds());
+    var run = document.getElementById("runDays");
+    var now = bjNow();
+    if (el) {
+      el.textContent =
+        "北京时间 " +
+        now.getUTCFullYear() + "-" + pad(now.getUTCMonth() + 1) + "-" + pad(now.getUTCDate()) +
+        " " + pad(now.getUTCHours()) + ":" + pad(now.getUTCMinutes()) + ":" + pad(now.getUTCSeconds());
+    }
+    if (run) {
+      var today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+      var days = Math.floor((today - SITE_START) / 86400000) + 1;
+      if (days < 1) days = 1;
+      run.textContent = "本站已运行 " + days + " 天";
+    }
   }
   tick();
   setInterval(tick, 1000);
