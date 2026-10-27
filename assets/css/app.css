@@ -2497,3 +2497,20 @@ body { font-size: 15px; line-height: 1.65; }
 [data-theme="light"] .am-field input { background: #f9fafb; color: #111827; border-color: rgba(0, 0, 0, 0.16); }
 [data-theme="light"] .am-tip { color: #6b7280; }
 [data-theme="light"] .am-field span { color: #6b7280; }
+
+/* ----------------------------------------------------------
+   页脚免责声明面板：去掉重复介绍后整体收小，和右侧数据块更协调
+   ---------------------------------------------------------- */
+.disclaimer-panel { padding: 20px 22px; gap: 24px; }
+.disclaimer-panel .dp-title { font-size: 18px; margin-bottom: 10px; }
+.disclaimer-panel .dp-left p {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.85;
+  margin-bottom: 10px;
+}
+.disclaimer-panel .dp-left p:last-child { margin-bottom: 0; }
+.disclaimer-panel .dp-update .up-label,
+.disclaimer-panel .dp-update .up-time,
+.disclaimer-panel .dp-update .up-clock,
+.disclaimer-panel .dp-update .up-run { font-size: 15px; }
