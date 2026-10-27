@@ -271,10 +271,6 @@ http://hiliu.myds.me:18088/rtp/239.254.96.182:9172
 http://www.3872327.top:1225/rtp/239.69.1.204:10866
 #EXTINF:-1 tvg-name="湖北影视" group-title="影视频道",湖北影视
 http://www.3872327.top:1225/rtp/239.254.96.182:9172
-#EXTINF:-1 tvg-name="湖北影视" group-title="影视频道",湖北影视
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.204:10866
-#EXTINF:-1 tvg-name="湖北影视" group-title="影视频道",湖北影视
-http://yy15238.netyiyang.com:8800/rtp/239.254.96.182:9172
 #EXTINF:-1 tvg-name="都市剧场" group-title="影视频道",都市剧场
 http://59.173.121.116:4022/rtp/239.69.2.4:11178
 #EXTINF:-1 tvg-name="CHC动作电影" group-title="电影频道",CHC动作电影
@@ -385,8 +381,6 @@ http://hiliu.myds.me:18088/rtp/239.69.1.143:10494
 http://www.3872327.top:1225/rtp/239.69.1.143:10494
 #EXTINF:-1 tvg-name="先锋乒羽" group-title="数字频道",先锋乒羽
 http://www.ct123.online:8188/rtp/239.69.1.143:10494
-#EXTINF:-1 tvg-name="先锋乒羽" group-title="数字频道",先锋乒羽
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.143:10494
 #EXTINF:-1 tvg-name="四海钓鱼" group-title="数字频道",四海钓鱼
 http://221.234.160.7:999/rtp/239.69.1.244:11106
 #EXTINF:-1 tvg-name="四海钓鱼" group-title="数字频道",四海钓鱼
@@ -495,8 +489,6 @@ http://hiliu.myds.me:18088/rtp/239.69.1.192:10794
 http://www.3872327.top:1225/rtp/239.69.1.192:10794
 #EXTINF:-1 tvg-name="房县综合" group-title="地方频道",房县综合
 http://www.ct123.online:8188/rtp/239.69.1.192:10794
-#EXTINF:-1 tvg-name="房县综合" group-title="地方频道",房县综合
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.192:10794
 #EXTINF:-1 tvg-name="武汉教育" group-title="地方频道",武汉教育
 http://219.140.4.5:8888/rtp/239.69.1.60:9994
 #EXTINF:-1 tvg-name="武汉教育" group-title="地方频道",武汉教育
@@ -511,8 +503,6 @@ http://hiliu.myds.me:18088/rtp/239.69.1.60:9994
 http://www.3872327.top:1225/rtp/239.69.1.60:9994
 #EXTINF:-1 tvg-name="武汉教育" group-title="地方频道",武汉教育
 http://www.ct123.online:8188/rtp/239.69.1.60:9994
-#EXTINF:-1 tvg-name="武汉教育" group-title="地方频道",武汉教育
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.60:9994
 #EXTINF:-1 tvg-name="武汉文体" group-title="地方频道",武汉文体
 http://219.140.4.5:8888/rtp/239.69.1.147:10518
 #EXTINF:-1 tvg-name="武汉文体" group-title="地方频道",武汉文体
@@ -533,10 +523,6 @@ http://hiliu.myds.me:18088/rtp/239.69.1.4:9664
 http://www.3872327.top:1225/rtp/239.69.1.147:10518
 #EXTINF:-1 tvg-name="武汉文体" group-title="地方频道",武汉文体
 http://www.3872327.top:1225/rtp/239.69.1.4:9664
-#EXTINF:-1 tvg-name="武汉文体" group-title="地方频道",武汉文体
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.147:10518
-#EXTINF:-1 tvg-name="武汉文体" group-title="地方频道",武汉文体
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.4:9664
 #EXTINF:-1 tvg-name="武汉电视剧" group-title="地方频道",武汉电视剧
 http://219.140.4.5:8888/rtp/239.69.1.146:10512
 #EXTINF:-1 tvg-name="武汉电视剧" group-title="地方频道",武汉电视剧
@@ -557,10 +543,6 @@ http://hiliu.myds.me:18088/rtp/239.254.96.229:9454
 http://www.3872327.top:1225/rtp/239.69.1.146:10512
 #EXTINF:-1 tvg-name="武汉电视剧" group-title="地方频道",武汉电视剧
 http://www.3872327.top:1225/rtp/239.254.96.229:9454
-#EXTINF:-1 tvg-name="武汉电视剧" group-title="地方频道",武汉电视剧
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.146:10512
-#EXTINF:-1 tvg-name="武汉电视剧" group-title="地方频道",武汉电视剧
-http://yy15238.netyiyang.com:8800/rtp/239.254.96.229:9454
 #EXTINF:-1 tvg-name="武汉科技生活" group-title="地方频道",武汉科技生活
 http://219.140.4.5:8888/rtp/239.69.1.251:11148
 #EXTINF:-1 tvg-name="武汉科技生活" group-title="地方频道",武汉科技生活
@@ -577,10 +559,6 @@ http://59.173.121.116:4022/rtp/239.69.1.2:9652
 http://hiliu.myds.me:18088/rtp/239.69.1.251:11148
 #EXTINF:-1 tvg-name="武汉科技生活" group-title="地方频道",武汉科技生活
 http://hiliu.myds.me:18088/rtp/239.69.1.2:9652
-#EXTINF:-1 tvg-name="武汉科技生活" group-title="地方频道",武汉科技生活
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.251:11148
-#EXTINF:-1 tvg-name="武汉科技生活" group-title="地方频道",武汉科技生活
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.2:9652
 #EXTINF:-1 tvg-name="武汉综合" group-title="地方频道",武汉综合
 http://219.140.4.5:8888/rtp/239.254.96.228:9448
 #EXTINF:-1 tvg-name="武汉综合" group-title="地方频道",武汉综合
@@ -599,10 +577,6 @@ http://hiliu.myds.me:18088/rtp/239.69.1.145:10506
 http://hiliu.myds.me:18088/rtp/239.254.96.228:9448
 #EXTINF:-1 tvg-name="武汉综合" group-title="地方频道",武汉综合
 http://www.3872327.top:1225/rtp/239.69.1.145:10506
-#EXTINF:-1 tvg-name="武汉综合" group-title="地方频道",武汉综合
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.145:10506
-#EXTINF:-1 tvg-name="武汉综合" group-title="地方频道",武汉综合
-http://yy15238.netyiyang.com:8800/rtp/239.254.96.228:9448
 #EXTINF:-1 tvg-name="湖北公共新闻" group-title="地方频道",湖北公共新闻
 http://219.140.4.5:8888/rtp/239.69.1.40:9880
 #EXTINF:-1 tvg-name="湖北公共新闻" group-title="地方频道",湖北公共新闻
@@ -621,10 +595,6 @@ http://hiliu.myds.me:18088/rtp/239.69.1.40:9880
 http://hiliu.myds.me:18088/rtp/239.254.96.179:9154
 #EXTINF:-1 tvg-name="湖北公共新闻" group-title="地方频道",湖北公共新闻
 http://www.3872327.top:1225/rtp/239.69.1.40:9880
-#EXTINF:-1 tvg-name="湖北公共新闻" group-title="地方频道",湖北公共新闻
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.40:9880
-#EXTINF:-1 tvg-name="湖北公共新闻" group-title="地方频道",湖北公共新闻
-http://yy15238.netyiyang.com:8800/rtp/239.254.96.179:9154
 #EXTINF:-1 tvg-name="湖北垄上" group-title="地方频道",湖北垄上
 http://219.140.4.5:8888/rtp/239.69.1.43:9898
 #EXTINF:-1 tvg-name="湖北垄上" group-title="地方频道",湖北垄上
@@ -645,10 +615,6 @@ http://hiliu.myds.me:18088/rtp/239.254.96.184:9184
 http://www.3872327.top:1225/rtp/239.69.1.43:9898
 #EXTINF:-1 tvg-name="湖北垄上" group-title="地方频道",湖北垄上
 http://www.3872327.top:1225/rtp/239.254.96.184:9184
-#EXTINF:-1 tvg-name="湖北垄上" group-title="地方频道",湖北垄上
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.43:9898
-#EXTINF:-1 tvg-name="湖北垄上" group-title="地方频道",湖北垄上
-http://yy15238.netyiyang.com:8800/rtp/239.254.96.184:9184
 #EXTINF:-1 tvg-name="湖北教育" group-title="地方频道",湖北教育
 http://219.140.4.5:8888/rtp/239.69.1.206:10878
 #EXTINF:-1 tvg-name="湖北教育" group-title="地方频道",湖北教育
@@ -669,10 +635,6 @@ http://hiliu.myds.me:18088/rtp/239.254.96.180:9160
 http://www.3872327.top:1225/rtp/239.69.1.206:10878
 #EXTINF:-1 tvg-name="湖北教育" group-title="地方频道",湖北教育
 http://www.3872327.top:1225/rtp/239.254.96.180:9160
-#EXTINF:-1 tvg-name="湖北教育" group-title="地方频道",湖北教育
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.206:10878
-#EXTINF:-1 tvg-name="湖北教育" group-title="地方频道",湖北教育
-http://yy15238.netyiyang.com:8800/rtp/239.254.96.180:9160
 #EXTINF:-1 tvg-name="湖北生活" group-title="地方频道",湖北生活
 http://219.140.4.5:8888/rtp/239.69.1.205:10872
 #EXTINF:-1 tvg-name="湖北生活" group-title="地方频道",湖北生活
@@ -693,10 +655,6 @@ http://hiliu.myds.me:18088/rtp/239.254.96.181:9166
 http://www.3872327.top:1225/rtp/239.69.1.205:10872
 #EXTINF:-1 tvg-name="湖北生活" group-title="地方频道",湖北生活
 http://www.3872327.top:1225/rtp/239.254.96.181:9166
-#EXTINF:-1 tvg-name="湖北生活" group-title="地方频道",湖北生活
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.205:10872
-#EXTINF:-1 tvg-name="湖北生活" group-title="地方频道",湖北生活
-http://yy15238.netyiyang.com:8800/rtp/239.254.96.181:9166
 #EXTINF:-1 tvg-name="湖北经视" group-title="地方频道",湖北经视
 http://219.140.4.5:8888/rtp/239.69.1.41:9886
 #EXTINF:-1 tvg-name="湖北经视" group-title="地方频道",湖北经视
@@ -717,10 +675,6 @@ http://hiliu.myds.me:18088/rtp/239.254.96.178:9148
 http://www.3872327.top:1225/rtp/239.69.1.41:9886
 #EXTINF:-1 tvg-name="湖北经视" group-title="地方频道",湖北经视
 http://www.3872327.top:1225/rtp/239.254.96.178:9148
-#EXTINF:-1 tvg-name="湖北经视" group-title="地方频道",湖北经视
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.41:9886
-#EXTINF:-1 tvg-name="湖北经视" group-title="地方频道",湖北经视
-http://yy15238.netyiyang.com:8800/rtp/239.254.96.178:9148
 #EXTINF:-1 tvg-name="湖北综合" group-title="地方频道",湖北综合
 http://219.140.4.5:8888/rtp/239.69.1.42:9892
 #EXTINF:-1 tvg-name="湖北综合" group-title="地方频道",湖北综合
@@ -741,10 +695,6 @@ http://hiliu.myds.me:18088/rtp/239.254.96.177:9142
 http://www.3872327.top:1225/rtp/239.69.1.42:9892
 #EXTINF:-1 tvg-name="湖北综合" group-title="地方频道",湖北综合
 http://www.3872327.top:1225/rtp/239.254.96.177:9142
-#EXTINF:-1 tvg-name="湖北综合" group-title="地方频道",湖北综合
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.42:9892
-#EXTINF:-1 tvg-name="湖北综合" group-title="地方频道",湖北综合
-http://yy15238.netyiyang.com:8800/rtp/239.254.96.177:9142
 #EXTINF:-1 tvg-name="蔡甸综合" group-title="地方频道",蔡甸综合
 http://219.140.4.5:8888/rtp/239.69.1.245:11112
 #EXTINF:-1 tvg-name="蔡甸综合" group-title="地方频道",蔡甸综合
@@ -759,8 +709,6 @@ http://hiliu.myds.me:18088/rtp/239.69.1.245:11112
 http://www.3872327.top:1225/rtp/239.69.1.245:11112
 #EXTINF:-1 tvg-name="蔡甸综合" group-title="地方频道",蔡甸综合
 http://www.ct123.online:8188/rtp/239.69.1.245:11112
-#EXTINF:-1 tvg-name="蔡甸综合" group-title="地方频道",蔡甸综合
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.245:11112
 #EXTINF:-1 tvg-name="重庆汽摩" group-title="地方频道",重庆汽摩
 http://219.140.4.5:8888/rtp/239.69.1.84:10144
 #EXTINF:-1 tvg-name="重庆汽摩" group-title="地方频道",重庆汽摩
@@ -775,8 +723,6 @@ http://hiliu.myds.me:18088/rtp/239.69.1.84:10144
 http://www.3872327.top:1225/rtp/239.69.1.84:10144
 #EXTINF:-1 tvg-name="重庆汽摩" group-title="地方频道",重庆汽摩
 http://www.ct123.online:8188/rtp/239.69.1.84:10144
-#EXTINF:-1 tvg-name="重庆汽摩" group-title="地方频道",重庆汽摩
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.84:10144
 #EXTINF:-1 tvg-name="阳新综合" group-title="地方频道",阳新综合
 http://219.140.4.5:8888/rtp/239.69.1.34:9844
 #EXTINF:-1 tvg-name="阳新综合" group-title="地方频道",阳新综合
@@ -791,5 +737,3 @@ http://hiliu.myds.me:18088/rtp/239.69.1.34:9844
 http://www.3872327.top:1225/rtp/239.69.1.34:9844
 #EXTINF:-1 tvg-name="阳新综合" group-title="地方频道",阳新综合
 http://www.ct123.online:8188/rtp/239.69.1.34:9844
-#EXTINF:-1 tvg-name="阳新综合" group-title="地方频道",阳新综合
-http://yy15238.netyiyang.com:8800/rtp/239.69.1.34:9844
