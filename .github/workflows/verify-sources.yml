@@ -1,0 +1,114 @@
+name: Deep verify sources
+
+# 深度体检：真拉 8~12 秒实测，按丢帧率 / 编码 / 是否 VOD 评级。
+#
+# 为什么放 GitHub Actions
+# ----------------------
+# 本机跑要 40 分钟且关机就停。Actions 有 ffmpeg、带宽好，867 条 8 秒
+# 20 并发约 6 分钟就能跑完。
+#
+# 关键限制：这里在美国节点，只能判「技术问题」
+# ------------------------------------------
+# 能判准的（跟地理位置无关）：
+#   VOD 回看(#EXT-X-ENDLIST) / H.265 编码 / AC3 音频 / 死源 / 严重丢帧
+# 判不了的（地域差异）：
+#   移动专线 111.59.139.85（中国移动 IPTV 播控，境外必然不通）
+#   → 用 --skip-hosts 跳过，不写结论，避免误杀
+#   酒店源（酒店/运营商 IPTV 播控，同样只在境内可达）
+#   → 压根不在本 workflow 里跑
+#
+# 结论优先级
+# ----------
+# 报告里带 by=local（大陆网络实测）的条目，Actions 的结论不会覆盖它，
+# 只会补充本地没测过的源。见 tools/merge_verify_report.py。
+
+on:
+  schedule:
+    # 北京时间 01:30，避开其他任务的整点
+    - cron: "30 17 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: verify-sources
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Restore pools from state branch
+        run: bash scripts/restore_state.sh
+
+      - name: Ensure ffmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq ffmpeg
+          fi
+          ffmpeg -version | head -1
+
+      - name: Verify international channels
+        continue-on-error: true
+        run: |
+          echo "=== 国外频道（国际 CDN，境外视角接近大陆视角）==="
+          python tools/deep_verify.py \
+            --src data/proxy_intl.json \
+            --secs 8 --workers 20 --by actions \
+            --out data/_deep_intl.json
+
+      - name: Verify gangaotai
+        continue-on-error: true
+        run: |
+          echo "=== 港澳台（跳过移动专线，那些只在移动网络内可达）==="
+          python tools/deep_verify.py \
+            --src data/proxy_gangaotai.json \
+            --secs 12 --workers 8 --by actions \
+            --skip-hosts 111.59.139.85:11888 \
+            --out data/_deep_hk.json
+
+      - name: Merge verify report
+        run: |
+          python tools/merge_verify_report.py \
+            data/_deep_intl.json data/_deep_hk.json \
+            --by actions
+
+      - name: Rebuild pools and subscriptions
+        env:
+          PYTHONIOENCODING: utf-8
+        run: |
+          cd spider
+          # --no-probe：都不在美国做可达性判断，只按报告筛
+          python intl_pool.py --no-probe
+          python gangaotai_pool.py --no-probe
+          python subs.py
+
+      - name: Push pools to state branch
+        run: bash scripts/push_state.sh
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f spider/data/verify_report.json
+          git add -f data/public data/users.json data/free
+          [ -d data/users ] && git add -f data/users || true
+          if git diff --staged --quiet; then
+            echo "体检结果无变化，跳过提交"
+            exit 0
+          fi
+          git commit -m "chore(verify): 深度体检 $(date -u '+%Y-%m-%d %H:%M UTC')"
+          for i in 1 2 3 4 5; do
+            if git pull --rebase --autostash -X ours origin main && git push origin HEAD:main; then
+              echo "推送成功（第 $i 次）"
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "第 $i 次推送失败，5 秒后重试"
+            sleep 5
+          done
+          echo "::error::连续 5 次推送失败"
+          exit 1

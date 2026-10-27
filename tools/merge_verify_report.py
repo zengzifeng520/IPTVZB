@@ -37,6 +37,14 @@ def main() -> None:
         print("用法: python tools/merge_verify_report.py <deep_verify输出.json> [...]")
         return
 
+    # 除第一个参数外，--by 指定这批结论的来源视角
+    by = "local"
+    args = sys.argv[1:]
+    if "--by" in args:
+        i = args.index("--by")
+        by = args[i + 1]
+        args = args[:i] + args[i + 2:]
+
     cur: dict = {"generated_at": "", "urls": {}}
     if REPORT.exists():
         try:
@@ -47,7 +55,7 @@ def main() -> None:
     before = len(urls)
 
     today = time.strftime("%Y-%m-%d")
-    for arg in sys.argv[1:]:
+    for arg in args:
         p = Path(arg)
         if not p.exists():
             print(f"跳 {p}（不存在）")
@@ -58,6 +66,10 @@ def main() -> None:
             u = r.get("url")
             if not u:
                 continue
+            # 本地（大陆网络）结论优先：Actions 是美国视角，只补充技术问题，
+            # 不能覆盖「大陆实测过」的判断，否则会把大陆能通的源误杀
+            if by == "actions" and (urls.get(u) or {}).get("by") == "local":
+                continue
             urls[u] = {
                 "grade": r.get("grade") or "D",
                 "why": r.get("why") or "",
@@ -65,6 +77,7 @@ def main() -> None:
                 "acodec": r.get("acodec") or "",
                 "res": r.get("res") or "",
                 "drop": r.get("drop"),
+                "by": r.get("by") or by,
                 "at": today,
             }
             n_new += 1
@@ -77,7 +90,9 @@ def main() -> None:
 
     from collections import Counter
     c = Counter(v.get("grade") for v in urls.values())
-    print(f"\n报告共 {len(urls)} 条（原 {before}）")
+    from collections import Counter
+    nby = Counter(v.get("by") for v in urls.values())
+    print(f"\n报告共 {len(urls)} 条（原 {before}），视角分布: {dict(nby)}")
     for g in "ABCD":
         if c.get(g):
             print(f"  {g}: {c[g]}")

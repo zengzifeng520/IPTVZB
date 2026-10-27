@@ -198,14 +198,27 @@ def main() -> None:
     ap.add_argument("--secs", type=int, default=20)
     ap.add_argument("--workers", type=int, default=3)
     ap.add_argument("--out", default=str(ROOT / "data" / "_deep_verify.json"))
+    # 地域受限的源在境外节点测不了（必判死），直接跳过不写结论
+    ap.add_argument("--skip-hosts", default="",
+                    help="逗号分隔的 host，跳过不测（如移动专线在境外必然不通）")
+    # local=大陆网络实测（可信度高）；actions=GitHub 美国节点（只判技术问题）
+    ap.add_argument("--by", default="local", choices=["local", "actions"])
     args = ap.parse_args()
 
     d = json.loads(Path(args.src).read_text(encoding="utf-8"))
-    items = []
+    skip = {h.strip() for h in (args.skip_hosts or "").split(",") if h.strip()}
+    items, skipped = [], 0
+    from urllib.parse import urlparse
     for c in d.get("channels") or []:
         for s in c.get("streams") or []:
+            host = urlparse(s["u"]).netloc
+            if host in skip:
+                skipped += 1
+                continue
             items.append({"key": c["key"], "display": c["display"], "url": s["u"]})
-    print(f"体检 {len(items)} 条（每条拉 {args.secs}s，并发 {args.workers}）\n")
+    if skipped:
+        print(f"跳过 {skipped} 条地域受限源（host: {','.join(sorted(skip))}）")
+    print(f"体检 {len(items)} 条（每条拉 {args.secs}s，并发 {args.workers}，视角 {args.by}）\n")
 
     results = []
     t0 = time.time()
@@ -217,6 +230,7 @@ def main() -> None:
                 it.update(f.result())
             except Exception as e:  # noqa: BLE001
                 it.update({"grade": "D", "why": type(e).__name__, "frames": 0})
+            it["by"] = args.by
             results.append(it)
             tag = {"A": "🟢", "B": "🟡", "C": "🟠", "D": "🔴"}.get(it["grade"], "?")
             print(f"{tag} {it['grade']} {it['display'][:12]:<14} "

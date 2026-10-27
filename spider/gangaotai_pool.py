@@ -25,6 +25,7 @@ from __future__ import annotations
 import argparse
 import json
 import ssl
+import threading
 import time
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -78,7 +79,8 @@ CHANNELS: list[tuple[str, str, str, str, str]] = [
     # ================= 2026-10-27 全网扩挖 =================
     # 台湾 IPTV 播控系统（61.221.215.25）——不挑运营商，全国可通
     # 频道号经 ffmpeg 3 秒真解码验证 + 画面截图识别台标
-    ("CTiEnt", "中天娱乐HD", "http://61.221.215.25:8800/hls/47/index.m3u8", "61.221.215.25:8800", "台湾"),
+    # 中天娱乐HD(hls/47)：2026-10-27 起分片只有 188B（无信号），已移除，
+    # 恢复后再加回来
     ("TVBSNews", "TVBS新闻台", "http://61.221.215.25:8800/hls/9/index.m3u8", "61.221.215.25:8800", "台湾"),
     ("SETDrama", "三立戏剧", "http://61.221.215.25:8800/hls/41/index.m3u8", "61.221.215.25:8800", "台湾"),
     ("VLJingcai", "纬来精采", "http://61.221.215.25:8800/hls/48/index.m3u8", "61.221.215.25:8800", "台湾"),
@@ -108,29 +110,42 @@ _CTX.check_hostname = False
 _CTX.verify_mode = ssl.CERT_NONE
 
 
+_REPORT_LOCK = threading.Lock()
+
+
 def _load_report() -> dict:
-    """读体检报告 {url: {grade, at, ...}}，过期条目当没有。"""
+    """读体检报告 {url: {grade, at, ...}}，过期条目当没有。
+
+    注意并发：多个 probe 线程会同时进来。这里必须用锁 + **一次性赋值**，
+    绝不能先 `_REPORT = {}` 再慢慢填 —— 那样别的线程会看到「非 None 但空」
+    直接返回空报告，退回实时探测，移动专线在这种并发下会被误判失效。
+    """
     global _REPORT, _REPORT_AT
     if _REPORT is not None:
         return _REPORT
-    _REPORT = {}
-    if not REPORT_JSON.exists():
+    with _REPORT_LOCK:
+        if _REPORT is not None:
+            return _REPORT
+        data: dict = {}
+        at_text = ""
+        if REPORT_JSON.exists():
+            try:
+                raw = json.loads(REPORT_JSON.read_text(encoding="utf-8"))
+                at_text = raw.get("generated_at") or ""
+                today = date.today()
+                for u, r in (raw.get("urls") or {}).items():
+                    at = r.get("at") or ""
+                    try:
+                        fresh = (today - datetime.strptime(at, "%Y-%m-%d").date()).days <= REPORT_MAX_AGE_DAYS
+                    except Exception:  # noqa: BLE001
+                        fresh = False
+                    if fresh:
+                        data[u] = r
+            except Exception:  # noqa: BLE001
+                pass
+        _REPORT_AT = at_text
+        _REPORT = data
         return _REPORT
-    try:
-        raw = json.loads(REPORT_JSON.read_text(encoding="utf-8"))
-    except Exception:  # noqa: BLE001
-        return _REPORT
-    _REPORT_AT = raw.get("generated_at") or ""
-    today = date.today()
-    for u, r in (raw.get("urls") or {}).items():
-        at = r.get("at") or ""
-        try:
-            fresh = (today - datetime.strptime(at, "%Y-%m-%d").date()).days <= REPORT_MAX_AGE_DAYS
-        except Exception:  # noqa: BLE001
-            fresh = False
-        if fresh:
-            _REPORT[u] = r
-    return _REPORT
 
 
 def _fetch(url: str, nbytes: int = 4000, timeout: int = 8) -> str:
@@ -267,7 +282,17 @@ def main() -> None:
 
     alive: list[tuple] = []
     if args.no_probe:
-        alive = list(CHANNELS)
+        # 不实时探测（Actions 跑在美国，移动专线必然不通会被误杀），
+        # 改为按深度体检报告筛：报告 A/B 放行、C/D 拒绝、没报告的先保留
+        rep = _load_report()
+        alive = []
+        for c in CHANNELS:
+            r = rep.get(c[2])
+            if r and r.get("grade") not in ("A", "B"):
+                continue
+            alive.append(c)
+        print("  [gangaotai] 跳过实时验活，按体检报告保留 %d/%d 条"
+              % (len(alive), len(CHANNELS)))
     else:
         with ThreadPoolExecutor(max_workers=args.workers) as ex:
             futs = [ex.submit(probe, c) for c in CHANNELS]
