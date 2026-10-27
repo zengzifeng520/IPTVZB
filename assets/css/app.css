@@ -2722,3 +2722,20 @@ input.sub-item-url:focus { outline: none; box-shadow: none; }
 [data-theme="light"] input.sub-item-url { color: var(--text-2); }
 
 .copy-sheet-ver { margin: 0 0 10px; font-size: 11px; color: var(--text-3); }
+
+/* ---------------------------------------------------------- 线路标签 */
+.line-tag {
+  display: inline-block;
+  margin-left: 7px;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 1px 6px;
+  border-radius: 5px;
+  vertical-align: 1px;
+  white-space: nowrap;
+}
+.line-tag.is-mobile {
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.13);
+  border: 1px solid rgba(251, 191, 36, 0.25);
+}

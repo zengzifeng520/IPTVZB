@@ -58,6 +58,13 @@ jobs:
           PYTHONIOENCODING: utf-8
         run: cd spider && python gangaotai_pool.py
 
+      - name: Build international channels
+        env:
+          PYTHONIOENCODING: utf-8
+        # --no-probe：种子已在大陆网络深度体检过，Actions 跑在美国，
+        # 地域结论相反，真验活会误杀大陆能通的源
+        run: cd spider && python intl_pool.py --no-probe
+
       - name: Rebuild subscriptions
         env:
           PYTHONIOENCODING: utf-8

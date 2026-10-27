@@ -43,3 +43,5 @@ data/proxy_intl.json
 spider/data/hotel_ok.json
 spider/data/hotel_hosts.json
 spider/data/proxy_hotel.m3u
+data/_deep_*.log
+data/_deep_*.json

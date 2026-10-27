@@ -162,6 +162,7 @@
       { n: s.relayHosts || 0, t: "台组播中转", accent: true },
       { n: s.hotelHosts || 0, t: "台酒店源", accent: false },
       { n: s.gangaotaiChannels || 0, t: "个港澳台频道", accent: false },
+      { n: s.intlChannels || 0, t: "个国外频道", accent: false },
       { n: s.channelsTotal || s.channels || 0, t: "个频道", accent: false },
       { n: s.streamsTotal || s.streams || 0, t: "条播放地址", accent: false },
     ];
@@ -240,6 +241,24 @@
     );
   }
 
+  // 国外频道单独一张卡，排在港澳台后面
+  function intlCard(s) {
+    return (
+      '<a class="region-card is-hotel" href="intl.html">' +
+      '<div class="rc-head"><span class="rc-name">国外频道</span>' +
+      '<span class="rc-isp is-cyan">' + (s.intlCountries || 0) + ' 个国家</span></div>' +
+      '<div class="rc-nums"><b>' +
+      (s.intlChannels || 0) +
+      "</b> 频道<span class=\"rc-dot\">·</span><b>" +
+      (s.intlStreams || 0) +
+      "</b> 条地址</div>" +
+      '<div class="rc-foot"><span>' +
+      (s.intlHosts || 0) +
+      ' 台源 · 国际 CDN</span><span class="rc-go">查看频道 →</span></div>' +
+      "</a>"
+    );
+  }
+
   function renderRegions() {
     if (!state.regions.length) {
       el.grid.innerHTML =
@@ -250,7 +269,8 @@
     el.grid.innerHTML =
       state.regions.map(regionCard).join("") +
       (hs.hotelStreams ? hotelCard(hs) : "") +
-      (hs.gangaotaiStreams ? gangaotaiCard(hs) : "");
+      (hs.gangaotaiStreams ? gangaotaiCard(hs) : "") +
+      (hs.intlStreams ? intlCard(hs) : "");
     el.previewSub.textContent =
       state.regions.length + " 个地区 · 每个地区一套独立的频道与订阅";
   }

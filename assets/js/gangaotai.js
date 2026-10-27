@@ -145,6 +145,14 @@
     }
   }
 
+  /** 线路标签：移动专线只有移动宽带能连，必须让用户一眼看到 */
+  function lineTag(c) {
+    if (c.line === "移动专线") {
+      return '<span class="line-tag is-mobile" title="只有中国移动宽带的用户能连上">移动专线</span>';
+    }
+    return "";
+  }
+
   function renderList() {
     var q = state.filter.trim().toLowerCase();
     var list = q
@@ -159,7 +167,9 @@
     var s = (state.pub && state.pub.stats) || {};
     el.addrSub.textContent = q
       ? "匹配 " + list.length + " 个频道"
-      : state.channels.length + " 个频道 / " + (s.streams || 0) + " 条地址";
+      : state.channels.length + " 个频道 / " +
+        (s.anyLine || 0) + " 个全国通用 / " +
+        (s.mobileOnly || 0) + " 个移动专线";
 
     if (!list.length) {
       el.list.innerHTML = '<div class="empty"><h3>没有匹配的频道</h3><p>换个关键词试试</p></div>';
@@ -178,6 +188,7 @@
             "><summary>" +
             '<span class="addr-name">' +
             esc(c.display) +
+            lineTag(c) +
             "</span>" +
             '<span class="addr-type">HLS</span>' +
             '<span class="addr-count">' +
@@ -196,6 +207,7 @@
           "><summary>" +
           '<span class="addr-name">' +
           esc(c.display) +
+          lineTag(c) +
           "</span>" +
           '<span class="addr-type">HLS</span>' +
           '<span class="addr-count">' +
@@ -275,6 +287,8 @@
           return {
             key: c.key,
             display: c.display,
+            // line 必须带过来：前端要标「移动专线」，丢了标签就永远不显示
+            line: c.line || "",
             count: c.count || 0,
             streams: [],
           };

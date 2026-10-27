@@ -51,6 +51,43 @@ import config
 SEED_JSON = Path(__file__).parent / "data" / "intl_seed.json"
 OUT_JSON = config.WEB_DATA_DIR / "proxy_intl.json"
 
+# 深度体检报告（tools/deep_verify.py -> tools/merge_verify_report.py）
+# --no-probe 模式下也用它筛选：A/B 发布，C/D 剔除。
+REPORT_JSON = Path(__file__).parent / "data" / "verify_report.json"
+REPORT_MAX_AGE_DAYS = 10
+
+
+def filter_by_report(seed: list[dict]) -> list[dict]:
+    """按深度体检报告筛：有结论的按结论，没结论的保留（等下次体检）。"""
+    if not REPORT_JSON.exists():
+        print("  [intl] 无体检报告，全部保留")
+        return seed
+    try:
+        raw = json.loads(REPORT_JSON.read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001
+        return seed
+    from datetime import date, datetime
+    today = date.today()
+    rep = {}
+    for u, r in (raw.get("urls") or {}).items():
+        try:
+            fresh = (today - datetime.strptime(r.get("at") or "", "%Y-%m-%d").date()).days <= REPORT_MAX_AGE_DAYS
+        except Exception:  # noqa: BLE001
+            fresh = False
+        if fresh:
+            rep[u] = r
+    if not rep:
+        return seed
+    out, drop = [], 0
+    for it in seed:
+        r = rep.get(it["url"])
+        if r and r.get("grade") not in ("A", "B"):
+            drop += 1
+            continue
+        out.append(it)
+    print(f"  [intl] 体检报告筛掉 {drop} 条，保留 {len(out)}/{len(seed)}")
+    return out
+
 UA = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -125,7 +162,8 @@ def build(alive: list[dict]) -> dict:
             {
                 "key": it["key"],
                 "display": it["display"],
-                "type": "国外",
+                # group-title 直接用「国外·国家」，播放器会自动按国家分组
+                "type": f"国外·{it.get('region') or '其他'}",
                 "region": it.get("region") or "其他",
                 "streams": [{"h": it["host"], "u": it["url"]}],
             }
@@ -170,8 +208,8 @@ def main() -> None:
     print(f"  [intl] 种子 {len(seed)} 条 / {len({x['region'] for x in seed})} 个国家")
 
     if args.no_probe:
-        alive = seed
-        print("  [intl] 跳过验活（使用种子清单）")
+        alive = filter_by_report(seed)
+        print("  [intl] 跳过实时验活（种子已在大陆网络验过）")
     else:
         alive = []
         t0 = time.time()

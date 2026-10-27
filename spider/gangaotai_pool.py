@@ -28,11 +28,20 @@ import ssl
 import time
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import date, datetime
+from pathlib import Path
 from urllib.parse import urljoin
 
 import config
 
 OUT_JSON = config.WEB_DATA_DIR / "proxy_gangaotai.json"
+
+# 深度体检报告（tools/deep_verify.py -> tools/merge_verify_report.py）。
+# A/B 直接放行，C/D 直接拒绝；超过 7 天视为过期，回退到实时探测。
+REPORT_JSON = Path(__file__).parent / "data" / "verify_report.json"
+REPORT_MAX_AGE_DAYS = 7
+_REPORT: dict | None = None
+_REPORT_AT: str = ""
 
 # 频道表：key, display, url, host, region
 # 台标已通过 ffmpeg 截图识别（2026-10-27）
@@ -99,6 +108,31 @@ _CTX.check_hostname = False
 _CTX.verify_mode = ssl.CERT_NONE
 
 
+def _load_report() -> dict:
+    """读体检报告 {url: {grade, at, ...}}，过期条目当没有。"""
+    global _REPORT, _REPORT_AT
+    if _REPORT is not None:
+        return _REPORT
+    _REPORT = {}
+    if not REPORT_JSON.exists():
+        return _REPORT
+    try:
+        raw = json.loads(REPORT_JSON.read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001
+        return _REPORT
+    _REPORT_AT = raw.get("generated_at") or ""
+    today = date.today()
+    for u, r in (raw.get("urls") or {}).items():
+        at = r.get("at") or ""
+        try:
+            fresh = (today - datetime.strptime(at, "%Y-%m-%d").date()).days <= REPORT_MAX_AGE_DAYS
+        except Exception:  # noqa: BLE001
+            fresh = False
+        if fresh:
+            _REPORT[u] = r
+    return _REPORT
+
+
 def _fetch(url: str, nbytes: int = 4000, timeout: int = 8) -> str:
     req = urllib.request.Request(url, headers=UA)
     with urllib.request.urlopen(req, timeout=timeout, context=_CTX) as r:
@@ -128,6 +162,10 @@ def probe(item: tuple) -> bool:
       - 自引用 playlist（香港卫视：返回自己 + ?hls_ctx=xxx，要带参数再跟一层）
     """
     key, display, url, host, region = item
+    # 有深度体检结论就直接采信：C/D 是「播放器里看不了」的主因，必须拦掉
+    rep = _load_report().get(url)
+    if rep:
+        return rep.get("grade") in ("A", "B")
     cur = url
     seen: set[str] = set()
     for _ in range(4):
@@ -165,6 +203,17 @@ def probe(item: tuple) -> bool:
     return False
 
 
+# 只在中国移动宽带内可达的源（广西移动 IPTV 播控系统）。
+# 其它源跑在台湾/香港/国际 CDN 上，任何运营商都能连。
+MOBILE_ONLY_HOSTS = {"111.59.139.85:11888"}
+
+
+def _line_of(streams: list[dict]) -> str:
+    """线路类型：全部源都是移动专线才算「移动专线」，否则「全国通用」。"""
+    hosts = {s["h"] for s in streams}
+    return "移动专线" if hosts and hosts <= MOBILE_ONLY_HOSTS else "全国通用"
+
+
 def build(alive: list[tuple]) -> dict:
     # 按 host 聚合（统计每个源服务器承载多少频道）
     host_map: dict[str, dict] = {}
@@ -190,6 +239,10 @@ def build(alive: list[tuple]) -> dict:
         by_key[key]["streams"].append({"h": host, "u": url})
 
     channels = [by_key[k] for k in order]
+    for c in channels:
+        c["line"] = _line_of(c["streams"])
+        # 全国通用的线路排在前面（用户优先要能播的）
+        c["streams"].sort(key=lambda s: (s["h"] in MOBILE_ONLY_HOSTS, s["u"]))
     channels.sort(key=lambda c: (c["display"], c["key"]))
     hosts = sorted(host_map.values(), key=lambda x: -x["ch"])
     total = sum(len(c["streams"]) for c in channels)
@@ -222,9 +275,14 @@ def main() -> None:
                 if f.result():
                     alive.append(c)
         dead = [c[1] for c in CHANNELS if c not in alive]
+        rep = _load_report()
+        n_rep = sum(1 for c in CHANNELS if c[2] in rep)
         print("  [gangaotai] 验活 %d/%d 个频道%s"
               % (len(alive), len(CHANNELS),
                  ("，失效：%s" % "、".join(dead)) if dead else ""))
+        if n_rep:
+            print("  [gangaotai] 其中 %d 条采信深度体检报告（%s）"
+                  % (n_rep, _REPORT_AT or "本地体检"))
 
     if not alive:
         print("  [gangaotai] 无可用频道，跳过输出")

@@ -180,11 +180,14 @@ def _index() -> tuple[dict, dict, list]:
     return exact, alias, contain, contain_asc
 
 
-def resolve(name: str) -> str | None:
+def resolve(name: str, strict: bool = False) -> str | None:
     """频道名 -> 台标 URL；找不到返回 None（不猜）。
 
     顺序：精确 → 别名 → 正向包含 → 反向包含 → 自制台标。
     自制台标排在最后：现成的真实台标永远优先，只有都没有才用自制图。
+
+    strict=True 时只做精确 + 别名匹配。国外频道必须用它——英文名做包含
+    匹配极易串台（实测 "NHK World-Japan" 会命中 "BBC World News" 之类）。
     """
     exact, alias, contain, contain_asc = _index()
     n = _norm(name)
@@ -194,6 +197,9 @@ def resolve(name: str) -> str | None:
         return exact[n]
     if n in alias:
         return alias[n]
+    if strict:
+        composed = _composed()
+        return composed.get(name)
     # 正向：频道名里包含库名（"CCTV4欧洲" 含 "cctv4"）
     for cand, url in contain:
         if cand in n:

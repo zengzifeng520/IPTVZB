@@ -43,6 +43,9 @@ HOTEL_JSON = config.WEB_DATA_DIR / "proxy_hotel.json"
 # 港澳台：台湾台 + 凤凰系列 + 澳门莲花，大陆可直连的 tsfile 源，
 # 由 gangaotai_pool.py 生成，同样作为独立分类呈现。
 GANGAOTAI_JSON = config.WEB_DATA_DIR / "proxy_gangaotai.json"
+# 国外：境外 FAST / 公共广播 / 新闻频道的公开 HLS，由 intl_pool.py 生成，
+# 第三个独立分类。频道按国家分组（group-title="国外·日本" 这种）。
+INTL_JSON = config.WEB_DATA_DIR / "proxy_intl.json"
 REGIONS_JSON = config.WEB_DATA_DIR / "regions.json"
 SUB_DIR = config.WEB_DATA_DIR / "sub"
 INDEX_JSON = SUB_DIR / "index.json"
@@ -58,6 +61,7 @@ PUBLIC_JSON = PUBLIC_DIR / "channels.json"
 HOTEL_PUBLIC = PUBLIC_DIR / "hotel.json"
 # 港澳台独立目录：前端单独一个页面
 GANGAOTAI_PUBLIC = PUBLIC_DIR / "gangaotai.json"
+INTL_PUBLIC = PUBLIC_DIR / "intl.json"
 
 # 免费订阅：按「到期日」分目录，滚动保留未来 7 天，过期目录直接删掉
 FREE_DIR = config.WEB_DATA_DIR / "free"
@@ -83,10 +87,13 @@ def _extinf(ch: dict) -> str:
     """EXTINF 行。台标能找到就加 tvg-logo，找不到就不加——
     只往属性里加东西，播放地址（下一行）一个字符都不改。"""
     name = ch["display"]
-    logo = _logo_cache.get(name, _MISS)
+    # 国外频道走严格匹配：英文名做包含匹配会串台
+    strict = str(ch.get("type") or "").startswith("国外")
+    ck = (name, strict)
+    logo = _logo_cache.get(ck, _MISS)
     if logo is _MISS:
-        logo = logos.resolve(name)
-        _logo_cache[name] = logo
+        logo = logos.resolve(name, strict=strict)
+        _logo_cache[ck] = logo
     logo_attr = f' tvg-logo="{logo}"' if logo else ""
     return (
         f'#EXTINF:-1 tvg-name="{name}"{logo_attr} '
@@ -174,6 +181,22 @@ def load_gangaotai() -> dict | None:
     return {"channels": chans, "hosts": hosts, "host_set": set(hosts)}
 
 
+def load_intl() -> dict | None:
+    """读国外源（独立模块，不塞进 regions），结构与酒店源一致。"""
+    if not INTL_JSON.exists():
+        return None
+    try:
+        gd = json.loads(INTL_JSON.read_text(encoding="utf-8"))
+    except Exception as exc:  # noqa: BLE001
+        print(f"  [subs] 国外源解析失败，跳过：{exc}")
+        return None
+    chans = gd.get("channels") or []
+    hosts = [x["h"] for x in (gd.get("hosts") or []) if x.get("h")]
+    if not chans or not hosts:
+        return None
+    return {"channels": chans, "hosts": hosts, "host_set": set(hosts)}
+
+
 def build_hotel_public(hotel: dict | None) -> dict:
     """酒店源的公开目录：频道名 + 每频道条数，**没有任何地址**。"""
     if not hotel:
@@ -222,6 +245,8 @@ def build_gangaotai_public(gangaotai: dict | None) -> dict:
         {
             "key": c["key"],
             "display": c.get("display") or c["key"],
+            # 线路类型：移动专线（只有移动宽带能连）/ 全国通用
+            "line": c.get("line") or "全国通用",
             "count": len(c.get("streams") or []),
         }
         for c in chans
@@ -229,10 +254,13 @@ def build_gangaotai_public(gangaotai: dict | None) -> dict:
     ]
     out.sort(key=lambda c: (-c["count"], c["key"]))
     total = sum(c["count"] for c in out)
+    n_mobile = sum(1 for c in out if c["line"] == "移动专线")
     payload = {
         "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
         "stats": {
             "hosts": len(gangaotai["hosts"]),
+            "mobileOnly": n_mobile,
+            "anyLine": len(out) - n_mobile,
             "channels": len(out),
             "streams": total,
         },
@@ -249,8 +277,61 @@ def build_gangaotai_public(gangaotai: dict | None) -> dict:
     return payload
 
 
+def build_intl_public(intl: dict | None) -> dict:
+    """国外源的公开目录：频道名 + 每频道条数 + 按国家分组，**没有任何地址**。"""
+    if not intl:
+        print("  [subs] 无国外源，跳过 public/intl.json")
+        return {}
+    chans = intl["channels"]
+    out = [
+        {
+            "key": c["key"],
+            "display": c.get("display") or c["key"],
+            "region": c.get("region") or "其他",
+            "count": len(c.get("streams") or []),
+        }
+        for c in chans
+        if c.get("streams")
+    ]
+    # 按国家归并，国家顺序沿用 proxy_intl.json 里的 regions
+    by_region: dict[str, list] = {}
+    for c in out:
+        by_region.setdefault(c["region"], []).append(c)
+    for arr in by_region.values():
+        arr.sort(key=lambda x: (-x["count"], x["key"].lower()))
+    order = [r["name"] for r in (json.loads(INTL_JSON.read_text(encoding="utf-8")).get("regions") or [])] \
+        if INTL_JSON.exists() else []
+    regions_out = [{"name": k, "channels": len(by_region[k])}
+                   for k in order if k in by_region]
+    regions_out += [{"name": k, "channels": len(v)}
+                    for k, v in by_region.items() if k not in {r["name"] for r in regions_out}]
+    total = sum(c["count"] for c in out)
+    payload = {
+        "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "stats": {
+            "hosts": len(intl["hosts"]),
+            "channels": len(out),
+            "streams": total,
+            "countries": len(by_region),
+        },
+        "hosts": intl["hosts"],
+        "hostCount": len(intl["hosts"]),
+        "regions": regions_out,
+        "channels": out,
+    }
+    PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
+    INTL_PUBLIC.write_text(
+        json.dumps(payload, ensure_ascii=False, separators=(",", ":")),
+        encoding="utf-8",
+    )
+    print(f"  [subs] public/intl.json  {len(out)} 频道 / {total} 条 / "
+          f"{len(by_region)} 国（仅名称，无地址）")
+    return payload
+
+
 def build_free(channels: list[dict], regions: list[dict],
-               hotel: dict | None = None, gangaotai: dict | None = None) -> None:
+               hotel: dict | None = None, gangaotai: dict | None = None,
+               intl: dict | None = None) -> None:
     """免费订阅：按「到期日」分目录，只保留未来 FREE_DAYS 天。
 
     目录名就是到期日期（YYYYMMDD），前端按「选地区当天 + 7 天」拼地址。
@@ -267,6 +348,9 @@ def build_free(channels: list[dict], regions: list[dict],
     has_gangaotai = bool(gangaotai and gangaotai.get("host_set"))
     if has_gangaotai:
         valid.add("gangaotai")
+    has_intl = bool(intl and intl.get("host_set"))
+    if has_intl:
+        valid.add("intl")
 
     for i in range(FREE_DAYS + 1):
         key = (today + timedelta(days=i)).strftime("%Y%m%d")
@@ -285,6 +369,11 @@ def build_free(channels: list[dict], regions: list[dict],
         if has_hotel:
             target = d / "hotel.m3u"
             c, _s = _write(target, hotel["channels"], hotel["host_set"])
+            if not c:
+                target.write_text(EMPTY_SUB, encoding="utf-8")
+        if has_intl:
+            target = d / "intl.m3u"
+            c, _st = _write(target, intl["channels"], intl["host_set"])
             if not c:
                 target.write_text(EMPTY_SUB, encoding="utf-8")
         if has_gangaotai:
@@ -306,7 +395,8 @@ def build_free(channels: list[dict], regions: list[dict],
 
 
 def build_public(channels: list[dict], regions: list[dict],
-                 hotel: dict | None = None, gangaotai: dict | None = None) -> dict:
+                 hotel: dict | None = None, gangaotai: dict | None = None,
+                 intl: dict | None = None) -> dict:
     """生成公开的频道目录：只有名字、分类、各地区的条数，**没有任何地址**。
 
     前端付费墙全靠它：未赞助的人就算把浏览器调试面板打开，
@@ -361,6 +451,9 @@ def build_public(channels: list[dict], regions: list[dict],
     g_ch = (gangaotai or {}).get("channels") or []
     g_hosts = (gangaotai or {}).get("hosts") or []
     gangaotai_streams = sum(len(c["streams"]) for c in g_ch)
+    i_ch = (intl or {}).get("channels") or []
+    i_hosts = (intl or {}).get("hosts") or []
+    intl_streams = sum(len(c["streams"]) for c in i_ch)
     all_keys = {c["key"] for c in channels} | {c["key"] for c in h_ch} | {c["key"] for c in g_ch}
 
     payload = {
@@ -381,9 +474,14 @@ def build_public(channels: list[dict], regions: list[dict],
             "gangaotaiHosts": len(g_hosts),
             "gangaotaiChannels": len(g_ch),
             "gangaotaiStreams": gangaotai_streams,
+            # 国外（按国家分组）
+            "intlHosts": len(i_hosts),
+            "intlChannels": len(i_ch),
+            "intlStreams": intl_streams,
+            "intlCountries": len({c.get("region") or "" for c in i_ch}) if i_ch else 0,
             # 合计（频道去重）
             "channelsTotal": len(all_keys),
-            "streamsTotal": total_streams + hotel_streams + gangaotai_streams,
+            "streamsTotal": total_streams + hotel_streams + gangaotai_streams + intl_streams,
             # 订阅链接有效期（前端据此拼 data/public/sub/<到期日>/ 路径）
             "subDays": SUB_DAYS,
             "subExpire": (datetime.now(CST).date() + timedelta(days=SUB_DAYS)).strftime("%Y-%m-%d"),
@@ -435,7 +533,8 @@ def _m3u_text(channels: list[dict], host_set: set[str] | None = None) -> str:
 
 
 def build_public_subs(channels: list[dict], regions: list[dict],
-                      hotel: dict | None = None, gangaotai: dict | None = None) -> dict:
+                      hotel: dict | None = None, gangaotai: dict | None = None,
+                      intl: dict | None = None) -> dict:
     """生成公开订阅文件：全量 + 分地区 + 酒店源 + 各地区地址表。
 
     两层目录：
@@ -471,6 +570,10 @@ def build_public_subs(channels: list[dict], regions: list[dict],
         texts["hotel.m3u"] = _m3u_text(hotel["channels"], hotel["host_set"])
         _write_urls(urls_dir / "hotel.json", hotel["channels"], hotel["host_set"])
 
+    if intl:
+        _write(PUBLIC_DIR / "intl.m3u", intl["channels"], intl["host_set"])
+        texts["intl.m3u"] = _m3u_text(intl["channels"], intl["host_set"])
+        _write_urls(urls_dir / "intl.json", intl["channels"], intl["host_set"])
     if gangaotai:
         _write(PUBLIC_DIR / "gangaotai.m3u", gangaotai["channels"], gangaotai["host_set"])
         texts["gangaotai.m3u"] = _m3u_text(gangaotai["channels"], gangaotai["host_set"])
@@ -503,7 +606,8 @@ def build_public_subs(channels: list[dict], regions: list[dict],
 
 
 def build_users(channels: list[dict], regions: list[dict],
-                hotel: dict | None = None, gangaotai: dict | None = None) -> dict:
+                hotel: dict | None = None, gangaotai: dict | None = None,
+                intl: dict | None = None) -> dict:
     """为 users.json 里每个用户生成专属订阅；到期用户写成空列表。
 
     users.json 结构：
@@ -580,6 +684,8 @@ def build_users(channels: list[dict], regions: list[dict],
                 (d / f"{r['key']}.m3u").write_text(EMPTY_SUB, encoding="utf-8")
             if hotel:
                 (d / "hotel.m3u").write_text(EMPTY_SUB, encoding="utf-8")
+            if intl:
+                (d / "intl.m3u").write_text(EMPTY_SUB, encoding="utf-8")
             if gangaotai:
                 (d / "gangaotai.m3u").write_text(EMPTY_SUB, encoding="utf-8")
             # 地址表直接删掉，过期后连调试面板也看不到地址
@@ -609,6 +715,13 @@ def build_users(channels: list[dict], regions: list[dict],
             else:
                 _write_urls(d / "urls" / "hotel.json", hotel["channels"], hotel["host_set"])
         # 港澳台：独立订阅 + 独立地址表
+        # 国外：独立订阅 + 独立地址表
+        if intl:
+            ic, _is = _write(d / "intl.m3u", intl["channels"], intl["host_set"])
+            if not ic:
+                (d / "intl.m3u").write_text(EMPTY_SUB, encoding="utf-8")
+            else:
+                _write_urls(d / "urls" / "intl.json", intl["channels"], intl["host_set"])
         if gangaotai:
             gc, _gs = _write(d / "gangaotai.m3u", gangaotai["channels"], gangaotai["host_set"])
             if not gc:
@@ -662,8 +775,18 @@ def build() -> dict:
                sum(len(c["streams"]) for c in gangaotai["channels"]))
         )
 
+    # ---- 国外：独立模块（不塞进 regions，不参与地区网格）----
+    intl = load_intl()
+    if intl:
+        print(
+            "  [subs] 国外：%d 台 / %d 频道 / %d 条 / %d 国（独立分类）"
+            % (len(intl["hosts"]), len(intl["channels"]),
+               sum(len(c["streams"]) for c in intl["channels"]),
+               len({c.get("region") for c in intl["channels"]}))
+        )
+
     # 公开目录：只有频道名 + 各地区条数，没有任何地址
-    payload = build_public(channels, regions, hotel, gangaotai)
+    payload = build_public(channels, regions, hotel, gangaotai, intl)
     for r in payload["regions"]:
         print(
             f"  [subs] region/{r['key']:<4}       "
@@ -673,6 +796,7 @@ def build() -> dict:
     # 酒店源 + 港澳台：独立的公开目录 + 独立订阅文件
     build_hotel_public(hotel)
     build_gangaotai_public(gangaotai)
+    build_intl_public(intl)
 
     # 清掉旧版「HOTEL 当地区」留下的文件。必须放在生成 hotel.m3u **之前**：
     # Windows 文件系统大小写不敏感，"HOTEL.m3u" 与 "hotel.m3u" 是同一个文件，
@@ -680,11 +804,11 @@ def build() -> dict:
     cleanup_legacy_hotel()
 
     # 传原始 regions（含频道为 0 的地区），保证每个目录下每个地区都有文件
-    build_free(channels, regions, hotel, gangaotai)
-    build_users(channels, regions, hotel, gangaotai)
+    build_free(channels, regions, hotel, gangaotai, intl)
+    build_users(channels, regions, hotel, gangaotai, intl)
 
     # 公开订阅：免费可下载的完整订阅（打赏自愿，不做付费墙）
-    build_public_subs(channels, regions, hotel, gangaotai)
+    build_public_subs(channels, regions, hotel, gangaotai, intl)
 
     # 清掉老版本留下的公开全量文件与索引（data/sub 整个目录都不再需要）
     if SUB_DIR.exists():
