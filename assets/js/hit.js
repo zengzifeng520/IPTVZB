@@ -11,11 +11,13 @@
 (function () {
   "use strict";
 
-  var NS = "zzf-tg-2026";
+  var NS = "zzf-tg-site";
   var API = "https://abacus.jasoncameron.dev/hit/" + NS + "/";
 
-  // 自动化环境（无头浏览器 / 爬虫）不计入
+  // 自动化环境（无头浏览器 / 爬虫）与本机调试不计入
   if (navigator.webdriver) return;
+  var host = location.hostname;
+  if (!host || host === "localhost" || host === "127.0.0.1" || host === "0.0.0.0") return;
 
   function ping(key) {
     try {

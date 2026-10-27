@@ -416,7 +416,7 @@
   /* ---------------------------------------------------------- 访问统计 */
 
   var VISIT = {
-    ns: "zzf-tg-2026",
+    ns: "zzf-tg-site",
     api: "https://abacus.jasoncameron.dev/get/",
     busy: false,
   };
@@ -456,6 +456,23 @@
     return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
+  // 仓库里的历史快照（打包时由 Actions 定时写入），服务被重置时用它兜底
+  function vSnapshot() {
+    return fetch("data/visits.json", { cache: "no-store" })
+      .then(function (r) {
+        return r.ok ? r.json() : {};
+      })
+      .catch(function () {
+        return {};
+      });
+  }
+
+  function mx(a, b) {
+    if (a == null) return b == null ? null : b;
+    if (b == null) return a;
+    return Math.max(a, b);
+  }
+
   function loadVisits() {
     if (VISIT.busy || !el.visitCards) return;
     VISIT.busy = true;
@@ -468,10 +485,23 @@
 
     var jobs = [vGet("visitors"), vGet("views"), vGet("duv-" + todayKey), vGet("d-" + todayKey)];
     for (i = 0; i < days.length; i++) jobs.push(vGet("d-" + days[i].replace(/-/g, "")));
+    jobs.push(vSnapshot());
 
     Promise.all(jobs).then(function (res) {
+      var snap = res.pop() || {};
       var uv = res[0], pv = res[1], duv = res[2], dpv = res[3];
       var series = res.slice(4);
+
+      // 与仓库快照取最大值：服务被清空也不会让总数变小
+      var sDays = snap.days || {};
+      var sDuv = snap.duv || {};
+      uv = mx(uv, snap.visitors);
+      pv = mx(pv, snap.views);
+      duv = mx(duv, sDuv[days[6]]);
+      dpv = mx(dpv, sDays[days[6]]);
+      series = series.map(function (v, idx) {
+        return mx(v, sDays[days[idx]]);
+      });
 
       var cards = [
         { n: uv, t: "累计访客", cls: "ok" },

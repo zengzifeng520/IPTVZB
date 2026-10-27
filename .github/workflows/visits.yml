@@ -1,0 +1,42 @@
+name: Snapshot visits
+
+# 访问量快照：每 6 小时把计数器的当前值写进 data/visits.json。
+# 作用：后台面板会用「实时值」和「仓库快照」取较大值，
+#      即使计数服务被重置，总访问量也不会归零（永久累计）。
+on:
+  schedule:
+    # UTC 00:20 / 06:20 / 12:20 / 18:20（北京时间 08:20 / 14:20 / 20:20 / 次日 02:20）
+    - cron: "20 0,6,12,18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: visits-snapshot
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Snapshot counters
+        env:
+          PYTHONIOENCODING: utf-8
+        run: python scripts/visits_snapshot.py
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/visits.json
+          if git diff --cached --quiet; then
+            echo "no change"
+            exit 0
+          fi
+          git commit -m "chore: 访问量快照 $(date -u +'%Y-%m-%dT%H:%MZ')"
+          for i in 1 2 3; do
+            git pull --rebase --autostash origin main && git push && break || sleep 5
+          done
