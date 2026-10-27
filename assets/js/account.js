@@ -141,12 +141,18 @@
     var all = state.subs.all || {};
     var items = [];
 
+    // 订阅地址带有效期：data/public/sub/<到期日>/xxx.m3u，30 天后自动换新一批
+    var expire = all.subExpire || state.subs.expire || "";
+    var subPrefix =
+      "data/public/sub/" + String(expire).replace(/-/g, "") + "/";
+    if (!expire) subPrefix = "data/public/";
+
     // 全量订阅（公开）：只含全部地区，不含酒店源
     items.push({
       key: "ALL",
       name: "全量订阅",
       isp: "全部地区合并（不含酒店源）",
-      path: "data/public/all.m3u",
+      path: subPrefix + "all.m3u",
       channels: all.channels || 0,
       streams: all.streams || 0,
       big: true,
@@ -158,7 +164,7 @@
         key: r.key,
         name: r.name,
         isp: r.isp,
-        path: "data/public/" + r.key + ".m3u",
+        path: subPrefix + r.key + ".m3u",
         channels: r.channels,
         streams: r.streams,
       });
@@ -170,7 +176,7 @@
         key: "hotel",
         name: "酒店源",
         isp: "HLS 直连 · 不限地区",
-        path: "data/public/hotel.m3u",
+        path: subPrefix + "hotel.m3u",
         channels: all.hotelChannels || 0,
         streams: all.hotelStreams || 0,
       });
@@ -197,6 +203,7 @@
           " 频道 / " +
           it.streams +
           " 条" +
+          (expire ? '<span class="sub-valid">有效期至 ' + esc(expire) + "</span>" : "") +
           "</div>" +
           '<code class="sub-item-url">' +
           esc(url) +
@@ -232,7 +239,7 @@
       return r.json();
     })
     .then(function (d) {
-      state.subs = { all: d.stats || {}, regions: d.regions || [] };
+      state.subs = { all: d.stats || {}, regions: d.regions || [], expire: (d.stats || {}).subExpire || "" };
       renderSubs();
     })
     .catch(function () {

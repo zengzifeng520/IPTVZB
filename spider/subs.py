@@ -53,6 +53,9 @@ HOTEL_PUBLIC = PUBLIC_DIR / "hotel.json"
 FREE_DIR = config.WEB_DATA_DIR / "free"
 FREE_DAYS = 7
 
+# 公开订阅链接的有效期（天）：页面发出去的地址就是「今天 + 30 天」那一份
+SUB_DAYS = 30
+
 # token 盐值：前端 assets/js/auth.js 里的 TOKEN_SALT 必须与此一致
 TOKEN_SALT = "zzf-sub-2026"
 
@@ -293,6 +296,9 @@ def build_public(channels: list[dict], regions: list[dict],
             # 合计（频道去重）
             "channelsTotal": len(all_keys),
             "streamsTotal": total_streams + hotel_streams,
+            # 订阅链接有效期（前端据此拼 data/public/sub/<到期日>/ 路径）
+            "subDays": SUB_DAYS,
+            "subExpire": (datetime.now(CST).date() + timedelta(days=SUB_DAYS)).strftime("%Y-%m-%d"),
         },
         "regions": out_regions,
         "channels": out_channels,
@@ -326,41 +332,81 @@ def _write_urls(path: Path, channels: list[dict], host_set: set[str] | None = No
     return len(out)
 
 
+def _m3u_text(channels: list[dict], host_set: set[str] | None = None) -> str:
+    """把频道列表拼成 m3u 文本（同一份内容要写进多个有效期的目录，先算一次）。"""
+    lines = ["#EXTM3U"]
+    for ch in channels:
+        picked = ch["streams"] if host_set is None else [s for s in ch["streams"] if s["h"] in host_set]
+        if not picked:
+            continue
+        head = _extinf(ch)
+        for s in picked:
+            lines.append(head)
+            lines.append(s["u"])
+    return "\n".join(lines) + "\n"
+
+
 def build_public_subs(channels: list[dict], regions: list[dict],
                       hotel: dict | None = None) -> dict:
     """生成公开订阅文件：全量 + 分地区 + 酒店源 + 各地区地址表。
 
-    与付费墙解耦：这些文件放在 data/public/ 下，任何人都能直接下载，
-    播放地址也一并公开（打赏是自愿的，不限制任何访问）。
+    两层目录：
+      data/public/*.m3u                稳定路径（导航、桌面收藏用，实际不对外承诺永久）
+      data/public/sub/<到期日>/*.m3u   带有效期的订阅地址，有效期 SUB_DAYS 天
+
+    有效期做法：每次运行都把「今天 ~ 今天+30 天」这 31 个目录写一遍（内容完全一样，
+    Git 按内容哈希去重，只会多存一份 blob），比今天早的目录直接删掉。
+    这样：今天发出去的链接 30 天内一定能播；到期后目录消失变 404，
+    用户回站点重新复制，拿到的又是新一份 30 天链接 —— 自动续期。
     """
     PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
     urls_dir = PUBLIC_DIR / "urls"
     urls_dir.mkdir(parents=True, exist_ok=True)
 
-    n_chan = n_stream = 0
-
-    # 全量订阅：只含全部地区（组播中转）合并，**不含酒店源**
-    # 酒店源单独 hotel.m3u，两种源的协议/地区属性不同，混在一起播放器容易乱
+    # 先把每种订阅的内容算成文本，避免 31 个目录重复拼字符串
+    texts: dict[str, str] = {}
     n_chan, n_stream = _write(PUBLIC_DIR / "all.m3u", channels)
+    texts["all.m3u"] = _m3u_text(channels)
 
-    # 分地区订阅 + 地区地址表
     for r in regions:
         host_set = set(r.get("hosts") or [])
         if not host_set:
             (PUBLIC_DIR / f"{r['key']}.m3u").write_text(EMPTY_SUB, encoding="utf-8")
+            texts[f"{r['key']}.m3u"] = EMPTY_SUB
             continue
         _write(PUBLIC_DIR / f"{r['key']}.m3u", channels, host_set)
+        texts[f"{r['key']}.m3u"] = _m3u_text(channels, host_set)
         _write_urls(urls_dir / f"{r['key']}.json", channels, host_set)
 
-    # 酒店源：独立订阅 + 地址表
     if hotel:
         _write(PUBLIC_DIR / "hotel.m3u", hotel["channels"], hotel["host_set"])
+        texts["hotel.m3u"] = _m3u_text(hotel["channels"], hotel["host_set"])
         _write_urls(urls_dir / "hotel.json", hotel["channels"], hotel["host_set"])
 
+    # ---- 带有效期的订阅目录 ----
+    today = datetime.now(CST).date()
+    sub_root = PUBLIC_DIR / "sub"
+    sub_root.mkdir(parents=True, exist_ok=True)
+    keep = set()
+    for i in range(SUB_DAYS + 1):
+        key = (today + timedelta(days=i)).strftime("%Y%m%d")
+        keep.add(key)
+        d = sub_root / key
+        d.mkdir(parents=True, exist_ok=True)
+        for name, text in texts.items():
+            (d / name).write_text(text, encoding="utf-8")
+    # 过期目录（比今天早的）删掉 -> 老链接自然 404
+    for p in sub_root.iterdir():
+        if p.is_dir() and p.name not in keep:
+            shutil.rmtree(p, ignore_errors=True)
+
+    expire = (today + timedelta(days=SUB_DAYS)).strftime("%Y-%m-%d")
     print(
-        f"  [subs] public/*.m3u 全量 {n_chan} 频道 / {n_stream} 条（不含酒店源，公开可下载）"
+        f"  [subs] public/*.m3u 全量 {n_chan} 频道 / {n_stream} 条"
+        f"（不含酒店源，公开可下载）"
     )
-    return {"channels": n_chan, "streams": n_stream}
+    print(f"  [subs] 订阅有效期 {SUB_DAYS} 天：{min(keep)} ~ {max(keep)}（到期日 {expire}）")
+    return {"channels": n_chan, "streams": n_stream, "expire": expire, "days": SUB_DAYS}
 
 
 def build_users(channels: list[dict], regions: list[dict],

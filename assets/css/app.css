@@ -2429,3 +2429,27 @@ body { font-size: 15px; line-height: 1.65; }
   .disclaimer-panel .dp-update .up-clock,
   .disclaimer-panel .dp-update .up-run { font-size: 15px; }
 }
+
+/* 订阅有效期标识 */
+.sub-valid {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.12);
+  border: 1px solid rgba(251, 191, 36, 0.28);
+  white-space: nowrap;
+}
+.sub-valid-tip {
+  margin: -4px 0 16px;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text-3);
+}
+.sub-valid-tip b { color: #fbbf24; }
+[data-theme="light"] .sub-valid { color: #b45309; background: rgba(217, 119, 6, 0.10); border-color: rgba(217, 119, 6, 0.26); }
+[data-theme="light"] .sub-valid-tip { color: #6b7280; }
+[data-theme="light"] .sub-valid-tip b { color: #b45309; }
