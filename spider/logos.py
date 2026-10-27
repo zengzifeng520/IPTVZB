@@ -124,6 +124,8 @@ ALIAS: dict[str, str] = {
     "凤凰卫视": "凤凰卫视",
     "凤凰资讯": "凤凰资讯台",
     "动物星球": "animalplanet",
+    "tvn hk": "TVN",
+    "tvn": "TVN",
     "动物星球频道": "animalplanet",
 }
 

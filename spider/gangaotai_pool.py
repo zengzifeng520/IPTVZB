@@ -64,24 +64,49 @@ CHANNELS: list[tuple[str, str, str, str, str]] = [
     ("PTS3", "公视3台", "http://111.59.139.85:11888/tsfile/live/1222_1.m3u8?key=txiptv", "111.59.139.85:11888", "台湾"),
     ("PTS", "公视", "http://111.59.139.85:11888/tsfile/live/1223_1.m3u8?key=txiptv", "111.59.139.85:11888", "台湾"),
     # ---- 香港 myTV 服务器（103.172.187.30:12000）----
-    # 2026-10-27 枚举 null-1..60（正确格式是 null-{n}/master.m3u8），
-    # 9 个能播，逐个 ffmpeg 抓帧 + 截图识别台标，结果如下：
-    #   null-1 翡翠台 / null-2,9,10 美亚电影台（三路同源）
-    #   null-3 中国电影频道 / null-4 创世电视 / null-8 黄金华剧台
-    #   null-11 myTV SUPER(剧集) / null-12 myTV SUPER(综艺)
-    # 注意：null-11 / null-12 以前被标成「亚洲剧台」「黄金翡翠台」是错的，
-    # 画面右上角台标就是 myTV SUPER，按实测改名。
-    ("TVBJade", "翡翠台", "http://103.172.187.30:12000/stream/mytv/null-1/master.m3u8", "103.172.187.30:12000", "香港"),
-    ("MyTVSuperDrama", "myTV SUPER剧集", "http://103.172.187.30:12000/stream/mytv/null-11/master.m3u8", "103.172.187.30:12000", "香港"),
-    ("MyTVSuperShow", "myTV SUPER综艺", "http://103.172.187.30:12000/stream/mytv/null-12/master.m3u8", "103.172.187.30:12000", "香港"),
-    # 美亚电影台：null-2 / null-9 / null-10 是同一频道的三个入口，做多线路
-    ("MeiAhMovie", "美亚电影台", "http://103.172.187.30:12000/stream/mytv/null-9/master.m3u8", "103.172.187.30:12000", "香港"),
-    ("MeiAhMovie", "美亚电影台", "http://103.172.187.30:12000/stream/mytv/null-2/master.m3u8", "103.172.187.30:12000", "香港"),
-    ("MeiAhMovie", "美亚电影台", "http://103.172.187.30:12000/stream/mytv/null-10/master.m3u8", "103.172.187.30:12000", "香港"),
-    ("CreationTV", "创世电视", "http://103.172.187.30:12000/stream/mytv/null-4/master.m3u8", "103.172.187.30:12000", "香港"),
-    # 新增（截图识别确认）
-    ("ChinaMovie", "中国电影频道", "http://103.172.187.30:12000/stream/mytv/null-3/master.m3u8", "103.172.187.30:12000", "香港"),
-    ("GoldenDrama", "黄金华剧台", "http://103.172.187.30:12000/stream/mytv/null-8/master.m3u8", "103.172.187.30:12000", "香港"),
+    # 2026-10-27 用完整 m3u 清单（user 提供 o11_*.m3u）实测重构。
+    # 路径格式：/stream/allchannel/{key}/ 与 /stream/mytv/{key}/，key 不是频道名。
+    # 36 条 ffmpeg 拉 8 秒全部 200 帧（25fps×8s），全部可播，质量很好。
+    # 注意：这台机器的画面右上角都挂 myTV SUPER 台标（因为是走该平台播出），
+    # 但频道本身是 TVB/亚视/天映等各家频道，名字以 m3u 清单为准，
+    # 不要按台标乱改（之前把 null-11 改成 myTV SUPER 剧集是错的，null-11 就是亚洲剧台）。
+    # 分组：ALLCHANNEL 1080p / myTV SUPER (TVB) 720p·1080p·576p
+    ("MTV_TV5INFO", "tv5info", "http://103.172.187.30:12000/stream/allchannel/tv5info/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_TV", "红牛TV", "http://103.172.187.30:12000/stream/mytv/tv/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_KXI", "KXI", "http://103.172.187.30:12000/stream/mytv/kxi/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_LOVENATURE4K", "Love Nature 4K", "http://103.172.187.30:12000/stream/mytv/lovenature4k/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_ROCKACTION", "ROCK Action", "http://103.172.187.30:12000/stream/mytv/rockaction/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_SUPEREYT", "SUPER EYT", "http://103.172.187.30:12000/stream/mytv/supereyt/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_SUPERMUSIC", "SUPER Music", "http://103.172.187.30:12000/stream/mytv/supermusic/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_SUPERSPORTS", "SUPER Sports", "http://103.172.187.30:12000/stream/mytv/supersports/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_SUPER_4", "SUPER煲劇", "http://103.172.187.30:12000/stream/mytv/super-4/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_SUPER", "SUPER獎門人", "http://103.172.187.30:12000/stream/mytv/super/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_SUPER_6", "SUPER話當年", "http://103.172.187.30:12000/stream/mytv/super-6/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_SUPER_2", "SUPER識嘆", "http://103.172.187.30:12000/stream/mytv/super-2/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_SUPER_1", "SUPER識食", "http://103.172.187.30:12000/stream/mytv/super-1/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_SUPER_3", "SUPER金曲", "http://103.172.187.30:12000/stream/mytv/super-3/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_TVB", "TVB 儿童台", "http://103.172.187.30:12000/stream/mytv/tvb/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_TVBPLUS", "TVBPLUS", "http://103.172.187.30:12000/stream/mytv/tvbplus/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_THRILL", "Thrill", "http://103.172.187.30:12000/stream/mytv/thrill/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_ZOOMOO", "ZooMOO", "http://103.172.187.30:12000/stream/mytv/zoomoo/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_DOC", "doc", "http://103.172.187.30:12000/stream/allchannel/doc/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_MYTVSUPER18", "myTV SUPER 18台", "http://103.172.187.30:12000/stream/mytv/mytvsuper18/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_NOVO19", "novo19", "http://103.172.187.30:12000/stream/allchannel/novo19/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_TV5ASIE", "tv5asie", "http://103.172.187.30:12000/stream/allchannel/tv5asie/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_TV5STYLE", "tv5style", "http://103.172.187.30:12000/stream/allchannel/tv5style/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_TVNHK", "tvN HK", "http://103.172.187.30:12000/stream/mytv/tvnhk/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_NULL_3", "中国电影频道", "http://103.172.187.30:12000/stream/mytv/null-3/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_NULL_11", "亚洲剧台", "http://103.172.187.30:12000/stream/mytv/null-11/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_NULL_4", "创世电视", "http://103.172.187.30:12000/stream/mytv/null-4/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_HK", "天映经典", "http://103.172.187.30:12000/stream/mytv/hk/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_NULL", "无线新闻", "http://103.172.187.30:12000/stream/mytv/null/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_NULL_2", "美亚电影台", "http://103.172.187.30:12000/stream/mytv/null-2/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_NULL_9", "美亚电影台原声", "http://103.172.187.30:12000/stream/mytv/null-9/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_NULL_10", "美亚电影台国语", "http://103.172.187.30:12000/stream/mytv/null-10/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_NULL_1", "翡翠台", "http://103.172.187.30:12000/stream/mytv/null-1/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_NULL_12", "黄金翡翠台", "http://103.172.187.30:12000/stream/mytv/null-12/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_NULL_8", "黄金华剧台", "http://103.172.187.30:12000/stream/mytv/null-8/master.m3u8", "103.172.187.30:12000", "香港"),
+    ("MTV_SUPER_5", "SUPER劇場", "http://103.172.187.30:12000/stream/mytv/super-5/master.m3u8", "103.172.187.30:12000", "香港"),
     # ---- 台湾各台直连源（iptv-org 收录）----
     ("TVBSAsia", "TVBS亚洲", "http://38.64.72.148/hls/modn/list/4005/chunklist1.m3u8", "38.64.72.148", "台湾"),
     ("TVBSAsia", "TVBS亚洲", "http://38.64.72.148/hls/modn/list/4005/playlist.m3u8", "38.64.72.148", "台湾"),
@@ -116,7 +141,13 @@ CHANNELS: list[tuple[str, str, str, str, str]] = [
     ("VL体育", "纬来体育", "https://epg.pw/stream/4f18dfe0593db5c686eb64ae8edaf2a9202d4d46bdc9bbde2cee27708e12ea01.m3u8", "epg.pw", "台湾"),
 ]
 
-UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+# 必须带 Accept-Encoding: identity —— 有些服务器（如 103.172.187.30:12000）
+# 默认返回 gzip，urllib 不会自动解压，拿到的是二进制乱码，
+# 结果 "#EXTM3U" 匹配不上 → 明明能播的源被判失效。
+UA = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "Accept-Encoding": "identity",
+}
 
 _CTX = ssl.create_default_context()
 _CTX.check_hostname = False
@@ -179,7 +210,22 @@ def _playlist_ts(url: str, body: str) -> str | None:
     return ts if ts.startswith("http") else urljoin(url, ts)
 
 
-def probe(item: tuple) -> bool:
+def probe(item: tuple, retries: int = 3) -> bool:
+    """验活（带重试）。
+
+    有些服务器（如 103.172.187.30:12000）并发能力弱，同一批探测里
+    会随机失败几个 —— 实测每次跑失败的频道都不一样，单独重测又都能过。
+    所以失败后隔一会儿重试，任意一次成功就算活。
+    """
+    for i in range(retries):
+        if _probe_once(item):
+            return True
+        if i < retries - 1:
+            time.sleep(0.6 + i * 0.4)
+    return False
+
+
+def _probe_once(item: tuple) -> bool:
     """验活：跟随播放列表到 ts 分片，并真的下载一段数据。
 
     只判断「播放列表里有 .ts」是不够的——很多过期点播列表的标题还在，
