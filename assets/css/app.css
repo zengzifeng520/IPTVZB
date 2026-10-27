@@ -2514,3 +2514,16 @@ body { font-size: 15px; line-height: 1.65; }
 .disclaimer-panel .dp-update .up-time,
 .disclaimer-panel .dp-update .up-clock,
 .disclaimer-panel .dp-update .up-run { font-size: 15px; }
+
+/* ----------------------------------------------------------
+   页脚「北京时间」「本站已运行 N 天」两行改为紫色
+   ---------------------------------------------------------- */
+.disclaimer-panel .dp-update .up-clock,
+.disclaimer-panel .dp-update .up-run {
+  color: #a78bfa;
+}
+.disclaimer-panel .dp-update .up-run { font-weight: 700; }
+[data-theme="light"] .disclaimer-panel .dp-update .up-clock,
+[data-theme="light"] .disclaimer-panel .dp-update .up-run {
+  color: #7c3aed;
+}
