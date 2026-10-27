@@ -2584,3 +2584,52 @@ body { font-size: 15px; line-height: 1.65; }
   .vb-num { font-size: 10.5px; }
   .vb-day { font-size: 10px; }
 }
+
+/* ----------------------------------------------------------
+   提示条：浅色主题下曾用 --text（深色）压在深色底上，看不清
+   ---------------------------------------------------------- */
+.toast { color: #fff; }
+
+/* 手动复制面板：自动复制失败时的兜底 */
+.copy-sheet {
+  position: fixed; inset: 0; z-index: 1000;
+  display: none; align-items: center; justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.66);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+.copy-sheet.show { display: flex; }
+.copy-sheet-box {
+  width: min(460px, 100%);
+  padding: 22px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #171a24, #0d0f16);
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+  color: var(--text);
+}
+.copy-sheet-box h3 { margin: 0 0 10px; font-size: 17px; font-weight: 800; }
+.copy-sheet-box p { margin: 0 0 12px; font-size: 13.5px; line-height: 1.8; color: var(--text-2); }
+.copy-sheet-text {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border-strong);
+  background: rgba(0, 0, 0, 0.42);
+  color: #fff;
+  font-size: 13px; line-height: 1.65;
+  resize: none;
+  word-break: break-all;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  outline: none;
+}
+.copy-sheet-text:focus { border-color: var(--accent); }
+.copy-sheet-acts { display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px; }
+.copy-sheet-acts .btn { height: 38px; padding: 0 18px; font-size: 14px; }
+[data-theme="light"] .copy-sheet-box { background: #fff; border-color: rgba(0, 0, 0, 0.12); }
+[data-theme="light"] .copy-sheet-box p { color: #4b5563; }
+[data-theme="light"] .copy-sheet-text { background: #f3f4f6; color: #111827; border-color: rgba(0, 0, 0, 0.14); }
+
+/* 订阅地址本身也可点：手机端点一下就复制 */
+.sub-item-url { cursor: pointer; }

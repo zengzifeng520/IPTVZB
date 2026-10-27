@@ -30,29 +30,15 @@
   }
 
   function copyText(text, okMsg) {
-    var done = function () {
-      toast(okMsg || "已复制");
-    };
-    var fallback = function () {
-      var ta = document.createElement("textarea");
-      ta.value = text;
-      ta.style.position = "fixed";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select();
-      try {
-        document.execCommand("copy");
-        done();
-      } catch (e) {
-        toast("复制失败，请长按选择");
-      }
-      document.body.removeChild(ta);
-    };
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(text).then(done).catch(fallback);
-    } else {
-      fallback();
-    }
+    window.zzfCopy(text, {
+      ok: function () {
+        toast(okMsg || "已复制");
+      },
+      fail: function () {
+        // 兜底：弹出手动复制面板，地址已全选好
+        window.zzfCopySheet(text);
+      },
+    });
   }
 
   function baseUrl() {
@@ -205,7 +191,9 @@
           " 条" +
           (expire ? '<span class="sub-valid">有效期至 ' + esc(expire) + "</span>" : "") +
           "</div>" +
-          '<code class="sub-item-url">' +
+          '<code class="sub-item-url" data-copy-url="' +
+          esc(url) +
+          '" title="点击复制">' +
           esc(url) +
           "</code>" +
           "</div>" +
@@ -226,9 +214,27 @@
   /* ---------------------------------------------------------- 交互 */
 
   el.subList.addEventListener("click", function (e) {
-    var btn = e.target.closest("[data-copy-url]");
-    if (!btn) return;
-    copyText(btn.dataset.copyUrl, "订阅地址已复制");
+    var node = e.target.closest("[data-copy-url]");
+    if (!node) return;
+    var url = node.dataset.copyUrl;
+    var isBtn = node.tagName === "BUTTON";
+    var oldTxt = isBtn ? node.textContent : "";
+    function flash(txt) {
+      if (!isBtn) return;
+      node.textContent = txt;
+      setTimeout(function () {
+        node.textContent = oldTxt;
+      }, 1500);
+    }
+    window.zzfCopy(url, {
+      ok: function () {
+        toast("订阅地址已复制");
+        flash("已复制");
+      },
+      fail: function () {
+        window.zzfCopySheet(url);
+      },
+    });
   });
 
   /* ---------------------------------------------------------- 启动 */

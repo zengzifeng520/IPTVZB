@@ -55,29 +55,15 @@
   }
 
   function copyText(text, okMsg) {
-    var done = function () {
-      toast(okMsg || "已复制");
-    };
-    var fallback = function () {
-      var ta = document.createElement("textarea");
-      ta.value = text;
-      ta.style.position = "fixed";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select();
-      try {
-        document.execCommand("copy");
-        done();
-      } catch (e) {
-        toast("复制失败，请长按选择");
-      }
-      document.body.removeChild(ta);
-    };
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(text).then(done).catch(fallback);
-    } else {
-      fallback();
-    }
+    window.zzfCopy(text, {
+      ok: function () {
+        toast(okMsg || "已复制");
+      },
+      fail: function () {
+        // 兜底：弹出手动复制面板，地址已全选好
+        window.zzfCopySheet(text);
+      },
+    });
   }
 
   function baseUrl() {
