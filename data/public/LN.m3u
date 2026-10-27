@@ -1,16 +1,6 @@
 #EXTM3U
-#EXTINF:-1 tvg-name="CCTV央视台球" group-title="央视频道",CCTV央视台球
-http://101.wifi98.com:9001/rtp/232.0.0.60:1234
 #EXTINF:-1 tvg-name="CCTV央视精品" group-title="央视频道",CCTV央视精品
 http://101.wifi98.com:9001/rtp/232.0.0.56:1234
-#EXTINF:-1 tvg-name="CCTV女性时尚" group-title="央视频道",CCTV女性时尚
-http://101.wifi98.com:9001/rtp/232.0.0.51:1234
-#EXTINF:-1 tvg-name="CCTV电视指南" group-title="央视频道",CCTV电视指南
-http://101.wifi98.com:9001/rtp/232.0.0.91:1234
-#EXTINF:-1 tvg-name="CGTN纪录" group-title="央视频道",CGTN纪录
-http://101.wifi98.com:9001/rtp/232.0.0.198:1234
-#EXTINF:-1 tvg-name="CGTN阿语" group-title="央视频道",CGTN阿语
-http://101.wifi98.com:9001/rtp/232.0.0.43:1234
 #EXTINF:-1 tvg-name="优漫卡通" group-title="卫视频道",优漫卡通
 http://101.wifi98.com:9001/rtp/232.0.0.159:1234
 #EXTINF:-1 tvg-name="厦门卫视" group-title="卫视频道",厦门卫视

@@ -19,32 +19,24 @@ http://114.97.215.186:8888/rtp/238.1.79.60:4616
 http://114.97.215.186:8888/rtp/238.1.79.56:4584
 #EXTINF:-1 tvg-name="CCTV央视台球" group-title="央视频道",CCTV央视台球
 http://114.97.215.186:8888/rtp/238.1.79.59:4608
-#EXTINF:-1 tvg-name="CCTV央视台球" group-title="央视频道",CCTV央视台球
-http://home.pinkfloyd.cn:5000/rtp/238.1.79.59:4608
+#EXTINF:-1 tvg-name="CCTV央视精品" group-title="央视频道",CCTV央视精品
+http://36.7.150.152:4022/rtp/238.1.79.54:4568
 #EXTINF:-1 tvg-name="CCTV女性时尚" group-title="央视频道",CCTV女性时尚
 http://114.97.215.186:8888/rtp/238.1.79.55:4576
-#EXTINF:-1 tvg-name="CCTV女性时尚" group-title="央视频道",CCTV女性时尚
-http://home.pinkfloyd.cn:5000/rtp/238.1.79.55:4576
 #EXTINF:-1 tvg-name="CCTV怀旧剧场" group-title="央视频道",CCTV怀旧剧场
 http://114.97.215.186:8888/rtp/238.1.79.61:4624
 #EXTINF:-1 tvg-name="CCTV电视指南" group-title="央视频道",CCTV电视指南
 http://114.97.215.186:8888/rtp/238.1.79.53:4560
-#EXTINF:-1 tvg-name="CCTV电视指南" group-title="央视频道",CCTV电视指南
-http://home.pinkfloyd.cn:5000/rtp/238.1.79.53:4560
 #EXTINF:-1 tvg-name="CCTV第一剧场" group-title="央视频道",CCTV第一剧场
 http://114.97.215.186:8888/rtp/238.1.79.63:4640
 #EXTINF:-1 tvg-name="CCTV风云剧场" group-title="央视频道",CCTV风云剧场
 http://114.97.215.186:8888/rtp/238.1.79.62:4632
 #EXTINF:-1 tvg-name="CCTV风云剧场" group-title="央视频道",CCTV风云剧场
-http://home.pinkfloyd.cn:5000/rtp/238.1.79.62:4632
+http://36.7.150.152:4022/rtp/238.1.79.62:4632
 #EXTINF:-1 tvg-name="CCTV风云足球" group-title="央视频道",CCTV风云足球
 http://114.97.215.186:8888/rtp/238.1.79.57:4592
-#EXTINF:-1 tvg-name="CCTV风云足球" group-title="央视频道",CCTV风云足球
-http://home.pinkfloyd.cn:5000/rtp/238.1.79.57:4592
 #EXTINF:-1 tvg-name="CCTV风云音乐" group-title="央视频道",CCTV风云音乐
 http://114.97.215.186:8888/rtp/238.1.79.64:4648
-#EXTINF:-1 tvg-name="CCTV风云音乐" group-title="央视频道",CCTV风云音乐
-http://home.pinkfloyd.cn:5000/rtp/238.1.79.64:4648
 #EXTINF:-1 tvg-name="CGTN" group-title="央视频道",CGTN
 http://114.97.215.186:8888/rtp/238.1.78.50:6272
 #EXTINF:-1 tvg-name="三沙卫视" group-title="卫视频道",三沙卫视
@@ -71,8 +63,12 @@ http://114.97.215.186:8888/rtp/238.1.78.246:7840
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.246:7840
 #EXTINF:-1 tvg-name="吉林卫视" group-title="卫视频道",吉林卫视
 http://114.97.215.186:8888/rtp/238.1.79.48:4496
+#EXTINF:-1 tvg-name="吉林卫视" group-title="卫视频道",吉林卫视
+http://36.7.150.152:4022/rtp/238.1.79.48:4496
 #EXTINF:-1 tvg-name="哈哈炫动" group-title="卫视频道",哈哈炫动
 http://114.97.215.186:8888/rtp/238.1.78.82:6528
+#EXTINF:-1 tvg-name="哈哈炫动" group-title="卫视频道",哈哈炫动
+http://36.7.150.152:4022/rtp/238.1.78.82:6528
 #EXTINF:-1 tvg-name="四川卫视" group-title="卫视频道",四川卫视
 http://114.97.215.186:8888/rtp/238.1.79.51:4520
 #EXTINF:-1 tvg-name="四川卫视" group-title="卫视频道",四川卫视
@@ -97,6 +93,8 @@ http://114.97.215.186:8888/rtp/238.1.79.25:4312
 http://114.97.215.186:8888/rtp/238.1.78.161:7160
 #EXTINF:-1 tvg-name="广西卫视" group-title="卫视频道",广西卫视
 http://114.97.215.186:8888/rtp/238.1.78.70:6432
+#EXTINF:-1 tvg-name="广西卫视" group-title="卫视频道",广西卫视
+http://36.7.150.152:4022/rtp/238.1.78.70:6432
 #EXTINF:-1 tvg-name="新疆卫视" group-title="卫视频道",新疆卫视
 http://114.97.215.186:8888/rtp/238.1.78.110:6752
 #EXTINF:-1 tvg-name="江苏卫视" group-title="卫视频道",江苏卫视
@@ -146,9 +144,13 @@ http://114.97.215.186:8888/rtp/238.1.78.159:7144
 #EXTINF:-1 tvg-name="上海体育" group-title="体育频道",上海体育
 http://114.97.215.186:8888/rtp/238.1.78.85:6552
 #EXTINF:-1 tvg-name="上海体育" group-title="体育频道",上海体育
+http://36.7.150.152:4022/rtp/238.1.78.85:6552
+#EXTINF:-1 tvg-name="上海体育" group-title="体育频道",上海体育
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.85:6552
 #EXTINF:-1 tvg-name="安徽影视" group-title="影视频道",安徽影视
 http://114.97.215.186:8888/rtp/238.1.79.42:4448
+#EXTINF:-1 tvg-name="安徽影视" group-title="影视频道",安徽影视
+http://36.7.150.152:4022/rtp/238.1.79.42:4448
 #EXTINF:-1 tvg-name="安徽影视" group-title="影视频道",安徽影视
 http://home.pinkfloyd.cn:5000/rtp/238.1.79.42:4448
 #EXTINF:-1 tvg-name="都市剧场" group-title="影视频道",都市剧场
@@ -159,6 +161,8 @@ http://114.97.215.186:8888/rtp/238.1.78.154:7104
 http://114.97.215.186:8888/rtp/238.1.78.97:6648
 #EXTINF:-1 tvg-name="上海纪实人文" group-title="纪实频道",上海纪实人文
 http://114.97.215.186:8888/rtp/238.1.78.153:7096
+#EXTINF:-1 tvg-name="上海纪实人文" group-title="纪实频道",上海纪实人文
+http://36.7.150.152:4022/rtp/238.1.78.153:7096
 #EXTINF:-1 tvg-name="上海纪实人文" group-title="纪实频道",上海纪实人文
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.153:7096
 #EXTINF:-1 tvg-name="金鹰纪实" group-title="纪实频道",金鹰纪实
@@ -184,137 +188,205 @@ http://114.97.215.186:8888/rtp/238.1.78.25:6128
 #EXTINF:-1 tvg-name="东至综合" group-title="地方频道",东至综合
 http://114.97.215.186:8888/rtp/238.1.79.13:4216
 #EXTINF:-1 tvg-name="东至综合" group-title="地方频道",东至综合
+http://36.7.150.152:4022/rtp/238.1.79.13:4216
+#EXTINF:-1 tvg-name="东至综合" group-title="地方频道",东至综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.79.13:4216
 #EXTINF:-1 tvg-name="临泉新闻" group-title="地方频道",临泉新闻
 http://114.97.215.186:8888/rtp/238.1.78.29:6160
+#EXTINF:-1 tvg-name="临泉新闻" group-title="地方频道",临泉新闻
+http://36.7.150.152:4022/rtp/238.1.78.29:6160
 #EXTINF:-1 tvg-name="临泉新闻" group-title="地方频道",临泉新闻
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.29:6160
 #EXTINF:-1 tvg-name="义安新闻综合" group-title="地方频道",义安新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.211:7560
 #EXTINF:-1 tvg-name="义安新闻综合" group-title="地方频道",义安新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.211:7560
+#EXTINF:-1 tvg-name="义安新闻综合" group-title="地方频道",义安新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.211:7560
 #EXTINF:-1 tvg-name="五河新闻综合" group-title="地方频道",五河新闻综合
 http://114.97.215.186:8888/rtp/238.1.79.52:4528
+#EXTINF:-1 tvg-name="五河新闻综合" group-title="地方频道",五河新闻综合
+http://36.7.150.152:4022/rtp/238.1.79.52:4528
 #EXTINF:-1 tvg-name="五河新闻综合" group-title="地方频道",五河新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.79.52:4528
 #EXTINF:-1 tvg-name="亳州农村" group-title="地方频道",亳州农村
 http://114.97.215.186:8888/rtp/238.1.78.129:6904
 #EXTINF:-1 tvg-name="亳州农村" group-title="地方频道",亳州农村
+http://36.7.150.152:4022/rtp/238.1.78.129:6904
+#EXTINF:-1 tvg-name="亳州农村" group-title="地方频道",亳州农村
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.129:6904
 #EXTINF:-1 tvg-name="亳州综合" group-title="地方频道",亳州综合
 http://114.97.215.186:8888/rtp/238.1.78.128:6896
+#EXTINF:-1 tvg-name="亳州综合" group-title="地方频道",亳州综合
+http://36.7.150.152:4022/rtp/238.1.78.128:6896
 #EXTINF:-1 tvg-name="亳州综合" group-title="地方频道",亳州综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.128:6896
 #EXTINF:-1 tvg-name="休宁新闻综合" group-title="地方频道",休宁新闻综合
 http://114.97.215.186:8888/rtp/238.1.79.20:4272
 #EXTINF:-1 tvg-name="休宁新闻综合" group-title="地方频道",休宁新闻综合
+http://36.7.150.152:4022/rtp/238.1.79.20:4272
+#EXTINF:-1 tvg-name="休宁新闻综合" group-title="地方频道",休宁新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.79.20:4272
 #EXTINF:-1 tvg-name="全椒综合" group-title="地方频道",全椒综合
 http://114.97.215.186:8888/rtp/238.1.78.203:7496
+#EXTINF:-1 tvg-name="全椒综合" group-title="地方频道",全椒综合
+http://36.7.150.152:4022/rtp/238.1.78.203:7496
 #EXTINF:-1 tvg-name="全椒综合" group-title="地方频道",全椒综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.203:7496
 #EXTINF:-1 tvg-name="六安公共" group-title="地方频道",六安公共
 http://114.97.215.186:8888/rtp/238.1.78.145:7032
 #EXTINF:-1 tvg-name="六安公共" group-title="地方频道",六安公共
+http://36.7.150.152:4022/rtp/238.1.78.145:7032
+#EXTINF:-1 tvg-name="六安公共" group-title="地方频道",六安公共
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.145:7032
 #EXTINF:-1 tvg-name="六安综合" group-title="地方频道",六安综合
 http://114.97.215.186:8888/rtp/238.1.78.144:7024
+#EXTINF:-1 tvg-name="六安综合" group-title="地方频道",六安综合
+http://36.7.150.152:4022/rtp/238.1.78.144:7024
 #EXTINF:-1 tvg-name="六安综合" group-title="地方频道",六安综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.144:7024
 #EXTINF:-1 tvg-name="凤阳新闻" group-title="地方频道",凤阳新闻
 http://114.97.215.186:8888/rtp/238.1.78.207:7528
 #EXTINF:-1 tvg-name="凤阳新闻" group-title="地方频道",凤阳新闻
+http://36.7.150.152:4022/rtp/238.1.78.207:7528
+#EXTINF:-1 tvg-name="凤阳新闻" group-title="地方频道",凤阳新闻
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.207:7528
 #EXTINF:-1 tvg-name="利辛新闻综合" group-title="地方频道",利辛新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.196:7440
+#EXTINF:-1 tvg-name="利辛新闻综合" group-title="地方频道",利辛新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.196:7440
 #EXTINF:-1 tvg-name="利辛新闻综合" group-title="地方频道",利辛新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.196:7440
 #EXTINF:-1 tvg-name="南陵新闻综合" group-title="地方频道",南陵新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.189:7384
 #EXTINF:-1 tvg-name="南陵新闻综合" group-title="地方频道",南陵新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.189:7384
+#EXTINF:-1 tvg-name="南陵新闻综合" group-title="地方频道",南陵新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.189:7384
 #EXTINF:-1 tvg-name="合肥新闻" group-title="地方频道",合肥新闻
 http://114.97.215.186:8888/rtp/238.1.78.111:6760
+#EXTINF:-1 tvg-name="合肥新闻" group-title="地方频道",合肥新闻
+http://36.7.150.152:4022/rtp/238.1.78.111:6760
 #EXTINF:-1 tvg-name="合肥新闻" group-title="地方频道",合肥新闻
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.111:6760
 #EXTINF:-1 tvg-name="固镇新闻综合" group-title="地方频道",固镇新闻综合
 http://114.97.215.186:8888/rtp/238.1.79.47:4488
 #EXTINF:-1 tvg-name="固镇新闻综合" group-title="地方频道",固镇新闻综合
+http://36.7.150.152:4022/rtp/238.1.79.47:4488
+#EXTINF:-1 tvg-name="固镇新闻综合" group-title="地方频道",固镇新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.79.47:4488
 #EXTINF:-1 tvg-name="太湖新闻综合" group-title="地方频道",太湖新闻综合
 http://114.97.215.186:8888/rtp/238.1.79.12:4208
+#EXTINF:-1 tvg-name="太湖新闻综合" group-title="地方频道",太湖新闻综合
+http://36.7.150.152:4022/rtp/238.1.79.12:4208
 #EXTINF:-1 tvg-name="太湖新闻综合" group-title="地方频道",太湖新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.79.12:4208
 #EXTINF:-1 tvg-name="宁国新闻综合" group-title="地方频道",宁国新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.216:7600
 #EXTINF:-1 tvg-name="宁国新闻综合" group-title="地方频道",宁国新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.216:7600
+#EXTINF:-1 tvg-name="宁国新闻综合" group-title="地方频道",宁国新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.216:7600
 #EXTINF:-1 tvg-name="安庆公共" group-title="地方频道",安庆公共
 http://114.97.215.186:8888/rtp/238.1.78.118:6816
+#EXTINF:-1 tvg-name="安庆公共" group-title="地方频道",安庆公共
+http://36.7.150.152:4022/rtp/238.1.78.118:6816
 #EXTINF:-1 tvg-name="安庆公共" group-title="地方频道",安庆公共
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.118:6816
 #EXTINF:-1 tvg-name="安庆教育" group-title="地方频道",安庆教育
 http://114.97.215.186:8888/rtp/238.1.78.120:6832
 #EXTINF:-1 tvg-name="安庆教育" group-title="地方频道",安庆教育
+http://36.7.150.152:4022/rtp/238.1.78.120:6832
+#EXTINF:-1 tvg-name="安庆教育" group-title="地方频道",安庆教育
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.120:6832
 #EXTINF:-1 tvg-name="安庆新闻综合" group-title="地方频道",安庆新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.117:6808
+#EXTINF:-1 tvg-name="安庆新闻综合" group-title="地方频道",安庆新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.117:6808
 #EXTINF:-1 tvg-name="安庆新闻综合" group-title="地方频道",安庆新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.117:6808
 #EXTINF:-1 tvg-name="安徽人物" group-title="地方频道",安徽人物
 http://114.97.215.186:8888/rtp/238.1.79.45:4472
 #EXTINF:-1 tvg-name="安徽人物" group-title="地方频道",安徽人物
+http://36.7.150.152:4022/rtp/238.1.79.45:4472
+#EXTINF:-1 tvg-name="安徽人物" group-title="地方频道",安徽人物
 http://home.pinkfloyd.cn:5000/rtp/238.1.79.45:4472
 #EXTINF:-1 tvg-name="安徽公共" group-title="地方频道",安徽公共
 http://114.97.215.186:8888/rtp/238.1.79.43:4456
+#EXTINF:-1 tvg-name="安徽公共" group-title="地方频道",安徽公共
+http://36.7.150.152:4022/rtp/238.1.79.43:4456
 #EXTINF:-1 tvg-name="安徽公共" group-title="地方频道",安徽公共
 http://home.pinkfloyd.cn:5000/rtp/238.1.79.43:4456
 #EXTINF:-1 tvg-name="安徽农业科教" group-title="地方频道",安徽农业科教
 http://114.97.215.186:8888/rtp/238.1.79.40:4432
 #EXTINF:-1 tvg-name="安徽农业科教" group-title="地方频道",安徽农业科教
+http://36.7.150.152:4022/rtp/238.1.79.40:4432
+#EXTINF:-1 tvg-name="安徽农业科教" group-title="地方频道",安徽农业科教
 http://home.pinkfloyd.cn:5000/rtp/238.1.79.40:4432
 #EXTINF:-1 tvg-name="安徽国际" group-title="地方频道",安徽国际
 http://114.97.215.186:8888/rtp/238.1.78.61:6360
+#EXTINF:-1 tvg-name="安徽国际" group-title="地方频道",安徽国际
+http://36.7.150.152:4022/rtp/238.1.78.61:6360
 #EXTINF:-1 tvg-name="安徽国际" group-title="地方频道",安徽国际
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.61:6360
 #EXTINF:-1 tvg-name="安徽导视" group-title="地方频道",安徽导视
 http://114.97.215.186:8888/rtp/238.1.79.66:4664
 #EXTINF:-1 tvg-name="安徽导视" group-title="地方频道",安徽导视
+http://36.7.150.152:4022/rtp/238.1.79.66:4664
+#EXTINF:-1 tvg-name="安徽导视" group-title="地方频道",安徽导视
 http://home.pinkfloyd.cn:5000/rtp/238.1.79.66:4664
 #EXTINF:-1 tvg-name="安徽经济生活" group-title="地方频道",安徽经济生活
 http://114.97.215.186:8888/rtp/238.1.79.44:4464
+#EXTINF:-1 tvg-name="安徽经济生活" group-title="地方频道",安徽经济生活
+http://36.7.150.152:4022/rtp/238.1.79.44:4464
 #EXTINF:-1 tvg-name="安徽经济生活" group-title="地方频道",安徽经济生活
 http://home.pinkfloyd.cn:5000/rtp/238.1.79.44:4464
 #EXTINF:-1 tvg-name="安徽综艺体育" group-title="地方频道",安徽综艺体育
 http://114.97.215.186:8888/rtp/238.1.79.41:4440
 #EXTINF:-1 tvg-name="安徽综艺体育" group-title="地方频道",安徽综艺体育
+http://36.7.150.152:4022/rtp/238.1.79.41:4440
+#EXTINF:-1 tvg-name="安徽综艺体育" group-title="地方频道",安徽综艺体育
 http://home.pinkfloyd.cn:5000/rtp/238.1.79.41:4440
 #EXTINF:-1 tvg-name="定远新闻综合" group-title="地方频道",定远新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.205:7512
+#EXTINF:-1 tvg-name="定远新闻综合" group-title="地方频道",定远新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.205:7512
 #EXTINF:-1 tvg-name="定远新闻综合" group-title="地方频道",定远新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.205:7512
 #EXTINF:-1 tvg-name="宣城公共" group-title="地方频道",宣城公共
 http://114.97.215.186:8888/rtp/238.1.78.143:7016
 #EXTINF:-1 tvg-name="宣城公共" group-title="地方频道",宣城公共
+http://36.7.150.152:4022/rtp/238.1.78.143:7016
+#EXTINF:-1 tvg-name="宣城公共" group-title="地方频道",宣城公共
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.143:7016
 #EXTINF:-1 tvg-name="宣城综合" group-title="地方频道",宣城综合
 http://114.97.215.186:8888/rtp/238.1.78.142:7008
+#EXTINF:-1 tvg-name="宣城综合" group-title="地方频道",宣城综合
+http://36.7.150.152:4022/rtp/238.1.78.142:7008
 #EXTINF:-1 tvg-name="宣城综合" group-title="地方频道",宣城综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.142:7008
 #EXTINF:-1 tvg-name="宿州公共" group-title="地方频道",宿州公共
 http://114.97.215.186:8888/rtp/238.1.78.122:6848
 #EXTINF:-1 tvg-name="宿州公共" group-title="地方频道",宿州公共
+http://36.7.150.152:4022/rtp/238.1.78.122:6848
+#EXTINF:-1 tvg-name="宿州公共" group-title="地方频道",宿州公共
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.122:6848
 #EXTINF:-1 tvg-name="宿州新闻综合" group-title="地方频道",宿州新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.121:6840
+#EXTINF:-1 tvg-name="宿州新闻综合" group-title="地方频道",宿州新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.121:6840
 #EXTINF:-1 tvg-name="宿州新闻综合" group-title="地方频道",宿州新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.121:6840
 #EXTINF:-1 tvg-name="宿州科教" group-title="地方频道",宿州科教
 http://114.97.215.186:8888/rtp/238.1.78.123:6856
 #EXTINF:-1 tvg-name="宿州科教" group-title="地方频道",宿州科教
+http://36.7.150.152:4022/rtp/238.1.78.123:6856
+#EXTINF:-1 tvg-name="宿州科教" group-title="地方频道",宿州科教
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.123:6856
 #EXTINF:-1 tvg-name="寿县新闻综合" group-title="地方频道",寿县新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.146:7040
+#EXTINF:-1 tvg-name="寿县新闻综合" group-title="地方频道",寿县新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.146:7040
 #EXTINF:-1 tvg-name="寿县新闻综合" group-title="地方频道",寿县新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.146:7040
 #EXTINF:-1 tvg-name="山东教育卫视" group-title="地方频道",山东教育卫视
@@ -324,236 +396,354 @@ http://home.pinkfloyd.cn:5000/rtp/238.1.78.254:7904
 #EXTINF:-1 tvg-name="广德新闻综合" group-title="地方频道",广德新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.212:7568
 #EXTINF:-1 tvg-name="广德新闻综合" group-title="地方频道",广德新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.212:7568
+#EXTINF:-1 tvg-name="广德新闻综合" group-title="地方频道",广德新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.212:7568
 #EXTINF:-1 tvg-name="广德生活" group-title="地方频道",广德生活
 http://114.97.215.186:8888/rtp/238.1.78.213:7576
+#EXTINF:-1 tvg-name="广德生活" group-title="地方频道",广德生活
+http://36.7.150.152:4022/rtp/238.1.78.213:7576
 #EXTINF:-1 tvg-name="广德生活" group-title="地方频道",广德生活
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.213:7576
 #EXTINF:-1 tvg-name="徽州新闻" group-title="地方频道",徽州新闻
 http://114.97.215.186:8888/rtp/238.1.78.138:6976
 #EXTINF:-1 tvg-name="徽州新闻" group-title="地方频道",徽州新闻
+http://36.7.150.152:4022/rtp/238.1.78.138:6976
+#EXTINF:-1 tvg-name="徽州新闻" group-title="地方频道",徽州新闻
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.138:6976
 #EXTINF:-1 tvg-name="旌德新闻综合" group-title="地方频道",旌德新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.215:7592
+#EXTINF:-1 tvg-name="旌德新闻综合" group-title="地方频道",旌德新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.215:7592
 #EXTINF:-1 tvg-name="旌德新闻综合" group-title="地方频道",旌德新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.215:7592
 #EXTINF:-1 tvg-name="无为新闻" group-title="地方频道",无为新闻
 http://114.97.215.186:8888/rtp/238.1.78.188:7376
 #EXTINF:-1 tvg-name="无为新闻" group-title="地方频道",无为新闻
+http://36.7.150.152:4022/rtp/238.1.78.188:7376
+#EXTINF:-1 tvg-name="无为新闻" group-title="地方频道",无为新闻
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.188:7376
 #EXTINF:-1 tvg-name="明光综合" group-title="地方频道",明光综合
 http://114.97.215.186:8888/rtp/238.1.78.208:7536
+#EXTINF:-1 tvg-name="明光综合" group-title="地方频道",明光综合
+http://36.7.150.152:4022/rtp/238.1.78.208:7536
 #EXTINF:-1 tvg-name="明光综合" group-title="地方频道",明光综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.208:7536
 #EXTINF:-1 tvg-name="来安新闻综合" group-title="地方频道",来安新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.204:7504
 #EXTINF:-1 tvg-name="来安新闻综合" group-title="地方频道",来安新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.204:7504
+#EXTINF:-1 tvg-name="来安新闻综合" group-title="地方频道",来安新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.204:7504
 #EXTINF:-1 tvg-name="桐城综合" group-title="地方频道",桐城综合
 http://114.97.215.186:8888/rtp/238.1.78.28:6152
+#EXTINF:-1 tvg-name="桐城综合" group-title="地方频道",桐城综合
+http://36.7.150.152:4022/rtp/238.1.78.28:6152
 #EXTINF:-1 tvg-name="桐城综合" group-title="地方频道",桐城综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.28:6152
 #EXTINF:-1 tvg-name="歙县综合" group-title="地方频道",歙县综合
 http://114.97.215.186:8888/rtp/238.1.78.200:7472
 #EXTINF:-1 tvg-name="歙县综合" group-title="地方频道",歙县综合
+http://36.7.150.152:4022/rtp/238.1.78.200:7472
+#EXTINF:-1 tvg-name="歙县综合" group-title="地方频道",歙县综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.200:7472
 #EXTINF:-1 tvg-name="池州公共" group-title="地方频道",池州公共
 http://114.97.215.186:8888/rtp/238.1.78.148:7056
+#EXTINF:-1 tvg-name="池州公共" group-title="地方频道",池州公共
+http://36.7.150.152:4022/rtp/238.1.78.148:7056
 #EXTINF:-1 tvg-name="池州公共" group-title="地方频道",池州公共
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.148:7056
 #EXTINF:-1 tvg-name="池州新闻综合" group-title="地方频道",池州新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.147:7048
 #EXTINF:-1 tvg-name="池州新闻综合" group-title="地方频道",池州新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.147:7048
+#EXTINF:-1 tvg-name="池州新闻综合" group-title="地方频道",池州新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.147:7048
 #EXTINF:-1 tvg-name="泗县新闻" group-title="地方频道",泗县新闻
 http://114.97.215.186:8888/rtp/238.1.78.193:7416
+#EXTINF:-1 tvg-name="泗县新闻" group-title="地方频道",泗县新闻
+http://36.7.150.152:4022/rtp/238.1.78.193:7416
 #EXTINF:-1 tvg-name="泗县新闻" group-title="地方频道",泗县新闻
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.193:7416
 #EXTINF:-1 tvg-name="海豚生活" group-title="地方频道",海豚生活
 http://114.97.215.186:8888/rtp/238.1.79.50:4512
 #EXTINF:-1 tvg-name="海豚生活" group-title="地方频道",海豚生活
+http://36.7.150.152:4022/rtp/238.1.79.50:4512
+#EXTINF:-1 tvg-name="海豚生活" group-title="地方频道",海豚生活
 http://home.pinkfloyd.cn:5000/rtp/238.1.79.50:4512
 #EXTINF:-1 tvg-name="涡阳新闻综合" group-title="地方频道",涡阳新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.197:7448
+#EXTINF:-1 tvg-name="涡阳新闻综合" group-title="地方频道",涡阳新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.197:7448
 #EXTINF:-1 tvg-name="涡阳新闻综合" group-title="地方频道",涡阳新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.197:7448
 #EXTINF:-1 tvg-name="淮北公共" group-title="地方频道",淮北公共
 http://114.97.215.186:8888/rtp/238.1.78.136:6960
 #EXTINF:-1 tvg-name="淮北公共" group-title="地方频道",淮北公共
+http://36.7.150.152:4022/rtp/238.1.78.136:6960
+#EXTINF:-1 tvg-name="淮北公共" group-title="地方频道",淮北公共
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.136:6960
 #EXTINF:-1 tvg-name="淮北教育" group-title="地方频道",淮北教育
 http://114.97.215.186:8888/rtp/238.1.78.137:6968
+#EXTINF:-1 tvg-name="淮北教育" group-title="地方频道",淮北教育
+http://36.7.150.152:4022/rtp/238.1.78.137:6968
 #EXTINF:-1 tvg-name="淮北教育" group-title="地方频道",淮北教育
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.137:6968
 #EXTINF:-1 tvg-name="淮北新闻综合" group-title="地方频道",淮北新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.135:6952
 #EXTINF:-1 tvg-name="淮北新闻综合" group-title="地方频道",淮北新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.135:6952
+#EXTINF:-1 tvg-name="淮北新闻综合" group-title="地方频道",淮北新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.135:6952
 #EXTINF:-1 tvg-name="淮南公共" group-title="地方频道",淮南公共
 http://114.97.215.186:8888/rtp/238.1.78.114:6784
+#EXTINF:-1 tvg-name="淮南公共" group-title="地方频道",淮南公共
+http://36.7.150.152:4022/rtp/238.1.78.114:6784
 #EXTINF:-1 tvg-name="淮南公共" group-title="地方频道",淮南公共
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.114:6784
 #EXTINF:-1 tvg-name="淮南新闻综合" group-title="地方频道",淮南新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.113:6776
 #EXTINF:-1 tvg-name="淮南新闻综合" group-title="地方频道",淮南新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.113:6776
+#EXTINF:-1 tvg-name="淮南新闻综合" group-title="地方频道",淮南新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.113:6776
 #EXTINF:-1 tvg-name="湾沚新闻综合" group-title="地方频道",湾沚新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.187:7368
+#EXTINF:-1 tvg-name="湾沚新闻综合" group-title="地方频道",湾沚新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.187:7368
 #EXTINF:-1 tvg-name="湾沚新闻综合" group-title="地方频道",湾沚新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.187:7368
 #EXTINF:-1 tvg-name="滁州公共" group-title="地方频道",滁州公共
 http://114.97.215.186:8888/rtp/238.1.78.133:6936
 #EXTINF:-1 tvg-name="滁州公共" group-title="地方频道",滁州公共
+http://36.7.150.152:4022/rtp/238.1.78.133:6936
+#EXTINF:-1 tvg-name="滁州公共" group-title="地方频道",滁州公共
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.133:6936
 #EXTINF:-1 tvg-name="滁州新闻综合" group-title="地方频道",滁州新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.132:6928
+#EXTINF:-1 tvg-name="滁州新闻综合" group-title="地方频道",滁州新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.132:6928
 #EXTINF:-1 tvg-name="滁州新闻综合" group-title="地方频道",滁州新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.132:6928
 #EXTINF:-1 tvg-name="滁州科教" group-title="地方频道",滁州科教
 http://114.97.215.186:8888/rtp/238.1.78.134:6944
 #EXTINF:-1 tvg-name="滁州科教" group-title="地方频道",滁州科教
+http://36.7.150.152:4022/rtp/238.1.78.134:6944
+#EXTINF:-1 tvg-name="滁州科教" group-title="地方频道",滁州科教
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.134:6944
 #EXTINF:-1 tvg-name="潜山综合" group-title="地方频道",潜山综合
 http://114.97.215.186:8888/rtp/238.1.78.192:7408
+#EXTINF:-1 tvg-name="潜山综合" group-title="地方频道",潜山综合
+http://36.7.150.152:4022/rtp/238.1.78.192:7408
 #EXTINF:-1 tvg-name="潜山综合" group-title="地方频道",潜山综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.192:7408
 #EXTINF:-1 tvg-name="濉溪新闻" group-title="地方频道",濉溪新闻
 http://114.97.215.186:8888/rtp/238.1.78.209:7544
 #EXTINF:-1 tvg-name="濉溪新闻" group-title="地方频道",濉溪新闻
+http://36.7.150.152:4022/rtp/238.1.78.209:7544
+#EXTINF:-1 tvg-name="濉溪新闻" group-title="地方频道",濉溪新闻
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.209:7544
 #EXTINF:-1 tvg-name="界首综合" group-title="地方频道",界首综合
 http://114.97.215.186:8888/rtp/238.1.78.195:7432
+#EXTINF:-1 tvg-name="界首综合" group-title="地方频道",界首综合
+http://36.7.150.152:4022/rtp/238.1.78.195:7432
 #EXTINF:-1 tvg-name="界首综合" group-title="地方频道",界首综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.195:7432
 #EXTINF:-1 tvg-name="石台综合" group-title="地方频道",石台综合
 http://114.97.215.186:8888/rtp/238.1.78.221:7640
 #EXTINF:-1 tvg-name="石台综合" group-title="地方频道",石台综合
+http://36.7.150.152:4022/rtp/238.1.78.221:7640
+#EXTINF:-1 tvg-name="石台综合" group-title="地方频道",石台综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.221:7640
 #EXTINF:-1 tvg-name="祁门综合" group-title="地方频道",祁门综合
 http://114.97.215.186:8888/rtp/238.1.79.14:4224
+#EXTINF:-1 tvg-name="祁门综合" group-title="地方频道",祁门综合
+http://36.7.150.152:4022/rtp/238.1.79.14:4224
 #EXTINF:-1 tvg-name="祁门综合" group-title="地方频道",祁门综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.79.14:4224
 #EXTINF:-1 tvg-name="繁昌新闻综合" group-title="地方频道",繁昌新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.190:7392
 #EXTINF:-1 tvg-name="繁昌新闻综合" group-title="地方频道",繁昌新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.190:7392
+#EXTINF:-1 tvg-name="繁昌新闻综合" group-title="地方频道",繁昌新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.190:7392
 #EXTINF:-1 tvg-name="绩溪新闻" group-title="地方频道",绩溪新闻
 http://114.97.215.186:8888/rtp/238.1.78.218:7616
+#EXTINF:-1 tvg-name="绩溪新闻" group-title="地方频道",绩溪新闻
+http://36.7.150.152:4022/rtp/238.1.78.218:7616
 #EXTINF:-1 tvg-name="绩溪新闻" group-title="地方频道",绩溪新闻
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.218:7616
 #EXTINF:-1 tvg-name="肥东新闻综合" group-title="地方频道",肥东新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.183:7336
 #EXTINF:-1 tvg-name="肥东新闻综合" group-title="地方频道",肥东新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.183:7336
+#EXTINF:-1 tvg-name="肥东新闻综合" group-title="地方频道",肥东新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.183:7336
 #EXTINF:-1 tvg-name="肥东经济生活" group-title="地方频道",肥东经济生活
 http://114.97.215.186:8888/rtp/238.1.78.184:7344
+#EXTINF:-1 tvg-name="肥东经济生活" group-title="地方频道",肥东经济生活
+http://36.7.150.152:4022/rtp/238.1.78.184:7344
 #EXTINF:-1 tvg-name="肥东经济生活" group-title="地方频道",肥东经济生活
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.184:7344
 #EXTINF:-1 tvg-name="肥西新闻综合" group-title="地方频道",肥西新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.185:7352
 #EXTINF:-1 tvg-name="肥西新闻综合" group-title="地方频道",肥西新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.185:7352
+#EXTINF:-1 tvg-name="肥西新闻综合" group-title="地方频道",肥西新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.185:7352
 #EXTINF:-1 tvg-name="芜湖公共" group-title="地方频道",芜湖公共
 http://114.97.215.186:8888/rtp/238.1.78.80:6512
+#EXTINF:-1 tvg-name="芜湖公共" group-title="地方频道",芜湖公共
+http://36.7.150.152:4022/rtp/238.1.78.80:6512
 #EXTINF:-1 tvg-name="芜湖公共" group-title="地方频道",芜湖公共
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.80:6512
 #EXTINF:-1 tvg-name="芜湖教育" group-title="地方频道",芜湖教育
 http://114.97.215.186:8888/rtp/238.1.78.167:7208
 #EXTINF:-1 tvg-name="芜湖教育" group-title="地方频道",芜湖教育
+http://36.7.150.152:4022/rtp/238.1.78.167:7208
+#EXTINF:-1 tvg-name="芜湖教育" group-title="地方频道",芜湖教育
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.167:7208
 #EXTINF:-1 tvg-name="芜湖新闻综合" group-title="地方频道",芜湖新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.112:6768
+#EXTINF:-1 tvg-name="芜湖新闻综合" group-title="地方频道",芜湖新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.112:6768
 #EXTINF:-1 tvg-name="芜湖新闻综合" group-title="地方频道",芜湖新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.112:6768
 #EXTINF:-1 tvg-name="芜湖生活" group-title="地方频道",芜湖生活
 http://114.97.215.186:8888/rtp/238.1.78.152:7088
 #EXTINF:-1 tvg-name="芜湖生活" group-title="地方频道",芜湖生活
+http://36.7.150.152:4022/rtp/238.1.78.152:7088
+#EXTINF:-1 tvg-name="芜湖生活" group-title="地方频道",芜湖生活
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.152:7088
 #EXTINF:-1 tvg-name="萧县新闻综合" group-title="地方频道",萧县新闻综合
 http://114.97.215.186:8888/rtp/238.1.79.46:4480
+#EXTINF:-1 tvg-name="萧县新闻综合" group-title="地方频道",萧县新闻综合
+http://36.7.150.152:4022/rtp/238.1.79.46:4480
 #EXTINF:-1 tvg-name="萧县新闻综合" group-title="地方频道",萧县新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.79.46:4480
 #EXTINF:-1 tvg-name="蒙城新闻" group-title="地方频道",蒙城新闻
 http://114.97.215.186:8888/rtp/238.1.79.19:4264
 #EXTINF:-1 tvg-name="蒙城新闻" group-title="地方频道",蒙城新闻
+http://36.7.150.152:4022/rtp/238.1.79.19:4264
+#EXTINF:-1 tvg-name="蒙城新闻" group-title="地方频道",蒙城新闻
 http://home.pinkfloyd.cn:5000/rtp/238.1.79.19:4264
 #EXTINF:-1 tvg-name="蚌埠公共" group-title="地方频道",蚌埠公共
 http://114.97.215.186:8888/rtp/238.1.78.181:7320
+#EXTINF:-1 tvg-name="蚌埠公共" group-title="地方频道",蚌埠公共
+http://36.7.150.152:4022/rtp/238.1.78.181:7320
 #EXTINF:-1 tvg-name="蚌埠公共" group-title="地方频道",蚌埠公共
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.181:7320
 #EXTINF:-1 tvg-name="蚌埠新闻综合" group-title="地方频道",蚌埠新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.180:7312
 #EXTINF:-1 tvg-name="蚌埠新闻综合" group-title="地方频道",蚌埠新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.180:7312
+#EXTINF:-1 tvg-name="蚌埠新闻综合" group-title="地方频道",蚌埠新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.180:7312
 #EXTINF:-1 tvg-name="郎溪新闻" group-title="地方频道",郎溪新闻
 http://114.97.215.186:8888/rtp/238.1.78.214:7584
+#EXTINF:-1 tvg-name="郎溪新闻" group-title="地方频道",郎溪新闻
+http://36.7.150.152:4022/rtp/238.1.78.214:7584
 #EXTINF:-1 tvg-name="郎溪新闻" group-title="地方频道",郎溪新闻
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.214:7584
 #EXTINF:-1 tvg-name="金寨综合" group-title="地方频道",金寨综合
 http://114.97.215.186:8888/rtp/238.1.79.21:4280
 #EXTINF:-1 tvg-name="金寨综合" group-title="地方频道",金寨综合
+http://36.7.150.152:4022/rtp/238.1.79.21:4280
+#EXTINF:-1 tvg-name="金寨综合" group-title="地方频道",金寨综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.79.21:4280
 #EXTINF:-1 tvg-name="铜陵公共" group-title="地方频道",铜陵公共
 http://114.97.215.186:8888/rtp/238.1.78.140:6992
+#EXTINF:-1 tvg-name="铜陵公共" group-title="地方频道",铜陵公共
+http://36.7.150.152:4022/rtp/238.1.78.140:6992
 #EXTINF:-1 tvg-name="铜陵公共" group-title="地方频道",铜陵公共
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.140:6992
 #EXTINF:-1 tvg-name="铜陵新闻综合" group-title="地方频道",铜陵新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.139:6984
 #EXTINF:-1 tvg-name="铜陵新闻综合" group-title="地方频道",铜陵新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.139:6984
+#EXTINF:-1 tvg-name="铜陵新闻综合" group-title="地方频道",铜陵新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.139:6984
 #EXTINF:-1 tvg-name="铜陵科教" group-title="地方频道",铜陵科教
 http://114.97.215.186:8888/rtp/238.1.78.141:7000
+#EXTINF:-1 tvg-name="铜陵科教" group-title="地方频道",铜陵科教
+http://36.7.150.152:4022/rtp/238.1.78.141:7000
 #EXTINF:-1 tvg-name="铜陵科教" group-title="地方频道",铜陵科教
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.141:7000
 #EXTINF:-1 tvg-name="阜南新闻综合" group-title="地方频道",阜南新闻综合
 http://114.97.215.186:8888/rtp/238.1.79.11:4200
 #EXTINF:-1 tvg-name="阜南新闻综合" group-title="地方频道",阜南新闻综合
+http://36.7.150.152:4022/rtp/238.1.79.11:4200
+#EXTINF:-1 tvg-name="阜南新闻综合" group-title="地方频道",阜南新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.79.11:4200
 #EXTINF:-1 tvg-name="阜阳公共" group-title="地方频道",阜阳公共
 http://114.97.215.186:8888/rtp/238.1.78.125:6872
+#EXTINF:-1 tvg-name="阜阳公共" group-title="地方频道",阜阳公共
+http://36.7.150.152:4022/rtp/238.1.78.125:6872
 #EXTINF:-1 tvg-name="阜阳公共" group-title="地方频道",阜阳公共
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.125:6872
 #EXTINF:-1 tvg-name="阜阳教育" group-title="地方频道",阜阳教育
 http://114.97.215.186:8888/rtp/238.1.78.126:6880
 #EXTINF:-1 tvg-name="阜阳教育" group-title="地方频道",阜阳教育
+http://36.7.150.152:4022/rtp/238.1.78.126:6880
+#EXTINF:-1 tvg-name="阜阳教育" group-title="地方频道",阜阳教育
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.126:6880
 #EXTINF:-1 tvg-name="阜阳新闻综合" group-title="地方频道",阜阳新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.124:6864
+#EXTINF:-1 tvg-name="阜阳新闻综合" group-title="地方频道",阜阳新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.124:6864
 #EXTINF:-1 tvg-name="阜阳新闻综合" group-title="地方频道",阜阳新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.124:6864
 #EXTINF:-1 tvg-name="阜阳都市" group-title="地方频道",阜阳都市
 http://114.97.215.186:8888/rtp/238.1.78.127:6888
 #EXTINF:-1 tvg-name="阜阳都市" group-title="地方频道",阜阳都市
+http://36.7.150.152:4022/rtp/238.1.78.127:6888
+#EXTINF:-1 tvg-name="阜阳都市" group-title="地方频道",阜阳都市
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.127:6888
 #EXTINF:-1 tvg-name="霍山综合" group-title="地方频道",霍山综合
 http://114.97.215.186:8888/rtp/238.1.78.220:7632
+#EXTINF:-1 tvg-name="霍山综合" group-title="地方频道",霍山综合
+http://36.7.150.152:4022/rtp/238.1.78.220:7632
 #EXTINF:-1 tvg-name="霍山综合" group-title="地方频道",霍山综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.220:7632
 #EXTINF:-1 tvg-name="霍邱新闻综合" group-title="地方频道",霍邱新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.119:6824
 #EXTINF:-1 tvg-name="霍邱新闻综合" group-title="地方频道",霍邱新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.119:6824
+#EXTINF:-1 tvg-name="霍邱新闻综合" group-title="地方频道",霍邱新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.119:6824
 #EXTINF:-1 tvg-name="颍上新闻综合" group-title="地方频道",颍上新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.194:7424
+#EXTINF:-1 tvg-name="颍上新闻综合" group-title="地方频道",颍上新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.194:7424
 #EXTINF:-1 tvg-name="颍上新闻综合" group-title="地方频道",颍上新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.194:7424
 #EXTINF:-1 tvg-name="马鞍山公共" group-title="地方频道",马鞍山公共
 http://114.97.215.186:8888/rtp/238.1.78.77:6488
 #EXTINF:-1 tvg-name="马鞍山公共" group-title="地方频道",马鞍山公共
+http://36.7.150.152:4022/rtp/238.1.78.77:6488
+#EXTINF:-1 tvg-name="马鞍山公共" group-title="地方频道",马鞍山公共
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.77:6488
 #EXTINF:-1 tvg-name="马鞍山新闻综合" group-title="地方频道",马鞍山新闻综合
 http://114.97.215.186:8888/rtp/238.1.79.15:4232
+#EXTINF:-1 tvg-name="马鞍山新闻综合" group-title="地方频道",马鞍山新闻综合
+http://36.7.150.152:4022/rtp/238.1.79.15:4232
 #EXTINF:-1 tvg-name="马鞍山新闻综合" group-title="地方频道",马鞍山新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.79.15:4232
 #EXTINF:-1 tvg-name="黄山公共" group-title="地方频道",黄山公共
 http://114.97.215.186:8888/rtp/238.1.78.131:6920
 #EXTINF:-1 tvg-name="黄山公共" group-title="地方频道",黄山公共
+http://36.7.150.152:4022/rtp/238.1.78.131:6920
+#EXTINF:-1 tvg-name="黄山公共" group-title="地方频道",黄山公共
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.131:6920
 #EXTINF:-1 tvg-name="黄山新闻综合" group-title="地方频道",黄山新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.130:6912
 #EXTINF:-1 tvg-name="黄山新闻综合" group-title="地方频道",黄山新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.130:6912
+#EXTINF:-1 tvg-name="黄山新闻综合" group-title="地方频道",黄山新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.130:6912
 #EXTINF:-1 tvg-name="黟县新闻综合" group-title="地方频道",黟县新闻综合
 http://114.97.215.186:8888/rtp/238.1.78.149:7064
+#EXTINF:-1 tvg-name="黟县新闻综合" group-title="地方频道",黟县新闻综合
+http://36.7.150.152:4022/rtp/238.1.78.149:7064
 #EXTINF:-1 tvg-name="黟县新闻综合" group-title="地方频道",黟县新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.149:7064

@@ -11,8 +11,6 @@ http://27.154.198.20:10000/rtp/239.61.3.45:9788
 http://27.154.198.20:10000/rtp/239.61.3.44:9782
 #EXTINF:-1 tvg-name="三沙卫视" group-title="卫视频道",三沙卫视
 http://27.154.198.20:10000/rtp/239.61.3.10:9578
-#EXTINF:-1 tvg-name="东南卫视" group-title="卫视频道",东南卫视
-http://27.154.198.20:10000/rtp/239.61.2.132:8708
 #EXTINF:-1 tvg-name="云南卫视" group-title="卫视频道",云南卫视
 http://27.154.198.20:10000/rtp/239.61.2.61:8360
 #EXTINF:-1 tvg-name="兵团卫视" group-title="卫视频道",兵团卫视
@@ -29,6 +27,8 @@ http://e3.woc.iiiya.cn:18888/rtp/239.61.2.11:8060
 http://27.154.198.20:10000/rtp/239.61.2.223:9326
 #EXTINF:-1 tvg-name="哈哈炫动" group-title="卫视频道",哈哈炫动
 http://27.154.198.20:10000/rtp/239.61.2.70:8414
+#EXTINF:-1 tvg-name="哈哈炫动" group-title="卫视频道",哈哈炫动
+http://e3.woc.iiiya.cn:18888/rtp/239.61.2.70:8414
 #EXTINF:-1 tvg-name="嘉佳卡通" group-title="卫视频道",嘉佳卡通
 http://27.154.198.20:10000/rtp/239.61.2.72:8426
 #EXTINF:-1 tvg-name="大湾区卫视" group-title="卫视频道",大湾区卫视
@@ -47,10 +47,6 @@ http://27.154.198.20:10000/rtp/239.61.2.224:9332
 http://27.154.198.20:10000/rtp/239.61.2.48:8282
 #EXTINF:-1 tvg-name="新疆卫视" group-title="卫视频道",新疆卫视
 http://27.154.198.20:10000/rtp/239.61.2.227:9350
-#EXTINF:-1 tvg-name="河北卫视" group-title="卫视频道",河北卫视
-http://27.154.198.20:10000/rtp/239.61.2.57:8336
-#EXTINF:-1 tvg-name="河南卫视" group-title="卫视频道",河南卫视
-http://27.154.198.20:10000/rtp/239.61.2.59:8348
 #EXTINF:-1 tvg-name="海南卫视" group-title="卫视频道",海南卫视
 http://27.154.198.20:10000/rtp/239.61.2.42:8246
 #EXTINF:-1 tvg-name="海峡卫视" group-title="卫视频道",海峡卫视
@@ -61,16 +57,10 @@ http://e1.woc.iiiya.cn:18888/rtp/239.61.2.151:8894
 http://e3.woc.iiiya.cn:18888/rtp/239.61.2.151:8894
 #EXTINF:-1 tvg-name="海峡卫视" group-title="卫视频道",海峡卫视
 http://woc.iiiya.cn:18888/rtp/239.61.2.151:8894
-#EXTINF:-1 tvg-name="湖北卫视" group-title="卫视频道",湖北卫视
-http://27.154.198.20:10000/rtp/239.61.2.120:8714
 #EXTINF:-1 tvg-name="甘肃卫视" group-title="卫视频道",甘肃卫视
 http://27.154.198.20:10000/rtp/239.61.2.225:9338
 #EXTINF:-1 tvg-name="西藏卫视" group-title="卫视频道",西藏卫视
 http://27.154.198.20:10000/rtp/239.61.2.229:9362
-#EXTINF:-1 tvg-name="贵州卫视" group-title="卫视频道",贵州卫视
-http://27.154.198.20:10000/rtp/239.61.2.159:8942
-#EXTINF:-1 tvg-name="辽宁卫视" group-title="卫视频道",辽宁卫视
-http://27.154.198.20:10000/rtp/239.61.2.181:9074
 #EXTINF:-1 tvg-name="重庆卫视" group-title="卫视频道",重庆卫视
 http://27.154.198.20:10000/rtp/239.61.2.250:9488
 #EXTINF:-1 tvg-name="金鹰卡通" group-title="卫视频道",金鹰卡通
@@ -79,14 +69,10 @@ http://27.154.198.20:10000/rtp/239.61.2.221:9314
 http://27.154.198.20:10000/rtp/239.61.2.38:8222
 #EXTINF:-1 tvg-name="青海卫视" group-title="卫视频道",青海卫视
 http://27.154.198.20:10000/rtp/239.61.2.60:8354
-#EXTINF:-1 tvg-name="黑龙江卫视" group-title="卫视频道",黑龙江卫视
-http://27.154.198.20:10000/rtp/239.61.2.34:8198
 #EXTINF:-1 tvg-name="都市剧场" group-title="影视频道",都市剧场
 http://27.154.198.20:10000/rtp/239.61.2.149:8882
 #EXTINF:-1 tvg-name="CHC动作电影" group-title="电影频道",CHC动作电影
 http://27.154.198.20:10000/rtp/239.61.3.16:9616
-#EXTINF:-1 tvg-name="CHC动作电影" group-title="电影频道",CHC动作电影
-http://e1.woc.iiiya.cn:18888/rtp/239.61.3.16:9616
 #EXTINF:-1 tvg-name="动漫秀场" group-title="少儿频道",动漫秀场
 http://27.154.198.20:10000/rtp/239.61.2.148:8876
 #EXTINF:-1 tvg-name="卡酷少儿" group-title="少儿频道",卡酷少儿
@@ -125,8 +111,6 @@ http://e3.woc.iiiya.cn:18888/rtp/239.61.2.183:9086
 http://27.154.198.20:10000/rtp/239.61.2.167:8990
 #EXTINF:-1 tvg-name="中国教育1" group-title="国教频道",中国教育1
 http://27.154.198.20:10000/rtp/239.61.3.6:9554
-#EXTINF:-1 tvg-name="中国教育1" group-title="国教频道",中国教育1
-http://27.154.198.20:10000/rtp/239.61.3.15:9608
 #EXTINF:-1 tvg-name="东方财经" group-title="主题频道",东方财经
 http://27.154.198.20:10000/rtp/239.61.2.76:8450
 #EXTINF:-1 tvg-name="东方财经" group-title="主题频道",东方财经
@@ -146,8 +130,6 @@ http://woc.iiiya.cn:18888/rtp/239.61.3.72:9950
 #EXTINF:-1 tvg-name="优优宝贝" group-title="数字频道",优优宝贝
 http://27.154.198.20:10000/rtp/239.61.3.70:9938
 #EXTINF:-1 tvg-name="优优宝贝" group-title="数字频道",优优宝贝
-http://e1.woc.iiiya.cn:18888/rtp/239.61.3.70:9938
-#EXTINF:-1 tvg-name="优优宝贝" group-title="数字频道",优优宝贝
 http://e3.woc.iiiya.cn:18888/rtp/239.61.3.70:9938
 #EXTINF:-1 tvg-name="先锋乒羽" group-title="数字频道",先锋乒羽
 http://27.154.198.20:10000/rtp/239.61.3.17:9622
@@ -155,8 +137,6 @@ http://27.154.198.20:10000/rtp/239.61.3.17:9622
 http://e1.woc.iiiya.cn:18888/rtp/239.61.3.17:9622
 #EXTINF:-1 tvg-name="先锋乒羽" group-title="数字频道",先锋乒羽
 http://e3.woc.iiiya.cn:18888/rtp/239.61.3.17:9622
-#EXTINF:-1 tvg-name="先锋乒羽" group-title="数字频道",先锋乒羽
-http://woc.iiiya.cn:18888/rtp/239.61.3.17:9622
 #EXTINF:-1 tvg-name="发现之旅" group-title="数字频道",发现之旅
 http://27.154.198.20:10000/rtp/239.61.3.74:9962
 #EXTINF:-1 tvg-name="发现之旅" group-title="数字频道",发现之旅
@@ -177,18 +157,12 @@ http://woc.iiiya.cn:18888/rtp/239.61.3.69:9932
 http://27.154.198.20:10000/rtp/239.61.3.8:9566
 #EXTINF:-1 tvg-name="文物宝库" group-title="数字频道",文物宝库
 http://27.154.198.20:10000/rtp/239.61.3.21:9646
-#EXTINF:-1 tvg-name="文物宝库" group-title="数字频道",文物宝库
-http://e1.woc.iiiya.cn:18888/rtp/239.61.3.21:9646
 #EXTINF:-1 tvg-name="梨园频道" group-title="数字频道",梨园频道
 http://27.154.198.20:10000/rtp/239.61.3.19:9634
 #EXTINF:-1 tvg-name="欢笑剧场" group-title="数字频道",欢笑剧场
 http://27.154.198.20:10000/rtp/239.61.2.146:8864
 #EXTINF:-1 tvg-name="武术世界" group-title="数字频道",武术世界
 http://27.154.198.20:10000/rtp/239.61.3.22:9652
-#EXTINF:-1 tvg-name="武术世界" group-title="数字频道",武术世界
-http://e1.woc.iiiya.cn:18888/rtp/239.61.3.22:9652
-#EXTINF:-1 tvg-name="武术世界" group-title="数字频道",武术世界
-http://e3.woc.iiiya.cn:18888/rtp/239.61.3.22:9652
 #EXTINF:-1 tvg-name="游戏风云" group-title="数字频道",游戏风云
 http://27.154.198.20:10000/rtp/239.61.2.145:8858
 #EXTINF:-1 tvg-name="环球旅游" group-title="数字频道",环球旅游
