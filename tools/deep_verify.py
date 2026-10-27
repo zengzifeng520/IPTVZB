@@ -38,6 +38,7 @@ import argparse
 import json
 import os
 import re
+import socket
 import subprocess
 import sys
 import time
@@ -219,6 +220,8 @@ def verify(url: str, secs: int = 20) -> dict:
 
 
 def main() -> None:
+    # 全局 socket 超时：有些域名解析/连接会卡很久，urllib 的 timeout 管不到
+    socket.setdefaulttimeout(8)
     ap = argparse.ArgumentParser()
     ap.add_argument("--src", default=str(ROOT / "data" / "proxy_gangaotai.json"))
     ap.add_argument("--secs", type=int, default=20)

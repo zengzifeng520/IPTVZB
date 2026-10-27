@@ -58,9 +58,12 @@ jobs:
         continue-on-error: true
         run: |
           echo "=== 国外频道（国际 CDN，境外视角接近大陆视角）==="
+          # 4 秒足够判断「有没有持续画面 / 是不是 VOD / 编码对不对」，
+          # 8 秒是浪费：最坏情况每条要 playlist 8s + ffmpeg 26s = 34 秒，
+          # 20 并发跑 867 条要 25 分钟以上（实测 31 分钟还没完）
           python tools/deep_verify.py \
             --src data/proxy_intl.json \
-            --secs 8 --workers 20 --by actions \
+            --secs 4 --workers 30 --by actions \
             --out data/_deep_intl.json
 
       - name: Verify gangaotai
@@ -69,7 +72,7 @@ jobs:
           echo "=== 港澳台（跳过移动专线，那些只在移动网络内可达）==="
           python tools/deep_verify.py \
             --src data/proxy_gangaotai.json \
-            --secs 12 --workers 8 --by actions \
+            --secs 8 --workers 10 --by actions \
             --skip-hosts 111.59.139.85:11888 \
             --out data/_deep_hk.json
 
