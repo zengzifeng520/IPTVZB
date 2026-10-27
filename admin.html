@@ -6,8 +6,8 @@
 <meta name="robots" content="noindex, nofollow">
 <title>后台管理 · IPTV直播源分发系统</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%236366f1'/><stop offset='1' stop-color='%23ec4899'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='url(%23g)'/><rect x='25' y='29' width='50' height='42' rx='8' fill='%231e1b4b'/><path d='M41 40l22 10-22 10z' fill='white'/></svg>">
-<link rel="stylesheet" href="assets/css/app.css?v=20261027g">
-<script src="assets/js/theme.js?v=20261027g"></script>
+<link rel="stylesheet" href="assets/css/app.css?v=20261027A">
+<script src="assets/js/theme.js?v=20261027A"></script>
 </head>
 <body>
 
@@ -63,6 +63,34 @@
   <!-- 后台主体 -->
   <div id="dash" hidden>
     <div class="admin-stats" id="adminStats"></div>
+
+    <!-- 访问统计 -->
+    <section class="panel visit-panel">
+      <div class="panel-head">
+        <h2>访问统计</h2>
+        <span class="hint" id="visitHint">正在读取…</span>
+        <span class="admin-grow"></span>
+        <button class="btn btn-sm" id="visitReload" type="button">刷新</button>
+      </div>
+
+      <div class="visit-cards" id="visitCards">
+        <div class="visit-card"><b>—</b><span>累计访客</span></div>
+        <div class="visit-card"><b>—</b><span>总访问量</span></div>
+        <div class="visit-card"><b>—</b><span>今日访客</span></div>
+        <div class="visit-card"><b>—</b><span>今日访问</span></div>
+      </div>
+
+      <div class="visit-chart-head">
+        <span>最近 7 天访问量</span>
+        <span class="visit-chart-max" id="visitChartMax"></span>
+      </div>
+      <div class="visit-chart" id="visitChart"></div>
+
+      <p class="visit-note">
+        统计覆盖首页、地区页、酒店源页、支持作者页，后台本身不计入；
+        同一浏览器只算一位访客（清缓存 / 换设备会重新计一次），按北京时间自然日切换。
+      </p>
+    </section>
 
     <section class="panel">
       <div class="panel-head">
@@ -143,7 +171,7 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="assets/js/auth.js?v=20261027x"></script>
-<script src="assets/js/admin.js?v=20261027x"></script>
+<script src="assets/js/auth.js?v=20261027A"></script>
+<script src="assets/js/admin.js?v=20261027A"></script>
 </body>
 </html>

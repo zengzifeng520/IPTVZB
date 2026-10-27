@@ -2527,3 +2527,60 @@ body { font-size: 15px; line-height: 1.65; }
 [data-theme="light"] .disclaimer-panel .dp-update .up-run {
   color: #7c3aed;
 }
+
+/* ----------------------------------------------------------
+   后台：访问统计面板
+   ---------------------------------------------------------- */
+.visit-panel .panel-head { flex-wrap: wrap; gap: 6px 10px; }
+.visit-cards {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px; margin: 4px 0 18px;
+}
+.visit-card {
+  padding: 16px 18px; border-radius: var(--r);
+  border: 1px solid var(--border); background: var(--surface);
+}
+.visit-card b { display: block; font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+.visit-card span { font-size: 12px; color: var(--text-3); }
+.visit-card.ok b { color: var(--ok); }
+.visit-card.brand b { color: #a78bfa; }
+[data-theme="light"] .visit-card.brand b { color: #7c3aed; }
+
+.visit-chart-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 10px; margin-bottom: 10px;
+  font-size: 13px; color: var(--text-2); font-weight: 600;
+}
+.visit-chart-max { font-size: 12px; font-weight: 400; color: var(--text-3); }
+
+.visit-chart {
+  display: flex; align-items: flex-end; gap: 8px;
+  height: 132px; padding: 8px 4px 0;
+  border-bottom: 1px solid var(--border);
+}
+.vb-col {
+  flex: 1 1 0; min-width: 0; height: 100%;
+  display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+  gap: 5px;
+}
+.vb-num { font-size: 11.5px; color: var(--text-3); line-height: 1; }
+.vb-bar {
+  display: block; width: 100%; max-width: 46px;
+  border-radius: 6px 6px 2px 2px;
+  background: linear-gradient(180deg, #a78bfa, #6366f1);
+  transition: height 0.35s var(--ease);
+}
+.vb-col.is-today .vb-bar { background: linear-gradient(180deg, #34d399, #059669); }
+.vb-col.is-today .vb-num { color: var(--text); font-weight: 700; }
+.vb-day { font-size: 11px; color: var(--text-3); white-space: nowrap; margin-top: 2px; }
+
+.visit-note { margin: 12px 0 0; font-size: 12px; line-height: 1.75; color: var(--text-3); }
+
+@media (max-width: 720px) {
+  .visit-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .visit-card { padding: 13px 14px; }
+  .visit-card b { font-size: 22px; }
+  .visit-chart { height: 110px; gap: 5px; }
+  .vb-num { font-size: 10.5px; }
+  .vb-day { font-size: 10px; }
+}

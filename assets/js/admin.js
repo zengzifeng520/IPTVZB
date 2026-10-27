@@ -51,6 +51,11 @@
     addOk: document.getElementById("addOk"),
     addCancel: document.getElementById("addCancel"),
     addTip: document.getElementById("addTip"),
+    visitCards: document.getElementById("visitCards"),
+    visitChart: document.getElementById("visitChart"),
+    visitChartMax: document.getElementById("visitChartMax"),
+    visitHint: document.getElementById("visitHint"),
+    visitReload: document.getElementById("visitReload"),
   };
 
   /* ---------------------------------------------------------- 小工具 */
@@ -373,6 +378,7 @@
     el.logout.hidden = false;
     render();
     updateDirty();
+    loadVisits();
   }
 
   el.logout.addEventListener("click", function () {
@@ -406,6 +412,116 @@
         toast("读取失败：" + explain(err), 4000);
       });
   });
+
+  /* ---------------------------------------------------------- 访问统计 */
+
+  var VISIT = {
+    ns: "zzf-tg-2026",
+    api: "https://abacus.jasoncameron.dev/get/",
+    busy: false,
+  };
+
+  function p2(n) {
+    return n < 10 ? "0" + n : "" + n;
+  }
+
+  // 北京时间日期（offset = 相对今天的天数）
+  function bjYmd(offset) {
+    var d = new Date(Date.now() + 8 * 3600 * 1000 + (offset || 0) * DAY);
+    return d.getUTCFullYear() + "-" + p2(d.getUTCMonth() + 1) + "-" + p2(d.getUTCDate());
+  }
+
+  function bjClock() {
+    var d = new Date(Date.now() + 8 * 3600 * 1000);
+    return p2(d.getUTCHours()) + ":" + p2(d.getUTCMinutes()) + ":" + p2(d.getUTCSeconds());
+  }
+
+  // 只读接口，不会把后台刷新算进访问量
+  function vGet(key) {
+    return fetch(VISIT.api + VISIT.ns + "/" + key, { cache: "no-store" })
+      .then(function (r) {
+        if (r.status === 404) return 0; // 这个 key 还没人访问过
+        if (!r.ok) return null;
+        return r.json().then(function (j) {
+          return j && typeof j.value === "number" ? j.value : 0;
+        });
+      })
+      .catch(function () {
+        return null; // 网络失败：显示「—」
+      });
+  }
+
+  function fmtNum(n) {
+    if (n == null) return "—";
+    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  function loadVisits() {
+    if (VISIT.busy || !el.visitCards) return;
+    VISIT.busy = true;
+    if (el.visitHint) el.visitHint.textContent = "正在读取…";
+
+    var days = [];
+    var i;
+    for (i = 6; i >= 0; i--) days.push(bjYmd(-i));
+    var todayKey = days[6].replace(/-/g, "");
+
+    var jobs = [vGet("visitors"), vGet("views"), vGet("duv-" + todayKey), vGet("d-" + todayKey)];
+    for (i = 0; i < days.length; i++) jobs.push(vGet("d-" + days[i].replace(/-/g, "")));
+
+    Promise.all(jobs).then(function (res) {
+      var uv = res[0], pv = res[1], duv = res[2], dpv = res[3];
+      var series = res.slice(4);
+
+      var cards = [
+        { n: uv, t: "累计访客", cls: "ok" },
+        { n: pv, t: "总访问量", cls: "brand" },
+        { n: duv, t: "今日访客", cls: "" },
+        { n: dpv, t: "今日访问", cls: "" },
+      ];
+      el.visitCards.innerHTML = cards
+        .map(function (c) {
+          return (
+            '<div class="visit-card ' + c.cls + '"><b>' + fmtNum(c.n) +
+            "</b><span>" + c.t + "</span></div>"
+          );
+        })
+        .join("");
+
+      var max = 0, m;
+      for (m = 0; m < series.length; m++) if (series[m] != null && series[m] > max) max = series[m];
+      if (el.visitChartMax) {
+        el.visitChartMax.textContent = max ? "峰值 " + fmtNum(max) + " 次 / 天" : "";
+      }
+
+      if (el.visitChart) {
+        var peak = max || 1;
+        el.visitChart.innerHTML = series
+          .map(function (v, idx) {
+            var val = v == null ? 0 : v;
+            var h = Math.max(val ? 8 : 2, Math.round((val / peak) * 100));
+            return (
+              '<div class="vb-col' + (idx === 6 ? " is-today" : "") + '">' +
+              '<span class="vb-num">' + (v == null ? "—" : val) + "</span>" +
+              '<i class="vb-bar" style="height:' + h + '%"></i>' +
+              '<span class="vb-day">' + days[idx].slice(5) + "</span>" +
+              "</div>"
+            );
+          })
+          .join("");
+      }
+
+      if (el.visitHint) {
+        var down = uv == null && pv == null && dpv == null;
+        el.visitHint.textContent = down
+          ? "统计服务暂时读不到，稍后点「刷新」再试"
+          : "更新于 " + bjClock();
+      }
+      VISIT.busy = false;
+    });
+  }
+
+  if (el.visitReload) el.visitReload.addEventListener("click", loadVisits);
 
   /* ---- 新增用户弹窗：不用赞助码，标识随便填，到期日任意选 ---- */
   function openAdd() {
