@@ -22,6 +22,7 @@ from __future__ import annotations
 import hashlib
 import json
 import shutil
+import sys
 import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -897,6 +898,17 @@ def build() -> dict:
     if SUB_DIR.exists():
         shutil.rmtree(SUB_DIR, ignore_errors=True)
         print("  [subs] 已删除历史 data/sub 目录（公开的全量 m3u 不再生成）")
+
+    # 导出台标映射表 logos.json：姊妹仓库 china-iptv-sources 查这张表，
+    # 不用再自己拼 yuanzl77 的地址（那边是猜文件名，实测绝大多数 404）。
+    # 必须在所有 m3u 生成完之后跑——它是从成品 m3u 里回读 tvg-logo 的。
+    try:
+        sys.path.insert(0, str(config.WEB_DATA_DIR.parent / "tools"))
+        import build_logo_map   # noqa: PLC0415
+
+        build_logo_map.main()
+    except Exception as e:      # noqa: BLE001
+        print(f"  [logo] 台标映射导出跳过：{type(e).__name__}: {e}")
     return payload
 
 

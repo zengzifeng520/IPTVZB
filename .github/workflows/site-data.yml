@@ -98,7 +98,7 @@ jobs:
           bash scripts/push_state.sh
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f data/public data/users.json data/free
+          git add -f logos.json data/public data/users.json data/free
           # 用户订阅目录可能为空（还没开通任何会员），存在才加
           [ -d data/users ] && git add -f data/users || true
           git add -f spider/data/shushu_ours.json spider/data/proxy_shushu.m3u 2>/dev/null || true
@@ -148,7 +148,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f data/users.json data/public data/free
+          git add -f logos.json data/users.json data/public data/free
           [ -d data/users ] && git add -f data/users || true
           if git diff --staged --quiet; then
             echo "订阅无变化，跳过提交"
