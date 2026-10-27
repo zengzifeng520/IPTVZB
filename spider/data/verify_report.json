@@ -1,5 +1,5 @@
 {
-"generated_at": "2026-10-27 09:58:20",
+"generated_at": "2026-10-27 21:42:31",
 "urls": {
 "http://111.59.139.85:11888/tsfile/live/1203_1.m3u8?key=txiptv": {
 "grade": "A",
@@ -430,7 +430,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "720x406",
-"drop": 0.004,
+"drop": 0.008,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -440,7 +440,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.0,
+"drop": 0.007,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -450,7 +450,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.012,
+"drop": 0.008,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -460,7 +460,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.01,
+"drop": 0.018,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -470,7 +470,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.021,
+"drop": 0.042,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -490,7 +490,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.003,
+"drop": 0.007,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -500,7 +500,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "720x400",
-"drop": 0.0,
+"drop": 0.007,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -530,7 +530,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "640x360",
-"drop": 0.0,
+"drop": 0.016,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -545,12 +545,12 @@
 "at": "2026-10-27"
 },
 "http://1.222.207.80:1935/live/cjbtv/playlist.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "B",
+"why": "丢帧26%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.0,
+"drop": 0.258,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -560,7 +560,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.004,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -570,7 +570,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.0,
+"drop": 0.007,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -590,7 +590,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.016,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -600,7 +600,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.003,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -610,7 +610,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.004,
+"drop": 0.008,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -639,8 +639,8 @@
 "why": "",
 "vcodec": "h264",
 "acodec": "aac",
-"res": "1280x720",
-"drop": 0.0,
+"res": "1920x1080",
+"drop": 0.007,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -676,21 +676,21 @@
 },
 "http://onair.cdn.tvchosun.com/origin1/_definst_/tvchosun_s1/playlist.m3u8": {
 "grade": "B",
-"why": "丢帧18%",
+"why": "丢帧29%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.178,
+"drop": 0.291,
 "by": "actions",
 "at": "2026-10-27"
 },
 "http://onair2.cdn.tvchosun.com/origin2/_definst_/tvchosun_s3/playlist.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "B",
+"why": "丢帧18%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.062,
+"drop": 0.183,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -700,7 +700,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.003,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -710,7 +710,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.003,
+"drop": 0.007,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -730,7 +730,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.0,
+"drop": 0.008,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -760,7 +760,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1024x576",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -770,7 +770,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1024x576",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -820,7 +820,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "720x720",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -830,7 +830,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.004,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -840,7 +840,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -860,7 +860,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "426x240",
-"drop": 0.017,
+"drop": 0.033,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -880,7 +880,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.01,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -890,7 +890,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "426x240",
-"drop": 0.017,
+"drop": 0.033,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -900,7 +900,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -910,7 +910,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.0,
+"drop": 0.007,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -930,7 +930,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.01,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -940,7 +940,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -950,7 +950,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -960,7 +960,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1024x576",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -980,7 +980,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1024x576",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -990,7 +990,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1024x576",
-"drop": 0.0,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1000,7 +1000,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1020,7 +1020,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1030,7 +1030,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1050,7 +1050,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.025,
+"drop": 0.05,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1060,7 +1060,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1070,7 +1070,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1080,7 +1080,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1090,7 +1090,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1130,7 +1130,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "854x480",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1150,7 +1150,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1200,7 +1200,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.016,
+"drop": 0.024,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1210,7 +1210,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1230,7 +1230,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1240,7 +1240,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.008,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1250,7 +1250,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.002,
+"drop": 0.005,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1270,7 +1270,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "640x360",
-"drop": 0.015,
+"drop": 0.04,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1280,7 +1280,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.004,
+"drop": 0.008,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1300,7 +1300,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1310,7 +1310,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1330,7 +1330,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1380,7 +1380,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.004,
+"drop": 0.008,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1530,7 +1530,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.008,
+"drop": 0.017,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1540,7 +1540,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "854x480",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1560,7 +1560,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1580,17 +1580,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
 "https://freem3u.xyz/api/live/play.m3u8?vid=180": {
-"grade": "A",
-"why": "",
+"grade": "C",
+"why": "丢帧56%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "854x480",
-"drop": 0.015,
+"drop": 0.56,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1600,7 +1600,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1615,12 +1615,12 @@
 "at": "2026-10-27"
 },
 "http://27.124.81.245:1935/jektv/myStream/playlist.m3u8": {
-"grade": "A",
-"why": "",
-"vcodec": "h264",
-"acodec": "aac",
-"res": "1280x720",
-"drop": 0.002,
+"grade": "D",
+"why": "拉不起来",
+"vcodec": "",
+"acodec": "",
+"res": "",
+"drop": 1.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1635,12 +1635,12 @@
 "at": "2026-10-27"
 },
 "https://5bf7b725107e5.streamlock.net/bantentv/bantentv/playlist.m3u8": {
-"grade": "A",
-"why": "",
-"vcodec": "h264",
-"acodec": "aac",
-"res": "1280x720",
-"drop": 0.0,
+"grade": "D",
+"why": "拉不起来",
+"vcodec": "",
+"acodec": "",
+"res": "",
+"drop": 1.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1660,7 +1660,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1675,12 +1675,12 @@
 "at": "2026-10-27"
 },
 "http://103.255.15.222:1935/tv/jitv_720p/playlist.m3u8": {
-"grade": "A",
-"why": "",
-"vcodec": "h264",
-"acodec": "aac",
-"res": "1280x720",
-"drop": 0.0,
+"grade": "D",
+"why": "拉不起来",
+"vcodec": "",
+"acodec": "",
+"res": "",
+"drop": 1.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1700,7 +1700,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1720,7 +1720,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1730,27 +1730,27 @@
 "vcodec": "h264",
 "acodec": "mp3",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
 "https://stream.jogjatv.co.id/jtvlive/stream/index.m3u8": {
-"grade": "A",
-"why": "",
-"vcodec": "h264",
-"acodec": "aac",
-"res": "1280x720",
-"drop": 0.0,
+"grade": "D",
+"why": "拉不起来",
+"vcodec": "",
+"acodec": "",
+"res": "",
+"drop": 1.0,
 "by": "actions",
 "at": "2026-10-27"
 },
 "https://selaparangtv.siar.us/live/selaparangtv.m3u8": {
-"grade": "A",
-"why": "",
-"vcodec": "h264",
-"acodec": "aac",
-"res": "854x480",
-"drop": 0.015,
+"grade": "D",
+"why": "拉不起来",
+"vcodec": "",
+"acodec": "",
+"res": "",
+"drop": 1.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1760,7 +1760,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "854x480",
-"drop": 0.0,
+"drop": 0.024,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1770,7 +1770,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.012,
+"drop": 0.025,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1780,7 +1780,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.015,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1790,7 +1790,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1800,7 +1800,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.003,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1810,17 +1810,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
 "http://122.248.43.242:1935/FAJARTV/_definst_/myStream/playlist.m3u8": {
-"grade": "A",
-"why": "",
-"vcodec": "h264",
-"acodec": "aac",
-"res": "1280x720",
-"drop": 0.0,
+"grade": "D",
+"why": "拉不起来",
+"vcodec": "",
+"acodec": "",
+"res": "",
+"drop": 1.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1830,7 +1830,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1850,7 +1850,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "854x480",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1860,7 +1860,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1890,7 +1890,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "426x240",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1930,7 +1930,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.007,
+"drop": 0.016,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1940,7 +1940,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1960,7 +1960,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -1970,7 +1970,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2005,12 +2005,12 @@
 "at": "2026-10-27"
 },
 "https://live.cltv36.tv:5443/LiveApp/streams/cltvlive.m3u8": {
-"grade": "A",
-"why": "",
-"vcodec": "h264",
-"acodec": "aac",
-"res": "1920x1080",
-"drop": 0.004,
+"grade": "D",
+"why": "拉不起来",
+"vcodec": "",
+"acodec": "",
+"res": "",
+"drop": 1.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2090,7 +2090,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2130,7 +2130,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "426x240",
-"drop": 0.125,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2160,7 +2160,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2175,12 +2175,12 @@
 "at": "2026-10-27"
 },
 "https://feeds.intoday.in/aajtak/api/aajtakhd/master.m3u8": {
-"grade": "A",
-"why": "",
-"vcodec": "h264",
-"acodec": "aac",
-"res": "320x180",
-"drop": 0.0,
+"grade": "D",
+"why": "拉不起来",
+"vcodec": "",
+"acodec": "",
+"res": "",
+"drop": 1.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2235,12 +2235,12 @@
 "at": "2026-10-27"
 },
 "https://asianetnews.vgcdn.net/vglive-sk-335835/playlist.m3u8": {
-"grade": "B",
-"why": "丢帧30%",
+"grade": "A",
+"why": "",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "640x360",
-"drop": 0.295,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2260,7 +2260,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2315,12 +2315,12 @@
 "at": "2026-10-27"
 },
 "https://n18syndication.akamaized.net/bpk-tv/CNN_News18_NW18_MOB/output01/master.m3u8": {
-"grade": "B",
-"why": "丢帧30%",
+"grade": "A",
+"why": "",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "320x180",
-"drop": 0.295,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2340,7 +2340,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.007,
+"drop": 0.024,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2390,7 +2390,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "854x480",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2410,7 +2410,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "854x480",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2430,7 +2430,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.003,
+"drop": 0.016,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2485,10 +2485,10 @@
 "at": "2026-10-27"
 },
 "https://ptvlive.kordia.net.nz/out/v1/3fc2254c865a457c8d7fbbce227a2aae/index.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "B",
+"why": "无音频流",
 "vcodec": "h264",
-"acodec": "aac",
+"acodec": "",
 "res": "640x360",
 "drop": 0.0,
 "by": "actions",
@@ -2530,7 +2530,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "640x360",
-"drop": 0.01,
+"drop": 0.04,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2550,7 +2550,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.032,
+"drop": 0.066,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2580,7 +2580,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.032,
+"drop": 0.066,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2590,7 +2590,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2600,7 +2600,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.037,
+"drop": 0.066,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2640,7 +2640,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2680,7 +2680,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "480x270",
-"drop": 0.028,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2750,7 +2750,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.007,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2780,7 +2780,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.037,
+"drop": 0.141,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2800,7 +2800,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.01,
+"drop": 0.05,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2840,7 +2840,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.003,
+"drop": 0.007,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2850,7 +2850,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.007,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2870,7 +2870,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2915,12 +2915,12 @@
 "at": "2026-10-27"
 },
 "https://broadcast.blivenyc.com/speed/broadcast/22/desktop-playlist.m3u8": {
-"grade": "B",
-"why": "丢帧30%",
+"grade": "A",
+"why": "",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.299,
+"drop": 0.016,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -2980,7 +2980,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.007,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3040,7 +3040,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "426x240",
-"drop": 0.003,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3050,7 +3050,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "426x240",
-"drop": 0.003,
+"drop": 0.007,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3090,7 +3090,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3170,7 +3170,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "426x240",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3230,7 +3230,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3340,7 +3340,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "640x360",
-"drop": 0.012,
+"drop": 0.024,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3350,7 +3350,7 @@
 "vcodec": "h264",
 "acodec": "mp3",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3400,7 +3400,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "768x432",
-"drop": 0.062,
+"drop": 0.132,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3410,7 +3410,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "640x360",
-"drop": 0.016,
+"drop": 0.032,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3420,7 +3420,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "768x432",
-"drop": 0.057,
+"drop": 0.132,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3430,7 +3430,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.008,
+"drop": 0.017,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3440,7 +3440,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "768x432",
-"drop": 0.007,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3450,17 +3450,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "640x360",
-"drop": 0.02,
+"drop": 0.032,
 "by": "actions",
 "at": "2026-10-27"
 },
 "https://lotus.stingray.com/manifest/ose-155ads-montreal/samsungtvplus/master.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "B",
+"why": "丢帧20%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "768x432",
-"drop": 0.007,
+"drop": 0.199,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3470,7 +3470,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "640x360",
-"drop": 0.012,
+"drop": 0.024,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3480,7 +3480,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "768x432",
-"drop": 0.007,
+"drop": 0.032,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3490,7 +3490,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "640x360",
-"drop": 0.007,
+"drop": 0.024,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3500,7 +3500,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "768x432",
-"drop": 0.0,
+"drop": 0.007,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3510,7 +3510,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "768x432",
-"drop": 0.012,
+"drop": 0.024,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3520,7 +3520,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "768x432",
-"drop": 0.012,
+"drop": 0.049,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3530,7 +3530,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "640x360",
-"drop": 0.02,
+"drop": 0.032,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3540,7 +3540,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "768x432",
-"drop": 0.007,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3570,7 +3570,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.012,
+"drop": 0.024,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3600,7 +3600,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3610,7 +3610,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.015,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3650,7 +3650,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3660,7 +3660,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3700,7 +3700,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3720,7 +3720,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3730,7 +3730,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3740,7 +3740,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3760,7 +3760,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3790,7 +3790,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3810,17 +3810,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
 "https://cldf-hlsgw.r53.cdn.tv1.eu/1000153copo/hk1.m3u8": {
-"grade": "B",
-"why": "丢帧20%",
+"grade": "C",
+"why": "丢帧40%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "480x270",
-"drop": 0.2,
+"drop": 0.4,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3840,7 +3840,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3850,7 +3850,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "284x160",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3870,7 +3870,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.025,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3910,7 +3910,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3940,7 +3940,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -3970,7 +3970,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "640x360",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4060,7 +4060,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "640x360",
-"drop": 0.003,
+"drop": 0.007,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4150,7 +4150,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4190,7 +4190,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4210,7 +4210,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4235,12 +4235,12 @@
 "at": "2026-10-27"
 },
 "https://video3.lhdserver.es/empordatv2/live.m3u8": {
-"grade": "B",
-"why": "丢帧28%",
+"grade": "A",
+"why": "",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.275,
+"drop": 0.05,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4280,7 +4280,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.008,
+"drop": 0.017,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4300,7 +4300,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4320,7 +4320,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "640x360",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4330,7 +4330,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4410,7 +4410,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4450,7 +4450,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4490,7 +4490,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "720x576",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4570,7 +4570,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "640x360",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4586,21 +4586,21 @@
 },
 "http://168.196.127.137:6001/play/a0a9/index.m3u8": {
 "grade": "B",
-"why": "丢帧17%",
+"why": "丢帧26%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "544x480",
-"drop": 0.171,
+"drop": 0.258,
 "by": "actions",
 "at": "2026-10-27"
 },
 "http://31.131.139.253:9002/novoros/index.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "C",
+"why": "丢帧45%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "720x576",
-"drop": 0.105,
+"drop": 0.45,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4615,12 +4615,12 @@
 "at": "2026-10-27"
 },
 "http://31.131.141.195:8000/play/a006/index.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "B",
+"why": "丢帧23%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.075,
+"drop": 0.23,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4630,7 +4630,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4660,17 +4660,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
 "http://5.188.159.128:8070/KINOPREMIERA/index.m3u8": {
-"grade": "B",
-"why": "丢帧29%",
+"grade": "A",
+"why": "",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.285,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4680,7 +4680,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4690,7 +4690,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4715,12 +4715,12 @@
 "at": "2026-10-27"
 },
 "https://stream8.cinerama.uz/1502/playlist.m3u8": {
-"grade": "B",
-"why": "丢帧21%",
+"grade": "A",
+"why": "",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "852x480",
-"drop": 0.215,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4730,7 +4730,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4750,7 +4750,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4760,7 +4760,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4780,7 +4780,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4815,12 +4815,12 @@
 "at": "2026-10-27"
 },
 "https://eustr73.mediatriple.net/videoonlylive/mtikoimxnztxlive/broadcast_5e3bf95a47e07.smil/playlist.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "C",
+"why": "丢帧30%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.135,
+"drop": 0.3,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4830,7 +4830,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.003,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4860,7 +4860,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4890,7 +4890,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "852x480",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4900,17 +4900,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
 "https://ciner.daioncdn.net/ht-spor/ht-spor.m3u8?app=web": {
-"grade": "A",
-"why": "",
-"vcodec": "h264",
-"acodec": "aac",
-"res": "1920x1080",
-"drop": 0.0,
+"grade": "D",
+"why": "拉不起来",
+"vcodec": "",
+"acodec": "",
+"res": "",
+"drop": 1.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4920,7 +4920,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -4990,7 +4990,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.012,
+"drop": 0.017,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5000,7 +5000,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.008,
+"drop": 0.025,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5020,7 +5020,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.002,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5040,7 +5040,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5050,7 +5050,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "720x576",
-"drop": 0.003,
+"drop": 0.016,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5070,17 +5070,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.003,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
 "http://45.177.114.115/agromais/index.m3u8": {
-"grade": "A",
-"why": "",
-"vcodec": "h264",
-"acodec": "mp2",
-"res": "1920x1080",
-"drop": 0.012,
+"grade": "D",
+"why": "拉不起来",
+"vcodec": "",
+"acodec": "",
+"res": "",
+"drop": 1.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5090,17 +5090,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.012,
+"drop": 0.025,
 "by": "actions",
 "at": "2026-10-27"
 },
 "https://b01c02nl.mediatriple.net/videoonlylive/mtdxkkitgbrckilive/broadcast_5ee244263fd6d.smil/playlist.m3u8": {
-"grade": "B",
-"why": "丢帧20%",
+"grade": "C",
+"why": "丢帧42%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.203,
+"drop": 0.417,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5170,7 +5170,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.003,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5190,7 +5190,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.004,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5200,7 +5200,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.008,
+"drop": 0.025,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5225,12 +5225,12 @@
 "at": "2026-10-27"
 },
 "http://45.177.114.115/BAND_NEWS/index.m3u8": {
-"grade": "A",
-"why": "",
-"vcodec": "h264",
-"acodec": "aac",
-"res": "854x480",
-"drop": 0.004,
+"grade": "D",
+"why": "拉不起来",
+"vcodec": "",
+"acodec": "",
+"res": "",
+"drop": 1.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5240,7 +5240,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.0,
+"drop": 0.007,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5250,7 +5250,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.012,
+"drop": 0.016,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5270,7 +5270,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.004,
+"drop": 0.008,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5290,7 +5290,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.003,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5300,7 +5300,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.004,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5310,7 +5310,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.004,
+"drop": 0.008,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5330,7 +5330,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.004,
+"drop": 0.008,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5340,17 +5340,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.0,
+"drop": 0.008,
 "by": "actions",
 "at": "2026-10-27"
 },
 "http://187.245.231.226:8000/play/a0uz/index.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "B",
+"why": "丢帧25%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.062,
+"drop": 0.25,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5410,7 +5410,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.017,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5440,7 +5440,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.007,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5480,7 +5480,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.003,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5500,7 +5500,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1870x1080",
-"drop": 0.0,
+"drop": 0.007,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5525,12 +5525,12 @@
 "at": "2026-10-27"
 },
 "http://168.196.127.137:6001/play/a08n/index.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "C",
+"why": "丢帧43%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "544x480",
-"drop": 0.132,
+"drop": 0.433,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5550,7 +5550,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.001,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5560,7 +5560,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.004,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5600,7 +5600,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.05,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5610,17 +5610,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
 "http://190.61.47.54:8000/play/a028/index.m3u8": {
-"grade": "B",
-"why": "丢帧27%",
+"grade": "C",
+"why": "丢帧31%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.271,
+"drop": 0.308,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5640,7 +5640,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5650,7 +5650,7 @@
 "vcodec": "h264",
 "acodec": "mp2",
 "res": "1920x1080",
-"drop": 0.05,
+"drop": 0.1,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5690,7 +5690,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5710,7 +5710,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5740,7 +5740,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5760,7 +5760,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "640x360",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5770,7 +5770,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "640x360",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5800,7 +5800,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "640x360",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5810,7 +5810,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5820,7 +5820,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5829,8 +5829,8 @@
 "why": "",
 "vcodec": "h264",
 "acodec": "aac",
-"res": "1280x720",
-"drop": 0.005,
+"res": "1920x1080",
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5860,7 +5860,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.055,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5870,7 +5870,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5890,7 +5890,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5920,7 +5920,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5940,7 +5940,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "720x576",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5950,17 +5950,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
 "https://hlspackager.akamaized.net/live/DB/ALYAUM_TV/HLS/ALYAUM_TV.m3u8": {
-"grade": "B",
-"why": "丢帧30%",
+"grade": "A",
+"why": "",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "720x576",
-"drop": 0.295,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5980,7 +5980,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.007,
+"drop": 0.016,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -5990,17 +5990,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
 "https://livecdn.live247stream.com/isaac/tv/playlist.m3u8": {
-"grade": "A",
-"why": "",
-"vcodec": "h264",
-"acodec": "aac",
-"res": "1280x720",
-"drop": 0.0,
+"grade": "D",
+"why": "拉不起来",
+"vcodec": "",
+"acodec": "",
+"res": "",
+"drop": 1.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6010,7 +6010,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6030,7 +6030,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6040,7 +6040,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.002,
+"drop": 0.005,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6050,7 +6050,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6075,12 +6075,12 @@
 "at": "2026-10-27"
 },
 "https://lbgo.bozztv.com/ssh101/ssh101/skynews/playlist.m3u8": {
-"grade": "A",
-"why": "",
-"vcodec": "h264",
-"acodec": "aac",
-"res": "1280x720",
-"drop": 0.007,
+"grade": "D",
+"why": "拉不起来",
+"vcodec": "",
+"acodec": "",
+"res": "",
+"drop": 1.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6105,12 +6105,12 @@
 "at": "2026-10-27"
 },
 "https://ekusheyserver.com/etvlivesn.m3u8": {
-"grade": "B",
-"why": "丢帧22%",
+"grade": "C",
+"why": "丢帧56%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "320x180",
-"drop": 0.225,
+"drop": 0.56,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6120,7 +6120,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6140,7 +6140,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.003,
+"drop": 0.007,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6170,7 +6170,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6180,7 +6180,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6190,7 +6190,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "852x480",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6220,7 +6220,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "720x576",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6230,7 +6230,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6250,7 +6250,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.02,
+"drop": 0.05,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6300,7 +6300,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "720x576",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6310,7 +6310,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6340,7 +6340,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.015,
+"drop": 0.04,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6350,7 +6350,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6420,7 +6420,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6430,7 +6430,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6490,7 +6490,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6515,12 +6515,12 @@
 "at": "2026-10-27"
 },
 "http://217.173.176.107:1935/live/tvk.stream/playlist.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "B",
+"why": "丢帧21%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.095,
+"drop": 0.21,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6560,17 +6560,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.004,
+"drop": 0.008,
 "by": "actions",
 "at": "2026-10-27"
 },
 "https://live-tv.waytv.pt/adbtv/adbtv/playlist.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "C",
+"why": "丢帧50%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.5,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6580,7 +6580,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.007,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6590,7 +6590,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6640,7 +6640,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6650,7 +6650,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6710,7 +6710,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6730,7 +6730,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6740,7 +6740,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.005,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6750,7 +6750,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6790,7 +6790,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "720x480",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6810,7 +6810,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6820,7 +6820,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6830,7 +6830,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6840,7 +6840,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.003,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6860,17 +6860,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
 "http://190.61.101.11:7050/play/a09s/index.m3u8?hls": {
-"grade": "B",
-"why": "丢帧17%",
-"vcodec": "h264",
-"acodec": "aac",
-"res": "544x480",
-"drop": 0.17,
+"grade": "D",
+"why": "拉不起来",
+"vcodec": "",
+"acodec": "",
+"res": "",
+"drop": 1.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6880,7 +6880,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6890,7 +6890,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6920,7 +6920,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.01,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6930,7 +6930,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.02,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6960,7 +6960,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6980,7 +6980,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "640x360",
-"drop": 0.033,
+"drop": 0.042,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -6990,7 +6990,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "640x360",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7000,7 +7000,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7030,7 +7030,7 @@
 "vcodec": "h264",
 "acodec": "mp3",
 "res": "1920x1080",
-"drop": 0.004,
+"drop": 0.008,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7069,8 +7069,8 @@
 "why": "",
 "vcodec": "h264",
 "acodec": "aac",
-"res": "1280x720",
-"drop": 0.0,
+"res": "1920x1080",
+"drop": 0.008,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7080,7 +7080,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.008,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7110,17 +7110,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.02,
+"drop": 0.032,
 "by": "actions",
 "at": "2026-10-27"
 },
 "http://181.78.211.244:8005/play/a09u/index.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "B",
+"why": "丢帧20%",
 "vcodec": "h264",
 "acodec": "mp2",
 "res": "1920x1080",
-"drop": 0.128,
+"drop": 0.199,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7130,7 +7130,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.002,
+"drop": 0.004,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7150,17 +7150,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.004,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
 "http://190.61.47.54:8000/play/a00v/index.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "B",
+"why": "丢帧27%",
 "vcodec": "h264",
 "acodec": "mp2",
 "res": "720x480",
-"drop": 0.149,
+"drop": 0.266,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7170,7 +7170,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.004,
+"drop": 0.008,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7195,12 +7195,12 @@
 "at": "2026-10-27"
 },
 "http://181.78.82.130:8000/play/a0s1/index.m3u8": {
-"grade": "B",
-"why": "丢帧23%",
+"grade": "D",
+"why": "拉不起来",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.23,
+"drop": 0.971,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7225,32 +7225,32 @@
 "at": "2026-10-27"
 },
 "https://servilive.com:3028/live/jntv19live.m3u8": {
-"grade": "A",
-"why": "",
-"vcodec": "h264",
-"acodec": "aac",
-"res": "1280x720",
-"drop": 0.012,
+"grade": "D",
+"why": "拉不起来",
+"vcodec": "",
+"acodec": "",
+"res": "",
+"drop": 1.0,
 "by": "actions",
 "at": "2026-10-27"
 },
 "https://redirector.rudo.video/hls-video/ey6283je82983je9823je8jowowiekldk9838274/pautatv/pautatv.smil/playlist.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "C",
+"why": "丢帧72%",
 "vcodec": "h264",
 "acodec": "aac",
-"res": "854x480",
-"drop": 0.0,
+"res": "1920x1080",
+"drop": 0.717,
 "by": "actions",
 "at": "2026-10-27"
 },
 "http://138.94.3.106:8000/play/a02o/index.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "C",
+"why": "丢帧34%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.137,
+"drop": 0.341,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7285,12 +7285,12 @@
 "at": "2026-10-27"
 },
 "http://190.109.2.92:8000/play/a05u/index.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "B",
+"why": "丢帧19%",
 "vcodec": "h264",
 "acodec": "mp2",
 "res": "1280x720",
-"drop": 0.057,
+"drop": 0.191,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7310,7 +7310,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7380,7 +7380,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1024x576",
-"drop": 0.02,
+"drop": 0.04,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7389,7 +7389,7 @@
 "why": "",
 "vcodec": "h264",
 "acodec": "aac",
-"res": "640x360",
+"res": "1920x1080",
 "drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
@@ -7400,7 +7400,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7420,7 +7420,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7450,17 +7450,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.025,
+"drop": 0.04,
 "by": "actions",
 "at": "2026-10-27"
 },
 "https://vysilani.zaktv.cz/broadcast/hls/ptv/index.m3u8": {
-"grade": "B",
-"why": "丢帧26%",
+"grade": "A",
+"why": "",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.265,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7480,7 +7480,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.025,
+"drop": 0.05,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7500,7 +7500,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.008,
+"drop": 0.017,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7530,7 +7530,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7550,7 +7550,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.015,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7575,12 +7575,12 @@
 "at": "2026-10-27"
 },
 "https://stream.polar.cz/tvbrno1/tvbrno1live-1/playlist.m3u8": {
-"grade": "B",
-"why": "丢帧26%",
+"grade": "A",
+"why": "",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.255,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7600,7 +7600,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.004,
+"drop": 0.008,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7630,7 +7630,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.01,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7650,7 +7650,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.004,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7660,7 +7660,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7670,7 +7670,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7700,7 +7700,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.004,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7740,7 +7740,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.007,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7750,7 +7750,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.02,
+"drop": 0.05,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7760,7 +7760,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.02,
+"drop": 0.04,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7770,7 +7770,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.035,
+"drop": 0.04,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7780,7 +7780,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7800,7 +7800,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7810,7 +7810,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.012,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7850,7 +7850,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.007,
+"drop": 0.015,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7860,17 +7860,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
 "https://hls02ns.antenaplay.ro/hls/nostalgia-hd/index.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "C",
+"why": "丢帧35%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.06,
+"drop": 0.35,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7886,11 +7886,11 @@
 },
 "https://cloudfront41.lexanetwork.com:1344/relay01/livestream006.sdp/playlist.m3u8": {
 "grade": "B",
-"why": "丢帧19%",
+"why": "丢帧22%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.188,
+"drop": 0.225,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7910,7 +7910,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.01,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7930,7 +7930,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7950,7 +7950,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "480x384",
-"drop": 0.005,
+"drop": 0.05,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -7960,7 +7960,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "480x270",
-"drop": 0.01,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8000,7 +8000,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8040,7 +8040,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8050,7 +8050,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8090,7 +8090,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1024x576",
-"drop": 0.015,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8110,7 +8110,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "640x360",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8120,7 +8120,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8130,7 +8130,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.002,
+"drop": 0.005,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8140,7 +8140,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.015,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8150,7 +8150,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8180,7 +8180,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8225,12 +8225,12 @@
 "at": "2026-10-27"
 },
 "https://foxkidstv.be:3369/stream/play.m3u8": {
-"grade": "A",
-"why": "",
-"vcodec": "h264",
-"acodec": "aac",
-"res": "1920x1080",
-"drop": 0.01,
+"grade": "D",
+"why": "拉不起来",
+"vcodec": "",
+"acodec": "",
+"res": "",
+"drop": 1.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8240,7 +8240,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8250,7 +8250,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8260,7 +8260,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8280,7 +8280,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.002,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8310,7 +8310,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8320,7 +8320,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8330,7 +8330,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.002,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8340,7 +8340,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8370,17 +8370,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "640x360",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
 "https://live-fi.tvkaista.net/sub/live.m3u8": {
-"grade": "B",
-"why": "无音频流",
-"vcodec": "h264",
+"grade": "D",
+"why": "拉不起来",
+"vcodec": "",
 "acodec": "",
-"res": "1280x720",
-"drop": 0.0,
+"res": "",
+"drop": 1.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8390,7 +8390,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "428x240",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8400,17 +8400,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1280x720",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
 "https://virta2.nopolanews.fi:8443/live/smil:Stream1.smil/playlist.m3u8": {
-"grade": "A",
-"why": "",
-"vcodec": "h264",
-"acodec": "aac",
-"res": "1920x1080",
-"drop": 0.005,
+"grade": "D",
+"why": "拉不起来",
+"vcodec": "",
+"acodec": "",
+"res": "",
+"drop": 1.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8430,7 +8430,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.012,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8465,12 +8465,12 @@
 "at": "2026-10-27"
 },
 "https://digicom.hls.iptvdc.com/motorstv/index.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "C",
+"why": "丢帧51%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "720x576",
-"drop": 0.005,
+"drop": 0.51,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8480,7 +8480,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8490,17 +8490,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "854x480",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
 "https://cdn.freevisiontv.co.za/sttv/smil:ctv.stream.smil/playlist.m3u8": {
-"grade": "B",
-"why": "丢帧25%",
+"grade": "C",
+"why": "丢帧50%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "320x240",
-"drop": 0.25,
+"drop": 0.5,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8510,17 +8510,17 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "854x480",
-"drop": 0.0,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
 "https://cdn.freevisiontv.co.za/sttv/smil:1kzn.stream.smil/playlist.m3u8": {
-"grade": "A",
-"why": "",
+"grade": "C",
+"why": "丢帧51%",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "320x240",
-"drop": 0.005,
+"drop": 0.51,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8595,12 +8595,12 @@
 "at": "2026-10-27"
 },
 "https://cdn.freevisiontv.co.za/sttv/smil:faith.stream.smil/playlist.m3u8": {
-"grade": "B",
-"why": "丢帧25%",
+"grade": "A",
+"why": "",
 "vcodec": "h264",
 "acodec": "aac",
 "res": "320x240",
-"drop": 0.25,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8610,7 +8610,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "320x240",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8650,7 +8650,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "320x240",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8660,7 +8660,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8750,7 +8750,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8800,7 +8800,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1024x576",
-"drop": 0.005,
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8840,7 +8840,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.01,
+"drop": 0.02,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8850,7 +8850,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.105,
+"drop": 0.11,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8910,7 +8910,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "426x240",
-"drop": 0.015,
+"drop": 0.03,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8940,7 +8940,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.0,
+"drop": 0.008,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -8995,12 +8995,12 @@
 "at": "2026-10-27"
 },
 "https://kancdn.medonecdn.net/livehls/oil/kancdn-live/live/makan/live.livx/playlist.m3u8": {
-"grade": "A",
-"why": "",
-"vcodec": "h264",
-"acodec": "aac",
-"res": "960x540",
-"drop": 0.0,
+"grade": "D",
+"why": "拉不起来",
+"vcodec": "",
+"acodec": "",
+"res": "",
+"drop": 1.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -9060,7 +9060,7 @@
 "vcodec": "h264",
 "acodec": "aac",
 "res": "1920x1080",
-"drop": 0.005,
+"drop": 0.0,
 "by": "actions",
 "at": "2026-10-27"
 },
@@ -9081,6 +9081,316 @@
 "acodec": "aac",
 "res": "1920x1080",
 "drop": 0.0,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/super-4/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1280x720",
+"drop": 0.015,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/supermusic/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1280x720",
+"drop": 0.015,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/super-6/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1280x720",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/supersports/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1280x720",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/super-5/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1280x720",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/super/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1280x720",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/supereyt/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1280x720",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/rockaction/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1920x1080",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/kxi/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1280x720",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/lovenature4k/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1920x1080",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/super-2/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1280x720",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/super-3/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1280x720",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/super-1/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1280x720",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/thrill/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1920x1080",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/tvb/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1920x1080",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/zoomoo/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1920x1080",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/tvnhk/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1920x1080",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/allchannel/tv5style/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1920x1080",
+"drop": 0.015,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/allchannel/doc/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1920x1080",
+"drop": 0.015,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/null-3/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1920x1080",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/allchannel/tv5asie/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1920x1080",
+"drop": 0.015,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/tvbplus/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1920x1080",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/mytvsuper18/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1920x1080",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/allchannel/novo19/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1920x1080",
+"drop": 0.02,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/hk/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1024x576",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/null/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1920x1080",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/allchannel/tv5info/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1920x1080",
+"drop": 0.007,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/tv/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1920x1080",
+"drop": 0.012,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/null-2/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1920x1080",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/null-10/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1920x1080",
+"drop": 0.01,
+"by": "actions",
+"at": "2026-10-27"
+},
+"http://103.172.187.30:12000/stream/mytv/null-8/master.m3u8": {
+"grade": "A",
+"why": "",
+"vcodec": "h264",
+"acodec": "aac",
+"res": "1920x1080",
+"drop": 0.01,
 "by": "actions",
 "at": "2026-10-27"
 }
