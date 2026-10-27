@@ -2534,7 +2534,7 @@ body { font-size: 15px; line-height: 1.65; }
 .visit-panel .panel-head { flex-wrap: wrap; gap: 6px 10px; }
 .visit-cards {
   display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px; margin: 4px 0 18px;
+  gap: 12px; margin: 14px 14px 18px;
 }
 .visit-card {
   padding: 16px 18px; border-radius: var(--r);
@@ -2548,14 +2548,14 @@ body { font-size: 15px; line-height: 1.65; }
 
 .visit-chart-head {
   display: flex; align-items: baseline; justify-content: space-between;
-  gap: 10px; margin-bottom: 10px;
+  gap: 10px; margin: 0 14px 10px;
   font-size: 13px; color: var(--text-2); font-weight: 600;
 }
 .visit-chart-max { font-size: 12px; font-weight: 400; color: var(--text-3); }
 
 .visit-chart {
   display: flex; align-items: flex-end; gap: 8px;
-  height: 132px; padding: 8px 4px 0;
+  height: 132px; margin: 0 14px; padding: 8px 4px 0;
   border-bottom: 1px solid var(--border);
 }
 .vb-col {
@@ -2574,7 +2574,7 @@ body { font-size: 15px; line-height: 1.65; }
 .vb-col.is-today .vb-num { color: var(--text); font-weight: 700; }
 .vb-day { font-size: 11px; color: var(--text-3); white-space: nowrap; margin-top: 2px; }
 
-.visit-note { margin: 12px 0 0; font-size: 12px; line-height: 1.75; color: var(--text-3); }
+.visit-note { margin: 12px 14px 16px; font-size: 12px; line-height: 1.75; color: var(--text-3); }
 
 @media (max-width: 720px) {
   .visit-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
