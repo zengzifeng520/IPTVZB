@@ -7,8 +7,8 @@
 <meta name="theme-color" content="#f2f3f5">
 <title>支持一下作者 · IPTV直播源分发系统</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%236366f1'/><stop offset='1' stop-color='%23ec4899'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='url(%23g)'/><rect x='25' y='29' width='50' height='42' rx='8' fill='%231e1b4b'/><path d='M41 40l22 10-22 10z' fill='white'/></svg>">
-<link rel="stylesheet" href="assets/css/app.css?v=20261027n">
-<script src="assets/js/theme.js?v=20261027n"></script>
+<link rel="stylesheet" href="assets/css/app.css?v=20261027p">
+<script src="assets/js/theme.js?v=20261027p"></script>
 </head>
 <body class="page-donate">
 
@@ -50,7 +50,8 @@
         </div>
         <div class="code-title">微信赞赏</div>
         <div class="code-tip">微信扫一扫，金额随意</div>
-        <div class="code-hint">点击看大图</div>
+        <a class="code-pay" id="wxPay" href="javascript:void(0)" hidden>手机点此直接付款 →</a>
+        <div class="code-hint">点击二维码看大图</div>
       </div>
       <div class="code-card">
         <div class="code-img code-dy" data-qr="assets/img/douyin_qr.png" data-round="1" data-title="抖音码">
@@ -58,12 +59,29 @@
         </div>
         <div class="code-title">抖音关注</div>
         <div class="code-tip">抖音扫一扫，关注 zifeng</div>
-        <div class="code-hint">点击看大图</div>
+        <a class="code-pay" id="dyOpen" href="javascript:void(0)" hidden>手机点此打开抖音 →</a>
+        <div class="code-hint">点击二维码看大图</div>
       </div>
     </div>
 
     <p class="donate-thanks">感谢每一位支持的朋友，你的心意是站点持续更新的动力 💪</p>
   </section>
+
+  <!-- 手机点二维码后的引导层：网页无法直接跳到微信收款页时用它兜底 -->
+  <div class="pay-help" id="payHelp" hidden>
+    <div class="pay-help-box">
+      <h3 id="payHelpTitle">正在尝试打开微信…</h3>
+      <p id="payHelpText">
+        如果微信没有自动跳出来，说明当前浏览器不允许网页直接唤起微信。<br>
+        可以点「再试一次」，或者复制本站链接到微信里打开，再长按二维码识别付款。
+      </p>
+      <div class="pay-help-acts">
+        <button class="btn btn-primary" id="payRetry" type="button">再试一次</button>
+        <button class="btn" id="payCopy" type="button">复制本站链接</button>
+        <button class="btn" id="payClose" type="button">关闭</button>
+      </div>
+    </div>
+  </div>
 
   <!-- 免费订阅地址 -->
   <section class="panel">
@@ -92,7 +110,7 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="assets/js/auth.js?v=20261027n"></script>
-<script src="assets/js/account.js?v=20261027n"></script>
+<script src="assets/js/auth.js?v=20261027p"></script>
+<script src="assets/js/account.js?v=20261027p"></script>
 </body>
 </html>

@@ -2375,3 +2375,46 @@ body { font-size: 15px; line-height: 1.65; }
   .rc-foot { font-size: 11.5px; }
   .about-desc { font-size: 16px; }
 }
+
+/* ----------------------------------------------------------
+   手机端：点二维码直接付款（唤起微信）+ 兜底引导层
+   ---------------------------------------------------------- */
+.code-pay {
+  display: inline-flex; align-items: center; justify-content: center;
+  margin: 8px auto 0;
+  height: 34px; padding: 0 15px;
+  border-radius: 9px;
+  background: rgba(139, 92, 246, 0.14);
+  border: 1px solid rgba(139, 92, 246, 0.34);
+  color: var(--accent);
+  font-size: 13.5px; font-weight: 600;
+  text-decoration: none;
+}
+.code-pay:hover { background: rgba(139, 92, 246, 0.22); border-color: var(--accent); }
+.code-pay[hidden] { display: none !important; }
+
+.pay-help {
+  position: fixed; inset: 0; z-index: 998;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.74);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.pay-help[hidden] { display: none !important; }
+.pay-help-box {
+  width: min(430px, 100%);
+  padding: 24px 22px 18px;
+  border-radius: 18px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  color: var(--text);
+}
+.pay-help-box h3 { margin: 0 0 10px; font-size: 18px; font-weight: 800; }
+.pay-help-box p { margin: 0 0 16px; font-size: 14px; line-height: 1.85; color: var(--text-2); }
+.pay-help-box p b { color: var(--text); }
+.pay-help-acts { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.pay-help-acts .btn { height: 38px; padding: 0 16px; font-size: 14px; }
+[data-theme="light"] .code-pay { color: #6d28d9; background: rgba(124, 58, 237, 0.10); border-color: rgba(124, 58, 237, 0.28); }

@@ -59,7 +59,75 @@
     return location.origin + location.pathname.replace(/[^/]*$/, "");
   }
 
-  /* ---------------------------------------------------------- 二维码大图 */
+  /* ---------------------------------------------------------- 二维码大图 + 手机直接付款 */
+
+  // 微信赞赏码里编的内容（wxp:// 只能由微信自己处理，网页只能「唤起微信」）
+  var WX_PAY_URI =
+    "wxp://f2f0jWzDSWSV5tk1GJm8fYvN5gTe8Dodid2XZC3uQdLAIPK4OPS3ZpvVFxsBhdAyzlkZ";
+  var UA = navigator.userAgent || "";
+  var IS_MOBILE =
+    /Android|iPhone|iPad|iPod|HarmonyOS|Windows Phone|Mobile/i.test(UA) ||
+    (navigator.maxTouchPoints > 1 && /Mac/.test(UA));
+  var IN_WECHAT = /MicroMessenger/i.test(UA);
+
+  var pay = {
+    box: document.getElementById("payHelp"),
+    title: document.getElementById("payHelpTitle"),
+    text: document.getElementById("payHelpText"),
+    retry: document.getElementById("payRetry"),
+    copy: document.getElementById("payCopy"),
+    close: document.getElementById("payClose"),
+    mode: "wx",
+  };
+
+  function hidePayHelp() {
+    if (pay.box) pay.box.hidden = true;
+  }
+
+  function showPayHelp(mode) {
+    if (!pay.box) {
+      toast("请长按二维码识别");
+      return;
+    }
+    pay.mode = mode;
+    if (mode === "wx") {
+      pay.title.textContent = "正在尝试打开微信…";
+      pay.text.innerHTML =
+        "浏览器不允许网页直接跳到微信收款页时，微信不会自动弹出。<br>" +
+        "可以点「再试一次」，或复制本站链接粘贴到微信里打开，再<b>长按二维码识别</b>即可付款。";
+      if (pay.retry) pay.retry.textContent = "再试一次";
+    } else {
+      pay.title.textContent = "抖音码请在抖音里识别";
+      pay.text.innerHTML =
+        "抖音码不是普通网址，网页没法直接跳转。<br>" +
+        "打开抖音 → 右上角「扫一扫」→ 相册，选这张二维码截图就能关注；" +
+        "在抖音里打开本站也可以直接长按识别。";
+      if (pay.retry) pay.retry.textContent = "打开抖音";
+    }
+    pay.box.hidden = false;
+  }
+
+  // 唤起微信：直接改 location 是最容易被系统接管的做法
+  function wakeWeChat() {
+    try {
+      window.location.href = WX_PAY_URI;
+    } catch (err) {
+      /* 某些浏览器会直接拦截，交给下面的兜底提示 */
+    }
+  }
+
+  function wakeDouyin() {
+    try {
+      window.location.href = "snssdk1128://";
+    } catch (err) {
+      /* ignore */
+    }
+  }
+
+  function copySiteLink() {
+    var url = baseUrl() + "account.html";
+    copyText(url, "链接已复制，粘贴到微信里打开即可");
+  }
 
   function initQrZoom() {
     var box = document.getElementById("qrLightbox");
@@ -67,14 +135,46 @@
     var bigTip = document.getElementById("qrBigTip");
     if (!box || !bigImg) return;
 
-    document.addEventListener("click", function (e) {
-      var node = e.target.closest("[data-qr]");
-      if (!node) return;
+    function openBig(node, tip) {
       bigImg.src = node.dataset.qr;
       bigImg.alt = node.dataset.title || "二维码";
       bigImg.classList.toggle("is-round", node.dataset.round === "1");
-      if (bigTip) bigTip.textContent = "点击任意处关闭 · 长按可保存图片";
+      if (bigTip) bigTip.textContent = tip || "点击任意处关闭 · 长按可保存图片";
       box.classList.add("show");
+    }
+
+    document.addEventListener("click", function (e) {
+      var btn = e.target.closest("#wxPay, #dyOpen");
+      if (btn) {
+        e.preventDefault();
+        if (btn.id === "wxPay") {
+          showPayHelp("wx");
+          setTimeout(wakeWeChat, 320);
+        } else {
+          showPayHelp("dy");
+        }
+        return;
+      }
+
+      var node = e.target.closest("[data-qr]");
+      if (!node) return;
+      var isWx = node.classList.contains("code-wx");
+
+      // 手机点微信码：先在站内弹引导层，再尝试唤起微信
+      if (IS_MOBILE && isWx && !IN_WECHAT) {
+        e.preventDefault();
+        showPayHelp("wx");
+        setTimeout(wakeWeChat, 320);
+        return;
+      }
+
+      // 微信内置浏览器：长按识别才是官方路径
+      openBig(
+        node,
+        IN_WECHAT
+          ? "长按图片 → 识别图中二维码，即可直接打开"
+          : "点击任意处关闭 · 长按可保存图片"
+      );
     });
 
     box.addEventListener("click", function () {
@@ -82,8 +182,42 @@
     });
 
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") box.classList.remove("show");
+      if (e.key === "Escape") {
+        box.classList.remove("show");
+        hidePayHelp();
+      }
     });
+
+    if (pay.box) {
+      pay.box.addEventListener("click", function (e) {
+        if (e.target === pay.box) hidePayHelp();
+      });
+    }
+    if (pay.close) pay.close.addEventListener("click", hidePayHelp);
+    if (pay.copy) pay.copy.addEventListener("click", copySiteLink);
+    if (pay.retry) {
+      pay.retry.addEventListener("click", function () {
+        if (pay.mode === "dy") wakeDouyin();
+        else wakeWeChat();
+      });
+    }
+
+    // 手机上才显示「直接付款」入口，桌面端保持原来的看大图
+    if (IS_MOBILE) {
+      var wxBtn = document.getElementById("wxPay");
+      if (wxBtn) wxBtn.hidden = false;
+      var dyBtn = document.getElementById("dyOpen");
+      if (dyBtn) {
+        dyBtn.textContent = "手机点此打开抖音 →";
+        dyBtn.hidden = false;
+      }
+      var wxHint = document.querySelector(".code-wx")
+        ? document.querySelector(".code-wx").parentNode.querySelector(".code-hint")
+        : null;
+      if (wxHint) {
+        wxHint.textContent = IN_WECHAT ? "长按二维码识别即可付款" : "点击二维码直接付款";
+      }
+    }
   }
 
   initQrZoom();
