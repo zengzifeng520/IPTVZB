@@ -4,13 +4,25 @@ http://111.59.139.85:11888/tsfile/live/1203_1.m3u8?key=txiptv
 #EXTINF:-1 tvg-name="TVBS" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/TVBS.png" group-title="港澳台",TVBS
 http://111.59.139.85:11888/tsfile/live/1201_1.m3u8?key=txiptv
 #EXTINF:-1 tvg-name="TVBS亚洲" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/TVBS%E4%BA%9A%E6%B4%B2.png" group-title="港澳台",TVBS亚洲
+http://38.64.72.148/hls/modn/list/4005/chunklist1.m3u8
+#EXTINF:-1 tvg-name="TVBS亚洲" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/TVBS%E4%BA%9A%E6%B4%B2.png" group-title="港澳台",TVBS亚洲
 http://38.64.72.148/hls/modn/list/4005/playlist.m3u8
+#EXTINF:-1 tvg-name="TVBS新闻台" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/TVBS%E6%96%B0%E9%97%BB.png" group-title="港澳台",TVBS新闻台
+http://61.221.215.25:8800/hls/9/index.m3u8
+#EXTINF:-1 tvg-name="三立戏剧" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E4%B8%89%E7%AB%8B%E6%88%8F%E5%89%A7%E5%8F%B0.png" group-title="港澳台",三立戏剧
+http://61.221.215.25:8800/hls/41/index.m3u8
 #EXTINF:-1 tvg-name="东森洋片台" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E4%B8%9C%E6%A3%AE%E6%B4%8B%E7%89%87.png" group-title="港澳台",东森洋片台
 http://111.59.139.85:11888/tsfile/live/1217_1.m3u8?key=txiptv
+#EXTINF:-1 tvg-name="东森超视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E4%B8%9C%E6%A3%AE%E8%B6%85%E8%A7%86.png" group-title="港澳台",东森超视
+http://38.64.72.148/hls/modn/list/2013/chunklist1.m3u8
+#EXTINF:-1 tvg-name="东森超视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E4%B8%9C%E6%A3%AE%E8%B6%85%E8%A7%86.png" group-title="港澳台",东森超视
+http://38.64.72.148/hls/modn/list/2013/playlist.m3u8
 #EXTINF:-1 tvg-name="中天新闻" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E4%B8%AD%E5%A4%A9%E6%96%B0%E9%97%BB%E5%8F%B0.png" group-title="港澳台",中天新闻
 http://111.59.139.85:11888/tsfile/live/1221_1.m3u8?key=txiptv
 #EXTINF:-1 tvg-name="亚洲剧台" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E4%BA%9A%E6%B4%B2%E7%94%B5%E8%A7%86.png" group-title="港澳台",亚洲剧台
 http://103.172.187.30:12000/stream/mytv/null-11/master.m3u8
+#EXTINF:-1 tvg-name="人间卫视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E4%BA%BA%E9%97%B4%E5%8D%AB%E8%A7%86.png" group-title="港澳台",人间卫视
+http://61.216.67.119:1935/bltvhd/bltv1/chunklist_w1266569526.m3u8
 #EXTINF:-1 tvg-name="信吉卫视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E4%BF%A1%E5%90%89%E5%8D%AB%E8%A7%86.png" group-title="港澳台",信吉卫视
 http://111.59.139.85:11888/tsfile/live/1220_1.m3u8?key=txiptv
 #EXTINF:-1 tvg-name="公视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E5%85%AC%E8%A7%86.png" group-title="港澳台",公视
@@ -21,29 +33,53 @@ http://111.59.139.85:11888/tsfile/live/1222_1.m3u8?key=txiptv
 http://111.59.139.85:11888/tsfile/live/1202_1.m3u8?key=txiptv
 #EXTINF:-1 tvg-name="凤凰电影" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E5%87%A4%E5%87%B0%E7%94%B5%E5%BD%B1.png" group-title="港澳台",凤凰电影
 http://111.59.139.85:11888/tsfile/live/1218_1.m3u8?key=txiptv
+#EXTINF:-1 tvg-name="凤凰香港" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E5%87%A4%E5%87%B0%E9%A6%99%E6%B8%AF.png" group-title="港澳台",凤凰香港
+https://epg.pw/stream/5f16dc7fc8aaaed3205516c63e4a8c24bca9dbba1181684244729cf574505b0e.m3u8
 #EXTINF:-1 tvg-name="创世电视" tvg-logo="https://zzf.new.tg/data/logos/396e8b2cf9c7.png" group-title="港澳台",创世电视
 http://103.172.187.30:12000/stream/mytv/null-4/master.m3u8
+#EXTINF:-1 tvg-name="动物星球" tvg-logo="https://gcore.jsdelivr.net/gh/wanglindl/TVlogo@main/img/animalplanet.png" group-title="港澳台",动物星球
+http://61.221.215.25:8800/hls/57/index.m3u8
 #EXTINF:-1 tvg-name="华视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E5%8D%8E%E8%A7%86.png" group-title="港澳台",华视
 https://mobile.ccdntech.com/transcoder/_definst_/vod164_Live/live/chunklist_w1177047531.m3u8
 #EXTINF:-1 tvg-name="原住民电视台" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E5%8E%9F%E4%BD%8F%E6%B0%91%E7%94%B5%E8%A7%86.png" group-title="港澳台",原住民电视台
 https://streamipcfapp.akamaized.net/live/_definst_/live_720/key_b1500.m3u8
 #EXTINF:-1 tvg-name="台视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E5%8F%B0%E8%A7%86.png" group-title="港澳台",台视
 http://111.59.139.85:11888/tsfile/live/1214_1.m3u8?key=txiptv
+#EXTINF:-1 tvg-name="台视新闻" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E5%8F%B0%E8%A7%86%E6%96%B0%E9%97%BB%E5%8F%B0.png" group-title="港澳台",台视新闻
+http://38.64.72.148/hls/modn/list/4013/chunklist1.m3u8
 #EXTINF:-1 tvg-name="大爱" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E5%A4%A7%E7%88%B1-1.png" group-title="港澳台",大爱
 http://111.59.139.85:11888/tsfile/live/1204_1.m3u8?key=txiptv
 #EXTINF:-1 tvg-name="民视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%B0%91%E8%A7%86.png" group-title="港澳台",民视
 http://111.59.139.85:11888/tsfile/live/1207_1.m3u8?key=txiptv
 #EXTINF:-1 tvg-name="澳门莲花" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E6%BE%B3%E9%97%A8%E8%8E%B2%E8%8A%B1.png" group-title="港澳台",澳门莲花
 http://111.59.139.85:11888/tsfile/live/1206_1.m3u8?key=txiptv
+#EXTINF:-1 tvg-name="环球电视" tvg-logo="https://zzf.new.tg/data/logos/649c7e89ca95.png" group-title="港澳台",环球电视
+http://utv1.hqtvzb.com:9999/hls/world.m3u8
+#EXTINF:-1 tvg-name="纬来体育" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E7%BA%AC%E6%9D%A5%E4%BD%93%E8%82%B2.png" group-title="港澳台",纬来体育
+https://epg.pw/stream/8855a9936e37e608a0ec8a014cce1673dee9c5d68d560da376cc92e5edef2b25.m3u8
+#EXTINF:-1 tvg-name="纬来体育" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E7%BA%AC%E6%9D%A5%E4%BD%93%E8%82%B2.png" group-title="港澳台",纬来体育
+https://epg.pw/stream/ab6df63b64d0cc44a1f4f029ed847a26fa54a7aebd455578fb05a63f02c22f4b.m3u8
+#EXTINF:-1 tvg-name="纬来体育" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E7%BA%AC%E6%9D%A5%E4%BD%93%E8%82%B2.png" group-title="港澳台",纬来体育
+https://epg.pw/stream/4f18dfe0593db5c686eb64ae8edaf2a9202d4d46bdc9bbde2cee27708e12ea01.m3u8
 #EXTINF:-1 tvg-name="纬来日本台" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E7%BA%AC%E6%9D%A5%E6%97%A5%E6%9C%AC.png" group-title="港澳台",纬来日本台
 http://111.59.139.85:11888/tsfile/live/1208_1.m3u8?key=txiptv
+#EXTINF:-1 tvg-name="纬来精采" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E7%BA%AC%E6%9D%A5%E7%B2%BE%E9%87%87.png" group-title="港澳台",纬来精采
+http://61.221.215.25:8800/hls/48/index.m3u8
+#EXTINF:-1 tvg-name="美亚C+" tvg-logo="https://zzf.new.tg/data/logos/a4402298c978.png" group-title="港澳台",美亚C+
+http://ottproxy2.ist.ooo/livehls/MOB-U1-NO/03.m3u8
 #EXTINF:-1 tvg-name="美亚电影台" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E7%BE%8E%E4%BA%9A%E7%94%B5%E5%BD%B1%E5%8F%B0.png" group-title="港澳台",美亚电影台
 http://103.172.187.30:12000/stream/mytv/null-9/master.m3u8
 #EXTINF:-1 tvg-name="美好生活电视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E7%BE%8E%E5%A5%BD%E7%94%B5%E8%A7%86.png" group-title="港澳台",美好生活电视
 https://5ddce30eb4b55.streamlock.net/bltvhd/bltv1/playlist.m3u8
 #EXTINF:-1 tvg-name="翡翠台" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E7%BF%A1%E7%BF%A0%E5%8F%B0.png" group-title="港澳台",翡翠台
 http://103.172.187.30:12000/stream/mytv/null-1/master.m3u8
+#EXTINF:-1 tvg-name="耀才财经" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E8%80%80%E6%89%8D%E8%B4%A2%E7%BB%8F.png" group-title="港澳台",耀才财经
+https://v3.mediacast.hk/webcast/bshdlive-pc/chunklist_w99771165.m3u8
 #EXTINF:-1 tvg-name="非凡新闻" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E9%9D%9E%E5%87%A1%E6%96%B0%E9%97%BB.png" group-title="港澳台",非凡新闻
 http://111.59.139.85:11888/tsfile/live/1205_1.m3u8?key=txiptv
+#EXTINF:-1 tvg-name="音乐欣赏" tvg-logo="https://zzf.new.tg/data/logos/7c484e99bd06.png" group-title="港澳台",音乐欣赏
+http://61.221.215.25:8800/hls/49/index.m3u8
+#EXTINF:-1 tvg-name="香港卫视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E9%A6%99%E6%B8%AF%E5%8D%AB%E8%A7%86.png" group-title="港澳台",香港卫视
+http://webcast.hkstv.tv/livestream/mutfysrq/playlist.m3u8
 #EXTINF:-1 tvg-name="黄金翡翠台" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E7%BF%A1%E7%BF%A0%E5%8F%B0.png" group-title="港澳台",黄金翡翠台
 http://103.172.187.30:12000/stream/mytv/null-12/master.m3u8

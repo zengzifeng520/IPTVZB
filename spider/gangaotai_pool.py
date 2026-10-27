@@ -28,6 +28,7 @@ import ssl
 import time
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from urllib.parse import urljoin
 
 import config
 
@@ -59,10 +60,36 @@ CHANNELS: list[tuple[str, str, str, str, str]] = [
     ("MeiAhMovie", "美亚电影台", "http://103.172.187.30:12000/stream/mytv/null-9/master.m3u8", "103.172.187.30:12000", "香港"),
     ("CreationTV", "创世电视", "http://103.172.187.30:12000/stream/mytv/null-4/master.m3u8", "103.172.187.30:12000", "香港"),
     # ---- 台湾各台直连源（iptv-org 收录）----
+    ("TVBSAsia", "TVBS亚洲", "http://38.64.72.148/hls/modn/list/4005/chunklist1.m3u8", "38.64.72.148", "台湾"),
     ("TVBSAsia", "TVBS亚洲", "http://38.64.72.148/hls/modn/list/4005/playlist.m3u8", "38.64.72.148", "台湾"),
     ("TITV", "原住民电视台", "https://streamipcfapp.akamaized.net/live/_definst_/live_720/key_b1500.m3u8", "streamipcfapp.akamaized.net", "台湾"),
     ("BLTV", "美好生活电视", "https://5ddce30eb4b55.streamlock.net/bltvhd/bltv1/playlist.m3u8", "5ddce30eb4b55.streamlock.net", "台湾"),
     ("WXTV", "华视", "https://mobile.ccdntech.com/transcoder/_definst_/vod164_Live/live/chunklist_w1177047531.m3u8", "mobile.ccdntech.com", "台湾"),
+
+    # ================= 2026-10-27 全网扩挖 =================
+    # 台湾 IPTV 播控系统（61.221.215.25）——不挑运营商，全国可通
+    # 频道号经 ffmpeg 3 秒真解码验证 + 画面截图识别台标
+    ("CTiEnt", "中天娱乐HD", "http://61.221.215.25:8800/hls/47/index.m3u8", "61.221.215.25:8800", "台湾"),
+    ("TVBSNews", "TVBS新闻台", "http://61.221.215.25:8800/hls/9/index.m3u8", "61.221.215.25:8800", "台湾"),
+    ("SETDrama", "三立戏剧", "http://61.221.215.25:8800/hls/41/index.m3u8", "61.221.215.25:8800", "台湾"),
+    ("VLJingcai", "纬来精采", "http://61.221.215.25:8800/hls/48/index.m3u8", "61.221.215.25:8800", "台湾"),
+    ("AnimalPlanet", "动物星球", "http://61.221.215.25:8800/hls/57/index.m3u8", "61.221.215.25:8800", "台湾"),
+    ("MusicEnjoy", "音乐欣赏", "http://61.221.215.25:8800/hls/49/index.m3u8", "61.221.215.25:8800", "台湾"),
+    # 台湾 modn 系统（38.64.72.148）——同样全国可通
+    ("EBCSuper", "东森超视", "http://38.64.72.148/hls/modn/list/2013/chunklist1.m3u8", "38.64.72.148", "台湾"),
+    ("EBCSuper", "东森超视", "http://38.64.72.148/hls/modn/list/2013/playlist.m3u8", "38.64.72.148", "台湾"),
+    ("TTVNews", "台视新闻", "http://38.64.72.148/hls/modn/list/4013/chunklist1.m3u8", "38.64.72.148", "台湾"),
+    # 台湾/香港单源直连
+    ("WorldTV", "环球电视", "http://utv1.hqtvzb.com:9999/hls/world.m3u8", "utv1.hqtvzb.com:9999", "台湾"),
+    ("MeiAhCPlus", "美亚C+", "http://ottproxy2.ist.ooo/livehls/MOB-U1-NO/03.m3u8", "ottproxy2.ist.ooo", "香港"),
+    ("BLTV2", "人间卫视", "http://61.216.67.119:1935/bltvhd/bltv1/chunklist_w1266569526.m3u8", "61.216.67.119", "台湾"),
+    ("HKSTV", "香港卫视", "http://webcast.hkstv.tv/livestream/mutfysrq/playlist.m3u8", "webcast.hkstv.tv", "香港"),
+    ("BrightSmart", "耀才财经", "https://v3.mediacast.hk/webcast/bshdlive-pc/chunklist_w99771165.m3u8", "v3.mediacast.hk", "香港"),
+    ("PhoenixHK", "凤凰香港", "https://epg.pw/stream/5f16dc7fc8aaaed3205516c63e4a8c24bca9dbba1181684244729cf574505b0e.m3u8", "epg.pw", "凤凰"),
+    # 纬来体育：三条线路（epg.pw 同一频道多 CDN 节点），播放器里会显示三条同名
+    ("VL体育", "纬来体育", "https://epg.pw/stream/8855a9936e37e608a0ec8a014cce1673dee9c5d68d560da376cc92e5edef2b25.m3u8", "epg.pw", "台湾"),
+    ("VL体育", "纬来体育", "https://epg.pw/stream/ab6df63b64d0cc44a1f4f029ed847a26fa54a7aebd455578fb05a63f02c22f4b.m3u8", "epg.pw", "台湾"),
+    ("VL体育", "纬来体育", "https://epg.pw/stream/4f18dfe0593db5c686eb64ae8edaf2a9202d4d46bdc9bbde2cee27708e12ea01.m3u8", "epg.pw", "台湾"),
 ]
 
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
@@ -72,48 +99,97 @@ _CTX.check_hostname = False
 _CTX.verify_mode = ssl.CERT_NONE
 
 
+def _fetch(url: str, nbytes: int = 4000, timeout: int = 8) -> str:
+    req = urllib.request.Request(url, headers=UA)
+    with urllib.request.urlopen(req, timeout=timeout, context=_CTX) as r:
+        return r.read(nbytes).decode("utf-8", "ignore")
+
+
+def _playlist_ts(url: str, body: str) -> str | None:
+    """从播放列表里挑第一个 ts 分片地址（转成绝对地址）"""
+    import re
+    m = re.search(r'(?m)^(?!#)(\S+\.ts(?:\?\S*)?)\s*$', body)
+    if not m:
+        m = re.search(r'(\S+\.ts(?:\?[^\s"\']*)?)', body)
+    if not m:
+        return None
+    ts = m.group(1)
+    return ts if ts.startswith("http") else urljoin(url, ts)
+
+
 def probe(item: tuple) -> bool:
-    """验活：跟随 master->chunklist，能拿到 ts 分片即活。"""
+    """验活：跟随播放列表到 ts 分片，并真的下载一段数据。
+
+    只判断「播放列表里有 .ts」是不够的——很多过期点播列表的标题还在，
+    分片却已经 404 或只有几百字节（频道停播）。必须实际拉到数据才算活。
+
+    兼容两种特殊结构：
+      - master -> chunklist -> ts（myTV / modn 系统）
+      - 自引用 playlist（香港卫视：返回自己 + ?hls_ctx=xxx，要带参数再跟一层）
+    """
     key, display, url, host, region = item
-    try:
-        req = urllib.request.Request(url, headers=UA)
-        with urllib.request.urlopen(req, timeout=8, context=_CTX) as r:
-            body = r.read(4000).decode("utf-8", "ignore")
-        # 直接有 ts 分片，或嵌套 m3u8 再跟一层
-        if ".ts" in body:
-            return True
-        if ".m3u8" in body:
-            import re
-            m = re.search(r'([^\s"\']+\.m3u8[^\s"\']*)', body)
-            if m:
-                nxt = m.group(1) if m.group(1).startswith("http") else url.rsplit("/", 1)[0] + "/" + m.group(1).lstrip("/")
-                req2 = urllib.request.Request(nxt, headers=UA)
-                with urllib.request.urlopen(req2, timeout=8, context=_CTX) as r2:
-                    b2 = r2.read(4000).decode("utf-8", "ignore")
-                return ".ts" in b2
-    except Exception:  # noqa: BLE001
-        pass
+    cur = url
+    seen: set[str] = set()
+    for _ in range(4):
+        if not cur or cur in seen:
+            return False
+        seen.add(cur)
+        try:
+            body = _fetch(cur, 6000)
+        except Exception:  # noqa: BLE001
+            return False
+        if "#EXTM3U" not in body:
+            return False
+        ts = _playlist_ts(cur, body)
+        if ts:
+            try:
+                req = urllib.request.Request(ts, headers=UA)
+                with urllib.request.urlopen(req, timeout=10, context=_CTX) as r:
+                    got = 0
+                    while got < 16384:
+                        chunk = r.read(8192)
+                        if not chunk:
+                            break
+                        got += len(chunk)
+                    return got >= 8000
+            except Exception:  # noqa: BLE001
+                return False
+        # 找下一层 m3u8
+        import re
+        m = re.search(r'(\S+\.m3u8(?:\?[^\s"\']*)?)', body)
+        if not m:
+            return False
+        nxt = m.group(1)
+        # 必须用 urljoin：以 / 开头的是相对域名根，不是相对当前目录
+        cur = nxt if nxt.startswith("http") else urljoin(cur, nxt)
     return False
 
 
 def build(alive: list[tuple]) -> dict:
-    # 按 host 聚合
+    # 按 host 聚合（统计每个源服务器承载多少频道）
     host_map: dict[str, dict] = {}
     for key, display, url, host, region in alive:
         if host not in host_map:
             host_map[host] = {"h": host, "rn": region, "isp": "HLS", "ch": 0}
         host_map[host]["ch"] += 1
 
-    channels = []
+    # 按 key 聚合：同一个 key 出现多行 = 同一频道多条线路
+    # （播放器里会看到多条同名条目，某条不通就换下一条）
+    by_key: dict[str, dict] = {}
+    order: list[str] = []
     for key, display, url, host, region in alive:
-        channels.append(
-            {
+        if key not in by_key:
+            by_key[key] = {
                 "key": key,
                 "display": display,
                 "type": "港澳台",
-                "streams": [{"h": host, "u": url}],
+                "region": region,
+                "streams": [],
             }
-        )
+            order.append(key)
+        by_key[key]["streams"].append({"h": host, "u": url})
+
+    channels = [by_key[k] for k in order]
     channels.sort(key=lambda c: (c["display"], c["key"]))
     hosts = sorted(host_map.values(), key=lambda x: -x["ch"])
     total = sum(len(c["streams"]) for c in channels)
