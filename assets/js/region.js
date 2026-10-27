@@ -59,11 +59,7 @@
   function copyText(text, okMsg) {
     window.zzfCopy(text, {
       ok: function () {
-        toast(okMsg || "已复制");
-      },
-      fail: function () {
-        // 兜底：弹出手动复制面板，地址已全选好
-        window.zzfCopySheet(text);
+        window.zzfCopyBar(okMsg || "地址已复制", text);
       },
     });
   }

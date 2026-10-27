@@ -1,15 +1,23 @@
-/* 通用复制工具
+/* 通用复制工具（v2）
    ------------------------------------------------------------
-   三级兜底，手机内置浏览器（微信 / 华为 / 夸克等 WebView）也能复制：
-     1. navigator.clipboard.writeText（HTTPS + 现代浏览器）
-     2. textarea + document.execCommand('copy')（老浏览器 / 权限被拒）
-     3. 手动复制面板：把地址放进可长按选中的输入框，用户自己全选复制
-   暴露：window.zzfCopy(text, { ok, fail }) */
+   手机浏览器（微信 / 华为 / 夸克 / UC 等 WebView）里，
+   navigator.clipboard.writeText 常常「resolve 了但没真正写进剪贴板」，
+   所以这里改成：优先用同步的 execCommand（在点击事件里同步执行才有效），
+   失败再退回 Clipboard API，最后还有手动复制面板兜底。
+
+   暴露：
+     window.zzfCopy(text, { ok, fail, anchor })
+       anchor：页面上显示这段文字的可见元素，用来「选中真实文字再复制」
+     window.zzfCopySheet(text)  直接打开手动复制面板
+     window.zzfCopyBar(msg, text) 底部提示条（带「手动复制」按钮） */
 (function () {
   "use strict";
 
   var sheet = null;
   var area = null;
+  var bar = null;
+
+  /* ---------------------------------------------------------- 手动复制面板 */
 
   function buildSheet() {
     sheet = document.createElement("div");
@@ -17,7 +25,7 @@
     sheet.innerHTML =
       '<div class="copy-sheet-box">' +
       "<h3>手动复制地址</h3>" +
-      "<p>当前浏览器不允许网页直接写入剪贴板。长按下面的地址 →「全选 / 复制」即可。</p>" +
+      "<p>长按下面的地址 →「全选 / 复制」，再粘贴到播放器里。</p>" +
       '<textarea class="copy-sheet-text" readonly rows="3" spellcheck="false"></textarea>' +
       '<div class="copy-sheet-acts">' +
       '<button class="btn" type="button" data-sheet-all>全选</button>' +
@@ -55,13 +63,45 @@
     if (sheet) sheet.classList.remove("show");
   }
 
-  function legacyCopy(text) {
+  /* ---------------------------------------------------------- 底部提示条 */
+
+  function buildBar() {
+    bar = document.createElement("div");
+    bar.className = "copy-bar";
+    bar.innerHTML =
+      '<span class="copy-bar-txt"></span>' +
+      '<button class="copy-bar-btn" type="button">手动复制</button>';
+    document.body.appendChild(bar);
+    bar.querySelector(".copy-bar-btn").addEventListener("click", function (e) {
+      e.preventDefault();
+      showSheet(bar.getAttribute("data-text") || "");
+      hideBar();
+    });
+  }
+
+  function showBar(msg, text) {
+    if (!bar) buildBar();
+    bar.querySelector(".copy-bar-txt").textContent = msg + "，粘贴不出来就点右边";
+    bar.setAttribute("data-text", text);
+    bar.classList.add("show");
+    clearTimeout(showBar._t);
+    showBar._t = setTimeout(hideBar, 6000);
+  }
+
+  function hideBar() {
+    if (bar) bar.classList.remove("show");
+  }
+
+  /* ---------------------------------------------------------- 复制实现 */
+
+  // 方式一：临时 textarea + execCommand（必须同步调用）
+  function copyViaTextarea(text) {
     var ta = document.createElement("textarea");
     ta.value = text;
     ta.setAttribute("readonly", "");
-    // 必须真实存在且可聚焦，opacity:0 的 1px 元素在部分 WebView 里选不中
     ta.style.cssText =
-      "position:fixed;top:0;left:0;width:1px;height:1px;padding:0;border:0;outline:none;opacity:0;";
+      "position:fixed;top:0;left:0;width:1px;height:1px;padding:0;border:0;outline:none;" +
+      "opacity:0.01;font-size:16px;z-index:-1;";
     document.body.appendChild(ta);
     var ok = false;
     try {
@@ -76,23 +116,54 @@
     return ok;
   }
 
+  // 方式二：选中页面上真实显示的文字再复制（部分 WebView 只认这种）
+  function copyViaSelection(node) {
+    if (!node || !document.createRange || !window.getSelection) return false;
+    var sel = window.getSelection();
+    var ok = false;
+    try {
+      var range = document.createRange();
+      range.selectNodeContents(node);
+      sel.removeAllRanges();
+      sel.addRange(range);
+      ok = document.execCommand("copy");
+    } catch (e) {
+      ok = false;
+    }
+    try {
+      sel.removeAllRanges();
+    } catch (e) {}
+    return ok;
+  }
+
   window.zzfCopy = function (text, opts) {
     opts = opts || {};
-    var done = opts.ok || function () {};
-    var fail = opts.fail || function () { showSheet(text); };
+    var done = opts.ok || function () {
+      showBar("地址已复制", text);
+    };
+    var fail = opts.fail || function () {
+      showSheet(text);
+    };
 
     if (!text) return fail();
 
+    // 1) 同步复制：在点击事件里直接执行，成功率高
+    if (copyViaTextarea(text)) return done();
+
+    // 2) 选中页面上显示的那段地址再复制
+    if (copyViaSelection(opts.anchor)) return done();
+
+    // 3) 最后才用异步 Clipboard API
     if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
       navigator.clipboard.writeText(text).then(done, function () {
-        if (legacyCopy(text)) done();
-        else fail();
+        fail();
       });
       return;
     }
-    if (legacyCopy(text)) done();
-    else fail();
+
+    fail();
   };
 
   window.zzfCopySheet = showSheet;
+  window.zzfCopyBar = showBar;
 })();

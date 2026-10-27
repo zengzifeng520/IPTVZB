@@ -217,6 +217,8 @@
     var node = e.target.closest("[data-copy-url]");
     if (!node) return;
     var url = node.dataset.copyUrl;
+    var item = node.closest(".sub-item");
+    var codeEl = node.tagName === "CODE" ? node : item && item.querySelector(".sub-item-url");
     var isBtn = node.tagName === "BUTTON";
     var oldTxt = isBtn ? node.textContent : "";
     function flash(txt) {
@@ -227,9 +229,10 @@
       }, 1500);
     }
     window.zzfCopy(url, {
+      anchor: codeEl,
       ok: function () {
-        toast("订阅地址已复制");
         flash("已复制");
+        window.zzfCopyBar("订阅地址已复制", url);
       },
       fail: function () {
         window.zzfCopySheet(url);
