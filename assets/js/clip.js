@@ -13,6 +13,8 @@
 (function () {
   "use strict";
 
+  var BUILD = "20261027I";
+
   var sheet = null;
   var area = null;
   var bar = null;
@@ -27,6 +29,7 @@
       "<h3>手动复制地址</h3>" +
       "<p>长按下面的地址 →「全选 / 复制」，再粘贴到播放器里。</p>" +
       '<textarea class="copy-sheet-text" readonly rows="3" spellcheck="false"></textarea>' +
+      '<p class="copy-sheet-ver">当前版本 ' + BUILD + "</p>" +
       '<div class="copy-sheet-acts">' +
       '<button class="btn" type="button" data-sheet-all>全选</button>' +
       '<button class="btn btn-primary" type="button" data-sheet-close>关闭</button>' +
@@ -113,7 +116,33 @@
     return ok;
   }
 
-  // 方式二：临时 textarea + execCommand（必须同步调用）
+  // 方式二：contentEditable + 选区复制（iOS / 微信 WebView 只认这种）
+  function copyViaEditable(text) {
+    var el = document.createElement("div");
+    el.contentEditable = "true";
+    el.textContent = text;
+    el.style.cssText =
+      "position:fixed;left:0;bottom:0;width:2em;height:2em;overflow:hidden;" +
+      "opacity:0.01;font-size:16px;white-space:pre;";
+    document.body.appendChild(el);
+    var ok = false;
+    try {
+      var range = document.createRange();
+      range.selectNodeContents(el);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      if (el.setSelectionRange) el.setSelectionRange(0, text.length);
+      ok = document.execCommand("copy");
+      sel.removeAllRanges();
+    } catch (e) {
+      ok = false;
+    }
+    document.body.removeChild(el);
+    return ok;
+  }
+
+  // 方式三：临时 textarea + execCommand（必须同步调用）
   function copyViaTextarea(text) {
     var ta = document.createElement("textarea");
     ta.value = text;
@@ -136,7 +165,7 @@
     return ok;
   }
 
-  // 方式三：选中页面上真实显示的文字再复制（部分 WebView 只认这种）
+  // 方式四：选中页面上真实显示的文字再复制
   function copyViaSelection(node) {
     if (!node || !document.createRange || !window.getSelection) return false;
     var sel = window.getSelection();
@@ -171,13 +200,16 @@
     // 1) 直接从页面上那个真实输入框复制（手机成功率最高）
     if (copyViaInput(opts.input)) return done();
 
-    // 2) 临时 textarea 同步复制
+    // 2) contentEditable 选区复制（iOS / 微信）
+    if (copyViaEditable(text)) return done();
+
+    // 3) 临时 textarea 同步复制
     if (copyViaTextarea(text)) return done();
 
-    // 3) 选中页面上的可见文字再复制
+    // 4) 选中页面上的可见文字再复制
     if (copyViaSelection(opts.anchor)) return done();
 
-    // 4) 最后才用异步 Clipboard API
+    // 5) 最后才用异步 Clipboard API
     if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
       navigator.clipboard.writeText(text).then(done, fail);
       return;

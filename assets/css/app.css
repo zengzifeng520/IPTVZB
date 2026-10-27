@@ -2216,14 +2216,14 @@ h2 .ico-thumb { width: 19px; height: 19px; margin-right: 3px; vertical-align: -3
    浅色主题（浅灰背景）— 通过 <html data-theme="light"> 启用
    ============================================================ */
 [data-theme="light"] {
-  --bg: #f2f3f5;
-  --bg-soft: #e9eaee;
-  --surface: rgba(0, 0, 0, 0.03);
-  --surface-2: rgba(0, 0, 0, 0.05);
-  --surface-3: rgba(0, 0, 0, 0.08);
-  --border: rgba(0, 0, 0, 0.08);
-  --border-strong: rgba(0, 0, 0, 0.16);
-  --text: #1a1d24;
+  --bg: #ffffff;
+  --bg-soft: #f7f8fa;
+  --surface: rgba(0, 0, 0, 0.022);
+  --surface-2: rgba(0, 0, 0, 0.04);
+  --surface-3: rgba(0, 0, 0, 0.07);
+  --border: rgba(0, 0, 0, 0.09);
+  --border-strong: rgba(0, 0, 0, 0.17);
+  --text: #16181d;
   --text-2: #3c4252;
   --text-3: #6b7280;
   --accent: #7c3aed;
@@ -2233,11 +2233,11 @@ h2 .ico-thumb { width: 19px; height: 19px; margin-right: 3px; vertical-align: -3
   --err: #dc2626;
   --input-bg: #ffffff;
   --input-focus: #ffffff;
-  --hover-bg: #e6e7ec;
-  --card-2: #e7e8ed;
+  --hover-bg: #f2f3f7;
+  --card-2: #f2f3f7;
   --placeholder: #9ca0ae;
-  --card-gradient: linear-gradient(180deg, #ffffff 0%, #f4f5f7 100%);
-  --glow-opacity: 0.32;
+  --card-gradient: linear-gradient(180deg, #ffffff 0%, #fcfcfd 100%);
+  --glow-opacity: 0.16;
 }
 
 /* 浅色下：文字在纯白/浅灰底上的细节修正 */
@@ -2720,3 +2720,5 @@ input.sub-item-url {
 }
 input.sub-item-url:focus { outline: none; box-shadow: none; }
 [data-theme="light"] input.sub-item-url { color: var(--text-2); }
+
+.copy-sheet-ver { margin: 0 0 10px; font-size: 11px; color: var(--text-3); }
