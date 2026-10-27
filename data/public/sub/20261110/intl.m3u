@@ -1,4 +1,4 @@
-#EXTM3U x-tvg-url="https://fastly.jsdelivr.net/gh/zengzifeng520/IPTV@gh-pages/e_all.xml" url-tvg="https://fastly.jsdelivr.net/gh/zengzifeng520/IPTV@gh-pages/e_all.xml"
+#EXTM3U x-tvg-url="https://zzf.new.tg/data/public/epg.xml.gz" url-tvg="https://zzf.new.tg/data/public/epg.xml.gz"
 #EXTINF:-1 tvg-name="CGNTV Japan" tvg-logo="https://i.imgur.com/5LNZeVq.png" group-title="国外·日本",CGNTV Japan
 https://d2p4mrcwl6ly4.cloudfront.net/out/v1/8d50f69fdbbf411a8d302743e4263716/CGNWebLiveJP.m3u8
 #EXTINF:-1 tvg-name="NHK World-Japan" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/NHK_World-Japan_TV.svg/960px-NHK_World-Japan_TV.svg.png" group-title="国外·日本",NHK World-Japan
@@ -617,7 +617,7 @@ https://streamer12.vdn.dstreamone.net/carishowtime/showtime/chunks.m3u8
 https://amg01077-gusto-gustous-firetv.amagi.tv/playlist.m3u8
 #EXTINF:-1 tvg-name="HauntTV" tvg-logo="https://haunt-tv.com/wp-content/uploads/2022/09/haunt-tv-logo.png" group-title="国外·加拿大",HauntTV
 https://amg01446-blueantmediacan-haunttvaussam-samsungau-vcnai.amagi.tv/playlist/amg01446-blueantmediacan-haunttvaussam-samsungau/playlist.m3u8
-#EXTINF:-1 tvg-name="Love Nature" tvg-logo="https://tv.lovenature.com/wp-content/uploads/2024/10/LoveNature2024_Logo_full_colour-copy.png" group-title="国外·加拿大",Love Nature
+#EXTINF:-1 tvg-id="Love Nature 4K" tvg-name="Love Nature" tvg-logo="https://tv.lovenature.com/wp-content/uploads/2024/10/LoveNature2024_Logo_full_colour-copy.png" group-title="国外·加拿大",Love Nature
 https://pb-ehs1glsha1juy.akamaized.net/Love_Nature_4K.m3u8
 #EXTINF:-1 tvg-name="Movie Music by Stingray" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2CSpCdAxnLpqebMLZh6h7vMPk6LYpdqkVHA&s" group-title="国外·加拿大",Movie Music by Stingray
 https://lotus.stingray.com/manifest/cmusic-cme004-montreal/samsungtvplus/master.m3u8

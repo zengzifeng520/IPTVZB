@@ -34,6 +34,7 @@ epg.pw（就是我们港澳台部分源站用的那个站），提供分地区 X
 from __future__ import annotations
 
 import argparse
+import copy
 import gzip
 import json
 import re
@@ -57,6 +58,82 @@ SOURCES = [
 # 走 jsdelivr（实测 200 / 702KB）。
 BASE_EPG = "https://gcore.jsdelivr.net/gh/zengzifeng520/IPTV@gh-pages/e.xml.gz"
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+
+
+
+# ---------------------------------------------------------------- 国内频道改名
+# 用户的 EPG（国内 615 个台）id 命名与我们 m3u 的频道名不完全一致：
+#   我们 m3u          EPG id
+#   CCTV世界地理   →   世界地理
+#   CCTV兵器科技   →   兵器科技
+#   中国教育1      →   中国教育1台
+#   梨园频道       →   梨园
+# 播放器若按名字匹配（实测酷9 就是），这些台全都显示不出节目单。
+# 做法：把 EPG 的 channel id 直接**改成我们 m3u 里的名字**（同时把我们名字
+# 排到 display-name 第一位），节目表的 channel 引用一并改写。
+# 这样按 id 匹配、按名字匹配都命中，而且**不复制节目，文件不变大**。
+STRIP_PREFIX = ["CCTV", "央视", "中央"]
+STRIP_SUFFIX = ["频道", "高清", "HD", "台"]
+ADD_SUFFIX = ["", "台", "频道"]
+
+
+def _variants(name: str) -> list[str]:
+    """频道名的候选写法，按优先级排。"""
+    out = [name]
+    # 去横线/空格：CCTV-1 -> CCTV1，CCTV-5+ 不变（+ 保留）
+    flat = name.replace("-", "").replace("·", "").replace(" ", "")
+    if flat != name:
+        out.append(flat)
+    # 去前缀
+    for pre in STRIP_PREFIX:
+        if name.upper().startswith(pre.upper()) and len(name) > len(pre) + 1:
+            out.append(name[len(pre):])
+    # 去后缀
+    for suf in STRIP_SUFFIX:
+        if name.upper().endswith(suf.upper()) and len(name) > len(suf) + 1:
+            out.append(name[: -len(suf)])
+            # 去前缀 + 去后缀
+            for pre in STRIP_PREFIX:
+                if name.upper().startswith(pre.upper()) and len(name) > len(pre) + len(suf) + 1:
+                    out.append(name[len(pre): -len(suf)])
+    return out
+
+
+def _resolve(name: str, ids: set[str], dn2id: dict[str, str]) -> str | None:
+    """我们的频道名 -> EPG 里的 id；找不到返回 None（不瞎猜）。"""
+    if name in ids:
+        return name
+    if name in dn2id:
+        return dn2id[name]
+    for v in _variants(name):
+        if v in ids:
+            return v
+        if v in dn2id:
+            return dn2id[v]
+        for suf in ADD_SUFFIX:
+            if suf and (v + suf) in ids:
+                return v + suf
+    return None
+
+
+def load_our_names() -> list[str]:
+    """从三个地址池里取我们 m3u 用的频道名。"""
+    names: list[str] = []
+    seen: set[str] = set()
+    for f in ["data/proxy.json", "data/proxy_hotel.json"]:
+        fp = ROOT / f
+        if not fp.exists():
+            continue
+        try:
+            d = json.loads(fp.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            continue
+        for c in d.get("channels") or []:
+            nm = (c.get("display") or c.get("key") or "").strip()
+            if nm and nm not in seen:
+                seen.add(nm)
+                names.append(nm)
+    return names
 
 
 def fetch(url: str, timeout: int = 180) -> bytes:
@@ -111,18 +188,39 @@ def build(days: int = 7, base_file: str = "", out_base: str = "") -> None:
     rev: dict[str, list[str]] = {}
     for our_name, cid in ch_map.items():
         rev.setdefault(cid, []).append(our_name)
-    added = 0
+
+    # ★ 关键：把**我们 m3u 里的频道名放到 display-name 的第一个**。
+    # 原因（实测踩到的坑）：epg.pw 原名是繁体（亞洲劇台 / 民視 / 大愛電視），
+    # 我们 m3u 用简体（亚洲剧台 / 民视 / 大爱）。酷9 这类播放器只取
+    # `<display-name>` 的**第一个**做匹配，繁简一差就全对不上——
+    # 用户实测 64 个台只有 10 个能显示节目单，正好是名字本来就相同的
+    # 英文台（SUPER Music / ZooMoo / Thrill / ROCK Action）+ 翡翠台。
+    # 做法：删掉原有 display-name，按「我们的名字在前、原名在后」重排，
+    # 并放回 channel 的第一个子元素位置（有些解析器只看第一个子元素）。
+    reordered = 0
     for ch in channels:
         cid = ch.get("id") or ""
-        exist = {(d.text or "").strip() for d in ch.findall("display-name")}
-        for nm in rev.get(cid, []):
-            if nm and nm not in exist:
-                ET.SubElement(ch, "display-name").text = nm
-                added += 1
-        # channel 一般还带 icon 子元素，SubElement 会把 display-name 放到
-        # icon 后面；XMLTV 对顺序无要求，播放器都能解析
-    if added:
-        print(f"  追加简体名 {added} 个")
+        ours = rev.get(cid) or []
+        if not ours:
+            continue
+        olds = ch.findall("display-name")
+        order: list[str] = []
+        for nm in ours:
+            if nm and nm not in order:
+                order.append(nm)
+        for d in olds:
+            t = (d.text or "").strip()
+            if t and t not in order:
+                order.append(t)
+        for d in olds:
+            ch.remove(d)
+        for i, nm in enumerate(order):
+            el = ET.Element("display-name", {"lang": "zh"})
+            el.text = nm
+            ch.insert(i, el)
+        reordered += 1
+    if reordered:
+        print(f"  重排 display-name {reordered} 个频道（简体名在前）")
 
     # 先并入已有的国内节目单：优先用本地文件（--base），没有再走网络
     base_ch: dict[str, ET.Element] = {}
@@ -151,16 +249,96 @@ def build(days: int = 7, base_file: str = "", out_base: str = "") -> None:
         "generator-info-name": "zzf.new.tg",
         "generator-info-url": "https://zzf.new.tg/",
     })
-    # 用户频道在前，港澳台同名 id 覆盖
+    # ---- 国内频道改名（把 EPG id 换成我们 m3u 的频道名）----
+    our_names = load_our_names()
+    base_ids = set(base_ch.keys())
+    dn2id: dict[str, str] = {}
     for cid, ch in base_ch.items():
-        if cid not in got:
+        for d in ch.findall("display-name"):
+            t = (d.text or "").strip()
+            if t:
+                dn2id.setdefault(t, cid)
+    renamed_ch: list[ET.Element] = []   # 改过名的 channel（必须单独收着，pop 出来要放回去）
+    rename: dict[str, str] = {}      # 原 id -> 我们的名字
+    used: set[str] = set()
+    for nm in our_names:
+        if nm in base_ids:               # 已经是同名，不用改
+            continue
+        cid = _resolve(nm, base_ids, dn2id)
+        if cid and cid not in rename and nm not in used:
+            rename[cid] = nm
+            used.add(nm)
+    for cid, nm in rename.items():
+        ch = base_ch.pop(cid)
+        ch.set("id", nm)
+        renamed_ch.append(ch)
+        # 我们的名字放 display-name 第一位
+        olds = ch.findall("display-name")
+        order = [nm]
+        for d in olds:
+            t = (d.text or "").strip()
+            if t and t not in order:
+                order.append(t)
+        for d in olds:
+            ch.remove(d)
+        for i, x in enumerate(order):
+            el = ET.Element("display-name", {"lang": "zh"})
+            el.text = x
+            ch.insert(i, el)
+    if rename:
+        moved = 0
+        for pr in base_pr:
+            new = rename.get(pr.get("channel") or "")
+            if new:
+                pr.set("channel", new)
+                moved += 1
+        print(f"  国内频道改名 {len(rename)} 个，改写节目 {moved} 条")
+
+    # ★ 别名频道方案：每个港澳台台单独生成一个 **id 就是频道名** 的 EPG 条目。
+    # 为什么不用 epg.pw 的数字 id：
+    #   - 播放器按 tvg-id 匹配 → tvg-id 写频道名也能命中
+    #   - 播放器按频道名匹配 → display-name 就是同一个字符串，必然命中
+    #   - 播放器只读第一个 display-name → 别名条目的第一个就是我们的名字
+    #   - 一个 id 挂多个名字（美亚电影台 / 美亚电影台原声 同为 368348）也能分开
+    # 代价是节目要复制一份，11k 条变 22k 条，gz 只大 2~3 百 KB，可接受。
+    by_id = {ch.get("id"): ch for ch in channels}
+    groups: dict[str, list] = {}
+    for pr in programmes:
+        groups.setdefault(pr.get("channel") or "", []).append(pr)
+
+    alias_ch: list[ET.Element] = []
+    alias_pr: list[ET.Element] = []
+    no_data: list[str] = []
+    for our, cid in ch_map.items():
+        src = by_id.get(cid)
+        if src is None:
+            no_data.append(our)
+            continue
+        nc = copy.deepcopy(src)
+        nc.set("id", our)
+        alias_ch.append(nc)
+        for pr in groups.get(cid, []):
+            p2 = copy.deepcopy(pr)
+            p2.set("channel", our)
+            alias_pr.append(p2)
+    print(f"  别名频道 {len(alias_ch)} 个 / {len(alias_pr)} 条节目"
+          f"（无数据 {len(no_data)} 个：{'、'.join(no_data[:8])}）")
+
+    # 用户自己的国内 EPG 在前（港澳台同名 id 跳过，避免重复）
+    alias_ids = {c.get("id") for c in alias_ch}
+    for cid, ch in base_ch.items():
+        if cid not in alias_ids:
             tv.append(ch)
-    for ch in channels:
+    # 改过名的国内频道（之前 pop 出来忘了放回，导致「世界地理/兵器科技」等直接消失）
+    for ch in renamed_ch:
+        if ch.get("id") not in alias_ids:
+            tv.append(ch)
+    for ch in alias_ch:
         tv.append(ch)
     for pr in base_pr:
-        if pr.get("channel") not in got:
+        if pr.get("channel") not in alias_ids:
             tv.append(pr)
-    for pr in programmes:
+    for pr in alias_pr:
         tv.append(pr)
 
     xml = ET.tostring(tv, encoding="utf-8", xml_declaration=True)

@@ -1,9 +1,9 @@
-#EXTM3U x-tvg-url="https://fastly.jsdelivr.net/gh/zengzifeng520/IPTV@gh-pages/e_all.xml" url-tvg="https://fastly.jsdelivr.net/gh/zengzifeng520/IPTV@gh-pages/e_all.xml"
-#EXTINF:-1 tvg-id="CCTV1" tvg-name="CCTV-1" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/CCTV1.png" group-title="央视频道",CCTV-1
+#EXTM3U x-tvg-url="https://zzf.new.tg/data/public/epg.xml.gz" url-tvg="https://zzf.new.tg/data/public/epg.xml.gz"
+#EXTINF:-1 tvg-id="CCTV-1" tvg-name="CCTV-1" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/CCTV1.png" group-title="央视频道",CCTV-1
 http://115.196.150.241:9999/udp/233.50.200.99:5140
-#EXTINF:-1 tvg-id="CCTV1" tvg-name="CCTV-1" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/CCTV1.png" group-title="央视频道",CCTV-1
+#EXTINF:-1 tvg-id="CCTV-1" tvg-name="CCTV-1" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/CCTV1.png" group-title="央视频道",CCTV-1
 http://115.196.150.241:9999/udp/233.50.200.130:5140
-#EXTINF:-1 tvg-id="CCTV4K" tvg-name="CCTV-4K" tvg-logo="https://gcore.jsdelivr.net/gh/wanglindl/TVlogo@main/img/CCTV4K.png" group-title="央视频道",CCTV-4K
+#EXTINF:-1 tvg-id="CCTV-4K" tvg-name="CCTV-4K" tvg-logo="https://gcore.jsdelivr.net/gh/wanglindl/TVlogo@main/img/CCTV4K.png" group-title="央视频道",CCTV-4K
 http://122.246.144.233:7777/rtp/233.50.201.226:5140
 #EXTINF:-1 tvg-id="CCTV-5+ 体育赛事" tvg-name="CCTV-5+" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/CCTV5%2B.png" group-title="央视频道",CCTV-5+
 http://115.196.150.241:9999/udp/233.50.201.220:5140
@@ -305,9 +305,9 @@ http://122.246.144.233:7777/udp/233.50.200.192:5140
 http://dous.cc:4023/udp/233.50.200.192:5140
 #EXTINF:-1 tvg-id="凤凰资讯" tvg-name="凤凰资讯" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E5%87%A4%E5%87%B0%E8%B5%84%E8%AE%AF.png" group-title="港澳频道",凤凰资讯
 http://www.liangcl.top:8686/udp/233.50.200.192:5140
-#EXTINF:-1 tvg-name="中国教育1" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/CETV1.png" group-title="国教频道",中国教育1
+#EXTINF:-1 tvg-id="中国教育1" tvg-name="中国教育1" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/CETV1.png" group-title="国教频道",中国教育1
 http://115.196.150.241:9999/udp/233.50.201.75:5140
-#EXTINF:-1 tvg-name="中国教育1" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/CETV1.png" group-title="国教频道",中国教育1
+#EXTINF:-1 tvg-id="中国教育1" tvg-name="中国教育1" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/CETV1.png" group-title="国教频道",中国教育1
 http://122.246.144.233:7777/udp/233.50.201.75:5140
 #EXTINF:-1 tvg-id="东方财经" tvg-name="东方财经" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E4%B8%9C%E6%96%B9%E8%B4%A2%E7%BB%8F.png" group-title="主题频道",东方财经
 http://122.246.144.233:7777/rtp/233.50.200.177:5140

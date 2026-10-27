@@ -37,7 +37,11 @@ CST = timezone(timedelta(hours=8))
 # raw.githubusercontent 国内不通，走 jsdelivr（实测 200 / 15MB）。
 # 用 fastly 节点：gcore/testingcf 会缓存旧版（实测推新版后 gcore 还返回旧文件），
 # fastly 能拿到最新的。EPG 内容变化不大，缓存滞后几小时也能接受。
-EPG_URL = "https://fastly.jsdelivr.net/gh/zengzifeng520/IPTV@gh-pages/e_all.xml"
+# 用本站域名而不是 jsdelivr：
+# jsdelivr 对 @分支 的文件有最长 7 天缓存，实测推新版后 4 个节点全部还在返回旧文件
+# （旧版缺港澳台别名，播放器会显示不出节目单）。本站 GitHub Pages 1 分钟内就更新。
+# 内容仍然是 IPTV 仓库那份（build_epg.py 生成后同时推 IPTV 仓库和本站）。
+EPG_URL = "https://zzf.new.tg/data/public/epg.xml.gz"
 # 港澳台频道名 -> epg.pw 的 channel id（数字）。没映射的就不加 tvg-id，
 # 播放器显示「无节目信息」——epg.pw 确实没有那些台的节目单，不硬凑。
 _EPG_MAP: dict[str, str] | None = None
@@ -165,7 +169,9 @@ def _extinf(ch: dict) -> str:
     # tvg-id 用于匹配 EPG：港澳台走 epg.pw 的数字 id，其余分类用频道名本身
     # （用户那份国内节目单的 id 就是频道名）
     if ch.get("type") == "港澳台":
-        eid = _epg_map().get(name)
+        # EPG 里给每个台建了「id = 频道名」的别名条目，所以 tvg-id 直接写频道名，
+        # 按 id 匹配和按名字匹配都能命中（原来写数字 id，播放器只认名字时会全灭）
+        eid = name if name in _epg_map() else None
     else:
         eid = _resolve_epg_id(name)
     id_attr = f' tvg-id="{eid}"' if eid else ""
