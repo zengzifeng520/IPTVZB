@@ -180,6 +180,21 @@
       });
     }
 
+    // 国外频道订阅（公开）：按国家分组
+    if (all.intlStreams) {
+      items.push({
+        key: "intl",
+        name: "国外频道",
+        isp:
+          "HLS 直连 · " +
+          (all.intlCountries || 0) +
+          " 国 · 按国家分组",
+        path: subPrefix + "intl.m3u",
+        channels: all.intlChannels || 0,
+        streams: all.intlStreams || 0,
+      });
+    }
+
     items.sort(function (a, b) {
       if (a.big !== b.big) return a.big ? -1 : 1;
       return b.streams - a.streams;
