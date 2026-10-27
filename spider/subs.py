@@ -35,7 +35,9 @@ CST = timezone(timedelta(hours=8))
 # EPG（节目单）：统一由 zengzifeng520/IPTV 仓库的 gh-pages 提供。
 # 该文件 = 用户原有的国内节目单 + 我们用 tools/build_epg.py 并入的港澳台节目单。
 # raw.githubusercontent 国内不通，走 jsdelivr（实测 200 / 15MB）。
-EPG_URL = "https://gcore.jsdelivr.net/gh/zengzifeng520/IPTV@gh-pages/e_all.xml"
+# 用 fastly 节点：gcore/testingcf 会缓存旧版（实测推新版后 gcore 还返回旧文件），
+# fastly 能拿到最新的。EPG 内容变化不大，缓存滞后几小时也能接受。
+EPG_URL = "https://fastly.jsdelivr.net/gh/zengzifeng520/IPTV@gh-pages/e_all.xml"
 # 港澳台频道名 -> epg.pw 的 channel id（数字）。没映射的就不加 tvg-id，
 # 播放器显示「无节目信息」——epg.pw 确实没有那些台的节目单，不硬凑。
 _EPG_MAP: dict[str, str] | None = None
