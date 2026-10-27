@@ -840,15 +840,11 @@ http://116.179.130.216:7000/rtp/226.0.2.103:8736
 #EXTINF:-1 tvg-name="书画频道" group-title="数字频道",书画频道
 http://116.179.130.216:7000/rtp/226.0.2.102:8728
 #EXTINF:-1 tvg-name="优优宝贝" group-title="数字频道",优优宝贝
-http://114.66.28.184:80/udp/233.50.202.24:5140
-#EXTINF:-1 tvg-name="优优宝贝" group-title="数字频道",优优宝贝
 http://116.168.44.65:10000/udp/225.0.4.126:7980
 #EXTINF:-1 tvg-name="优优宝贝" group-title="数字频道",优优宝贝
 http://116.179.130.216:7000/rtp/226.0.2.119:8864
 #EXTINF:-1 tvg-name="先锋乒羽" group-title="数字频道",先锋乒羽
 http://116.179.130.216:7000/rtp/226.0.2.121:8880
-#EXTINF:-1 tvg-name="发现之旅" group-title="数字频道",发现之旅
-http://114.66.28.184:80/udp/233.50.201.98:5140
 #EXTINF:-1 tvg-name="四海钓鱼" group-title="数字频道",四海钓鱼
 http://116.179.130.216:7000/rtp/226.0.2.123:8896
 #EXTINF:-1 tvg-name="国学频道" group-title="数字频道",国学频道
@@ -889,8 +885,6 @@ http://116.168.44.65:10000/udp/225.0.4.241:7980
 http://116.179.130.216:7000/rtp/226.0.2.84:8584
 #EXTINF:-1 tvg-name="百姓健康" group-title="数字频道",百姓健康
 http://116.179.130.216:7000/rtp/226.0.2.132:8968
-#EXTINF:-1 tvg-name="第一财经" group-title="数字频道",第一财经
-http://114.66.28.184:80/udp/233.50.200.125:5140
 #EXTINF:-1 tvg-name="老故事" group-title="数字频道",老故事
 http://116.179.130.216:7000/rtp/226.0.2.112:8808
 #EXTINF:-1 tvg-name="茶频道" group-title="数字频道",茶频道
@@ -945,8 +939,6 @@ http://triq.cc:8012/rtp/239.3.1.115:8000
 http://vpn.famcloud.top:9878/rtp/239.3.1.115:8000
 #EXTINF:-1 tvg-name="上海纪实" group-title="地方频道",上海纪实
 http://116.179.130.216:7000/rtp/226.0.2.193:9456
-#EXTINF:-1 tvg-name="丽水新闻综合" group-title="地方频道",丽水新闻综合
-http://114.66.28.184:80/udp/233.50.201.162:5140
 #EXTINF:-1 tvg-name="北京国际" group-title="地方频道",北京国际
 http://116.168.44.65:10000/rtp/239.3.1.235:8000
 #EXTINF:-1 tvg-name="北京密云" group-title="地方频道",北京密云
@@ -987,8 +979,6 @@ http://116.168.44.65:10000/rtp/239.3.1.59:8001
 http://123.117.237.144:5222/rtp/239.3.1.59:8001
 #EXTINF:-1 tvg-name="北京门头沟" group-title="地方频道",北京门头沟
 http://123.120.6.99:4022/rtp/239.3.1.59:8001
-#EXTINF:-1 tvg-name="台州新闻" group-title="地方频道",台州新闻
-http://114.66.28.184:80/udp/233.50.201.157:5140
 #EXTINF:-1 tvg-name="大同教育" group-title="地方频道",大同教育
 http://116.179.130.216:7000/rtp/226.0.2.232:9772
 #EXTINF:-1 tvg-name="太原1" group-title="地方频道",太原1
@@ -1005,16 +995,6 @@ http://116.179.130.216:7000/rtp/226.0.2.205:9552
 http://116.179.130.216:7000/rtp/226.0.2.215:9632
 #EXTINF:-1 tvg-name="太原教育" group-title="地方频道",太原教育
 http://116.179.130.216:7000/rtp/226.0.2.206:9560
-#EXTINF:-1 tvg-name="宁波少儿" group-title="地方频道",宁波少儿
-http://114.66.28.184:80/udp/233.50.201.181:5140
-#EXTINF:-1 tvg-name="宁波影视" group-title="地方频道",宁波影视
-http://114.66.28.184:80/udp/233.50.201.180:5140
-#EXTINF:-1 tvg-name="宁波文体" group-title="地方频道",宁波文体
-http://114.66.28.184:80/udp/233.50.201.179:5140
-#EXTINF:-1 tvg-name="宁波生活" group-title="地方频道",宁波生活
-http://114.66.28.184:80/udp/233.50.201.178:5140
-#EXTINF:-1 tvg-name="宁波综合" group-title="地方频道",宁波综合
-http://114.66.28.184:80/udp/233.50.201.168:5140
 #EXTINF:-1 tvg-name="山东教育" group-title="地方频道",山东教育
 http://116.179.130.216:7000/rtp/226.0.2.130:8952
 #EXTINF:-1 tvg-name="山东教育" group-title="地方频道",山东教育
@@ -1073,14 +1053,6 @@ http://n2.192372.xyz:8888/rtp/239.3.1.163:8001
 http://naslmd2.myqnapcloud.com:4022/rtp/239.3.1.163:8001
 #EXTINF:-1 tvg-name="朝阳融媒" group-title="地方频道",朝阳融媒
 http://vpn.famcloud.top:9878/rtp/239.3.1.163:8001
-#EXTINF:-1 tvg-name="浙江之声广播" group-title="地方频道",浙江之声广播
-http://114.66.28.184:80/udp/233.50.201.79:5140
-#EXTINF:-1 tvg-name="浙江新闻广播" group-title="地方频道",浙江新闻广播
-http://114.66.28.184:80/udp/233.50.201.80:5140
-#EXTINF:-1 tvg-name="浙江生活" group-title="地方频道",浙江生活
-http://114.66.28.184:80/udp/233.50.201.133:5140
-#EXTINF:-1 tvg-name="浙江纪录" group-title="地方频道",浙江纪录
-http://114.66.28.184:80/udp/233.50.202.25:5140
 #EXTINF:-1 tvg-name="海南万宁" group-title="地方频道",海南万宁
 http://www.alihomes.top:8188/rtp/239.254.96.119:7936
 #EXTINF:-1 tvg-name="海南三亚" group-title="地方频道",海南三亚
@@ -1137,10 +1109,6 @@ http://www.alihomes.top:8188/rtp/239.254.96.120:7944
 http://www.alihomes.top:8188/rtp/239.254.96.122:7960
 #EXTINF:-1 tvg-name="海南风景" group-title="地方频道",海南风景
 http://www.alihomes.top:8188/rtp/239.254.96.165:8138
-#EXTINF:-1 tvg-name="温州综合" group-title="地方频道",温州综合
-http://114.66.28.184:80/udp/233.50.201.87:5140
-#EXTINF:-1 tvg-name="湖州新闻" group-title="地方频道",湖州新闻
-http://114.66.28.184:80/udp/233.50.201.158:5140
 #EXTINF:-1 tvg-name="爱生活" group-title="地方频道",爱生活
 http://111.197.231.173:4022/rtp/239.3.1.86:4120
 #EXTINF:-1 tvg-name="爱生活" group-title="地方频道",爱生活
@@ -1159,12 +1127,6 @@ http://n2.192372.xyz:8888/rtp/239.3.1.86:4120
 http://naslmd2.myqnapcloud.com:4022/rtp/239.3.1.86:4120
 #EXTINF:-1 tvg-name="爱生活" group-title="地方频道",爱生活
 http://vpn.famcloud.top:9878/rtp/239.3.1.86:4120
-#EXTINF:-1 tvg-name="绍兴综合" group-title="地方频道",绍兴综合
-http://114.66.28.184:80/udp/233.50.201.156:5140
-#EXTINF:-1 tvg-name="衢州新闻" group-title="地方频道",衢州新闻
-http://114.66.28.184:80/udp/233.50.201.155:5140
-#EXTINF:-1 tvg-name="衢州综合" group-title="地方频道",衢州综合
-http://114.66.28.184:80/udp/233.50.202.11:5140
 #EXTINF:-1 tvg-name="重庆娱乐" group-title="地方频道",重庆娱乐
 http://116.168.44.65:10000/udp/225.0.4.194:7980
 #EXTINF:-1 tvg-name="重庆少儿" group-title="地方频道",重庆少儿
