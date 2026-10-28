@@ -66,6 +66,8 @@ HOTEL_JSON = config.WEB_DATA_DIR / "proxy_hotel.json"
 # 港澳台：台湾台 + 凤凰系列 + 澳门莲花，大陆可直连的 tsfile 源，
 # 由 gangaotai_pool.py 生成，同样作为独立分类呈现。
 GANGAOTAI_JSON = config.WEB_DATA_DIR / "proxy_gangaotai.json"
+# 付费频道：用户提供的境外/付费直播源，已实测可播，静态并入港澳台列表（不进巡检）。
+EXTRA_PAY_JSON = config.WEB_DATA_DIR / "extra_pay.json"
 # 国外：境外 FAST / 公共广播 / 新闻频道的公开 HLS，由 intl_pool.py 生成，
 # 第三个独立分类。频道按国家分组（group-title="国外·日本" 这种）。
 INTL_JSON = config.WEB_DATA_DIR / "proxy_intl.json"
@@ -262,7 +264,24 @@ def load_gangaotai() -> dict | None:
     hosts = [x["h"] for x in (gd.get("hosts") or []) if x.get("h")]
     if not chans or not hosts:
         return None
-    return {"channels": chans, "hosts": hosts, "host_set": set(hosts)}
+    result = {"channels": chans, "hosts": hosts, "host_set": set(hosts)}
+
+    # 并入付费频道静态源：用户给的 7.txt 实测可播的那批，**不参与巡检**，
+    # 直接跟着港澳台列表一起输出（host 也要并进 host_set，否则会被过滤掉）。
+    try:
+        if EXTRA_PAY_JSON.exists():
+            ep = json.loads(EXTRA_PAY_JSON.read_text(encoding="utf-8"))
+            ep_chans = ep.get("channels") or []
+            ep_hosts = [x["h"] for x in (ep.get("hosts") or []) if x.get("h")]
+            if ep_chans:
+                result["channels"] = chans + ep_chans
+                result["hosts"] = hosts + ep_hosts
+                result["host_set"] = set(result["hosts"])
+                print(f"  [subs] 并入付费频道 {len(ep_chans)} 频道 / {len(ep_hosts)} 服务器（不巡检）")
+    except Exception as exc:  # noqa: BLE001
+        print(f"  [subs] 付费频道合并失败，跳过：{exc}")
+
+    return result
 
 
 def load_intl() -> dict | None:

@@ -1,0 +1,1278 @@
+{
+ "generated_at": "2026-10-28 22:35:56",
+ "hosts": [
+  {
+   "h": "nmxlive.akamaized.net",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "amg00793-amg00793c6-xumo-us-2669.playouts.now.amagi.tv",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "bbstv.clouducs.com:1935",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "d2e1asnsl7br7b.cloudfront.net",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 5
+  },
+  {
+   "h": "23.237.104.106:8080",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "cdn11.163189.xyz",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "bamus-lovenature-lg.amagi.tv",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 5
+  },
+  {
+   "h": "aegis-cloudfront-1.tubi.video",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "d2wh06mmk97552.cloudfront.net",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "vdm6-hw.nbgdsygs.com",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "cdn3.indevs.in",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "d2zyqoz1zsj2mq.cloudfront.net",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "l.cztvcloud.com",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "111.0.115.129:8081",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "ns8.indexforce.com:1935",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 2
+  },
+  {
+   "h": "iptv.tapesh.tv",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "hls-igi.cdnvideo.ru",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "rtmp.one.by:1200",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "rt-glb.rttv.com",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "chibrics.mediacdn.ru",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "live-hls-web-aja.getaj.net",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 3
+  },
+  {
+   "h": "live-hls-apps-aje-v3-fa.getaj.net",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "www.dalitv.com.tw:4568",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "xumo-drct-skynews-nc91a.fast.nbcuni.com",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "stream.ioniantv.gr:8081",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "tencentplay.gztv.com",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 3
+  },
+  {
+   "h": "109.74.145.11:1935",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "media-osa.hls.nhkworld.jp",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "116.77.33.98:44330",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "stream.hndt.com",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "119.77.96.184:1935",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "211.72.174.95:8117",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "amg00106-france24-france24-samsunguk-qvpp8.amagi.tv",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "stream.tvkujawy.pl:8080",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "217.173.176.107:1935",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "thaipbs-live.cdn.byteark.com",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 2
+  },
+  {
+   "h": "news1.live14.com",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "d1cgf0ptrv4t22.cloudfront.net",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "live20.bozztv.com",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "rbmn-live.akamaized.net",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 2
+  },
+  {
+   "h": "ottproxy2.ist.ooo",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 2
+  },
+  {
+   "h": "d3h4bmiab2fzqu.cloudfront.net",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "ds2c506obo7m8.cloudfront.net",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "d3fzntptkfpmvg.cloudfront.net",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "linear-893.frequency.stream",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "120.198.95.220:9901",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "222.128.55.152:9080",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "amg01131-tracetv-traceurbanuk-samsunguk-6r213.amagi.tv",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "d2glyu450vvghm.cloudfront.net",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "amdlive.ctnd.com.edgesuite.net",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "dah0tmei2n9kh.cloudfront.net",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "webcast.hkstv.tv",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "rthkradio2-live.akamaized.net",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 1
+  },
+  {
+   "h": "38.64.72.148:80",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 8
+  },
+  {
+   "h": "38.64.72.148",
+   "rn": "付费频道",
+   "isp": "HLS",
+   "ch": 3
+  }
+ ],
+ "channels": [
+  {
+   "key": "Animax (HK)",
+   "display": "Animax (HK)",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "nmxlive.akamaized.net",
+     "u": "http://nmxlive.akamaized.net/hls/live/529965/Live_1/index.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "BBC Earth",
+   "display": "BBC Earth",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "amg00793-amg00793c6-xumo-us-2669.playouts.now.amagi.tv",
+     "u": "https://amg00793-amg00793c6-xumo-us-2669.playouts.now.amagi.tv/BBCStudios-BBCEarthA-hls/playlist.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "BBS佛教广播",
+   "display": "BBS佛教广播",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "bbstv.clouducs.com:1935",
+     "u": "http://bbstv.clouducs.com:1935/bbstv-live/livestream/chunklist_w1403706733.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "CNA新闻",
+   "display": "CNA新闻",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "d2e1asnsl7br7b.cloudfront.net",
+     "u": "https://d2e1asnsl7br7b.cloudfront.net/7782e205e72f43aeb4a48ec97f66ebbe/index_5.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "Cinemax经典",
+   "display": "Cinemax经典",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "23.237.104.106:8080",
+     "u": "http://23.237.104.106:8080/USA_5STARMAX/tracks-v1a1/mono.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "HOY国际财经台",
+   "display": "HOY国际财经台",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "cdn11.163189.xyz",
+     "u": "https://cdn11.163189.xyz/163189/hoy76"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "Love Nature",
+   "display": "Love Nature",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "bamus-lovenature-lg.amagi.tv",
+     "u": "https://bamus-lovenature-lg.amagi.tv/1080p-cc/index.m3u8"
+    },
+    {
+     "h": "bamus-lovenature-lg.amagi.tv",
+     "u": "https://bamus-lovenature-lg.amagi.tv/480p-cc/index.m3u8"
+    },
+    {
+     "h": "bamus-lovenature-lg.amagi.tv",
+     "u": "https://bamus-lovenature-lg.amagi.tv/720p-cc/index.m3u8"
+    },
+    {
+     "h": "bamus-lovenature-lg.amagi.tv",
+     "u": "https://bamus-lovenature-lg.amagi.tv/360p-cc/index.m3u8"
+    },
+    {
+     "h": "bamus-lovenature-lg.amagi.tv",
+     "u": "https://bamus-lovenature-lg.amagi.tv/240p-cc/index.m3u8"
+    },
+    {
+     "h": "aegis-cloudfront-1.tubi.video",
+     "u": "https://aegis-cloudfront-1.tubi.video/6d6d0f24-8445-4b4c-bdf6-44f9e38beaa4/playlist.m3u8"
+    },
+    {
+     "h": "d2wh06mmk97552.cloudfront.net",
+     "u": "https://d2wh06mmk97552.cloudfront.net/playlist/bamusaAAA-bamus-lovenature-lg/playlist.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "TVB 开",
+   "display": "TVB 开",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "vdm6-hw.nbgdsygs.com",
+     "u": "https://vdm6-hw.nbgdsygs.com/live/h6-2.flv"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "TVBPlus",
+   "display": "TVBPlus",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "cdn3.indevs.in",
+     "u": "https://cdn3.indevs.in/stream/tvb/tvbp/"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "tvN",
+   "display": "tvN",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "d2zyqoz1zsj2mq.cloudfront.net",
+     "u": "https://d2zyqoz1zsj2mq.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-i9yul1lyegl6e-ssai-prd/6d07fe2a_003a_4879_acfc_44e3c3c10f03/hls/playlist.m3u8?tvN"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "东阳影视生活",
+   "display": "东阳影视生活",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "l.cztvcloud.com",
+     "u": "http://l.cztvcloud.com/channels/lantian/SXdongyang1/720p.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "中天新闻",
+   "display": "中天新闻",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "111.0.115.129:8081",
+     "u": "http://111.0.115.129:8081/live/000ztxw.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "亚洲新闻",
+   "display": "亚洲新闻",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "d2e1asnsl7br7b.cloudfront.net",
+     "u": "http://d2e1asnsl7br7b.cloudfront.net/7782e205e72f43aeb4a48ec97f66ebbe/index_4.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "伊拉克 Al Sharqiya",
+   "display": "伊拉克 Al Sharqiya",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "ns8.indexforce.com:1935",
+     "u": "http://ns8.indexforce.com:1935/home/mystream/playlist.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "伊拉克 Sharqiya News",
+   "display": "伊拉克 Sharqiya News",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "ns8.indexforce.com:1935",
+     "u": "http://ns8.indexforce.com:1935/alsharqiyalive/mystream/playlist.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "伊朗PBC Tapesh TV",
+   "display": "伊朗PBC Tapesh TV",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "iptv.tapesh.tv",
+     "u": "http://iptv.tapesh.tv/tapesh/playlist.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "俄·IGITV蓝光",
+   "display": "俄·IGITV蓝光",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "hls-igi.cdnvideo.ru",
+     "u": "http://hls-igi.cdnvideo.ru/igi/igi_hq/playlist.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "俄罗斯First Music (Opt-3)",
+   "display": "俄罗斯First Music (Opt-3)",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "rtmp.one.by:1200",
+     "u": "http://rtmp.one.by:1200"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "俄罗斯RT",
+   "display": "俄罗斯RT",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "rt-glb.rttv.com",
+     "u": "https://rt-glb.rttv.com/dvr/rtnews/playlist.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "俄罗斯金砖TV",
+   "display": "俄罗斯金砖TV",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "chibrics.mediacdn.ru",
+     "u": "https://chibrics.mediacdn.ru/cdn/brics/chinese/tracks-v1a1/mono.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "半·新闻",
+   "display": "半·新闻",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "live-hls-web-aja.getaj.net",
+     "u": "http://live-hls-web-aja.getaj.net/AJA/02.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "半岛新闻「阿拉伯」",
+   "display": "半岛新闻「阿拉伯」",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "live-hls-web-aja.getaj.net",
+     "u": "http://live-hls-web-aja.getaj.net/AJA/02.m3u8?zshijd"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "卡塔尔Al Jazeera 英文",
+   "display": "卡塔尔Al Jazeera 英文",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "live-hls-apps-aje-v3-fa.getaj.net",
+     "u": "https://live-hls-apps-aje-v3-fa.getaj.net/AJE/index.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "卡特尔Al Jazeera 阿语",
+   "display": "卡特尔Al Jazeera 阿语",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "live-hls-web-aja.getaj.net",
+     "u": "http://live-hls-web-aja.getaj.net/AJA/index.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "大立电视台",
+   "display": "大立电视台",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "www.dalitv.com.tw:4568",
+     "u": "http://www.dalitv.com.tw:4568/live/dali/index.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "天空新闻",
+   "display": "天空新闻",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "xumo-drct-skynews-nc91a.fast.nbcuni.com",
+     "u": "https://xumo-drct-skynews-nc91a.fast.nbcuni.com/live/master.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "希腊Ionian Channel",
+   "display": "希腊Ionian Channel",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "stream.ioniantv.gr:8081",
+     "u": "http://stream.ioniantv.gr:8081/ionian/live/playlist.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "广州南国都市",
+   "display": "广州南国都市",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "tencentplay.gztv.com",
+     "u": "https://tencentplay.gztv.com/live/nanguodushi.m3u8?txSecret=550af55c0ea34ce492748481415b6dfa&txTime=1903e7b17de"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "广州新闻",
+   "display": "广州新闻",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "tencentplay.gztv.com",
+     "u": "https://tencentplay.gztv.com/live/xinwen.m3u8?txSecret=4c09e8c2d093bcb692e036ae54ff87c7&txTime=1903e37cd8a"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "广州综合",
+   "display": "广州综合",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "tencentplay.gztv.com",
+     "u": "https://tencentplay.gztv.com/live/zonghes.m3u8?txSecret=9e5008d4b91944fa76a957a93ae54870&txTime=1903e5f1cfd"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "斯洛伐克TV 8",
+   "display": "斯洛伐克TV 8",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "109.74.145.11:1935",
+     "u": "http://109.74.145.11:1935/tv8/mp4:tv8.stream_360p/chunklist_w974670813.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "新加坡CNA",
+   "display": "新加坡CNA",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "d2e1asnsl7br7b.cloudfront.net",
+     "u": "https://d2e1asnsl7br7b.cloudfront.net/7782e205e72f43aeb4a48ec97f66ebbe/index.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "新加坡中文台",
+   "display": "新加坡中文台",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "d2e1asnsl7br7b.cloudfront.net",
+     "u": "https://d2e1asnsl7br7b.cloudfront.net/7782e205e72f43aeb4a48ec97f66ebbe/index_4.m3u8?zshijd"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "新加坡国际",
+   "display": "新加坡国际",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "d2e1asnsl7br7b.cloudfront.net",
+     "u": "https://d2e1asnsl7br7b.cloudfront.net/7782e205e72f43aeb4a48ec97f66ebbe/index_4.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "日本NHK国际",
+   "display": "日本NHK国际",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "media-osa.hls.nhkworld.jp",
+     "u": "https://media-osa.hls.nhkworld.jp/hls/w/live/master.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "明珠台",
+   "display": "明珠台",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "116.77.33.98:44330",
+     "u": "http://116.77.33.98:44330/tsfile/live/1009_1.m3u8?key=txiptv&playlive=0&authid=0"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "星河音乐台",
+   "display": "星河音乐台",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "stream.hndt.com",
+     "u": "http://stream.hndt.com/live/1061/playlist.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "朝鲜中央台",
+   "display": "朝鲜中央台",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "119.77.96.184:1935",
+     "u": "http://119.77.96.184:1935/chn05/chn05/chunklist_w644291506.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "民視新聞",
+   "display": "民視新聞",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "211.72.174.95:8117",
+     "u": "http://211.72.174.95:8117/0.ts"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "法国France 24",
+   "display": "法国France 24",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "amg00106-france24-france24-samsunguk-qvpp8.amagi.tv",
+     "u": "https://amg00106-france24-france24-samsunguk-qvpp8.amagi.tv/playlist/amg00106-france24-france24-samsunguk/playlist.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "波兰TV Kujawy (Opt-1)",
+   "display": "波兰TV Kujawy (Opt-1)",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "stream.tvkujawy.pl:8080",
+     "u": "http://stream.tvkujawy.pl:8080/live/broadcast.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "波兰TV Torun",
+   "display": "波兰TV Torun",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "217.173.176.107:1935",
+     "u": "http://217.173.176.107:1935/live/ngrp:tvk.stream_all/master.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "泰·THAIPBS",
+   "display": "泰·THAIPBS",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "thaipbs-live.cdn.byteark.com",
+     "u": "http://thaipbs-live.cdn.byteark.com/live-en/playlist_720p/index.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "泰·公共三台",
+   "display": "泰·公共三台",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "thaipbs-live.cdn.byteark.com",
+     "u": "http://thaipbs-live.cdn.byteark.com/live/playlist_1080p/index.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "泰国 ASTV News 1",
+   "display": "泰国 ASTV News 1",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "news1.live14.com",
+     "u": "http://news1.live14.com/stream/news1_hi.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "流言终结者",
+   "display": "流言终结者",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "d1cgf0ptrv4t22.cloudfront.net",
+     "u": "https://d1cgf0ptrv4t22.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-xvoparaodgcw9/Mythbusters_GB.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "猫和老鼠轮播",
+   "display": "猫和老鼠轮播",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "live20.bozztv.com",
+     "u": "https://live20.bozztv.com/giatvplayout7/giatv-208314/tracks-v1a1/mono.ts.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "红牛REDBULL TV",
+   "display": "红牛REDBULL TV",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "rbmn-live.akamaized.net",
+     "u": "https://rbmn-live.akamaized.net/hls/live/590964/BoRB-AT/master_3360.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "美亚C+",
+   "display": "美亚C+",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "ottproxy2.ist.ooo",
+     "u": "http://ottproxy2.ist.ooo/livehls/MOB-U1-NO/03.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "美国Bloomberg",
+   "display": "美国Bloomberg",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "d3h4bmiab2fzqu.cloudfront.net",
+     "u": "https://d3h4bmiab2fzqu.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/Bloomberg-kr-prod/index.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "美国CNN",
+   "display": "美国CNN",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "ds2c506obo7m8.cloudfront.net",
+     "u": "https://ds2c506obo7m8.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-7zjq3tdqasbg8/index.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "美国CNN 英国版",
+   "display": "美国CNN 英国版",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "d3fzntptkfpmvg.cloudfront.net",
+     "u": "https://d3fzntptkfpmvg.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-6rc4k0y56fezj/CNNFAST_GB.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "美国Red Bull TV SD",
+   "display": "美国Red Bull TV SD",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "rbmn-live.akamaized.net",
+     "u": "http://rbmn-live.akamaized.net/hls/live/590964/BoRB-AT/master_1660.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "美国UFC",
+   "display": "美国UFC",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "linear-893.frequency.stream",
+     "u": "https://linear-893.frequency.stream/dist/xumo/893/hls/master/playlist.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "翡翠台",
+   "display": "翡翠台",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "120.198.95.220:9901",
+     "u": "http://120.198.95.220:9901/tsfile/live/1004_1.m3u8?key=txiptv"
+    },
+    {
+     "h": "222.128.55.152:9080",
+     "u": "http://222.128.55.152:9080/live/gdfc.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "英国Trace Urban",
+   "display": "英国Trace Urban",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "amg01131-tracetv-traceurbanuk-samsunguk-6r213.amagi.tv",
+     "u": "https://amg01131-tracetv-traceurbanuk-samsunguk-6r213.amagi.tv/ts-eu-w1-n2/playlist/amg01131-tracetv-traceurbanuk-samsunguk/playlist.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "荷兰Sol Música",
+   "display": "荷兰Sol Música",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "d2glyu450vvghm.cloudfront.net",
+     "u": "https://d2glyu450vvghm.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-21u4g5cjglv02/sm.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "韩国Arirang (Opt-1)",
+   "display": "韩国Arirang (Opt-1)",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "amdlive.ctnd.com.edgesuite.net",
+     "u": "http://amdlive.ctnd.com.edgesuite.net/arirang_1ch/smil:arirang_1ch.smil/playlist.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "韩国K-POP by CJ ENM",
+   "display": "韩国K-POP by CJ ENM",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "dah0tmei2n9kh.cloudfront.net",
+     "u": "https://dah0tmei2n9kh.cloudfront.net/f4acc9ba_daae_4ed0_b836_32126cead919/hls/chunklist.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "香港C+",
+   "display": "香港C+",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "ottproxy2.ist.ooo",
+     "u": "http://ottproxy2.ist.ooo/livehls/MOB-U1-NO/index.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "香港卫视",
+   "display": "香港卫视",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "webcast.hkstv.tv",
+     "u": "http://webcast.hkstv.tv/livestream/mutfysrq/playlist.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "香港電台第二台 RTHK Radio 2 – Kowloon HK",
+   "display": "香港電台第二台 RTHK Radio 2 – Kowloon HK",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "rthkradio2-live.akamaized.net",
+     "u": "https://rthkradio2-live.akamaized.net/hls/live/2040078/radio2/index_64_a.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "东森 AMERICA",
+   "display": "东森 AMERICA",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "38.64.72.148:80",
+     "u": "http://38.64.72.148:80/hls/modn/list/2015/chunklist1.m3u8"
+    },
+    {
+     "h": "38.64.72.148:80",
+     "u": "http://38.64.72.148:80/hls/modn/list/2015/chunklist0.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "东森美洲 HD",
+   "display": "东森美洲 HD",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "38.64.72.148:80",
+     "u": "http://38.64.72.148:80/hls/modn/list/2016/chunklist0.m3u8"
+    },
+    {
+     "h": "38.64.72.148:80",
+     "u": "http://38.64.72.148:80/hls/modn/list/2016/playlist.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "东森超视 34.5",
+   "display": "东森超视 34.5",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "38.64.72.148:80",
+     "u": "http://38.64.72.148:80/hls/modn/list/2013/playlist.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "中旺電視",
+   "display": "中旺電視",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "38.64.72.148:80",
+     "u": "http://38.64.72.148:80/hls/modn/list/4010/chunklist0.m3u8"
+    },
+    {
+     "h": "38.64.72.148:80",
+     "u": "http://38.64.72.148:80/hls/modn/list/4010/playlist.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "東森中國台",
+   "display": "東森中國台",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "38.64.72.148",
+     "u": "http://38.64.72.148/hls/modn/list/2003/playlist.m3u8"
+    },
+    {
+     "h": "38.64.72.148:80",
+     "u": "http://38.64.72.148:80/hls/modn/list/2003/playlist.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "東森美洲HD",
+   "display": "東森美洲HD",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "38.64.72.148",
+     "u": "http://38.64.72.148/hls/modn/list/2016/playlist.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  },
+  {
+   "key": "漢天衛視",
+   "display": "漢天衛視",
+   "type": "港澳台",
+   "region": "付费",
+   "streams": [
+    {
+     "h": "38.64.72.148",
+     "u": "http://38.64.72.148/hls/modn/list/4025/chunklist0.m3u8"
+    }
+   ],
+   "line": "全国通用"
+  }
+ ]
+}
