@@ -45,6 +45,8 @@ http://103.172.187.30:12000/stream/mytv/zoomoo/master.m3u8
 http://103.172.187.30:12000/stream/allchannel/doc/master.m3u8
 #EXTINF:-1 tvg-id="myTV SUPER 18台" tvg-name="myTV SUPER 18台" tvg-logo="https://i.imgur.com/pD2a0rM.png" group-title="港澳台",myTV SUPER 18台
 http://103.172.187.30:12000/stream/mytv/mytvsuper18/master.m3u8
+#EXTINF:-1 tvg-name="novo19" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Logo_NOVO19_-_2025.svg/960px-Logo_NOVO19_-_2025.svg.png" group-title="港澳台",novo19
+http://103.172.187.30:12000/stream/allchannel/novo19/master.m3u8
 #EXTINF:-1 tvg-id="tv5asie" tvg-name="tv5asie" tvg-logo="https://zzf.new.tg/data/logos/269937a2e940.png" group-title="港澳台",tv5asie
 http://103.172.187.30:12000/stream/allchannel/tv5asie/master.m3u8
 #EXTINF:-1 tvg-id="tv5info" tvg-name="tv5info" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/As_seen_on_TV.svg/960px-As_seen_on_TV.svg.png" group-title="港澳台",tv5info
