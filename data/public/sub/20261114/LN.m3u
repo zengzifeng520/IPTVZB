@@ -36,6 +36,8 @@ http://42.58.252.7:9008/rtp/232.0.0.53:1234
 #EXTINF:-1 tvg-id="CCTV4美洲" tvg-name="CCTV4美洲" tvg-logo="https://gcore.jsdelivr.net/gh/wanglindl/TVlogo@main/img/CCTV4mz.png" group-title="央视频道",CCTV4美洲
 http://42.58.252.7:9008/rtp/232.0.0.59:1234
 #EXTINF:-1 tvg-id="CCTV世界地理" tvg-name="CCTV世界地理" tvg-logo="https://i.imgur.com/V2ncOXi.png" group-title="央视频道",CCTV世界地理
+http://101.wifi98.com:9001/rtp/232.0.0.63:1234
+#EXTINF:-1 tvg-id="CCTV世界地理" tvg-name="CCTV世界地理" tvg-logo="https://i.imgur.com/V2ncOXi.png" group-title="央视频道",CCTV世界地理
 http://42.58.252.7:9008/rtp/232.0.0.63:1234
 #EXTINF:-1 tvg-id="CCTV兵器科技" tvg-name="CCTV兵器科技" tvg-logo="https://i.imgur.com/QlF96eS.png" group-title="央视频道",CCTV兵器科技
 http://101.wifi98.com:9001/rtp/232.0.0.58:1234
@@ -60,11 +62,17 @@ http://101.wifi98.com:9001/rtp/232.0.0.91:1234
 #EXTINF:-1 tvg-id="CCTV电视指南" tvg-name="CCTV电视指南" tvg-logo="https://i.imgur.com/U73Q4NW.png" group-title="央视频道",CCTV电视指南
 http://42.58.252.7:9008/rtp/232.0.0.91:1234
 #EXTINF:-1 tvg-id="CCTV第一剧场" tvg-name="CCTV第一剧场" tvg-logo="https://i.imgur.com/eFxD3hq.png" group-title="央视频道",CCTV第一剧场
+http://101.wifi98.com:9001/rtp/232.0.0.29:1234
+#EXTINF:-1 tvg-id="CCTV第一剧场" tvg-name="CCTV第一剧场" tvg-logo="https://i.imgur.com/eFxD3hq.png" group-title="央视频道",CCTV第一剧场
 http://42.58.252.7:9008/rtp/232.0.0.29:1234
+#EXTINF:-1 tvg-id="CCTV风云剧场" tvg-name="CCTV风云剧场" tvg-logo="https://i.imgur.com/rEttkKm.png" group-title="央视频道",CCTV风云剧场
+http://101.wifi98.com:9001/rtp/232.0.0.45:1234
 #EXTINF:-1 tvg-id="CCTV风云剧场" tvg-name="CCTV风云剧场" tvg-logo="https://i.imgur.com/rEttkKm.png" group-title="央视频道",CCTV风云剧场
 http://42.58.252.7:9008/rtp/232.0.0.45:1234
 #EXTINF:-1 tvg-id="CCTV风云足球" tvg-name="CCTV风云足球" tvg-logo="https://i.imgur.com/Fy6HkX0.png" group-title="央视频道",CCTV风云足球
 http://42.58.252.7:9008/rtp/232.0.0.52:1234
+#EXTINF:-1 tvg-id="CCTV风云音乐" tvg-name="CCTV风云音乐" tvg-logo="https://i.imgur.com/IiiRmrf.png" group-title="央视频道",CCTV风云音乐
+http://101.wifi98.com:9001/rtp/232.0.0.47:1234
 #EXTINF:-1 tvg-id="CCTV风云音乐" tvg-name="CCTV风云音乐" tvg-logo="https://i.imgur.com/IiiRmrf.png" group-title="央视频道",CCTV风云音乐
 http://42.58.252.7:9008/rtp/232.0.0.47:1234
 #EXTINF:-1 tvg-name="CGTN" tvg-logo="https://gcore.jsdelivr.net/gh/wanglindl/TVlogo@main/img/CGTN.png" group-title="央视频道",CGTN
