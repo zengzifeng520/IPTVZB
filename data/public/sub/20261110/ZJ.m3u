@@ -413,8 +413,6 @@ http://guany.myds.me:25852/udp/233.50.200.124:5140
 http://guany.myds.me:25852/udp/233.50.201.188:5140
 #EXTINF:-1 tvg-name="ymg新闻" group-title="地方频道",ymg新闻
 http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.201.159:5140
-#EXTINF:-1 tvg-name="ymg新闻" group-title="地方频道",ymg新闻
-http://z2m.eversouthhangzhou.com.cn:8188/rtp/233.50.201.159:5140
 #EXTINF:-1 tvg-name="临平新闻" tvg-logo="https://zzf.new.tg/data/logos/09123f1d3fef.png" group-title="地方频道",临平新闻
 http://jellyfin.eversouthhangzhou.com.cn:8188/rtp/233.50.202.32:5140
 #EXTINF:-1 tvg-name="临平新闻" tvg-logo="https://zzf.new.tg/data/logos/09123f1d3fef.png" group-title="地方频道",临平新闻
