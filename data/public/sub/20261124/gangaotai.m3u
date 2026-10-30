@@ -27,8 +27,6 @@ http://103.172.187.30:12000/stream/mytv/super-2/master.m3u8
 http://103.172.187.30:12000/stream/mytv/super-1/master.m3u8
 #EXTINF:-1 tvg-id="SUPER金曲" tvg-name="SUPER金曲" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/d/d8/Super%21_logo_2015.svg" group-title="港澳台",SUPER金曲
 http://103.172.187.30:12000/stream/mytv/super-3/master.m3u8
-#EXTINF:-1 tvg-name="TVB 儿童台" tvg-logo="https://zzf.new.tg/data/logos/741e58d1cd04.png" group-title="港澳台",TVB 儿童台
-http://103.172.187.30:12000/stream/mytv/tvb/master.m3u8
 #EXTINF:-1 tvg-id="TVBPLUS" tvg-name="TVBPLUS" tvg-logo="https://zzf.new.tg/data/logos/a792c39e903a.png" group-title="港澳台",TVBPLUS
 http://103.172.187.30:12000/stream/mytv/tvbplus/master.m3u8
 #EXTINF:-1 tvg-id="TVBS" tvg-name="TVBS" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/TVBS.png" group-title="港澳台",TVBS
