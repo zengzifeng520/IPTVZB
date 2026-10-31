@@ -1,6 +1,10 @@
 #EXTM3U x-tvg-url="https://zzf.new.tg/epg.xml" url-tvg="https://zzf.new.tg/epg.xml"
+#EXTINF:-1 tvg-id="CCTV女性时尚" tvg-name="CCTV女性时尚" tvg-logo="https://i.imgur.com/FVbP0aP.png" group-title="央视频道",CCTV女性时尚
+http://home.pinkfloyd.cn:5000/rtp/238.1.79.55:4576
 #EXTINF:-1 tvg-id="厦门卫视" tvg-name="厦门卫视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E5%8E%A6%E9%97%A8%E5%8D%AB%E8%A7%86.png" group-title="卫视频道",厦门卫视
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.246:7840
+#EXTINF:-1 tvg-id="哈哈炫动" tvg-name="哈哈炫动" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E5%93%88%E5%93%88%E7%82%AB%E5%8A%A8.png" group-title="卫视频道",哈哈炫动
+http://home.pinkfloyd.cn:5000/rtp/238.1.78.82:6528
 #EXTINF:-1 tvg-name="上海体育" tvg-logo="https://zzf.new.tg/data/logos/f791105e9157.png" group-title="体育频道",上海体育
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.85:6552
 #EXTINF:-1 tvg-id="安徽影视" tvg-name="安徽影视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E5%AE%89%E5%BE%BD%E5%BD%B1%E8%A7%86.png" group-title="影视频道",安徽影视
@@ -75,8 +79,6 @@ http://home.pinkfloyd.cn:5000/rtp/238.1.78.121:6840
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.123:6856
 #EXTINF:-1 tvg-name="寿县新闻综合" tvg-logo="https://zzf.new.tg/data/logos/dc299da96453.png" group-title="地方频道",寿县新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.146:7040
-#EXTINF:-1 tvg-id="山东教育卫视" tvg-name="山东教育卫视" tvg-logo="https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@main/png/%E5%B1%B1%E4%B8%9C%E6%95%99%E8%82%B2%E5%8D%AB%E8%A7%86.png" group-title="地方频道",山东教育卫视
-http://home.pinkfloyd.cn:5000/rtp/238.1.78.254:7904
 #EXTINF:-1 tvg-name="广德新闻综合" tvg-logo="https://zzf.new.tg/data/logos/96359abbe0c9.png" group-title="地方频道",广德新闻综合
 http://home.pinkfloyd.cn:5000/rtp/238.1.78.212:7568
 #EXTINF:-1 tvg-name="广德生活" tvg-logo="https://zzf.new.tg/data/logos/1d1dd5736a3c.png" group-title="地方频道",广德生活
